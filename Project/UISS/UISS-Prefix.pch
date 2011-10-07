@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'UISS' target in the 'UISS' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+#endif

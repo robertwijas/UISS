@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
+		E1B438B9143F668000F87518 /* UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438B8143F668000F87518 /* UISS.m */; };
+		E1B438C1143F668000F87518 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C0143F668000F87518 /* SenTestingKit.framework */; };
+		E1B438C3143F668000F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C2143F668000F87518 /* UIKit.framework */; };
+		E1B438C4143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
+		E1B438C7143F668000F87518 /* libUISS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438AF143F668000F87518 /* libUISS.a */; };
+		E1B438CD143F668000F87518 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B438CB143F668000F87518 /* InfoPlist.strings */; };
+		E1B438D0143F668000F87518 /* UISSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438CF143F668000F87518 /* UISSTests.m */; };
+		E1B438DF143F674200F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C2143F668000F87518 /* UIKit.framework */; };
+		E1B438E0143F674200F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
+		E1B438E2143F674200F87518 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438E1143F674200F87518 /* CoreGraphics.framework */; };
+		E1B438E8143F674200F87518 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B438E6143F674200F87518 /* InfoPlist.strings */; };
+		E1B438EA143F674200F87518 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438E9143F674200F87518 /* main.m */; };
+		E1B438EE143F674200F87518 /* UISSDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438ED143F674200F87518 /* UISSDemoAppDelegate.m */; };
+		E1B438F1143F674200F87518 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B438EF143F674200F87518 /* MainStoryboard_iPhone.storyboard */; };
+		E1B438F4143F674200F87518 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B438F2143F674200F87518 /* MainStoryboard_iPad.storyboard */; };
+		E1B438F7143F674200F87518 /* UISSDemoMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438F6143F674200F87518 /* UISSDemoMasterViewController.m */; };
+		E1B438FA143F674200F87518 /* UISSDemoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438F9143F674200F87518 /* UISSDemoDetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1B438C5143F668000F87518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1B438A6143F667F00F87518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1B438AE143F668000F87518;
+			remoteInfo = UISS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E1B438AF143F668000F87518 /* libUISS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUISS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B438B2143F668000F87518 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E1B438B6143F668000F87518 /* UISS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISS-Prefix.pch"; sourceTree = "<group>"; };
+		E1B438B7143F668000F87518 /* UISS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISS.h; sourceTree = "<group>"; };
+		E1B438B8143F668000F87518 /* UISS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISS.m; sourceTree = "<group>"; };
+		E1B438BF143F668000F87518 /* UISSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UISSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B438C0143F668000F87518 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1B438C2143F668000F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		E1B438CA143F668000F87518 /* UISSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSTests-Info.plist"; sourceTree = "<group>"; };
+		E1B438CC143F668000F87518 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1B438CE143F668000F87518 /* UISSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSTests.h; sourceTree = "<group>"; };
+		E1B438CF143F668000F87518 /* UISSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSTests.m; sourceTree = "<group>"; };
+		E1B438DD143F674200F87518 /* UISSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B438E1143F674200F87518 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E1B438E5143F674200F87518 /* UISSDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSDemo-Info.plist"; sourceTree = "<group>"; };
+		E1B438E7143F674200F87518 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1B438E9143F674200F87518 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1B438EB143F674200F87518 /* UISSDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISSDemo-Prefix.pch"; sourceTree = "<group>"; };
+		E1B438EC143F674200F87518 /* UISSDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSDemoAppDelegate.h; sourceTree = "<group>"; };
+		E1B438ED143F674200F87518 /* UISSDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSDemoAppDelegate.m; sourceTree = "<group>"; };
+		E1B438F0143F674200F87518 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		E1B438F3143F674200F87518 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		E1B438F5143F674200F87518 /* UISSDemoMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSDemoMasterViewController.h; sourceTree = "<group>"; };
+		E1B438F6143F674200F87518 /* UISSDemoMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSDemoMasterViewController.m; sourceTree = "<group>"; };
+		E1B438F8143F674200F87518 /* UISSDemoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSDemoDetailViewController.h; sourceTree = "<group>"; };
+		E1B438F9143F674200F87518 /* UISSDemoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSDemoDetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1B438AC143F668000F87518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1B438BB143F668000F87518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438C1143F668000F87518 /* SenTestingKit.framework in Frameworks */,
+				E1B438C3143F668000F87518 /* UIKit.framework in Frameworks */,
+				E1B438C4143F668000F87518 /* Foundation.framework in Frameworks */,
+				E1B438C7143F668000F87518 /* libUISS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1B438DA143F674200F87518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438DF143F674200F87518 /* UIKit.framework in Frameworks */,
+				E1B438E0143F674200F87518 /* Foundation.framework in Frameworks */,
+				E1B438E2143F674200F87518 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1B438A4143F667F00F87518 = {
+			isa = PBXGroup;
+			children = (
+				E1B438B4143F668000F87518 /* UISS */,
+				E1B438C8143F668000F87518 /* UISSTests */,
+				E1B438E3143F674200F87518 /* UISSDemo */,
+				E1B438B1143F668000F87518 /* Frameworks */,
+				E1B438B0143F668000F87518 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1B438B0143F668000F87518 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438AF143F668000F87518 /* libUISS.a */,
+				E1B438BF143F668000F87518 /* UISSTests.octest */,
+				E1B438DD143F674200F87518 /* UISSDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1B438B1143F668000F87518 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438B2143F668000F87518 /* Foundation.framework */,
+				E1B438C0143F668000F87518 /* SenTestingKit.framework */,
+				E1B438C2143F668000F87518 /* UIKit.framework */,
+				E1B438E1143F674200F87518 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1B438B4143F668000F87518 /* UISS */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438B7143F668000F87518 /* UISS.h */,
+				E1B438B8143F668000F87518 /* UISS.m */,
+				E1B438B5143F668000F87518 /* Supporting Files */,
+			);
+			path = UISS;
+			sourceTree = "<group>";
+		};
+		E1B438B5143F668000F87518 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438B6143F668000F87518 /* UISS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1B438C8143F668000F87518 /* UISSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438CE143F668000F87518 /* UISSTests.h */,
+				E1B438CF143F668000F87518 /* UISSTests.m */,
+				E1B438C9143F668000F87518 /* Supporting Files */,
+			);
+			path = UISSTests;
+			sourceTree = "<group>";
+		};
+		E1B438C9143F668000F87518 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438CA143F668000F87518 /* UISSTests-Info.plist */,
+				E1B438CB143F668000F87518 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1B438E3143F674200F87518 /* UISSDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438EC143F674200F87518 /* UISSDemoAppDelegate.h */,
+				E1B438ED143F674200F87518 /* UISSDemoAppDelegate.m */,
+				E1B438EF143F674200F87518 /* MainStoryboard_iPhone.storyboard */,
+				E1B438F2143F674200F87518 /* MainStoryboard_iPad.storyboard */,
+				E1B438F5143F674200F87518 /* UISSDemoMasterViewController.h */,
+				E1B438F6143F674200F87518 /* UISSDemoMasterViewController.m */,
+				E1B438F8143F674200F87518 /* UISSDemoDetailViewController.h */,
+				E1B438F9143F674200F87518 /* UISSDemoDetailViewController.m */,
+				E1B438E4143F674200F87518 /* Supporting Files */,
+			);
+			path = UISSDemo;
+			sourceTree = "<group>";
+		};
+		E1B438E4143F674200F87518 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1B438E5143F674200F87518 /* UISSDemo-Info.plist */,
+				E1B438E6143F674200F87518 /* InfoPlist.strings */,
+				E1B438E9143F674200F87518 /* main.m */,
+				E1B438EB143F674200F87518 /* UISSDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E1B438AD143F668000F87518 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E1B438AE143F668000F87518 /* UISS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1B438D3143F668000F87518 /* Build configuration list for PBXNativeTarget "UISS" */;
+			buildPhases = (
+				E1B438AB143F668000F87518 /* Sources */,
+				E1B438AC143F668000F87518 /* Frameworks */,
+				E1B438AD143F668000F87518 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UISS;
+			productName = UISS;
+			productReference = E1B438AF143F668000F87518 /* libUISS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E1B438BE143F668000F87518 /* UISSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1B438D6143F668000F87518 /* Build configuration list for PBXNativeTarget "UISSTests" */;
+			buildPhases = (
+				E1B438BA143F668000F87518 /* Sources */,
+				E1B438BB143F668000F87518 /* Frameworks */,
+				E1B438BC143F668000F87518 /* Resources */,
+				E1B438BD143F668000F87518 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1B438C6143F668000F87518 /* PBXTargetDependency */,
+			);
+			name = UISSTests;
+			productName = UISSTests;
+			productReference = E1B438BF143F668000F87518 /* UISSTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		E1B438DC143F674200F87518 /* UISSDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1B438FB143F674200F87518 /* Build configuration list for PBXNativeTarget "UISSDemo" */;
+			buildPhases = (
+				E1B438D9143F674200F87518 /* Sources */,
+				E1B438DA143F674200F87518 /* Frameworks */,
+				E1B438DB143F674200F87518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UISSDemo;
+			productName = UISSDemo;
+			productReference = E1B438DD143F674200F87518 /* UISSDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1B438A6143F667F00F87518 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = 57things;
+			};
+			buildConfigurationList = E1B438A9143F667F00F87518 /* Build configuration list for PBXProject "UISS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E1B438A4143F667F00F87518;
+			productRefGroup = E1B438B0143F668000F87518 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1B438AE143F668000F87518 /* UISS */,
+				E1B438BE143F668000F87518 /* UISSTests */,
+				E1B438DC143F674200F87518 /* UISSDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1B438BC143F668000F87518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438CD143F668000F87518 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1B438DB143F674200F87518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438E8143F674200F87518 /* InfoPlist.strings in Resources */,
+				E1B438F1143F674200F87518 /* MainStoryboard_iPhone.storyboard in Resources */,
+				E1B438F4143F674200F87518 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1B438BD143F668000F87518 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1B438AB143F668000F87518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438B9143F668000F87518 /* UISS.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1B438BA143F668000F87518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438D0143F668000F87518 /* UISSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1B438D9143F674200F87518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1B438EA143F674200F87518 /* main.m in Sources */,
+				E1B438EE143F674200F87518 /* UISSDemoAppDelegate.m in Sources */,
+				E1B438F7143F674200F87518 /* UISSDemoMasterViewController.m in Sources */,
+				E1B438FA143F674200F87518 /* UISSDemoDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1B438C6143F668000F87518 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1B438AE143F668000F87518 /* UISS */;
+			targetProxy = E1B438C5143F668000F87518 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E1B438CB143F668000F87518 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B438CC143F668000F87518 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1B438E6143F674200F87518 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B438E7143F674200F87518 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1B438EF143F674200F87518 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B438F0143F674200F87518 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		E1B438F2143F674200F87518 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1B438F3143F674200F87518 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1B438D1143F668000F87518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E1B438D2143F668000F87518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1B438D4143F668000F87518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/UISS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E1B438D5143F668000F87518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/UISS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E1B438D7143F668000F87518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
+				INFOPLIST_FILE = "UISSTests/UISSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E1B438D8143F668000F87518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
+				INFOPLIST_FILE = "UISSTests/UISSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		E1B438FC143F674200F87518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISSDemo/UISSDemo-Prefix.pch";
+				INFOPLIST_FILE = "UISSDemo/UISSDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E1B438FD143F674200F87518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UISSDemo/UISSDemo-Prefix.pch";
+				INFOPLIST_FILE = "UISSDemo/UISSDemo-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1B438A9143F667F00F87518 /* Build configuration list for PBXProject "UISS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1B438D1143F668000F87518 /* Debug */,
+				E1B438D2143F668000F87518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1B438D3143F668000F87518 /* Build configuration list for PBXNativeTarget "UISS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1B438D4143F668000F87518 /* Debug */,
+				E1B438D5143F668000F87518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1B438D6143F668000F87518 /* Build configuration list for PBXNativeTarget "UISSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1B438D7143F668000F87518 /* Debug */,
+				E1B438D8143F668000F87518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1B438FB143F674200F87518 /* Build configuration list for PBXNativeTarget "UISSDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1B438FC143F674200F87518 /* Debug */,
+				E1B438FD143F674200F87518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1B438A6143F667F00F87518 /* Project object */;
+}
