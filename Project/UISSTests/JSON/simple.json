@@ -1,0 +1,14 @@
+{
+  "UIToolbar": {
+    "tintColor": "yellowColor",
+    "backgroundImage": "black.png"
+  },
+  "UINavigationBar": {
+    "tintColor": "redColor",
+    "titleVerticalPositionAdjustment": 10,
+    "backgroundImage": {"value":"black.png", "barMetrics":1}
+  },
+  "UITabBarItem": {
+    "titlePositionAdjustment": [10, 10]
+  }
+}

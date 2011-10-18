@@ -6,8 +6,9 @@
 //  Copyright (c) 2011 57things. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface UISS : NSObject
+
++ (void)configureWithDictionary:(NSDictionary *)dictionary;
++ (void)configureWithJSONFilePath:(NSString *)filePath;
 
 @end

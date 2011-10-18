@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E13D5162143F727800C03888 /* simple.json in Resources */ = {isa = PBXBuildFile; fileRef = E13D5161143F727800C03888 /* simple.json */; };
+		E13D5165144048E800C03888 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E13D5164144048E800C03888 /* black.png */; };
 		E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438B9143F668000F87518 /* UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438B8143F668000F87518 /* UISS.m */; };
 		E1B438C1143F668000F87518 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C0143F668000F87518 /* SenTestingKit.framework */; };
-		E1B438C3143F668000F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C2143F668000F87518 /* UIKit.framework */; };
 		E1B438C4143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438C7143F668000F87518 /* libUISS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438AF143F668000F87518 /* libUISS.a */; };
 		E1B438CD143F668000F87518 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B438CB143F668000F87518 /* InfoPlist.strings */; };
 		E1B438D0143F668000F87518 /* UISSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438CF143F668000F87518 /* UISSTests.m */; };
-		E1B438DF143F674200F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438C2143F668000F87518 /* UIKit.framework */; };
 		E1B438E0143F674200F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438E2143F674200F87518 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438E1143F674200F87518 /* CoreGraphics.framework */; };
 		E1B438E8143F674200F87518 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1B438E6143F674200F87518 /* InfoPlist.strings */; };
@@ -25,6 +25,9 @@
 		E1B438F4143F674200F87518 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B438F2143F674200F87518 /* MainStoryboard_iPad.storyboard */; };
 		E1B438F7143F674200F87518 /* UISSDemoMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438F6143F674200F87518 /* UISSDemoMasterViewController.m */; };
 		E1B438FA143F674200F87518 /* UISSDemoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438F9143F674200F87518 /* UISSDemoDetailViewController.m */; };
+		E1B43905143F702200F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
+		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
+		E1B43907143F703100F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E13D5161143F727800C03888 /* simple.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simple.json; sourceTree = "<group>"; };
+		E13D5164144048E800C03888 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		E1B438AF143F668000F87518 /* libUISS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUISS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B438B2143F668000F87518 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1B438B6143F668000F87518 /* UISS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISS-Prefix.pch"; sourceTree = "<group>"; };
@@ -45,7 +50,6 @@
 		E1B438B8143F668000F87518 /* UISS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISS.m; sourceTree = "<group>"; };
 		E1B438BF143F668000F87518 /* UISSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UISSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B438C0143F668000F87518 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		E1B438C2143F668000F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E1B438CA143F668000F87518 /* UISSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSTests-Info.plist"; sourceTree = "<group>"; };
 		E1B438CC143F668000F87518 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1B438CE143F668000F87518 /* UISSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSTests.h; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 		E1B438F6143F674200F87518 /* UISSDemoMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSDemoMasterViewController.m; sourceTree = "<group>"; };
 		E1B438F8143F674200F87518 /* UISSDemoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISSDemoDetailViewController.h; sourceTree = "<group>"; };
 		E1B438F9143F674200F87518 /* UISSDemoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISSDemoDetailViewController.m; sourceTree = "<group>"; };
+		E1B43904143F702200F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */,
+				E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +86,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B438C1143F668000F87518 /* SenTestingKit.framework in Frameworks */,
-				E1B438C3143F668000F87518 /* UIKit.framework in Frameworks */,
 				E1B438C4143F668000F87518 /* Foundation.framework in Frameworks */,
 				E1B438C7143F668000F87518 /* libUISS.a in Frameworks */,
+				E1B43907143F703100F87518 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B438DF143F674200F87518 /* UIKit.framework in Frameworks */,
+				E1B43905143F702200F87518 /* UIKit.framework in Frameworks */,
 				E1B438E0143F674200F87518 /* Foundation.framework in Frameworks */,
 				E1B438E2143F674200F87518 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -99,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E13D515F143F722C00C03888 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				E13D5161143F727800C03888 /* simple.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		E1B438A4143F667F00F87518 = {
 			isa = PBXGroup;
 			children = (
@@ -123,9 +137,9 @@
 		E1B438B1143F668000F87518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1B43904143F702200F87518 /* UIKit.framework */,
 				E1B438B2143F668000F87518 /* Foundation.framework */,
 				E1B438C0143F668000F87518 /* SenTestingKit.framework */,
-				E1B438C2143F668000F87518 /* UIKit.framework */,
 				E1B438E1143F674200F87518 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -152,6 +166,7 @@
 		E1B438C8143F668000F87518 /* UISSTests */ = {
 			isa = PBXGroup;
 			children = (
+				E13D515F143F722C00C03888 /* JSON */,
 				E1B438CE143F668000F87518 /* UISSTests.h */,
 				E1B438CF143F668000F87518 /* UISSTests.m */,
 				E1B438C9143F668000F87518 /* Supporting Files */,
@@ -162,6 +177,7 @@
 		E1B438C9143F668000F87518 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E13D5164144048E800C03888 /* black.png */,
 				E1B438CA143F668000F87518 /* UISSTests-Info.plist */,
 				E1B438CB143F668000F87518 /* InfoPlist.strings */,
 			);
@@ -295,6 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1B438CD143F668000F87518 /* InfoPlist.strings in Resources */,
+				E13D5162143F727800C03888 /* simple.json in Resources */,
+				E13D5165144048E800C03888 /* black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +464,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/UISS.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -458,6 +480,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/UISS.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -550,6 +576,7 @@
 				E1B438D5143F668000F87518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1B438D6143F668000F87518 /* Build configuration list for PBXNativeTarget "UISSTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +585,7 @@
 				E1B438D8143F668000F87518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1B438FB143F674200F87518 /* Build configuration list for PBXNativeTarget "UISSDemo" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +594,7 @@
 				E1B438FD143F674200F87518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
