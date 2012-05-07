@@ -11,4 +11,6 @@
 + (void)configureWithDictionary:(NSDictionary *)dictionary;
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 
++ (void)configureWithDefaultJSONFile;
+
 @end

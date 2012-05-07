@@ -1,4 +1,6 @@
 {
+  "Variables": {
+  },
   "UIToolbar": {
     "tintColor": "yellowColor",
     "backgroundImage": "black.png"
@@ -6,9 +8,10 @@
   "UINavigationBar": {
     "tintColor": "redColor",
     "titleVerticalPositionAdjustment": 10,
-    "backgroundImage": {"value":"black.png", "barMetrics":1}
+    "backgroundImage": ["black.png", "landscapePhone"]
   },
   "UITabBarItem": {
-    "titlePositionAdjustment": [10, 10]
+    "titlePositionAdjustment": [[10, 10]],
+    "titleTextAttributes": {"font":24}
   }
 }

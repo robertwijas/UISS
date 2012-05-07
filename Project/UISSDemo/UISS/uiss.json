@@ -1,0 +1,11 @@
+{
+    "UINavigationBar": {
+        "backgroundImage": ["background.png", "default"]
+    },
+    "UIToolbar": {
+        "tintColor": "greenColor",
+    },
+    "UISSCustomView": {
+        "backgroundImage": "background.png"
+    }
+}
