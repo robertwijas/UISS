@@ -97,22 +97,27 @@
     NSMutableArray *invocations = [NSMutableArray array];
     
     unsigned int count = 0;
-    Method *methods = class_copyMethodList(component, &count);
     
-    for (int i = 0; i < count; i++) {
-        SEL selector = method_getName(methods[i]);
-        NSString *method = NSStringFromSelector(selector);
+    while ([(Class)component conformsToProtocol:@protocol(UIAppearance)]) {
+        Method *methods = class_copyMethodList(component, &count);
         
-        if ([method hasPrefix:methodPrefix]) {
-            NSMethodSignature *methodSignature = [[component appearance] methodSignatureForSelector:selector];
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-            [invocation setSelector:selector];
+        for (int i = 0; i < count; i++) {
+            SEL selector = method_getName(methods[i]);
+            NSString *method = NSStringFromSelector(selector);
             
-            [invocations addObject:invocation];
+            if ([method hasPrefix:methodPrefix]) {
+                NSMethodSignature *methodSignature = [[component appearance] methodSignatureForSelector:selector];
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+                [invocation setSelector:selector];
+                
+                [invocations addObject:invocation];
+            }
         }
+        
+        free(methods);
+        
+        component = class_getSuperclass(component);
     }
-    
-    free(methods);
         
     return invocations;
 }
@@ -222,12 +227,15 @@
             NSArray *arguments = [self argumentsArrayFrom:obj];
             
             NSInvocation *invocation = [self selectInvocationForArguments:arguments from:invocations];
-            NSLog(@"selected invocation: %@", [invocation debugDescription]);
             
-            [self setupInvocation:invocation forProperty:property withArguments:arguments];
-            invocation.target = [self appearanceTargetForContext:context];
-            
-            handler(invocation);
+            if (invocation) {
+                NSLog(@"selected invocation: %@", [invocation debugDescription]);
+                
+                [self setupInvocation:invocation forProperty:property withArguments:arguments];
+                invocation.target = [self appearanceTargetForContext:context];
+                
+                handler(invocation);
+            }
         }
     }];
 }
