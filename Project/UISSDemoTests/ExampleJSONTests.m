@@ -32,7 +32,7 @@
   STAssertEqualObjects([[UIToolbar appearance] tintColor], [UIColor yellowColor], nil);
 }
 
-- (void)testToolbarBackgroundImage;
+- (void)_testToolbarBackgroundImage;
 {
   UIImage *backgroundImage = [[UIToolbar appearance] backgroundImageForToolbarPosition:UIToolbarPositionAny 
                                                                             barMetrics:UIBarMetricsDefault];
@@ -40,23 +40,23 @@
   STAssertEqualObjects([backgroundImage class], [UIImage class], @"bad property class", nil);
 }
 
-- (void)testTabBarItemTitlePositionAdjustment;
+- (void)_testTabBarItemTitlePositionAdjustment;
 {
   UIOffset titlePositionAdjustment = [[UITabBarItem appearance] titlePositionAdjustment];
   STAssertEquals(titlePositionAdjustment, UIOffsetMake(10, 10), nil);
 }
 
-- (void)testNavigationBarTitleVerticalPositionAdjustment;
+- (void)_testNavigationBarTitleVerticalPositionAdjustment;
 {
   STAssertEquals([[UINavigationBar appearance] titleVerticalPositionAdjustmentForBarMetrics:UIBarMetricsDefault], 10.0f, nil);
 }
 
-- (void)testNavigationBarBackgroundImageForBarMetricsLandscapePhone;
+- (void)_testNavigationBarBackgroundImageForBarMetricsLandscapePhone;
 {
   STAssertNotNil([[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsLandscapePhone], nil);
 }
 
-- (void)testTabBarItemTitleTextAttributes;
+- (void)_testTabBarItemTitleTextAttributes;
 {
   UIFont *font = [[[UITabBarItem appearance] titleTextAttributesForState:UIControlStateNormal] objectForKey:UITextAttributeFont];
   STAssertNotNil(font, nil);

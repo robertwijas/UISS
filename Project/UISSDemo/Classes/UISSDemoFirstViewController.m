@@ -34,6 +34,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -49,6 +51,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+    
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

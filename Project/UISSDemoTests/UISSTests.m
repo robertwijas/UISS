@@ -7,7 +7,7 @@
 //
 
 #import "UISSTests.h"
-#import "UISS+Private.h"
+#import "NSInvocation+UISS.h"
 
 @implementation UISSTests
 
@@ -34,9 +34,9 @@
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     
     if (expected) {
-      STAssertTrue([invocation canAcceptArguments:arguments], nil);
+      STAssertTrue([invocation uissCanAcceptArguments:arguments], nil);
     } else {
-      STAssertFalse([invocation canAcceptArguments:arguments], nil);
+      STAssertFalse([invocation uissCanAcceptArguments:arguments], nil);
     }
   }
 }

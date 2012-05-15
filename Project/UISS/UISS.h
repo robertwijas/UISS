@@ -8,9 +8,7 @@
 
 @interface UISS : NSObject
 
-+ (void)configureWithDictionary:(NSDictionary *)dictionary;
 + (void)configureWithJSONFilePath:(NSString *)filePath;
-
 + (void)configureWithDefaultJSONFile;
 
 @end
