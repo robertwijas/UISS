@@ -12,7 +12,7 @@
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 {
-    return [argumentType hasPrefix:@"@"] && [name hasSuffix:@"Color"];
+    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"color"];
 }
 
 - (UIColor *)colorFromString:(NSString *)colorString;
