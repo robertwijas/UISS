@@ -9,6 +9,8 @@
 #import "UISSDemoAppDelegate.h"
 #import "UISS.h"
 
+#import "UISSDemoSecondViewController.h"
+
 @implementation UISSDemoAppDelegate
 
 @synthesize window = _window;

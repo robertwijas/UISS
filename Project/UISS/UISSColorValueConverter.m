@@ -54,7 +54,7 @@
                 UIColor *color = [self colorFromString:[array objectAtIndex:0]];
                 
                 if (array.count > 1) {
-                    alpha = [[array objectAtIndex:1] intValue] / 255.0f;
+                    alpha = [[array objectAtIndex:1] floatValue];
                     color = [color colorWithAlphaComponent:alpha];
                 }
                 
@@ -69,7 +69,7 @@
                         blue = [[array objectAtIndex:2] intValue] / 255.0f;
                         
                         if (array.count > 3) {
-                            alpha = [[array objectAtIndex:3] intValue] / 255.0f;
+                            alpha = [[array objectAtIndex:3] floatValue];
                         }
                     }
                 }

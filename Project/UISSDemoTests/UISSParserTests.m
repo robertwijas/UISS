@@ -90,8 +90,19 @@
     dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"UINavigationController"];
     
     [self parserTestWithDictionary:dictionary assertionsAfterInvoke:^(NSInvocation *invocation) {
-        UIColor *buttonColor = [[UIButton appearanceWhenContainedIn:[UINavigationController class], [UIImageView class], nil] titleColorForState:UIControlStateHighlighted];
+        UIColor *buttonColor = [[UIButton appearanceWhenContainedIn:[UIImageView class], [UINavigationController class], nil] titleColorForState:UIControlStateHighlighted];
         STAssertEqualObjects(buttonColor, [UIColor yellowColor], nil);
+    }];
+}
+
+- (void)testUserInterfaceIdiomPhone;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"lightGray" forKey:@"tintColor"]
+                                                           forKey:@"UIToolbar"];
+    dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"Phone"];
+    
+    [self parserTestWithDictionary:dictionary assertionsAfterInvoke:^(NSInvocation *invocation) {
+        STAssertEqualObjects([[UIToolbar appearance] tintColor], [UIColor lightGrayColor], nil);
     }];
 }
 

@@ -85,7 +85,7 @@
                                                   [NSNumber numberWithInt:255],
                                                   [NSNumber numberWithInt:0],
                                                   [NSNumber numberWithInt:0],
-                                                  [NSNumber numberWithInt:51],
+                                                  [NSNumber numberWithFloat:0.2],
                                                   nil]];
     
     STAssertNotNil(color, nil);
@@ -93,7 +93,7 @@
     
     color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
                                                   @"yellow",
-                                                  [NSNumber numberWithInt:51],
+                                                  [NSNumber numberWithFloat:0.2],
                                                   nil]];
     
     STAssertNotNil(color, nil);
@@ -101,7 +101,7 @@
     
     color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
                                                   @"#00ff00",
-                                                  [NSNumber numberWithInt:51],
+                                                  [NSNumber numberWithFloat:0.2],
                                                   nil]];
     
     STAssertNotNil(color, nil);

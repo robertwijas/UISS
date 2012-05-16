@@ -28,10 +28,15 @@
 #import "UISSUIntegerValueConverter.h"
 #import "UISSFloatValueConverter.h"
 
+#import "UISSBarMetricsValueConverter.h"
+#import "UISSControlStateValueConveter.h"
+#import "UISSSegmentedControlSegmentValueConverter.h"
+
 @implementation UISSParser
 
 @synthesize propertyValueConverters=_propertyValueConverters;
 @synthesize axisParameterValueConverters=_axisParameterValueConverters;
+@synthesize userInterfaceIdiom=_userInterfaceIdiom;
 
 - (id)init
 {
@@ -55,6 +60,10 @@
                            nil];
         
         self.axisParameterValueConverters = [NSArray arrayWithObjects:
+                                             [[UISSBarMetricsValueConverter alloc] init],
+                                             [[UISSControlStateValueConveter alloc] init],
+                                             [[UISSSegmentedControlSegmentValueConverter alloc] init],
+                                             
                                              [[UISSIntegerValueConverter alloc] init],
                                              [[UISSUIntegerValueConverter alloc] init],
                                              nil];
@@ -138,6 +147,14 @@
         }
     }
     
+    // return copy
+    if (selected) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:selected.methodSignature];
+        invocation.selector = selected.selector;
+        
+        selected = invocation;
+    }
+    
     return selected;
 }
 
@@ -160,6 +177,19 @@
         if ([converter canConvertAxisParameterWithName:axisParameter value:value argumentType:argumentType]) {
             return converter;
         }
+    }
+    
+    return nil;
+}
+
+- (NSString *)axisParameterNameAtIndex:(NSUInteger)index forInvocation:(NSInvocation *)invocation;
+{
+    NSString *selector = NSStringFromSelector(invocation.selector);
+    NSArray *selectorComponents = [selector componentsSeparatedByString:@":"];
+
+    if (index + 1 < selectorComponents.count) {
+        NSString *parameterComponent = [selectorComponents objectAtIndex:index + 1];
+        return parameterComponent;
     }
     
     return nil;
@@ -191,7 +221,9 @@
         NSInteger argumentIndex = index + 3;
         NSString *argumentType = [NSString stringWithUTF8String:[invocation.methodSignature getArgumentTypeAtIndex:argumentIndex]];
 
-        id<UISSAxisParameterValueConverter> converter = [self findConverterForAxisParameter:nil value:argument argumentType:argumentType];
+        id<UISSAxisParameterValueConverter> converter = [self findConverterForAxisParameter:[self axisParameterNameAtIndex:index 
+                                                                                                             forInvocation:invocation] 
+                                                                                      value:argument argumentType:argumentType];
         NSNumber *converted = [converter convertAxisParameter:argument];
 
         if ([argumentType isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]]) {
@@ -203,6 +235,47 @@
         }
 
     }];
+}
+
+- (BOOL)multipleAxisValuesDetectedInArgumentsArray:(NSArray *)array;
+{
+    if (![array.lastObject isKindOfClass:[NSArray class]]) return NO;
+    
+    NSUInteger argumentsCount = [array.lastObject count];
+    if (argumentsCount < 2) return NO;
+
+    for (id obj in array) {
+        if (![obj isKindOfClass:[NSArray class]]) return NO;
+        if ([obj count] != argumentsCount) return NO;
+    }
+    
+    return YES;
+}
+
+- (void)prepareInvocationForProperty:(NSString *)property arguments:(NSArray *)arguments 
+                         invocations:(NSArray *)invocations
+                             context:(UISSParserContext *)context
+                             handler:(void (^)(NSInvocation *invocation))handler;
+{
+    NSInvocation *invocation = [self selectInvocationForArguments:arguments from:invocations];
+    
+    if (invocation) {
+        [self setupInvocation:invocation forProperty:property withArguments:arguments];
+        invocation.target = [self appearanceTargetForContext:context];
+        
+        handler(invocation);
+    }
+}
+
+- (UIUserInterfaceIdiom)userInterfaceIdiomForKey:(NSString *)key;
+{
+    if ([@"Phone" isEqual:key]) {
+        return UIUserInterfaceIdiomPhone;
+    } else if ([@"Pad" isEqual:key]) {
+        return UIUserInterfaceIdiomPad;
+    } else {
+        return NSNotFound;
+    }
 }
 
 - (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler 
@@ -220,21 +293,29 @@
             [context.appearanceStack addObject:class];
             [self parseDictionary:obj handler:handler context:context];
             [context.appearanceStack removeLastObject];
-        } else { // property
-            NSString *property = key;
+        } else {
+            UIUserInterfaceIdiom userInterfaceIdiom = [self userInterfaceIdiomForKey:key];
             
-            NSArray *invocations = [self invocationsForProperty:property component:context.appearanceStack.lastObject];
-            NSArray *arguments = [self argumentsArrayFrom:obj];
-            
-            NSInvocation *invocation = [self selectInvocationForArguments:arguments from:invocations];
-            
-            if (invocation) {
-                NSLog(@"selected invocation: %@", [invocation debugDescription]);
+            if (userInterfaceIdiom != NSNotFound) {
+                if (userInterfaceIdiom == self.userInterfaceIdiom) {
+                    [self parseDictionary:obj handler:handler context:context];
+                }
+            } else { // property
+                NSString *property = key;
                 
-                [self setupInvocation:invocation forProperty:property withArguments:arguments];
-                invocation.target = [self appearanceTargetForContext:context];
+                NSArray *invocations = [self invocationsForProperty:property component:context.appearanceStack.lastObject];
+                NSArray *arguments = [self argumentsArrayFrom:obj];
                 
-                handler(invocation);
+                // detect multiple values
+                if ([self multipleAxisValuesDetectedInArgumentsArray:arguments]) {
+                    for (NSArray *args in arguments) {
+                        [self prepareInvocationForProperty:property arguments:args 
+                                               invocations:invocations context:context handler:handler];
+                    }
+                } else {
+                    [self prepareInvocationForProperty:property arguments:arguments 
+                                           invocations:invocations context:context handler:handler];
+                }
             }
         }
     }];
@@ -255,29 +336,29 @@
                     nil];
         case 3:
             return [component appearanceWhenContainedIn:
-                    [context.appearanceStack objectAtIndex:0],
                     [context.appearanceStack objectAtIndex:1],
+                    [context.appearanceStack objectAtIndex:0],
                     nil];
         case 4:
             return [component appearanceWhenContainedIn:
-                    [context.appearanceStack objectAtIndex:0],
-                    [context.appearanceStack objectAtIndex:1],
                     [context.appearanceStack objectAtIndex:2],
+                    [context.appearanceStack objectAtIndex:1],
+                    [context.appearanceStack objectAtIndex:0],
                     nil];
         case 5:
             return [component appearanceWhenContainedIn:
-                    [context.appearanceStack objectAtIndex:0],
-                    [context.appearanceStack objectAtIndex:1],
-                    [context.appearanceStack objectAtIndex:2],
                     [context.appearanceStack objectAtIndex:3],
+                    [context.appearanceStack objectAtIndex:2],
+                    [context.appearanceStack objectAtIndex:1],
+                    [context.appearanceStack objectAtIndex:0],
                     nil];
         case 6:
             return [component appearanceWhenContainedIn:
-                    [context.appearanceStack objectAtIndex:0],
-                    [context.appearanceStack objectAtIndex:1],
-                    [context.appearanceStack objectAtIndex:2],
-                    [context.appearanceStack objectAtIndex:3],
                     [context.appearanceStack objectAtIndex:4],
+                    [context.appearanceStack objectAtIndex:3],
+                    [context.appearanceStack objectAtIndex:2],
+                    [context.appearanceStack objectAtIndex:1],
+                    [context.appearanceStack objectAtIndex:0],
                     nil];
         default:
             return nil;

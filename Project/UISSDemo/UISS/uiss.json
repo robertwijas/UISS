@@ -1,11 +1,47 @@
 {
-    "UINavigationBar": {
-        "backgroundImage": ["background.png", "default"]
+    "Phone": {
+        "UINavigationBar": {
+            "tintColor": "gray"
+        }
+    },
+    "Pad": {
+        "UINavigationBar": {
+            "backgroundImage": ["background.png", "default"]
+        }
     },
     "UIToolbar": {
-        "tintColor": "greenColor",
+        "tintColor": "greenColor"
     },
     "UISSCustomView": {
         "backgroundImage": "background.png"
+    },
+    "UILabel": {
+        "Phone": {
+            "textColor": "blue"
+        },
+        "Pad": {
+            "textColor": "red"
+        }
+    },
+    "UISSCustomContainerView": {
+        "backgroundColor": [["#770077", 0.5]]
+    },
+    "UISSDemoSecondViewController": {
+        "UILabel": {
+            "textColor": "orange",
+            "backgroundColor": "black"
+        },
+        "UISSCustomContainerView": {
+            "UILabel": {
+                "backgroundColor": "white",
+                "textColor": "blue"
+            }
+        }
+    },
+    "UISSDemoFirstViewController": {
+        "UIButton": {
+            "titleColor": [["green", "normal"], ["yellow", "highlighted"]],
+            "backgroundImage": ["background", "highlighted"]
+        }
     }
 }
