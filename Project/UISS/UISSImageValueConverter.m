@@ -13,7 +13,7 @@
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 {
-    return [argumentType hasPrefix:@"@"] && [name hasSuffix:@"Image"];
+    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"image"];
 }
 
 - (id)convertPropertyValue:(id)value;

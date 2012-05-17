@@ -38,7 +38,7 @@
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 {
-    return [argumentType hasPrefix:@"@"] && [name hasSuffix:@"TextAttributes"] && [value isKindOfClass:[NSDictionary class]];
+    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"textattributes"] && [value isKindOfClass:[NSDictionary class]];
 }
 
 - (void)convertProperty:(NSString *)propertyName fromDictionary:(NSDictionary *)dictionary
