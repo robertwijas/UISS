@@ -152,7 +152,7 @@
 		E146982315583E9B000F311F /* UISSDemoSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSDemoSecondViewController.m; sourceTree = "<group>"; };
 		E146982715583EE0000F311F /* UISSCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomView.h; sourceTree = "<group>"; };
 		E146982815583EE0000F311F /* UISSCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCustomView.m; sourceTree = "<group>"; };
-		E146982B155846F4000F311F /* example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; };
+		E146982B155846F4000F311F /* example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		E146982D15584700000F311F /* ExampleJSONTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleJSONTests.h; sourceTree = "<group>"; };
 		E146982E15584700000F311F /* ExampleJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleJSONTests.m; sourceTree = "<group>"; };
 		E146983215584700000F311F /* UISSTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSTests.h; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		E146984215590709000F311F /* UISSFontValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSFontValueConverter.h; sourceTree = "<group>"; };
 		E146984315590709000F311F /* UISSFontValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFontValueConverter.m; sourceTree = "<group>"; };
 		E14698471559078F000F311F /* UISSAxisParameterValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAxisParameterValueConverter.h; sourceTree = "<group>"; };
-		E146984A15598AAB000F311F /* UISSColorValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSColorValueConverterTests.m; sourceTree = "<group>"; };
+		E146984A15598AAB000F311F /* UISSColorValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSColorValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E146984C1559B24C000F311F /* UISSImageValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSImageValueConverter.h; sourceTree = "<group>"; };
 		E146984D1559B24C000F311F /* UISSImageValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageValueConverter.m; sourceTree = "<group>"; };
 		E1469850155A6D0E000F311F /* UISSTextAttributesValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSTextAttributesValueConverter.h; sourceTree = "<group>"; };

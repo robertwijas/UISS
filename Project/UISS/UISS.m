@@ -18,6 +18,8 @@
 
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 {
+    NSLog(@"UISS -- configuring with JSON file: %@", filePath);
+    
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:filePath]
                                                                options:0 
                                                                  error:NULL];
@@ -26,8 +28,11 @@
     parser.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
     
     [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
+        NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
         [invocation invoke];
     }];
+    
+    NSLog(@"UISS -- configured");
 }
 
 + (void)configureWithDefaultJSONFile;

@@ -205,6 +205,8 @@
     id<UISSPropertyValueConverter> converter = [self findConverterForProperty:property value:value argumentType:argumentType];
     id converted = [converter convertPropertyValue:value];
     
+    NSLog(@"UISS - converted argument for property: %@ = %@", property, converted);
+    
     if ([converted isKindOfClass:[NSValue class]]) {
         NSUInteger size;
         NSGetSizeAndAlignment([converted objCType], &size, NULL);
