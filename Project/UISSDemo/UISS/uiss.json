@@ -10,7 +10,8 @@
         }
     },
     "UIToolbar": {
-        "tintColor": "greenColor"
+        "tintColor": "greenColor",
+        "backgroundImage": ["background", "bottom"]
     },
     "UISSCustomView": {
         "backgroundImage": "background.png"
@@ -41,7 +42,8 @@
     "UISSDemoFirstViewController": {
         "UIButton": {
             "titleColor": [["green", "normal"], ["yellow", "highlighted"]],
-            "backgroundImage": ["background", "highlighted"]
+            "backgroundImage": ["background", "highlighted"],
+            "contentEdgeInsets": [[100, 100, 100, 100]]
         },
         "UILabel": {
             "textColor": "orange"

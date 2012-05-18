@@ -31,6 +31,7 @@
 #import "UISSBarMetricsValueConverter.h"
 #import "UISSControlStateValueConveter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
+#import "UISSToolbarPositionConverter.h"
 
 @implementation UISSParser
 
@@ -63,6 +64,7 @@
                                              [[UISSBarMetricsValueConverter alloc] init],
                                              [[UISSControlStateValueConveter alloc] init],
                                              [[UISSSegmentedControlSegmentValueConverter alloc] init],
+                                             [[UISSToolbarPositionConverter alloc] init],
                                              
                                              [[UISSIntegerValueConverter alloc] init],
                                              [[UISSUIntegerValueConverter alloc] init],
@@ -103,6 +105,8 @@
 {
     NSString *methodPrefix = [self setterMethodPrefixForProperty:property];
     
+    NSLog(@"UISS - methodPrefix: %@", methodPrefix);
+
     NSMutableArray *invocations = [NSMutableArray array];
     
     unsigned int count = 0;
@@ -115,6 +119,8 @@
             NSString *method = NSStringFromSelector(selector);
             
             if ([method hasPrefix:methodPrefix]) {
+                NSLog(@"UISS - got method: %@", method);
+
                 NSMethodSignature *methodSignature = [[component appearance] methodSignatureForSelector:selector];
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
                 [invocation setSelector:selector];
@@ -241,6 +247,7 @@
 
 - (BOOL)multipleAxisValuesDetectedInArgumentsArray:(NSArray *)array;
 {
+    if (array.count < 2) return NO;
     if (![array.lastObject isKindOfClass:[NSArray class]]) return NO;
     
     NSUInteger argumentsCount = [array.lastObject count];
@@ -287,6 +294,8 @@
         Class class = NSClassFromString(key);
         
         if ([class conformsToProtocol:@protocol(UIAppearance)]) {
+            NSLog(@"UISS -- component: %@", key);
+            
             [context.appearanceStack addObject:class];
             [self parseDictionary:obj handler:handler context:context];
             [context.appearanceStack removeLastObject];
@@ -303,6 +312,8 @@
                     [self parseDictionary:obj handler:handler context:context];
                 }
             } else { // property
+                NSLog(@"UISS - property: %@", key);
+                
                 NSString *property = key;
                 
                 NSArray *invocations = [self invocationsForProperty:property component:context.appearanceStack.lastObject];

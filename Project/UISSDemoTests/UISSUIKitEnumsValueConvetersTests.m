@@ -10,6 +10,7 @@
 #import "UISSBarMetricsValueConverter.h"
 #import "UISSControlStateValueConveter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
+#import "UISSToolbarPositionConverter.h"
 
 @interface UISSUIKitEnumsValueConvetersTests : SenTestCase
 
@@ -50,6 +51,17 @@
     STAssertEquals([[converter convertAxisParameter:@"center"] integerValue], UISegmentedControlSegmentCenter, nil);
     STAssertEquals([[converter convertAxisParameter:@"right"] integerValue], UISegmentedControlSegmentRight, nil);
     STAssertEquals([[converter convertAxisParameter:@"alone"] integerValue], UISegmentedControlSegmentAlone, nil);
+    
+    STAssertNil([converter convertAxisParameter:@"dummy"], nil);
+}
+
+- (void)testToolbarPositionCoverter;
+{
+    UISSToolbarPositionConverter *converter = [[UISSToolbarPositionConverter alloc] init];
+    
+    STAssertEquals([[converter convertAxisParameter:@"any"] integerValue], UIToolbarPositionAny, nil);
+    STAssertEquals([[converter convertAxisParameter:@"bottom"] integerValue], UIToolbarPositionBottom, nil);
+    STAssertEquals([[converter convertAxisParameter:@"top"] integerValue], UIToolbarPositionTop, nil);
     
     STAssertNil([converter convertAxisParameter:@"dummy"], nil);
 }
