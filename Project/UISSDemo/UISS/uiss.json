@@ -42,6 +42,9 @@
         "UIButton": {
             "titleColor": [["green", "normal"], ["yellow", "highlighted"]],
             "backgroundImage": ["background", "highlighted"]
+        },
+        "UILabel": {
+            "textColor": "orange"
         }
     }
 }

@@ -22,13 +22,24 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:self.view.bounds];
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    label.textAlignment = UITextAlignmentLeft;
+    label.text = @"XXX";
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blueColor];
+    
+    [self.view addSubview:label];
+    
+    [label layoutSubviews];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    // e.g. self.myOutlet = nil;    
 }
 
 - (void)viewWillAppear:(BOOL)animated

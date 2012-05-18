@@ -73,6 +73,8 @@
 		E146985E155A8908000F311F /* NSInvocation+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E146985C155A8908000F311F /* NSInvocation+UISS.h */; };
 		E146985F155A8908000F311F /* NSInvocation+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E146985D155A8908000F311F /* NSInvocation+UISS.m */; };
 		E1469862155A8B51000F311F /* UISSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1469861155A8B51000F311F /* UISSParserTests.m */; };
+		E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A7739615668F80000406CC /* UILabel+UISS.h */; };
+		E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7739715668F80000406CC /* UILabel+UISS.m */; };
 		E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438B9143F668000F87518 /* UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438B8143F668000F87518 /* UISS.m */; };
 		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
@@ -177,6 +179,8 @@
 		E146985D155A8908000F311F /* NSInvocation+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+UISS.m"; sourceTree = "<group>"; };
 		E1469860155A8B51000F311F /* UISSParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParserTests.h; sourceTree = "<group>"; };
 		E1469861155A8B51000F311F /* UISSParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParserTests.m; sourceTree = "<group>"; };
+		E1A7739615668F80000406CC /* UILabel+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+UISS.h"; sourceTree = "<group>"; };
+		E1A7739715668F80000406CC /* UILabel+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+UISS.m"; sourceTree = "<group>"; };
 		E1B438AF143F668000F87518 /* libUISS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUISS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B438B2143F668000F87518 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1B438B6143F668000F87518 /* UISS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISS-Prefix.pch"; sourceTree = "<group>"; };
@@ -419,6 +423,15 @@
 			name = "Value Converters";
 			sourceTree = "<group>";
 		};
+		E1A7739415668F6C000406CC /* UIKit Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E1A7739615668F80000406CC /* UILabel+UISS.h */,
+				E1A7739715668F80000406CC /* UILabel+UISS.m */,
+			);
+			name = "UIKit Helpers";
+			sourceTree = "<group>";
+		};
 		E1B438A4143F667F00F87518 = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +468,7 @@
 		E1B438B4143F668000F87518 /* UISS */ = {
 			isa = PBXGroup;
 			children = (
+				E1A7739415668F6C000406CC /* UIKit Helpers */,
 				E146983D155905DD000F311F /* Value Converters */,
 				E1469854155A853D000F311F /* UISSParserContext.h */,
 				E1469855155A853D000F311F /* UISSParserContext.m */,
@@ -554,6 +568,7 @@
 				E129E5E21563DE7B00E93185 /* UISSControlStateValueConveter.h in Headers */,
 				E129E5E61563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h in Headers */,
 				E129E5EE1563F54800E93185 /* UISSAbstractEnumValueConverter.h in Headers */,
+				E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +726,7 @@
 				E129E5E31563DE7B00E93185 /* UISSControlStateValueConveter.m in Sources */,
 				E129E5E71563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m in Sources */,
 				E129E5EF1563F54800E93185 /* UISSAbstractEnumValueConverter.m in Sources */,
+				E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
