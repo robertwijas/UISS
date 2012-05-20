@@ -12,27 +12,43 @@
 
 @interface UISS ()
 
+@property (nonatomic, strong) NSURL *url;
+
 @end
 
 @implementation UISS
 
+@synthesize url=_url;
+
+- (void)reload;
+{
+    NSLog(@"UISS -- configuring with url: %@", self.url);
+    
+    NSData *data = [NSData dataWithContentsOfURL:self.url];
+    if (data) {
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:0 
+                                                                     error:NULL];
+        
+        UISSParser *parser = [[UISSParser alloc] init];
+        parser.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
+        
+        [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
+            NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
+            [invocation invoke];
+        }];
+        
+        NSLog(@"UISS -- configured");
+    } else {
+        NSLog(@"UISS -- cannot load file from url: %@", self.url);
+    }
+}
+
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 {
-    NSLog(@"UISS -- configuring with JSON file: %@", filePath);
-    
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:filePath]
-                                                               options:0 
-                                                                 error:NULL];
-    
-    UISSParser *parser = [[UISSParser alloc] init];
-    parser.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
-    
-    [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-        NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
-        [invocation invoke];
-    }];
-    
-    NSLog(@"UISS -- configured");
+    UISS *uiss = [[UISS alloc] init];
+    uiss.url = [NSURL fileURLWithPath:filePath];
+    [uiss reload];
 }
 
 + (void)configureWithDefaultJSONFile;
