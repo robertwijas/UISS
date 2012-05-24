@@ -11,6 +11,7 @@
 #import "UISSControlStateValueConveter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
 #import "UISSToolbarPositionConverter.h"
+#import "UISSSearchBarIconValueConverter.h"
 
 @interface UISSUIKitEnumsValueConvetersTests : SenTestCase
 
@@ -64,6 +65,19 @@
     STAssertEquals([[converter convertAxisParameter:@"top"] integerValue], UIToolbarPositionTop, nil);
     
     STAssertNil([converter convertAxisParameter:@"dummy"], nil);
+}
+
+- (void)testSearchBarIcon;
+{
+    UISSSearchBarIconValueConverter *converter = [[UISSSearchBarIconValueConverter alloc] init];
+    
+    STAssertEquals([[converter convertAxisParameter:@"search"] integerValue], UISearchBarIconSearch, nil);
+    STAssertEquals([[converter convertAxisParameter:@"clear"] integerValue], UISearchBarIconClear, nil);
+    STAssertEquals([[converter convertAxisParameter:@"bookmark"] integerValue], UISearchBarIconBookmark, nil);
+    STAssertEquals([[converter convertAxisParameter:@"resultsList"] integerValue], UISearchBarIconResultsList, nil);
+    
+    STAssertNil([converter convertAxisParameter:@"dummy"], nil);
+    
 }
 
 @end

@@ -32,8 +32,11 @@
 #import "UISSControlStateValueConveter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
 #import "UISSToolbarPositionConverter.h"
+#import "UISSSearchBarIconValueConverter.h"
 
 @implementation UISSParser
+
+@synthesize variablesPreprocessor=_variablesPreprocessor;
 
 @synthesize propertyValueConverters=_propertyValueConverters;
 @synthesize axisParameterValueConverters=_axisParameterValueConverters;
@@ -43,6 +46,8 @@
 {
     self = [super init];
     if (self) {
+        self.variablesPreprocessor = [[UISSVariablesPreprocessor alloc] init];
+        
         self.propertyValueConverters = [NSArray arrayWithObjects:
                            [[UISSColorValueConverter alloc] init],
                            [[UISSImageValueConverter alloc] init],
@@ -65,6 +70,7 @@
                                              [[UISSControlStateValueConveter alloc] init],
                                              [[UISSSegmentedControlSegmentValueConverter alloc] init],
                                              [[UISSToolbarPositionConverter alloc] init],
+                                             [[UISSSearchBarIconValueConverter alloc] init],
                                              
                                              [[UISSIntegerValueConverter alloc] init],
                                              [[UISSUIntegerValueConverter alloc] init],

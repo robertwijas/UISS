@@ -8,6 +8,10 @@
 
 @interface UISS : NSObject
 
+@property (nonatomic, strong) NSURL *url;
+
+- (void)reload;
+
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 + (void)configureWithDefaultJSONFile;
 

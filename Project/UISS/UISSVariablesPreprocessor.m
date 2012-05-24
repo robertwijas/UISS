@@ -1,0 +1,126 @@
+//
+//  UISSVariablesPreprocessor.m
+//  UISS
+//
+//  Created by Robert Wijas on 5/19/12.
+//  Copyright (c) 2012 57things. All rights reserved.
+//
+
+#import "UISSVariablesPreprocessor.h"
+
+@interface UISSVariablesPreprocessor ()
+
+@property (nonatomic, strong) NSMutableDictionary *variables;
+@property (nonatomic, strong) NSString *variablePrefix;
+
+@end
+
+typedef id (^ResolveBlock)(NSString *);
+
+@implementation UISSVariablesPreprocessor
+
+@synthesize variables=_variables;
+@synthesize variablePrefix=_variablePrefix;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.variables = [NSMutableDictionary dictionary];
+        self.variablePrefix = @"$";
+    }
+    return self;
+}
+
+- (NSString *)variableNameFromValue:(id)value;
+{
+    if ([value isKindOfClass:[NSString class]] && [value hasPrefix:self.variablePrefix]) {
+        return [value substringFromIndex:self.variablePrefix.length];
+    } else {
+        return nil;
+    }
+}
+
+- (id)substituteValue:(id)value withResolveBlock:(ResolveBlock)resolveBlock;
+{
+    NSString *name = [self variableNameFromValue:value];
+    
+    if (name) {
+        id value = resolveBlock(name);
+        
+        if (value == nil) {
+            value = [NSNull null];
+        }
+        return value;
+    }
+    
+    return value;
+}
+
+- (id)substituteValue:(id)value;
+{
+    return [self substituteValue:value withResolveBlock:^(NSString *name) {
+        return [self getValueForVariableWithName:name];
+    }];
+}
+
+- (id)resolveNestedValuesForValue:(id)value withResolveBlock:(ResolveBlock)resolveBlock;
+{
+    if ([value isKindOfClass:[NSArray class]]) {
+        NSMutableArray *resolved = [NSMutableArray array];
+        [value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [resolved addObject:[self resolveNestedValuesForValue:obj withResolveBlock:resolveBlock]];
+        }];
+        return resolved;
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *resolved = [NSMutableDictionary dictionary];
+        [value enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [resolved setObject:[self resolveNestedValuesForValue:obj withResolveBlock:resolveBlock] forKey:key];
+        }];
+        return resolved;
+    } else {
+        return [self substituteValue:value withResolveBlock:resolveBlock];
+    }
+}
+
+- (void)setVariableValue:(id)value forName:(NSString *)name withResolveBlock:(ResolveBlock)resolveBlock;
+{
+    [self.variables setValue:[self resolveNestedValuesForValue:value withResolveBlock:resolveBlock] forKey:name];
+}
+
+- (void)setVariableValue:(id)value forName:(NSString *)name;
+{
+    __weak UISSVariablesPreprocessor *weakSelf = self;
+    [self setVariableValue:value forName:name withResolveBlock:^(NSString *n) {
+        return [weakSelf getValueForVariableWithName:n];
+    }];
+}
+
+- (id)getValueForVariableWithName:(NSString *)name;
+{
+    return [self.variables objectForKey:name];
+}
+
+- (void)setVariablesFromDictionary:(NSDictionary *)dictionary;
+{
+    __weak UISSVariablesPreprocessor *weakSelf = self;
+    NSMutableDictionary *unresolved = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    
+    __block ResolveBlock resolveBlock = ^(NSString *n) {
+        if ([unresolved.allKeys containsObject:n]) {
+            id value = [unresolved objectForKey:n];
+            [unresolved removeObjectForKey:n];
+            
+            [self setVariableValue:value forName:n withResolveBlock:resolveBlock];
+        }
+        
+        return [weakSelf getValueForVariableWithName:n];
+    };
+
+    while (unresolved.count) {
+        // resolveBlock removes objects from this dictionary
+        resolveBlock(unresolved.allKeys.lastObject);
+    }
+}
+
+@end

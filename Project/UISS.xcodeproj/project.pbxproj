@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E116C4F2156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */; };
+		E116C4F3156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */; };
 		E129E5CE1562F86100E93185 /* UISSCustomContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */; };
 		E129E5D41563C38D00E93185 /* UISSImageValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */; };
 		E129E5D71563CCFB00E93185 /* UISSFontValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5D61563CCFB00E93185 /* UISSFontValueConverterTests.m */; };
@@ -77,6 +79,9 @@
 		E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7739715668F80000406CC /* UILabel+UISS.m */; };
 		E1A775B21566E8D6000406CC /* UISSToolbarPositionConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */; };
 		E1A775B31566E8D6000406CC /* UISSToolbarPositionConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A775B11566E8D6000406CC /* UISSToolbarPositionConverter.m */; };
+		E1A775BC1567945D000406CC /* UISSVariablesPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A775BA1567945D000406CC /* UISSVariablesPreprocessor.h */; };
+		E1A775BD1567945D000406CC /* UISSVariablesPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A775BB1567945D000406CC /* UISSVariablesPreprocessor.m */; };
+		E1A775C11567A814000406CC /* UISSVariablesPreprocessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A775C01567A814000406CC /* UISSVariablesPreprocessorTests.m */; };
 		E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438B9143F668000F87518 /* UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438B8143F668000F87518 /* UISS.m */; };
 		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
@@ -107,6 +112,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSearchBarIconValueConverter.h; sourceTree = "<group>"; };
+		E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSearchBarIconValueConverter.m; sourceTree = "<group>"; };
 		E129E5CC1562F86000E93185 /* UISSCustomContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomContainerView.h; sourceTree = "<group>"; };
 		E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCustomContainerView.m; sourceTree = "<group>"; };
 		E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageValueConverterTests.m; sourceTree = "<group>"; };
@@ -185,6 +192,9 @@
 		E1A7739715668F80000406CC /* UILabel+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+UISS.m"; sourceTree = "<group>"; };
 		E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSToolbarPositionConverter.h; sourceTree = "<group>"; };
 		E1A775B11566E8D6000406CC /* UISSToolbarPositionConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSToolbarPositionConverter.m; sourceTree = "<group>"; };
+		E1A775BA1567945D000406CC /* UISSVariablesPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSVariablesPreprocessor.h; sourceTree = "<group>"; };
+		E1A775BB1567945D000406CC /* UISSVariablesPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSVariablesPreprocessor.m; sourceTree = "<group>"; };
+		E1A775C01567A814000406CC /* UISSVariablesPreprocessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSVariablesPreprocessorTests.m; sourceTree = "<group>"; };
 		E1B438AF143F668000F87518 /* libUISS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUISS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B438B2143F668000F87518 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1B438B6143F668000F87518 /* UISS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISS-Prefix.pch"; sourceTree = "<group>"; };
@@ -270,16 +280,18 @@
 		E129E5DB1563DE2200E93185 /* UIKit Enums */ = {
 			isa = PBXGroup;
 			children = (
+				E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */,
+				E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */,
 				E129E5DC1563DE5000E93185 /* UISSBarMetricsValueConverter.h */,
 				E129E5DD1563DE5000E93185 /* UISSBarMetricsValueConverter.m */,
 				E129E5E01563DE7B00E93185 /* UISSControlStateValueConveter.h */,
 				E129E5E11563DE7B00E93185 /* UISSControlStateValueConveter.m */,
 				E129E5E41563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h */,
 				E129E5E51563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m */,
-				E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */,
-				E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */,
 				E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */,
 				E1A775B11566E8D6000406CC /* UISSToolbarPositionConverter.m */,
+				E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */,
+				E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */,
 			);
 			name = "UIKit Enums";
 			sourceTree = "<group>";
@@ -438,6 +450,28 @@
 			name = "UIKit Helpers";
 			sourceTree = "<group>";
 		};
+		E1A775B915678FF8000406CC /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				E1BD5E0F1568095D00288A28 /* Preprocessora */,
+				E1469854155A853D000F311F /* UISSParserContext.h */,
+				E1469855155A853D000F311F /* UISSParserContext.m */,
+				E1469858155A85EC000F311F /* UISSParser.h */,
+				E1469859155A85EC000F311F /* UISSParser.m */,
+				E146985C155A8908000F311F /* NSInvocation+UISS.h */,
+				E146985D155A8908000F311F /* NSInvocation+UISS.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		E1A775BE1567A7E3000406CC /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				E1A775C01567A814000406CC /* UISSVariablesPreprocessorTests.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		E1B438A4143F667F00F87518 = {
 			isa = PBXGroup;
 			children = (
@@ -474,14 +508,9 @@
 		E1B438B4143F668000F87518 /* UISS */ = {
 			isa = PBXGroup;
 			children = (
+				E1A775B915678FF8000406CC /* Parser */,
 				E1A7739415668F6C000406CC /* UIKit Helpers */,
 				E146983D155905DD000F311F /* Value Converters */,
-				E1469854155A853D000F311F /* UISSParserContext.h */,
-				E1469855155A853D000F311F /* UISSParserContext.m */,
-				E1469858155A85EC000F311F /* UISSParser.h */,
-				E1469859155A85EC000F311F /* UISSParser.m */,
-				E146985C155A8908000F311F /* NSInvocation+UISS.h */,
-				E146985D155A8908000F311F /* NSInvocation+UISS.m */,
 				E1B438B7143F668000F87518 /* UISS.h */,
 				E1B438B8143F668000F87518 /* UISS.m */,
 				E1B438B5143F668000F87518 /* Supporting Files */,
@@ -495,6 +524,15 @@
 				E1B438B6143F668000F87518 /* UISS-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1BD5E0F1568095D00288A28 /* Preprocessora */ = {
+			isa = PBXGroup;
+			children = (
+				E1A775BA1567945D000406CC /* UISSVariablesPreprocessor.h */,
+				E1A775BB1567945D000406CC /* UISSVariablesPreprocessor.m */,
+			);
+			name = Preprocessora;
 			sourceTree = "<group>";
 		};
 		E1ED8BE61450D4E200302B61 /* UISSDemo */ = {
@@ -524,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				E1ED8C121450D4E200302B61 /* Supporting Files */,
+				E1A775BE1567A7E3000406CC /* Parser */,
 				E14698461559071E000F311F /* Value Converters */,
 				E146983815584831000F311F /* Images */,
 				E146982A155846F4000F311F /* JSON */,
@@ -576,6 +615,8 @@
 				E129E5EE1563F54800E93185 /* UISSAbstractEnumValueConverter.h in Headers */,
 				E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */,
 				E1A775B21566E8D6000406CC /* UISSToolbarPositionConverter.h in Headers */,
+				E1A775BC1567945D000406CC /* UISSVariablesPreprocessor.h in Headers */,
+				E116C4F2156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,6 +776,8 @@
 				E129E5EF1563F54800E93185 /* UISSAbstractEnumValueConverter.m in Sources */,
 				E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */,
 				E1A775B31566E8D6000406CC /* UISSToolbarPositionConverter.m in Sources */,
+				E1A775BD1567945D000406CC /* UISSVariablesPreprocessor.m in Sources */,
+				E116C4F3156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +813,7 @@
 				E129E5D71563CCFB00E93185 /* UISSFontValueConverterTests.m in Sources */,
 				E129E5DA1563D44200E93185 /* UISSTextAttributesValueConverterTests.m in Sources */,
 				E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m in Sources */,
+				E1A775C11567A814000406CC /* UISSVariablesPreprocessorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

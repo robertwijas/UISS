@@ -10,4 +10,10 @@
 
 @implementation UISSCustomContainerView
 
+- (void)layoutSubviews;
+{
+    [super layoutSubviews];
+    NSLog(@"UISSCustomContainerView.layoutSubviews");
+}
+
 @end
