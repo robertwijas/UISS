@@ -1,12 +1,17 @@
 {
+    "Variables": {
+        "tintColor": "red",
+        "backgroundColor": ["#770077", 0.5],
+        "insets": [100, 100, 100, 100]
+    },
     "Phone": {
         "UINavigationBar": {
-            "tintColor": "gray"
+            "backgroundImage": ["background.png", "default"]
         }
     },
     "Pad": {
         "UINavigationBar": {
-            "backgroundImage": ["background.png", "default"]
+            "tintColor": "$tintColor"
         }
     },
     "UIToolbar": {
@@ -25,7 +30,7 @@
         }
     },
     "UISSCustomContainerView": {
-        "backgroundColor": [["#770077", 0.5]]
+        "backgroundColor": ["$backgroundColor"]
     },
     "UISSDemoSecondViewController": {
         "UILabel": {
@@ -43,7 +48,7 @@
         "UIButton": {
             "titleColor": [["green", "normal"], ["yellow", "highlighted"]],
             "backgroundImage": ["background", "highlighted"],
-            "contentEdgeInsets": [[100, 100, 100, 100]]
+            "contentEdgeInsets": ["$insets"]
         },
         "UILabel": {
             "textColor": "orange"

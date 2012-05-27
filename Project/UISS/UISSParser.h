@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSArray *propertyValueConverters;
 @property (nonatomic, strong) NSArray *axisParameterValueConverters;
-@property (nonatomic, assign) UIUserInterfaceIdiom userInterfaceIdiom;
 
 - (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
 

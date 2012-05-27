@@ -29,7 +29,6 @@
                                                                      error:NULL];
         
         UISSParser *parser = [[UISSParser alloc] init];
-        parser.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
         
         [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
             NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));

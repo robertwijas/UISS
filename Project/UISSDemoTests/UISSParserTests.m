@@ -95,17 +95,6 @@
     }];
 }
 
-- (void)testUserInterfaceIdiomPhone;
-{
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"lightGray" forKey:@"tintColor"]
-                                                           forKey:@"UIToolbar"];
-    dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"Phone"];
-    
-    [self parserTestWithDictionary:dictionary assertionsAfterInvoke:^(NSInvocation *invocation) {
-        STAssertEqualObjects([[UIToolbar appearance] tintColor], [UIColor lightGrayColor], nil);
-    }];
-}
-
 #pragma mark - Helper Methods
 
 - (void)parserTestWithDictionary:(NSDictionary *)dictionary assertionsAfterInvoke:(void (^)(NSInvocation *))assertions;

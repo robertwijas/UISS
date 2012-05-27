@@ -26,7 +26,7 @@
 {
     self.uiss = [[UISS alloc] init];
     self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/5jv1isaom3i8hsr/uiss.json?dl=1"];
-    [self.uiss reload];
+    //[self.uiss reload];
 
     UILongPressGestureRecognizer *reloadGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(reloadGestureRecognizerHandler:)];
     reloadGestureRecognizer.numberOfTouchesRequired = 1;
@@ -34,7 +34,7 @@
     
     [self.window addGestureRecognizer:reloadGestureRecognizer];
     
-    //[UISS configureWithDefaultJSONFile];
+    [UISS configureWithDefaultJSONFile];
     
     return YES;
 }

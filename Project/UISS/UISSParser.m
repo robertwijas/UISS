@@ -43,7 +43,6 @@
 @synthesize preprocessors=_preprocessors;
 @synthesize propertyValueConverters=_propertyValueConverters;
 @synthesize axisParameterValueConverters=_axisParameterValueConverters;
-@synthesize userInterfaceIdiom=_userInterfaceIdiom;
 
 - (id)init
 {
@@ -84,19 +83,6 @@
     }
     
     return self;
-}
-
-- (NSNumber *)convertStringToNumber:(NSString *)string;
-{
-    static NSDictionary * convertDictionary;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        convertDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithInteger:UIBarMetricsLandscapePhone], @"landscapePhone",
-                             nil];
-    });
-    
-    return [NSNumber numberWithInteger:[[convertDictionary objectForKey:string] integerValue]];
 }
 
 - (NSArray *)argumentsArrayFrom:(id)value;

@@ -69,6 +69,8 @@
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:nestedDictionary
                                                            forKey:@"root"];
     
+    self.preprocessor.userInterfaceIdiom = UIUserInterfaceIdiomPhone;
+    
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
     STAssertTrue([preprocessed.allKeys containsObject:@"root"], nil);
     STAssertEqualObjects([[preprocessed objectForKey:@"root"] objectForKey:@"key"], @"value", nil);
