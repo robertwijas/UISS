@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UISSDictionaryPreprocessor.h"
 
-@interface UISSVariablesPreprocessor : NSObject
+#define UISS_DEFAULT_VARIABLES_KEY @"Variables"
+#define UISS_DEFAULT_VARIABLE_PREFIX @"$"
+
+@interface UISSVariablesPreprocessor : NSObject <UISSDictionaryPreprocessor>
 
 - (id)substituteValue:(id)value;
 

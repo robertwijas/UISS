@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UISSVariablesPreprocessor.h"
 
 @interface UISSParser : NSObject
 
-@property (nonatomic, strong) UISSVariablesPreprocessor *variablesPreprocessor;
+@property (nonatomic, strong) NSArray *preprocessors;
 
 @property (nonatomic, strong) NSArray *propertyValueConverters;
 @property (nonatomic, strong) NSArray *axisParameterValueConverters;

@@ -34,10 +34,13 @@
 #import "UISSToolbarPositionConverter.h"
 #import "UISSSearchBarIconValueConverter.h"
 
+#import "UISSDictionaryPreprocessor.h"
+#import "UISSUserInterfaceIdiomPreprocessor.h"
+#import "UISSVariablesPreprocessor.h"
+
 @implementation UISSParser
 
-@synthesize variablesPreprocessor=_variablesPreprocessor;
-
+@synthesize preprocessors=_preprocessors;
 @synthesize propertyValueConverters=_propertyValueConverters;
 @synthesize axisParameterValueConverters=_axisParameterValueConverters;
 @synthesize userInterfaceIdiom=_userInterfaceIdiom;
@@ -46,24 +49,27 @@
 {
     self = [super init];
     if (self) {
-        self.variablesPreprocessor = [[UISSVariablesPreprocessor alloc] init];
+        self.preprocessors = [NSArray arrayWithObjects:
+                              [[UISSUserInterfaceIdiomPreprocessor alloc] init],
+                              [[UISSVariablesPreprocessor alloc] init],
+                              nil];
         
         self.propertyValueConverters = [NSArray arrayWithObjects:
-                           [[UISSColorValueConverter alloc] init],
-                           [[UISSImageValueConverter alloc] init],
-                           [[UISSFontValueConverter alloc] init],
-                           [[UISSTextAttributesValueConverter alloc] init],
-                           
-                           [[UISSSizeValueConverter alloc] init],
-                           [[UISSPointValueConverter alloc] init],
-                           [[UISSEdgeInsetsValueConverter alloc] init],
-                           [[UISSRectValueConverter alloc] init],
-                           [[UISSOffsetValueConverter alloc] init],
-
-                           [[UISSIntegerValueConverter alloc] init],
-                           [[UISSUIntegerValueConverter alloc] init],
-                           [[UISSFloatValueConverter alloc] init],
-                           nil];
+                                        [[UISSColorValueConverter alloc] init],
+                                        [[UISSImageValueConverter alloc] init],
+                                        [[UISSFontValueConverter alloc] init],
+                                        [[UISSTextAttributesValueConverter alloc] init],
+                                        
+                                        [[UISSSizeValueConverter alloc] init],
+                                        [[UISSPointValueConverter alloc] init],
+                                        [[UISSEdgeInsetsValueConverter alloc] init],
+                                        [[UISSRectValueConverter alloc] init],
+                                        [[UISSOffsetValueConverter alloc] init],
+                                        
+                                        [[UISSIntegerValueConverter alloc] init],
+                                        [[UISSUIntegerValueConverter alloc] init],
+                                        [[UISSFloatValueConverter alloc] init],
+                                        nil];
         
         self.axisParameterValueConverters = [NSArray arrayWithObjects:
                                              [[UISSBarMetricsValueConverter alloc] init],
@@ -112,7 +118,7 @@
     NSString *methodPrefix = [self setterMethodPrefixForProperty:property];
     
     NSLog(@"UISS - methodPrefix: %@", methodPrefix);
-
+    
     NSMutableArray *invocations = [NSMutableArray array];
     
     unsigned int count = 0;
@@ -126,7 +132,7 @@
             
             if ([method hasPrefix:methodPrefix]) {
                 NSLog(@"UISS - got method: %@", method);
-
+                
                 NSMethodSignature *methodSignature = [[component appearance] methodSignatureForSelector:selector];
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
                 [invocation setSelector:selector];
@@ -139,7 +145,7 @@
         
         component = class_getSuperclass(component);
     }
-        
+    
     return invocations;
 }
 
@@ -198,7 +204,7 @@
 {
     NSString *selector = NSStringFromSelector(invocation.selector);
     NSArray *selectorComponents = [selector componentsSeparatedByString:@":"];
-
+    
     if (index + 1 < selectorComponents.count) {
         NSString *parameterComponent = [selectorComponents objectAtIndex:index + 1];
         return parameterComponent;
@@ -234,12 +240,12 @@
     [axesArguments enumerateObjectsUsingBlock:^(id argument, NSUInteger index, BOOL *stop) {
         NSInteger argumentIndex = index + 3;
         NSString *argumentType = [NSString stringWithUTF8String:[invocation.methodSignature getArgumentTypeAtIndex:argumentIndex]];
-
+        
         id<UISSAxisParameterValueConverter> converter = [self findConverterForAxisParameter:[self axisParameterNameAtIndex:index 
                                                                                                              forInvocation:invocation] 
                                                                                       value:argument argumentType:argumentType];
         NSNumber *converted = [converter convertAxisParameter:argument];
-
+        
         if ([argumentType isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]]) {
             NSUInteger unsignedInteger = [converted unsignedIntegerValue];
             [invocation setArgument:&unsignedInteger atIndex:argumentIndex];
@@ -247,7 +253,7 @@
             NSInteger integer = [converted integerValue];
             [invocation setArgument:&integer atIndex:argumentIndex];
         }
-
+        
     }];
 }
 
@@ -258,7 +264,7 @@
     
     NSUInteger argumentsCount = [array.lastObject count];
     if (argumentsCount < 2) return NO;
-
+    
     for (id obj in array) {
         if (![obj isKindOfClass:[NSArray class]]) return NO;
         if ([obj count] != argumentsCount) return NO;
@@ -282,17 +288,6 @@
     }
 }
 
-- (UIUserInterfaceIdiom)userInterfaceIdiomForKey:(NSString *)key;
-{
-    if ([@"Phone" isEqual:key]) {
-        return UIUserInterfaceIdiomPhone;
-    } else if ([@"Pad" isEqual:key]) {
-        return UIUserInterfaceIdiomPad;
-    } else {
-        return NSNotFound;
-    }
-}
-
 - (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler 
                 context:(UISSParserContext *)context;
 {
@@ -311,30 +306,22 @@
             [self parseDictionary:obj handler:handler context:context];
             [context.appearanceStack removeLastObject];
         } else {
-            UIUserInterfaceIdiom userInterfaceIdiom = [self userInterfaceIdiomForKey:key];
+            // property
+            NSLog(@"UISS - property: %@", key);
+            NSString *property = key;
             
-            if (userInterfaceIdiom != NSNotFound) {
-                if (userInterfaceIdiom == self.userInterfaceIdiom) {
-                    [self parseDictionary:obj handler:handler context:context];
-                }
-            } else { // property
-                NSLog(@"UISS - property: %@", key);
-                
-                NSString *property = key;
-                
-                NSArray *invocations = [self invocationsForProperty:property component:context.appearanceStack.lastObject];
-                NSArray *arguments = [self argumentsArrayFrom:obj];
-                
-                // detect multiple values
-                if ([self multipleAxisValuesDetectedInArgumentsArray:arguments]) {
-                    for (NSArray *args in arguments) {
-                        [self prepareInvocationForProperty:property arguments:args 
-                                               invocations:invocations context:context handler:handler];
-                    }
-                } else {
-                    [self prepareInvocationForProperty:property arguments:arguments 
+            NSArray *invocations = [self invocationsForProperty:property component:context.appearanceStack.lastObject];
+            NSArray *arguments = [self argumentsArrayFrom:obj];
+            
+            // detect multiple values
+            if ([self multipleAxisValuesDetectedInArgumentsArray:arguments]) {
+                for (NSArray *args in arguments) {
+                    [self prepareInvocationForProperty:property arguments:args 
                                            invocations:invocations context:context handler:handler];
                 }
+            } else {
+                [self prepareInvocationForProperty:property arguments:arguments 
+                                       invocations:invocations context:context handler:handler];
             }
         }
     }];
@@ -343,6 +330,7 @@
 - (id<UIAppearance>)appearanceTargetForContext:(UISSParserContext *)context;
 {
     // This may be the ugliest method I have ever written
+    // but I do not know how to call this method having NSArray of arguments
     
     Class<UIAppearance> component = context.appearanceStack.lastObject;
     
@@ -391,6 +379,11 @@
     NSAssert(handler, @"handler block is required");
     
     UISSParserContext *context = [[UISSParserContext alloc] init];
+    
+    for (id<UISSDictionaryPreprocessor>preprocessor in self.preprocessors) {
+        dictionary = [preprocessor preprocess:dictionary];
+    }
+    
     [self parseDictionary:dictionary handler:handler context:context];
 }
 

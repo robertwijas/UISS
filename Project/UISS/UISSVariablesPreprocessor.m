@@ -10,6 +10,7 @@
 
 @interface UISSVariablesPreprocessor ()
 
+@property (nonatomic, strong) NSString *variablesKey;
 @property (nonatomic, strong) NSMutableDictionary *variables;
 @property (nonatomic, strong) NSString *variablePrefix;
 
@@ -19,6 +20,7 @@ typedef id (^ResolveBlock)(NSString *);
 
 @implementation UISSVariablesPreprocessor
 
+@synthesize variablesKey=_variablesKey;
 @synthesize variables=_variables;
 @synthesize variablePrefix=_variablePrefix;
 
@@ -26,8 +28,9 @@ typedef id (^ResolveBlock)(NSString *);
 {
     self = [super init];
     if (self) {
+        self.variablesKey = UISS_DEFAULT_VARIABLES_KEY;
         self.variables = [NSMutableDictionary dictionary];
-        self.variablePrefix = @"$";
+        self.variablePrefix = UISS_DEFAULT_VARIABLE_PREFIX;
     }
     return self;
 }
@@ -83,6 +86,13 @@ typedef id (^ResolveBlock)(NSString *);
     }
 }
 
+- (id)resolveNestedValuesForValue:(id)value;
+{
+    return [self resolveNestedValuesForValue:value withResolveBlock:^(NSString *name) {
+        return [self getValueForVariableWithName:name];
+    }];
+}
+
 - (void)setVariableValue:(id)value forName:(NSString *)name withResolveBlock:(ResolveBlock)resolveBlock;
 {
     [self.variables setValue:[self resolveNestedValuesForValue:value withResolveBlock:resolveBlock] forKey:name];
@@ -116,11 +126,29 @@ typedef id (^ResolveBlock)(NSString *);
         
         return [weakSelf getValueForVariableWithName:n];
     };
-
+    
     while (unresolved.count) {
         // resolveBlock removes objects from this dictionary
         resolveBlock(unresolved.allKeys.lastObject);
     }
+}
+
+- (NSDictionary *)preprocess:(NSDictionary *)dictionary;
+{
+    // clean up
+    [self.variables removeAllObjects];
+    
+    id variablesDictionary = [dictionary objectForKey:self.variablesKey];
+    if (variablesDictionary != nil) {
+        NSMutableDictionary *preprocessed = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+        [preprocessed removeObjectForKey:self.variablesKey];
+        
+        [self setVariablesFromDictionary:variablesDictionary];
+        
+        return [self resolveNestedValuesForValue:preprocessed];
+    }
+    
+    return dictionary;
 }
 
 @end

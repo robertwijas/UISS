@@ -125,6 +125,31 @@
     STAssertEqualObjects([self.preprocessor getValueForVariableWithName:@"v2"], value, nil);
 }
 
+- (void)testPreprocessingDictionary;
+{
+    NSDictionary *variablesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         @"v1-value", @"v1",
+                                         @"v2-value", @"v2",
+                                         nil];
+    
+    NSDictionary *componentStyleDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              @"$v1", @"property1",
+                                              @"$v2", @"property2",
+                                              nil];
+    
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                variablesDictionary, @"Variables",
+                                componentStyleDictionary, @"Component",
+                                nil];
+    
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    
+    STAssertFalse([preprocessed.allKeys containsObject:@"Variables"], @"Variables dictionary should be removed");
+    
+    STAssertEqualObjects([[preprocessed objectForKey:@"Component"] objectForKey:@"property1"], @"v1-value", nil);
+    STAssertEqualObjects([[preprocessed objectForKey:@"Component"] objectForKey:@"property2"], @"v2-value", nil);
+}
+
 - (void)setUp;
 {
     self.preprocessor = [[UISSVariablesPreprocessor alloc] init];

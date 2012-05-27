@@ -7,15 +7,33 @@
 //
 
 #import "UISSColorValueConverter.h"
+#import "UISSImageValueConverter.h"
+
+@interface UISSColorValueConverter ()
+
+@property (nonatomic, strong) UISSImageValueConverter *imageValueConverter;
+
+@end
 
 @implementation UISSColorValueConverter
+
+@synthesize imageValueConverter;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.imageValueConverter = [[UISSImageValueConverter alloc] init];
+    }
+    return self;
+}
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 {
     return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"color"];
 }
 
-- (UIColor *)colorFromString:(NSString *)colorString;
+- (UIColor *)colorFromHexString:(NSString *)colorString;
 {
     if ([colorString hasPrefix:@"#"]) {
         NSScanner *scanner = [NSScanner scannerWithString:[colorString substringFromIndex:1]];
@@ -28,19 +46,50 @@
             
             return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
         }
-    } else {
-        if (![colorString hasSuffix:@"Color"]) {
-            colorString = [colorString stringByAppendingString:@"Color"];
-        }
-        
-        SEL colorSelector = NSSelectorFromString(colorString);
-        
-        if ([UIColor respondsToSelector:colorSelector]) {
-            return [UIColor performSelector:colorSelector];
-        }
+    }
+    
+    return nil;
+}
+
+- (UIColor *)colorFromSelectorString:(NSString *)selectorString;
+{
+    if (![selectorString hasSuffix:@"Color"]) {
+        selectorString = [selectorString stringByAppendingString:@"Color"];
+    }
+    
+    SEL colorSelector = NSSelectorFromString(selectorString);
+    
+    if ([UIColor respondsToSelector:colorSelector]) {
+        return [UIColor performSelector:colorSelector];
+    }
+    
+    return nil;
+}
+
+- (UIColor *)colorFromPatterImageString:(NSString *)patternImageString;
+{
+    // UIColor with pattern
+    UIImage *patternImage = [self.imageValueConverter convertPropertyValue:patternImageString];
+    if (patternImage) {
+        return [UIColor colorWithPatternImage:patternImage];
     }
 
     return nil;
+}
+
+- (UIColor *)colorFromString:(NSString *)colorString;
+{
+    UIColor *color = [self colorFromHexString:colorString];
+    
+    if (color == nil) {
+        color = [self colorFromSelectorString:colorString];
+    }
+    
+    if (color == nil) {
+        color = [self colorFromPatterImageString:colorString];
+    }
+    
+    return color;
 }
 
 - (id)convertPropertyValue:(id)value;

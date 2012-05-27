@@ -108,6 +108,15 @@
     STAssertEqualObjects(color, [[UIColor greenColor] colorWithAlphaComponent:0.2], nil);
 }
 
+- (void)testColorWithPatternImage;
+{
+    UIColor *color = [self.converter convertPropertyValue:@"background"];
+    STAssertNotNil(color, nil);
+    
+    color = [self.converter convertPropertyValue:@"fakeImage"];
+    STAssertNil(color, nil);
+}
+
 - (void)setUp;
 {
     self.converter = [[UISSColorValueConverter alloc] init];
