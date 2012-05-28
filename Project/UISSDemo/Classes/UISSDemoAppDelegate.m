@@ -26,45 +26,14 @@
 {
     self.uiss = [[UISS alloc] init];
     self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/5jv1isaom3i8hsr/uiss.json?dl=1"];
-    //[self.uiss reload];
-
-    UILongPressGestureRecognizer *reloadGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(reloadGestureRecognizerHandler:)];
-    reloadGestureRecognizer.numberOfTouchesRequired = 1;
-    reloadGestureRecognizer.minimumPressDuration = 3;
     
-    [self.window addGestureRecognizer:reloadGestureRecognizer];
+    [self.uiss registerReloadGestureRecognizerInView:self.window];
     
-    [UISS configureWithDefaultJSONFile];
+    [self.uiss reload];
+    
+    //[UISS configureWithDefaultJSONFile];
     
     return YES;
-}
-
-- (void)refresh:(UIView *)view;
-{
-    [view.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        [self refresh:subview];
-    }];
-    [view setNeedsLayout];
-    [view setNeedsDisplay];
-}
-
-- (void)reloadGestureRecognizerHandler:(UILongPressGestureRecognizer *)gestureRecognizer;
-{
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"UISS" 
-                                                            message:@"Realoading..." 
-                                                           delegate:nil
-                                                  cancelButtonTitle:nil 
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.uiss reload];
-            [self refresh:self.window];
-            
-            [alertView dismissWithClickedButtonIndex:0 animated:YES];
-        });
-    }
 }
 
 @end

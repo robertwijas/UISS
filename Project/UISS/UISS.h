@@ -11,6 +11,7 @@
 @property (nonatomic, strong) NSURL *url;
 
 - (void)reload;
+- (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 + (void)configureWithDefaultJSONFile;
