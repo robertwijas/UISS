@@ -26,24 +26,29 @@
         NSData *data = [NSData dataWithContentsOfURL:self.url];
         
         if (data) {
+            NSError *error;
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                       options:0 
-                                                                         error:NULL];
+                                                                       options:NSJSONReadingMutableContainers
+                                                                         error:&error];
             
-            UISSParser *parser = [[UISSParser alloc] init];
-            
-            [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-                NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
+            if (error) {
+                NSLog(@"UISS -- cannot parse JSON file, error: %@", error);
+            } else {
+                UISSParser *parser = [[UISSParser alloc] init];
                 
-                if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
-                    [invocation invoke];
-                } else {
-                    [invocation retainArguments];
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
+                    NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
+                    
+                    if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
                         [invocation invoke];
-                    });
-                }
-            }];
+                    } else {
+                        [invocation retainArguments];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [invocation invoke];
+                        });
+                    }
+                }];
+            }
             
             if (completion) {
                 if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
