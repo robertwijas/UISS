@@ -8,15 +8,32 @@
 
 #import "UISS.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import "UISSParser.h"
+#import <objc/runtime.h>
 
 @interface UISS ()
+
+@property (atomic, strong) NSData *data;
 
 @end
 
 @implementation UISS
 
+@synthesize data=_data;
 @synthesize url=_url;
+@synthesize refreshInterval=_refreshInterval;
+
+- (void)debugUIAppearance;
+{
+    unsigned int count = 0;
+    Method *methods = class_copyMethodList(NSClassFromString(@"_UIAppearance"), &count);
+    
+    for (int i = 0; i < count; i++) {
+        SEL selector = method_getName(methods[i]);
+        NSLog(@"%@", NSStringFromSelector(selector));
+    }
+}
 
 - (void)reloadUsingQueue:(dispatch_queue_t)queue completion:(void (^)())completion;
 {
@@ -25,7 +42,7 @@
     void (^block)(void) = ^{
         NSData *data = [NSData dataWithContentsOfURL:self.url];
         
-        if (data) {
+        if (data && [data isEqualToData:self.data] == NO) {
             NSError *error;
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
                                                                        options:NSJSONReadingMutableContainers
@@ -58,9 +75,21 @@
                 }
             }
             
+            // store data for comparison
+            self.data = data;
+            
             NSLog(@"UISS -- configured");
         } else {
             NSLog(@"UISS -- cannot load file from url: %@", self.url);
+        }
+        
+        if (self.refreshInterval) {
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.refreshInterval * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^{
+                    [self reloadViews];
+                }];
+            });
         }
     };
     
@@ -73,6 +102,7 @@
 
 - (void)reload;
 {
+    [self debugUIAppearance];
     [self reloadUsingQueue:nil completion:nil];
 }
 
@@ -94,7 +124,7 @@
 - (UIGestureRecognizer *)defaultGestureRecognizer;
 {
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
-    recognizer.numberOfTouchesRequired = 3;
+    recognizer.numberOfTouchesRequired = 1;
     recognizer.minimumPressDuration = 1;
     
     return recognizer;
@@ -115,6 +145,30 @@
     [self registerReloadGestureRecognizer:nil inView:view];
 }
 
+- (void)reloadView:(UIView *)view;
+{
+    for (UIView *subview in view.subviews) {
+        [self reloadView:subview];
+    }
+    
+    UIView *superview = view.superview;
+    if (superview) {
+        [view removeFromSuperview];
+        [superview addSubview:view];
+    }
+}
+
+- (void)reloadViews;
+{
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        for (UIView *view in window.subviews) {
+            [view removeFromSuperview];
+            [window addSubview:view];
+        }
+        //[self reloadView:window];
+    }
+}
+
 - (void)reloadGestureRecognizerHandler:(UILongPressGestureRecognizer *)gestureRecognizer;
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -127,6 +181,7 @@
         
         [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^{
             [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            [self reloadViews];
         }];
     }
 }

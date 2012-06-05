@@ -25,10 +25,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.uiss = [[UISS alloc] init];
-    self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/5jv1isaom3i8hsr/uiss.json?dl=1"];
+    self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/39ulxi0b7bojx1k/uiss%20demo.json?dl=1"];
+    self.uiss.refreshInterval = 1;
     
     [self.uiss registerReloadGestureRecognizerInView:self.window];
-    
     [self.uiss reload];
     
     //[UISS configureWithDefaultJSONFile];

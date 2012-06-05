@@ -13,6 +13,11 @@
 
 #pragma mark - Tests
 
+- (void)test;
+{
+    //UISSParser *parser = [[UISSParser alloc] init];
+}
+
 - (void)testToolbarTintColor;
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]

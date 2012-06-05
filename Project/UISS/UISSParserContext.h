@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) NSMutableArray *appearanceStack;
 
+@property (nonatomic, strong) NSMutableArray *containment;
+@property (nonatomic, strong) Class<UIAppearance> component;
+
+@property (nonatomic, strong) NSMutableArray *errors;
+
 @end

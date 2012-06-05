@@ -17,6 +17,14 @@
 		E10D5E5C1574BBA400185009 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E521574BBA400185009 /* Icon@2x.png */; };
 		E10D5E5D1574BBA400185009 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E531574BBA400185009 /* iTunesArtwork.png */; };
 		E10D5E5E1574BBA400185009 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E541574BBA400185009 /* iTunesArtwork@2x.png */; };
+		E116AF22157AA24E00BFB3D1 /* UISSPropertySetter.h in Headers */ = {isa = PBXBuildFile; fileRef = E116AF20157AA24E00BFB3D1 /* UISSPropertySetter.h */; };
+		E116AF23157AA24E00BFB3D1 /* UISSPropertySetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E116AF21157AA24E00BFB3D1 /* UISSPropertySetter.m */; };
+		E116AF27157ABBA900BFB3D1 /* UISSArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = E116AF25157ABBA800BFB3D1 /* UISSArgument.h */; };
+		E116AF28157ABBA900BFB3D1 /* UISSArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = E116AF26157ABBA800BFB3D1 /* UISSArgument.m */; };
+		E116AF2B157ABBCA00BFB3D1 /* UISSProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = E116AF29157ABBC900BFB3D1 /* UISSProperty.h */; };
+		E116AF2C157ABBCA00BFB3D1 /* UISSProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E116AF2A157ABBC900BFB3D1 /* UISSProperty.m */; };
+		E116AF2F157ABBE000BFB3D1 /* UISSAxisParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = E116AF2D157ABBDF00BFB3D1 /* UISSAxisParameter.h */; };
+		E116AF30157ABBE000BFB3D1 /* UISSAxisParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E116AF2E157ABBDF00BFB3D1 /* UISSAxisParameter.m */; };
 		E116C4F2156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */; };
 		E116C4F3156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */; };
 		E129E5CE1562F86100E93185 /* UISSCustomContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */; };
@@ -32,6 +40,7 @@
 		E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */; };
 		E129E5EE1563F54800E93185 /* UISSAbstractEnumValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */; };
 		E129E5EF1563F54800E93185 /* UISSAbstractEnumValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */; };
+		E12C10A8157ACB0C00F9008D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12C10A7157ACB0C00F9008D /* QuartzCore.framework */; };
 		E12DA0B0155A9D410066CCC3 /* UISSSizeValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E12DA0AE155A9D410066CCC3 /* UISSSizeValueConverter.h */; };
 		E12DA0B1155A9D410066CCC3 /* UISSSizeValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DA0AF155A9D410066CCC3 /* UISSSizeValueConverter.m */; };
 		E12DA0B4155A9D550066CCC3 /* UISSRectValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E12DA0B2155A9D550066CCC3 /* UISSRectValueConverter.h */; };
@@ -136,6 +145,14 @@
 		E10D5E521574BBA400185009 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		E10D5E531574BBA400185009 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		E10D5E541574BBA400185009 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		E116AF20157AA24E00BFB3D1 /* UISSPropertySetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSPropertySetter.h; sourceTree = "<group>"; };
+		E116AF21157AA24E00BFB3D1 /* UISSPropertySetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPropertySetter.m; sourceTree = "<group>"; };
+		E116AF25157ABBA800BFB3D1 /* UISSArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSArgument.h; sourceTree = "<group>"; };
+		E116AF26157ABBA800BFB3D1 /* UISSArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSArgument.m; sourceTree = "<group>"; };
+		E116AF29157ABBC900BFB3D1 /* UISSProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSProperty.h; sourceTree = "<group>"; };
+		E116AF2A157ABBC900BFB3D1 /* UISSProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSProperty.m; sourceTree = "<group>"; };
+		E116AF2D157ABBDF00BFB3D1 /* UISSAxisParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAxisParameter.h; sourceTree = "<group>"; };
+		E116AF2E157ABBDF00BFB3D1 /* UISSAxisParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSAxisParameter.m; sourceTree = "<group>"; };
 		E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSearchBarIconValueConverter.h; sourceTree = "<group>"; };
 		E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSearchBarIconValueConverter.m; sourceTree = "<group>"; };
 		E129E5CC1562F86000E93185 /* UISSCustomContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomContainerView.h; sourceTree = "<group>"; };
@@ -152,6 +169,7 @@
 		E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUIKitEnumsValueConvetersTests.m; sourceTree = "<group>"; };
 		E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAbstractEnumValueConverter.h; sourceTree = "<group>"; };
 		E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSAbstractEnumValueConverter.m; sourceTree = "<group>"; };
+		E12C10A7157ACB0C00F9008D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E12DA0AE155A9D410066CCC3 /* UISSSizeValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSizeValueConverter.h; sourceTree = "<group>"; };
 		E12DA0AF155A9D410066CCC3 /* UISSSizeValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSizeValueConverter.m; sourceTree = "<group>"; };
 		E12DA0B2155A9D550066CCC3 /* UISSRectValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSRectValueConverter.h; sourceTree = "<group>"; };
@@ -259,6 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12C10A8157ACB0C00F9008D /* QuartzCore.framework in Frameworks */,
 				E1ED8C211450D5E600302B61 /* libUISS.a in Frameworks */,
 				E1ED8BE31450D4E200302B61 /* UIKit.framework in Frameworks */,
 				E1ED8BE41450D4E200302B61 /* Foundation.framework in Frameworks */,
@@ -294,6 +313,23 @@
 				E10D5E541574BBA400185009 /* iTunesArtwork@2x.png */,
 			);
 			path = "App Icon [Squared]";
+			sourceTree = "<group>";
+		};
+		E116AF31157ABBEB00BFB3D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E116AF20157AA24E00BFB3D1 /* UISSPropertySetter.h */,
+				E116AF21157AA24E00BFB3D1 /* UISSPropertySetter.m */,
+				E116AF25157ABBA800BFB3D1 /* UISSArgument.h */,
+				E116AF26157ABBA800BFB3D1 /* UISSArgument.m */,
+				E116AF29157ABBC900BFB3D1 /* UISSProperty.h */,
+				E116AF2A157ABBC900BFB3D1 /* UISSProperty.m */,
+				E116AF2D157ABBDF00BFB3D1 /* UISSAxisParameter.h */,
+				E116AF2E157ABBDF00BFB3D1 /* UISSAxisParameter.m */,
+				E1469854155A853D000F311F /* UISSParserContext.h */,
+				E1469855155A853D000F311F /* UISSParserContext.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		E129E5D015630DFF00E93185 /* Objects */ = {
@@ -507,9 +543,8 @@
 		E1A775B915678FF8000406CC /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				E116AF31157ABBEB00BFB3D1 /* Model */,
 				E1BD5E0F1568095D00288A28 /* Preprocessora */,
-				E1469854155A853D000F311F /* UISSParserContext.h */,
-				E1469855155A853D000F311F /* UISSParserContext.m */,
 				E1469858155A85EC000F311F /* UISSParser.h */,
 				E1469859155A85EC000F311F /* UISSParser.m */,
 				E146985C155A8908000F311F /* NSInvocation+UISS.h */,
@@ -551,6 +586,7 @@
 		E1B438B1143F668000F87518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E12C10A7157ACB0C00F9008D /* QuartzCore.framework */,
 				E1B43904143F702200F87518 /* UIKit.framework */,
 				E1B438B2143F668000F87518 /* Foundation.framework */,
 				E1B438C0143F668000F87518 /* SenTestingKit.framework */,
@@ -622,7 +658,6 @@
 				E1ED8C121450D4E200302B61 /* Supporting Files */,
 				E1A775BE1567A7E3000406CC /* Parser */,
 				E14698461559071E000F311F /* Value Converters */,
-				E146983815584831000F311F /* Images */,
 				E146982A155846F4000F311F /* JSON */,
 				E146982D15584700000F311F /* ExampleJSONTests.h */,
 				E146982E15584700000F311F /* ExampleJSONTests.m */,
@@ -637,6 +672,7 @@
 		E1ED8C121450D4E200302B61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E146983815584831000F311F /* Images */,
 				E1ED8C131450D4E200302B61 /* UISSDemoTests-Info.plist */,
 				E1ED8C141450D4E200302B61 /* InfoPlist.strings */,
 			);
@@ -677,6 +713,10 @@
 				E116C4F2156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h in Headers */,
 				E15B384B1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h in Headers */,
 				E15B384F157257C3005BFF73 /* UISSDictionaryPreprocessor.h in Headers */,
+				E116AF22157AA24E00BFB3D1 /* UISSPropertySetter.h in Headers */,
+				E116AF27157ABBA900BFB3D1 /* UISSArgument.h in Headers */,
+				E116AF2B157ABBCA00BFB3D1 /* UISSProperty.h in Headers */,
+				E116AF2F157ABBE000BFB3D1 /* UISSAxisParameter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,6 +889,10 @@
 				E1A775BD1567945D000406CC /* UISSVariablesPreprocessor.m in Sources */,
 				E116C4F3156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m in Sources */,
 				E15B384C1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m in Sources */,
+				E116AF23157AA24E00BFB3D1 /* UISSPropertySetter.m in Sources */,
+				E116AF28157ABBA900BFB3D1 /* UISSArgument.m in Sources */,
+				E116AF2C157ABBCA00BFB3D1 /* UISSProperty.m in Sources */,
+				E116AF30157ABBE000BFB3D1 /* UISSAxisParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

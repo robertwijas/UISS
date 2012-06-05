@@ -20,6 +20,8 @@
 
 - (void)setBackgroundImage:(UIImage *)image;
 {
+    NSLog(@"DEMO: setBackgroundImage");
+    
     self.backgroundView.image = image;
 }
 
@@ -34,6 +36,13 @@
     }
     
     return _backgroundView;
+}
+
+- (void)layoutSubviews;
+{
+    NSLog(@"DEMO: layoutSubviews");
+
+    [super layoutSubviews];
 }
 
 @end

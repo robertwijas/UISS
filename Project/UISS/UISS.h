@@ -9,6 +9,7 @@
 @interface UISS : NSObject
 
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic, assign) NSTimeInterval refreshInterval;
 
 - (void)reload;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
