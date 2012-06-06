@@ -10,23 +10,26 @@
 #import "UISS.h"
 
 #import "UISSDemoSecondViewController.h"
+#import "UISSStatusWindow.h"
 
 @interface UISSDemoAppDelegate ()
 
 @property (nonatomic, strong) UISS *uiss;
+@property (nonatomic, strong) UISSStatusWindow *statusWindow;
 
 @end
 
 @implementation UISSDemoAppDelegate
 
 @synthesize window = _window;
-@synthesize uiss=_uiss;
+@synthesize uiss = _uiss;
+@synthesize statusWindow = _statusWindow;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.uiss = [[UISS alloc] init];
     self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/39ulxi0b7bojx1k/uiss%20demo.json?dl=1"];
-    self.uiss.refreshInterval = 1;
+    self.uiss.refreshInterval = 5;
     
     [self.uiss registerReloadGestureRecognizerInView:self.window];
     [self.uiss reload];

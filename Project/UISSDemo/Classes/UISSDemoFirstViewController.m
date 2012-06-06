@@ -18,6 +18,14 @@
 
 #pragma mark - View lifecycle
 
+- (IBAction)action:(id)sender {
+    [[[UIAlertView alloc] initWithTitle:@"Test"
+                               message:nil
+                              delegate:nil
+                     cancelButtonTitle:@"Close"
+                     otherButtonTitles:nil] show];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

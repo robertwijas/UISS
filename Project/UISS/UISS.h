@@ -8,6 +8,18 @@
 
 @interface UISS : NSObject
 
+extern NSString *const UISSWillDownloadStyleNotification;
+extern NSString *const UISSDidDownloadStyleNotification;
+
+extern NSString *const UISSWillParseStyleNotification;
+extern NSString *const UISSDidParseStyleNotification;
+
+extern NSString *const UISSWillApplyStyleNotification;
+extern NSString *const UISSDidApplyStyleNotification;
+
+extern NSString *const UISSWillRefreshViewsNotification;
+extern NSString *const UISSDidRefreshViewsNotification;
+
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, assign) NSTimeInterval refreshInterval;
 

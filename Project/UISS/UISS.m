@@ -10,19 +10,44 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "UISSParser.h"
+#import "UISSStatusWindowController.h"
 #import <objc/runtime.h>
+
+NSString *const UISSWillDownloadStyleNotification = @"UISSWillDownloadStyleNotification";
+NSString *const UISSDidDownloadStyleNotification = @"UISSDidDownloadStyleNotification";
+
+NSString *const UISSWillParseStyleNotification = @"UISSWillParseStyleNotification";
+NSString *const UISSDidParseStyleNotification = @"UISSDidParseStyleNotification";
+
+NSString *const UISSWillApplyStyleNotification = @"UISSWillApplyStyleNotification";
+NSString *const UISSDidApplyStyleNotification = @"UISSDidApplyStyleNotification";
+
+NSString *const UISSWillRefreshViewsNotification = @"UISSWillRefreshViewsNotification";
+NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotification";
 
 @interface UISS ()
 
 @property (atomic, strong) NSData *data;
+@property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
 
 @end
 
 @implementation UISS
 
-@synthesize data=_data;
 @synthesize url=_url;
 @synthesize refreshInterval=_refreshInterval;
+
+@synthesize data=_data;
+@synthesize statusWindowController=_statusWindowController;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.statusWindowController = [[UISSStatusWindowController alloc] init];
+    }
+    return self;
+}
 
 - (void)debugUIAppearance;
 {
@@ -35,75 +60,153 @@
     }
 }
 
-- (void)reloadUsingQueue:(dispatch_queue_t)queue completion:(void (^)())completion;
+- (void)dispatchOnMainQueueIfNecessary:(dispatch_block_t)block;
 {
-    NSLog(@"UISS -- configuring with url: %@", self.url);
+    if (dispatch_get_main_queue() == dispatch_get_current_queue()) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
+- (void)postOnMainQueueNotificationName:(NSString *)notificationName;
+{
+    [self dispatchOnMainQueueIfNecessary:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self];
+    }];
+}
+
+- (void)downloadStyleDataFromUrl:(NSURL *)url queue:(dispatch_queue_t)queue completion:(void (^)(BOOL updated))completion;
+{
+    [self postOnMainQueueNotificationName:UISSWillDownloadStyleNotification];
     
-    void (^block)(void) = ^{
-        NSData *data = [NSData dataWithContentsOfURL:self.url];
+    void (^downloadBlock)(void) = ^{
+        NSData *data = [NSData dataWithContentsOfURL:url options:0 error:nil]; // TODO: error
+        
+        [self postOnMainQueueNotificationName:UISSDidDownloadStyleNotification];
         
         if (data && [data isEqualToData:self.data] == NO) {
-            NSError *error;
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                       options:NSJSONReadingMutableContainers
-                                                                         error:&error];
-            
-            if (error) {
-                NSLog(@"UISS -- cannot parse JSON file, error: %@", error);
-            } else {
-                UISSParser *parser = [[UISSParser alloc] init];
-                
-                [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-                    NSLog(@"UISS -- invocation: %@ %@", invocation.target, NSStringFromSelector(invocation.selector));
-                    
-                    if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
-                        [invocation invoke];
-                    } else {
-                        [invocation retainArguments];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [invocation invoke];
-                        });
-                    }
-                }];
-            }
-            
-            if (completion) {
-                if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
-                    completion();
-                } else{
-                    dispatch_async(dispatch_get_main_queue(), completion);
-                }
-            }
-            
-            // store data for comparison
             self.data = data;
-            
-            NSLog(@"UISS -- configured");
+            [self dispatchOnMainQueueIfNecessary:^{
+                completion(YES);
+            }];
         } else {
-            NSLog(@"UISS -- cannot load file from url: %@", self.url);
-        }
-        
-        if (self.refreshInterval) {
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.refreshInterval * NSEC_PER_SEC);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^{
-                    [self reloadViews];
-                }];
-            });
+            [self dispatchOnMainQueueIfNecessary:^{
+                completion(NO);
+            }];
         }
     };
     
     if (queue) {
-        dispatch_async(queue, block);    
+        dispatch_async(queue, downloadBlock);
+    } else {
+        downloadBlock();
+    }
+}
+
+- (void)parseStyleData:(NSData *)data queue:(dispatch_queue_t)queue completion:(void (^)(NSDictionary *dictionary))completion;
+{
+    [self postOnMainQueueNotificationName:UISSWillParseStyleNotification];
+    
+    void (^block)() = ^{
+        NSError *error;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:&error];
+        
+        [self postOnMainQueueNotificationName:UISSDidParseStyleNotification];
+        
+        if (error) {
+            NSLog(@"UISS -- cannot parse JSON file, error: %@", error);
+        }
+        
+        [self dispatchOnMainQueueIfNecessary:^{
+            completion(dictionary);
+        }];
+    };
+    
+    if (queue) {
+        dispatch_async(queue, block);
     } else {
         block();
     }
 }
 
+- (void)parseStyleDictionary:(NSDictionary *)dictionary queue:(dispatch_queue_t)queue completion:(void (^)(NSArray *invocations))completion;
+{
+    [self postOnMainQueueNotificationName:UISSWillParseStyleNotification];
+    
+    void (^block)() = ^{
+        UISSParser *parser = [[UISSParser alloc] init];
+        NSMutableArray *invocations = [NSMutableArray array];
+        
+        [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
+            [invocation retainArguments];
+            [invocations addObject:invocation];
+        }];
+        
+        [self postOnMainQueueNotificationName:UISSDidParseStyleNotification];
+        
+        [self dispatchOnMainQueueIfNecessary:^{
+            completion(invocations); 
+        }];
+    };
+    
+    if (queue) {
+        dispatch_async(queue, block);
+    } else {
+        block();
+    }
+}
+
+- (void)scheduleRefresh;
+{
+    if (self.refreshInterval) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.refreshInterval * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self reloadAsync];
+        });
+    }
+}
+
+- (void)reloadUsingQueue:(dispatch_queue_t)queue completion:(void (^)(BOOL reloaded))completion;
+{
+    NSLog(@"UISS -- reloading...");
+    
+    [self downloadStyleDataFromUrl:self.url queue:queue completion:^(BOOL updated) {
+        if (updated) {
+            [self parseStyleData:self.data queue:queue completion:^(NSDictionary *dictionary) {
+                [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *invocations) {
+                    for (NSInvocation *invocation in invocations) {
+                        [invocation invoke];
+                    }
+                    completion(YES);
+                }];
+            }];
+        } else {
+            completion(NO);
+        }
+    }];
+}
+
 - (void)reload;
 {
     [self debugUIAppearance];
-    [self reloadUsingQueue:nil completion:nil];
+    [self reloadUsingQueue:nil completion:^(BOOL reloaded) {
+        [self scheduleRefresh];
+    }];
+}
+
+- (void)reloadAsync;
+{
+    [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) 
+                completion:^(BOOL reloaded){
+                    if (reloaded) {
+                        [self refreshViews];
+                    }
+                    
+                    [self scheduleRefresh];
+                }];
 }
 
 + (void)configureWithJSONFilePath:(NSString *)filePath;
@@ -145,44 +248,24 @@
     [self registerReloadGestureRecognizer:nil inView:view];
 }
 
-- (void)reloadView:(UIView *)view;
+- (void)refreshViews;
 {
-    for (UIView *subview in view.subviews) {
-        [self reloadView:subview];
-    }
+    [self postOnMainQueueNotificationName:UISSWillRefreshViewsNotification];
     
-    UIView *superview = view.superview;
-    if (superview) {
-        [view removeFromSuperview];
-        [superview addSubview:view];
-    }
-}
-
-- (void)reloadViews;
-{
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
         for (UIView *view in window.subviews) {
             [view removeFromSuperview];
             [window addSubview:view];
         }
-        //[self reloadView:window];
     }
+    
+    [self postOnMainQueueNotificationName:UISSDidRefreshViewsNotification];
 }
 
 - (void)reloadGestureRecognizerHandler:(UILongPressGestureRecognizer *)gestureRecognizer;
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"UISS" 
-                                                            message:@"Realoading..." 
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Close" 
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        
-        [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) completion:^{
-            [alertView dismissWithClickedButtonIndex:0 animated:YES];
-            [self reloadViews];
-        }];
+        [self reloadAsync];
     }
 }
 
