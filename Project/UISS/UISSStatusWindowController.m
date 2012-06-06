@@ -75,7 +75,7 @@
 - (void)willDownloadStyle:(NSNotification *)notification;
 {
     [self.statusWindow.activityIndicator startAnimating];
-    self.statusWindow.statusLabel.text = @"Downloading Style";
+    self.statusWindow.statusLabel.text = @"";
 }
 
 - (void)didDownloadStyle:(NSNotification *)notification;
