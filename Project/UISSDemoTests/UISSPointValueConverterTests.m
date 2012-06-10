@@ -11,13 +11,13 @@
 
 @interface UISSPointValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSPointValueConverter *converter;
+@property(nonatomic, strong) UISSPointValueConverter *converter;
 
 @end
 
 @implementation UISSPointValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)setUp;
 {
@@ -31,18 +31,22 @@
 
 - (void)testPointAsArray;
 {
-    id value = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                     [NSNumber numberWithFloat:1],
-                                                     [NSNumber numberWithFloat:2],
-                                                     nil]];
-    
-    STAssertEquals(CGPointMake(1, 2), [value CGPointValue], nil);
+    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1], [NSNumber numberWithFloat:2], nil]
+            expectedPoint:CGPointMake(1, 2) expectedCode:@"CGPointMake(1.0, 2.0)"];
 }
 
 - (void)testPointAsNumber;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithFloat:1]];    
-    STAssertEquals(CGPointMake(1, 1), [value CGPointValue], nil);
+    [self testValue:[NSNumber numberWithFloat:1] expectedPoint:CGPointMake(1, 1) expectedCode:@"CGPointMake(1.0, 1.0)"];
+}
+
+- (void)testValue:(id)value expectedPoint:(CGPoint)expectedPoint expectedCode:(NSString *)expectedCode;
+{
+    id converted = [self.converter convertPropertyValue:value];
+    STAssertEquals([converted CGPointValue], expectedPoint, nil);
+
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 @end

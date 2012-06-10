@@ -39,4 +39,18 @@
     return nil;
 }
 
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    id converted = [self convertPropertyValue:value];
+
+    if (converted) {
+        CGPoint point = [converted CGPointValue];
+
+        return [NSString stringWithFormat:@"CGPointMake(%.1f, %.1f)",
+                        point.x, point.y];
+    } else {
+        return @"CGPointZero";
+    }
+}
+
 @end

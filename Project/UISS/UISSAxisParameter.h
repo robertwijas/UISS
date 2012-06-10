@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UISSArgument.h"
 
-@interface UISSAxisParameter : NSObject
+@interface UISSAxisParameter : UISSArgument
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "UISSOffsetValueConverter.h"
 
 @implementation UISSOffsetValueConverter
@@ -37,6 +38,20 @@
     }
     
     return nil;
+}
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    id converted = [self convertPropertyValue:value];
+
+    if (converted) {
+        UIOffset offset = [converted UIOffsetValue];
+
+        return [NSString stringWithFormat:@"UIOffsetMake(%.1f, %.1f)",
+                        offset.horizontal, offset.vertical];
+    } else {
+        return @"UIOffsetZero";
+    }
 }
 
 @end

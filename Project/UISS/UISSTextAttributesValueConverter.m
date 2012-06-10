@@ -13,9 +13,9 @@
 
 @interface UISSTextAttributesValueConverter ()
 
-@property (nonatomic, strong) UISSFontValueConverter *fontConverter;
-@property (nonatomic, strong) UISSColorValueConverter *colorConverter;
-@property (nonatomic, strong) UISSOffsetValueConverter *offsetConverter;
+@property(nonatomic, strong) UISSFontValueConverter *fontConverter;
+@property(nonatomic, strong) UISSColorValueConverter *colorConverter;
+@property(nonatomic, strong) UISSOffsetValueConverter *offsetConverter;
 
 @end
 
@@ -42,14 +42,14 @@
 }
 
 - (void)convertProperty:(NSString *)propertyName fromDictionary:(NSDictionary *)dictionary
-           toDictionary:(NSMutableDictionary *)converterDictionary withKey:(NSString *)key 
-         usingConverter:(id<UISSPropertyValueConverter>)converter;
+           toDictionary:(NSMutableDictionary *)converterDictionary withKey:(NSString *)key
+         usingConverter:(id <UISSPropertyValueConverter>)converter;
 {
     id value = [dictionary objectForKey:propertyName];
     if (value) {
-        id conveterd = [converter convertPropertyValue:value];
-        if (conveterd) {
-            [converterDictionary setObject:conveterd forKey:key];
+        id converted = [converter convertPropertyValue:value];
+        if (converted) {
+            [converterDictionary setObject:converted forKey:key];
         }
     }
 }
@@ -57,26 +57,61 @@
 - (id)convertPropertyValue:(id)value;
 {
     if ([value isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *) value;
+
         NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-        NSDictionary *dictionary = (NSDictionary *)value;
-        
-        [self convertProperty:@"font" fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeFont 
+        [self convertProperty:UISS_FONT_KEY fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeFont
                usingConverter:self.fontConverter];
 
-        [self convertProperty:@"textColor" fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextColor 
+        [self convertProperty:UISS_TEXT_COLOR_KEY fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextColor
                usingConverter:self.colorConverter];
 
-        [self convertProperty:@"textShadowColor" fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextShadowColor 
+        [self convertProperty:UISS_TEXT_SHADOW_COLOR_KEY fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextShadowColor
                usingConverter:self.colorConverter];
 
-        [self convertProperty:@"textShadowOffset" fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextShadowOffset 
+        [self convertProperty:UISS_TEXT_SHADOW_OFFSET_KEY fromDictionary:dictionary toDictionary:attributes withKey:UITextAttributeTextShadowOffset
                usingConverter:self.offsetConverter];
-        
+
         if (attributes.count) {
             return attributes;
         }
     }
-    
+
+    return nil;
+}
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    if ([value isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *) value;
+
+        NSMutableString *objectAndKeys = [NSMutableString string];
+
+        id fontValue = [dictionary objectForKey:UISS_FONT_KEY];
+        if (fontValue) {
+            [objectAndKeys appendFormat:@"%@, %@,", [self.fontConverter generateCodeForPropertyValue:fontValue], @"UITextAttributeFont"];
+        }
+
+        id textColorValue = [dictionary objectForKey:UISS_TEXT_COLOR_KEY];
+        if (textColorValue) {
+            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForPropertyValue:textColorValue], @"UITextAttributeTextColor"];
+        }
+
+        id textShadowColor = [dictionary objectForKey:UISS_TEXT_SHADOW_COLOR_KEY];
+        if (textShadowColor) {
+            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForPropertyValue:textShadowColor], @"UITextAttributeTextShadowColor"];
+        }
+
+        id textShadowOffset = [dictionary objectForKey:UISS_TEXT_SHADOW_OFFSET_KEY];
+        if (textShadowOffset) {
+            [objectAndKeys appendFormat:@"[NSValue valueWithUIOffset:%@], %@,", [self.offsetConverter generateCodeForPropertyValue:textShadowOffset], @"UITextAttributeTextShadowOffset"];
+        }
+
+        if (objectAndKeys.length) {
+            return [NSString stringWithFormat:@"[NSDictionary dictionaryWithObjectsAndKeys:%@ nil]", objectAndKeys];
+        }
+    }
+
     return nil;
 }
 

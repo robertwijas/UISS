@@ -11,5 +11,6 @@
 @interface UISSArgument : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) id value;
 
 @end

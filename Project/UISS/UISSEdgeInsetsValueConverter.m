@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "UISSEdgeInsetsValueConverter.h"
 
 @implementation UISSEdgeInsetsValueConverter
@@ -26,6 +27,21 @@
     }
     
     return nil;
+}
+
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    id converted = [self convertPropertyValue:value];
+
+    if (converted) {
+        UIEdgeInsets edgeInsets = [converted UIEdgeInsetsValue];
+
+        return [NSString stringWithFormat:@"UIEdgeInsetsMake(%.1f, %.1f, %.1f, %.1f)",
+                        edgeInsets.top, edgeInsets.left, edgeInsets.bottom, edgeInsets.right];
+    } else {
+        return @"UIEdgeInsetsZero";
+    }
 }
 
 @end

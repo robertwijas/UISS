@@ -11,13 +11,13 @@
 
 @interface UISSSizeValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSSizeValueConverter *converter;
+@property(nonatomic, strong) UISSSizeValueConverter *converter;
 
 @end
 
 @implementation UISSSizeValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)setUp;
 {
@@ -31,18 +31,23 @@
 
 - (void)testSizeAsArray;
 {
-    id value = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                     [NSNumber numberWithFloat:1],
-                                                     [NSNumber numberWithFloat:2],
-                                                     nil]];
-    
-    STAssertEquals(CGSizeMake(1, 2), [value CGSizeValue], nil);
+    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1], [NSNumber numberWithFloat:2], nil]
+            expectedSize:CGSizeMake(1, 2) expectedCode:@"CGSizeMake(1.0, 2.0)"];
 }
 
 - (void)testSizeAsNumber;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithFloat:1]];    
-    STAssertEquals(CGSizeMake(1, 1), [value CGSizeValue], nil);
+    [self testValue:[NSNumber numberWithFloat:1]
+            expectedSize:CGSizeMake(1, 1) expectedCode:@"CGSizeMake(1.0, 1.0)"];
+}
+
+- (void)testValue:(id)value expectedSize:(CGSize)expectedSize expectedCode:(NSString *)expectedCode;
+{
+    id converted = [self.converter convertPropertyValue:value];
+    STAssertEquals([converted CGSizeValue], expectedSize, nil);
+
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 @end

@@ -18,14 +18,30 @@
 - (id)convertPropertyValue:(id)value;
 {
     if ([value isKindOfClass:[NSArray class]] && [value count] == 4) {
-        NSArray *array = (NSArray *)value;
-        return [NSValue valueWithCGRect:CGRectMake([[array objectAtIndex:0] floatValue],
-                                                   [[array objectAtIndex:1] floatValue],
-                                                   [[array objectAtIndex:2] floatValue],
-                                                   [[array objectAtIndex:3] floatValue])];
+        NSArray *array = (NSArray *) value;
+        return [NSValue valueWithCGRect:CGRectMake(
+                [[array objectAtIndex:0] floatValue],
+                [[array objectAtIndex:1] floatValue],
+                [[array objectAtIndex:2] floatValue],
+                [[array objectAtIndex:3] floatValue]
+        )];
     }
-    
+
     return nil;
+}
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    id converted = [self convertPropertyValue:value];
+
+    if (converted) {
+        CGRect rect = [converted CGRectValue];
+
+        return [NSString stringWithFormat:@"CGRectMake(%.1f, %.1f, %.1f, %.1f)",
+                                          rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
+    } else {
+        return @"CGRectZero";
+    }
 }
 
 @end

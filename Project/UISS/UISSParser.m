@@ -14,72 +14,25 @@
 #import "NSInvocation+UISS.h"
 
 #import "UISSColorValueConverter.h"
-#import "UISSImageValueConverter.h"
-#import "UISSFontValueConverter.h"
-#import "UISSTextAttributesValueConverter.h"
 
-#import "UISSSizeValueConverter.h"
-#import "UISSPointValueConverter.h"
-#import "UISSEdgeInsetsValueConverter.h"
-#import "UISSRectValueConverter.h"
-#import "UISSOffsetValueConverter.h"
+#import "UISSConfig.h"
+#import "UISSConverter.h"
 
 #import "UISSIntegerValueConverter.h"
-#import "UISSUIntegerValueConverter.h"
-#import "UISSFloatValueConverter.h"
-
-#import "UISSBarMetricsValueConverter.h"
-#import "UISSControlStateValueConveter.h"
-#import "UISSSegmentedControlSegmentValueConverter.h"
-#import "UISSToolbarPositionConverter.h"
-#import "UISSSearchBarIconValueConverter.h"
 
 #import "UISSDictionaryPreprocessor.h"
-#import "UISSUserInterfaceIdiomPreprocessor.h"
-#import "UISSVariablesPreprocessor.h"
 
 @implementation UISSParser
 
-@synthesize preprocessors=_preprocessors;
-@synthesize propertyValueConverters=_propertyValueConverters;
-@synthesize axisParameterValueConverters=_axisParameterValueConverters;
+@synthesize config = _config;
+@synthesize converter = _converter;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        self.preprocessors = [NSArray arrayWithObjects:
-                              [[UISSUserInterfaceIdiomPreprocessor alloc] init],
-                              [[UISSVariablesPreprocessor alloc] init],
-                              nil];
-        
-        self.propertyValueConverters = [NSArray arrayWithObjects:
-                                        [[UISSColorValueConverter alloc] init],
-                                        [[UISSImageValueConverter alloc] init],
-                                        [[UISSFontValueConverter alloc] init],
-                                        [[UISSTextAttributesValueConverter alloc] init],
-                                        
-                                        [[UISSSizeValueConverter alloc] init],
-                                        [[UISSPointValueConverter alloc] init],
-                                        [[UISSEdgeInsetsValueConverter alloc] init],
-                                        [[UISSRectValueConverter alloc] init],
-                                        [[UISSOffsetValueConverter alloc] init],
-                                        
-                                        [[UISSIntegerValueConverter alloc] init],
-                                        [[UISSUIntegerValueConverter alloc] init],
-                                        [[UISSFloatValueConverter alloc] init],
-                                        nil];
-        
-        self.axisParameterValueConverters = [NSArray arrayWithObjects:
-                                             [[UISSBarMetricsValueConverter alloc] init],
-                                             [[UISSControlStateValueConveter alloc] init],
-                                             [[UISSSegmentedControlSegmentValueConverter alloc] init],
-                                             [[UISSToolbarPositionConverter alloc] init],
-                                             [[UISSSearchBarIconValueConverter alloc] init],
-                                             
-                                             [[UISSIntegerValueConverter alloc] init],
-                                             [[UISSUIntegerValueConverter alloc] init],
-                                             nil];
+        self.config = [UISSConfig sharedConfig];
+        self.converter = [[UISSConverter alloc] init];
     }
     
     return self;
@@ -162,30 +115,6 @@
     return selected;
 }
 
-- (id<UISSPropertyValueConverter>)findConverterForProperty:(NSString *)property value:(id)value
-                                              argumentType:(NSString *)argumentType;
-{
-    for (id<UISSPropertyValueConverter> converter in self.propertyValueConverters) {
-        if ([converter canConvertPropertyWithName:property value:value argumentType:argumentType]) {
-            return converter;
-        }
-    }
-    
-    return nil;
-}
-
-- (id<UISSAxisParameterValueConverter>)findConverterForAxisParameter:(NSString *)axisParameter value:(id)value
-                                                        argumentType:(NSString *)argumentType;
-{
-    for (id<UISSAxisParameterValueConverter> converter in self.axisParameterValueConverters) {
-        if ([converter canConvertAxisParameterWithName:axisParameter value:value argumentType:argumentType]) {
-            return converter;
-        }
-    }
-    
-    return nil;
-}
-
 - (NSString *)axisParameterNameAtIndex:(NSUInteger)index forInvocation:(NSInvocation *)invocation;
 {
     NSString *selector = NSStringFromSelector(invocation.selector);
@@ -206,7 +135,7 @@
     id value = [arguments objectAtIndex:0];
     NSString *argumentType = [NSString stringWithUTF8String:[invocation.methodSignature getArgumentTypeAtIndex:2]];
     
-    id<UISSPropertyValueConverter> converter = [self findConverterForProperty:property value:value argumentType:argumentType];
+    id<UISSPropertyValueConverter> converter = [self.converter findConverterForProperty:property value:value argumentType:argumentType];
     id converted = [converter convertPropertyValue:value];
     
     NSLog(@"UISS - converted argument for property: %@ = %@", property, converted);
@@ -227,7 +156,7 @@
         NSInteger argumentIndex = index + 3;
         NSString *argumentType = [NSString stringWithUTF8String:[invocation.methodSignature getArgumentTypeAtIndex:argumentIndex]];
         
-        id<UISSAxisParameterValueConverter> converter = [self findConverterForAxisParameter:[self axisParameterNameAtIndex:index 
+        id<UISSAxisParameterValueConverter> converter = [self.converter findConverterForAxisParameter:[self axisParameterNameAtIndex:index
                                                                                                              forInvocation:invocation] 
                                                                                       value:argument argumentType:argumentType];
         NSNumber *converted = [converter convertAxisParameter:argument];
@@ -366,11 +295,16 @@
     
     UISSParserContext *context = [[UISSParserContext alloc] init];
     
-    for (id<UISSDictionaryPreprocessor>preprocessor in self.preprocessors) {
+    for (id<UISSDictionaryPreprocessor>preprocessor in self.config.preprocessors) {
         dictionary = [preprocessor preprocess:dictionary];
     }
     
     [self parseDictionary:dictionary handler:handler context:context];
+}
+
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary;
+{
+    return nil;
 }
 
 @end

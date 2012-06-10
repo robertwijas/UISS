@@ -11,13 +11,13 @@
 
 @interface UISSOffsetValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSOffsetValueConverter *converter;
+@property(nonatomic, strong) UISSOffsetValueConverter *converter;
 
 @end
 
 @implementation UISSOffsetValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)setUp;
 {
@@ -31,18 +31,25 @@
 
 - (void)testOffsetAsArray;
 {
-    id value = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                     [NSNumber numberWithFloat:1],
-                                                     [NSNumber numberWithFloat:2],
-                                                     nil]];
-    
-    STAssertEquals(UIOffsetMake(1, 2), [value UIOffsetValue], nil);
+    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1], [NSNumber numberWithFloat:2], nil]
+            expectedOffset:UIOffsetMake(1, 2) expectedCode:@"UIOffsetMake(1.0, 2.0)"];
+
+    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1.2], [NSNumber numberWithFloat:2.5], nil]
+            expectedOffset:UIOffsetMake(1.2, 2.5) expectedCode:@"UIOffsetMake(1.2, 2.5)"];
 }
 
 - (void)testOffsetAsNumber;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithFloat:1]];    
-    STAssertEquals(UIOffsetMake(1, 1), [value UIOffsetValue], nil);
+    [self testValue:[NSNumber numberWithFloat:1] expectedOffset:UIOffsetMake(1, 1) expectedCode:@"UIOffsetMake(1.0, 1.0)"];
+}
+
+- (void)testValue:(id)value expectedOffset:(UIOffset)expectedOffset expectedCode:(NSString *)expectedCode;
+{
+    id converted = [self.converter convertPropertyValue:value];
+    STAssertEquals([converted UIOffsetValue], expectedOffset, nil);
+
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 @end

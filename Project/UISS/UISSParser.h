@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class UISSConfig;
+@class UISSConverter;
+
 @interface UISSParser : NSObject
 
-@property (nonatomic, strong) NSArray *preprocessors;
-
-@property (nonatomic, strong) NSArray *propertyValueConverters;
-@property (nonatomic, strong) NSArray *axisParameterValueConverters;
+@property (nonatomic, strong) UISSConfig *config;
+@property (nonatomic, strong) UISSConverter *converter;
 
 - (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
+
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary;
 
 @end

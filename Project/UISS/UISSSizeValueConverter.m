@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "UISSSizeValueConverter.h"
 
 @implementation UISSSizeValueConverter
@@ -19,24 +20,38 @@
 {
     if ([value isKindOfClass:[NSArray class]]) {
         CGFloat width = 0, height = 0;
-        NSArray *array = (NSArray *)value;
-        
+        NSArray *array = (NSArray *) value;
+
         if (array.count > 0) {
             width = [[array objectAtIndex:0] floatValue];
         }
-        
+
         if (array.count > 1) {
             height = [[array objectAtIndex:1] floatValue];
         } else {
             height = width;
         }
-        
+
         return [NSValue valueWithCGSize:CGSizeMake(width, height)];
     } else if ([value isKindOfClass:[NSNumber class]]) {
         return [NSValue valueWithCGSize:CGSizeMake([value floatValue], [value floatValue])];
     }
-    
+
     return nil;
+}
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    id converted = [self convertPropertyValue:value];
+
+    if (converted) {
+        CGSize size = [converted CGSizeValue];
+
+        return [NSString stringWithFormat:@"CGSizeMake(%.1f, %.1f)",
+                                          size.width, size.height];
+    } else {
+        return @"CGSizeZero";
+    }
 }
 
 @end

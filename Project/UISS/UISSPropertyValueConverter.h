@@ -12,5 +12,6 @@
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 - (id)convertPropertyValue:(id)value;
+- (NSString *)generateCodeForPropertyValue:(id)value;
 
 @end

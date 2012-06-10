@@ -27,7 +27,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @interface UISS ()
 
-@property (atomic, strong) NSData *data;
+@property (strong) NSData *data;
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
 
 @end
@@ -47,17 +47,6 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         self.statusWindowController = [[UISSStatusWindowController alloc] init];
     }
     return self;
-}
-
-- (void)debugUIAppearance;
-{
-    unsigned int count = 0;
-    Method *methods = class_copyMethodList(NSClassFromString(@"_UIAppearance"), &count);
-    
-    for (int i = 0; i < count; i++) {
-        SEL selector = method_getName(methods[i]);
-        NSLog(@"%@", NSStringFromSelector(selector));
-    }
 }
 
 - (void)dispatchOnMainQueueIfNecessary:(dispatch_block_t)block;
@@ -191,7 +180,6 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 - (void)reload;
 {
-    [self debugUIAppearance];
     [self reloadUsingQueue:nil completion:^(BOOL reloaded) {
         [self scheduleRefresh];
     }];

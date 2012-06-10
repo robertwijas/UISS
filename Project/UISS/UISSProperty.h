@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UISSArgument.h"
 
-@interface UISSProperty : NSObject
+@interface UISSProperty : UISSArgument
 
 @end

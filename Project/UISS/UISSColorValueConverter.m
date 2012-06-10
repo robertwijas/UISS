@@ -11,7 +11,7 @@
 
 @interface UISSColorValueConverter ()
 
-@property (nonatomic, strong) UISSImageValueConverter *imageValueConverter;
+@property(nonatomic, strong) UISSImageValueConverter *imageValueConverter;
 
 @end
 
@@ -33,90 +33,133 @@
     return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"color"];
 }
 
-- (UIColor *)colorFromHexString:(NSString *)colorString;
+- (BOOL)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
+        colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
+{
+    if (colorHandler) {
+        colorHandler([UIColor colorWithRed:red green:green blue:blue alpha:alpha]);
+    }
+
+    if (codeHandler) {
+        codeHandler([NSString stringWithFormat:@"[UIColor colorWithRed:%.3f green:%.3f blue:%.3f alpha:%.3f]",
+                                               red, green, blue, alpha]);
+    }
+
+    return YES;
+}
+
+- (BOOL)colorFromHexString:(NSString *)colorString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if ([colorString hasPrefix:@"#"]) {
         NSScanner *scanner = [NSScanner scannerWithString:[colorString substringFromIndex:1]];
-        
+
         unsigned long long hexValue;
         if ([scanner scanHexLongLong:&hexValue]) {
-            CGFloat red   = ((hexValue & 0xFF0000) >> 16) / 255.0f;
-            CGFloat green = ((hexValue & 0x00FF00) >>  8) / 255.0f;
-            CGFloat blue  =  (hexValue & 0x0000FF) / 255.0f;
-            
-            return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+            CGFloat red = ((hexValue & 0xFF0000) >> 16) / 255.0f;
+            CGFloat green = ((hexValue & 0x00FF00) >> 8) / 255.0f;
+            CGFloat blue = (hexValue & 0x0000FF) / 255.0f;
+
+            return [self colorWithRed:red green:green blue:blue alpha:1.0 colorHandler:colorHandler codeHandler:codeHandler];
         }
     }
-    
-    return nil;
+
+    return NO;
 }
 
-- (UIColor *)colorFromSelectorString:(NSString *)selectorString;
+- (BOOL)colorFromSelectorString:(NSString *)selectorString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if (![selectorString hasSuffix:@"Color"]) {
         selectorString = [selectorString stringByAppendingString:@"Color"];
     }
-    
+
     SEL colorSelector = NSSelectorFromString(selectorString);
-    
+
     if ([UIColor respondsToSelector:colorSelector]) {
-        return [UIColor performSelector:colorSelector];
+        if (colorHandler) {
+            colorHandler([UIColor performSelector:colorSelector]);
+        }
+
+        if (codeHandler) {
+            codeHandler([NSString stringWithFormat:@"[UIColor %@]", selectorString]);
+        }
+
+        return YES;
+    } else {
+        return NO;
     }
-    
-    return nil;
 }
 
-- (UIColor *)colorFromPatterImageString:(NSString *)patternImageString;
+- (BOOL)colorFromPatterImageString:(NSString *)patternImageString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     // UIColor with pattern
     UIImage *patternImage = [self.imageValueConverter convertPropertyValue:patternImageString];
     if (patternImage) {
-        return [UIColor colorWithPatternImage:patternImage];
-    }
+        if (colorHandler) {
+            colorHandler([UIColor colorWithPatternImage:patternImage]);
+        }
 
-    return nil;
+        if (codeHandler) {
+            codeHandler([NSString stringWithFormat:@"[UIColor colorWithPatternImage:%@]", [self.imageValueConverter generateCodeForPropertyValue:patternImageString]]);
+        }
+
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
-- (UIColor *)colorFromString:(NSString *)colorString;
+- (BOOL)colorFromString:(NSString *)colorString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
-    UIColor *color = [self colorFromHexString:colorString];
-    
-    if (color == nil) {
-        color = [self colorFromSelectorString:colorString];
-    }
-    
-    if (color == nil) {
-        color = [self colorFromPatterImageString:colorString];
-    }
-    
-    return color;
+    if ([self colorFromHexString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
+        return YES;
+    };
+
+    if ([self colorFromSelectorString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
+        return YES;
+    };
+
+    if ([self colorFromPatterImageString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
+        return YES;
+    };
+
+    return NO;
 }
 
-- (id)convertPropertyValue:(id)value;
+- (BOOL)convertPropertyValue:(id)value colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if ([value isKindOfClass:[NSArray class]]) {
-        NSArray *array = (NSArray *)value;
-        CGFloat red, green, blue, alpha = 1;
-        
+        NSArray *array = (NSArray *) value;
+        CGFloat red = 1, green = 1, blue = 1;
+        __block CGFloat alpha = 1;
+
         if (array.count > 0) {
             if ([[array objectAtIndex:0] isKindOfClass:[NSString class]]) {
-                UIColor *color = [self colorFromString:[array objectAtIndex:0]];
-                
-                if (array.count > 1) {
-                    alpha = [[array objectAtIndex:1] floatValue];
-                    color = [color colorWithAlphaComponent:alpha];
-                }
-                
-                return color;
+                return [self colorFromString:[array objectAtIndex:0]
+                        colorHandler:^(UIColor *color) {
+                            if (colorHandler) {
+                                if (array.count > 1) {
+                                    alpha = [[array objectAtIndex:1] floatValue];
+                                    colorHandler([color colorWithAlphaComponent:alpha]);
+                                }
+                            }
+                        }
+                        codeHandler:^(NSString *code) {
+                            if (codeHandler) {
+                                if (array.count > 1) {
+                                    alpha = [[array objectAtIndex:1] floatValue];
+                                    codeHandler([NSString stringWithFormat:@"[%@ colorWithAlphaComponent:%.3f]", code, alpha]);
+                                }
+                            }
+                        }];
             } else {
                 red = [[array objectAtIndex:0] intValue] / 255.0f;
-                
+
                 if (array.count > 1) {
                     green = [[array objectAtIndex:1] intValue] / 255.0f;
-                    
+
                     if (array.count > 2) {
                         blue = [[array objectAtIndex:2] intValue] / 255.0f;
-                        
+
                         if (array.count > 3) {
                             alpha = [[array objectAtIndex:3] floatValue];
                         }
@@ -124,13 +167,37 @@
                 }
             }
         }
-        
-        return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+
+        return [self colorWithRed:red green:green blue:blue alpha:alpha colorHandler:colorHandler codeHandler:codeHandler];
     } else if ([value isKindOfClass:[NSString class]]) {
-        return [self colorFromString:value];
+        return [self colorFromString:value colorHandler:colorHandler codeHandler:codeHandler];
+    } else {
+        return NO;
     }
-    
-    return nil;
+}
+
+- (id)convertPropertyValue:(id)value;
+{
+    __block UIColor *result = nil;
+
+    [self convertPropertyValue:value
+                  colorHandler:^(UIColor *color) {
+                      result = color;
+                  }
+                   codeHandler:nil];
+
+    return result;
+}
+
+- (NSString *)generateCodeForPropertyValue:(id)value
+{
+    __block NSString *result = nil;
+
+    [self convertPropertyValue:value colorHandler:nil codeHandler:^(NSString *code) {
+        result = code;
+    }];
+
+    return result;
 }
 
 @end

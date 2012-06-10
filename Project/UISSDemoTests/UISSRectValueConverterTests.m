@@ -11,13 +11,13 @@
 
 @interface UISSRectValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSRectValueConverter *converter;
+@property(nonatomic, strong) UISSRectValueConverter *converter;
 
 @end
 
 @implementation UISSRectValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)setUp;
 {
@@ -31,14 +31,16 @@
 
 - (void)testRectAsArray;
 {
-    id value = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                     [NSNumber numberWithFloat:1],
-                                                     [NSNumber numberWithFloat:2],
-                                                     [NSNumber numberWithFloat:3],
-                                                     [NSNumber numberWithFloat:4],
-                                                     nil]];
-    
-    STAssertEquals(CGRectMake(1, 2, 3, 4), [value CGRectValue], nil);
+    id value = [NSArray arrayWithObjects:[NSNumber numberWithFloat:1],
+                                         [NSNumber numberWithFloat:2],
+                                         [NSNumber numberWithFloat:3],
+                                         [NSNumber numberWithFloat:4],
+                                         nil];
+    id converted = [self.converter convertPropertyValue:value];
+    STAssertEquals([converted CGRectValue], CGRectMake(1, 2, 3, 4), nil);
+
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    STAssertEqualObjects(code, @"CGRectMake(1.0, 2.0, 3.0, 4.0)", nil);
 }
 
 @end

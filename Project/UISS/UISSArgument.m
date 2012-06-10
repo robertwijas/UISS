@@ -10,6 +10,7 @@
 
 @implementation UISSArgument
 
-@synthesize name=_name;
+@synthesize name = _name;
+@synthesize value = _value;
 
 @end

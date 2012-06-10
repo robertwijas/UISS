@@ -11,110 +11,89 @@
 
 @interface UISSColorValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSColorValueConverter *converter;
+@property(nonatomic, strong) UISSColorValueConverter *converter;
 
 @end
 
 @implementation UISSColorValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)testExactColorSelector;
 {
-    UIColor *color = [self.converter convertPropertyValue:@"yellowColor"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor yellowColor], nil);
-    
-    color = [self.converter convertPropertyValue:@"redColor"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor redColor], nil);
-    
-    color = [self.converter convertPropertyValue:@"badColor"];
-    STAssertNil(color, nil);
+    [self testColorValue:@"yellowColor" expectedColor:[UIColor yellowColor] expectedCode:@"[UIColor yellowColor]"];
+    [self testColorValue:@"redColor" expectedColor:[UIColor redColor] expectedCode:@"[UIColor redColor]"];
+    [self testColorValue:@"badColor" expectedColor:nil expectedCode:nil];
 }
 
 - (void)testSelectorWithoutColorSuffix;
 {
-    UIColor *color = [self.converter convertPropertyValue:@"yellow"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor yellowColor], nil);
-    
-    color = [self.converter convertPropertyValue:@"red"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor redColor], nil);
-    
-    color = [self.converter convertPropertyValue:@"bad"];
-    STAssertNil(color, nil);
+    [self testColorValue:@"yellow" expectedColor:[UIColor yellowColor] expectedCode:@"[UIColor yellowColor]"];
+    [self testColorValue:@"red" expectedColor:[UIColor redColor] expectedCode:@"[UIColor redColor]"];
+    [self testColorValue:@"bad" expectedColor:nil expectedCode:nil];
 }
 
 - (void)testHexColor;
 {
-    UIColor *color = [self.converter convertPropertyValue:@"#000000"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor colorWithRed:0 green:0 blue:0 alpha:1], nil);
-    
-    color = [self.converter convertPropertyValue:@"#ff0000"];
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor redColor], nil);
+    [self testColorValue:@"#000000"
+           expectedColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]
+            expectedCode:@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]"];
+
+    [self testColorValue:@"#ff0000"
+           expectedColor:[UIColor redColor]
+            expectedCode:@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]"];
 }
 
 - (void)testRGBArray;
 {
-    UIColor *color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                           [NSNumber numberWithInt:0],
-                                                           [NSNumber numberWithInt:0],
-                                                           [NSNumber numberWithInt:0],
-                                                           nil]];
-    
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor colorWithRed:0 green:0 blue:0 alpha:1], nil);
-    
-    color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                  [NSNumber numberWithInt:255],
-                                                  [NSNumber numberWithInt:0],
-                                                  [NSNumber numberWithInt:0],
-                                                  nil]];
-    
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor redColor], nil);
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil]
+            expectedColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]
+            expectedCode:@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]"];
+
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil]
+            expectedColor:[UIColor redColor]
+            expectedCode:@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]"];
 }
 
 - (void)testColorsWithAlpha;
 {
-    UIColor *color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                  [NSNumber numberWithInt:255],
-                                                  [NSNumber numberWithInt:0],
-                                                  [NSNumber numberWithInt:0],
-                                                  [NSNumber numberWithFloat:0.2],
-                                                  nil]];
-    
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [UIColor colorWithRed:1 green:0 blue:0 alpha:0.2], nil);
-    
-    color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                  @"yellow",
-                                                  [NSNumber numberWithFloat:0.2],
-                                                  nil]];
-    
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [[UIColor yellowColor] colorWithAlphaComponent:0.2], nil);
-    
-    color = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                  @"#00ff00",
-                                                  [NSNumber numberWithFloat:0.2],
-                                                  nil]];
-    
-    STAssertNotNil(color, nil);
-    STAssertEqualObjects(color, [[UIColor greenColor] colorWithAlphaComponent:0.2], nil);
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithFloat:0.2], nil]
+            expectedColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.2]
+            expectedCode:@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.200]"];
+
+    [self testColorValue:[NSArray arrayWithObjects:@"yellow", [NSNumber numberWithFloat:0.2],nil]
+            expectedColor:[[UIColor yellowColor] colorWithAlphaComponent:0.2]
+            expectedCode:@"[[UIColor yellowColor] colorWithAlphaComponent:0.200]"];
+
+    [self testColorValue:[NSArray arrayWithObjects:@"#00ff00", [NSNumber numberWithFloat:0.2],nil]
+            expectedColor:[[UIColor greenColor] colorWithAlphaComponent:0.2]
+            expectedCode:@"[[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000] colorWithAlphaComponent:0.200]"];
 }
 
 - (void)testColorWithPatternImage;
 {
-    UIColor *color = [self.converter convertPropertyValue:@"background"];
-    STAssertNotNil(color, nil);
-    
-    color = [self.converter convertPropertyValue:@"fakeImage"];
-    STAssertNil(color, nil);
+    [self testColorValue:@"background"
+            expectedColor:(id)[NSNull null]
+            expectedCode:@"[UIColor colorWithPatternImage:[UIImage imageNamed:@\"background\"]]"];
+
+    [self testColorValue:@"fakeImage"
+            expectedColor:nil
+            expectedCode:nil];
+}
+
+- (void)testColorValue:(id)value expectedColor:(UIColor *)expectedColor expectedCode:(NSString *)expectedCode;
+{
+    UIColor *color = [self.converter convertPropertyValue:value];
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+
+    if (expectedColor != nil) {
+        STAssertNotNil(color, nil);
+    }
+
+    if ([expectedColor isKindOfClass:[NSNull class]] == NO) {
+        STAssertEqualObjects(color, expectedColor, nil);
+    }
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 - (void)setUp;

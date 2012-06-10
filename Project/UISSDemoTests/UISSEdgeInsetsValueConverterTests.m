@@ -11,13 +11,13 @@
 
 @interface UISSEdgeInsetsValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSEdgeInsetsValueConverter *converter;
+@property(nonatomic, strong) UISSEdgeInsetsValueConverter *converter;
 
 @end
 
 @implementation UISSEdgeInsetsValueConverterTests
 
-@synthesize converter=_converter;
+@synthesize converter = _converter;
 
 - (void)setUp;
 {
@@ -31,14 +31,20 @@
 
 - (void)testEdgeInsetsAsArray;
 {
-    id value = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                     [NSNumber numberWithFloat:1],
-                                                     [NSNumber numberWithFloat:2],
-                                                     [NSNumber numberWithFloat:3],
-                                                     [NSNumber numberWithFloat:4],
-                                                     nil]];
-    
-    STAssertEquals(UIEdgeInsetsMake(1, 2, 3, 4), [value UIEdgeInsetsValue], nil);
+    id value = [NSArray arrayWithObjects:
+            [NSNumber numberWithFloat:1],
+            [NSNumber numberWithFloat:2],
+            [NSNumber numberWithFloat:3],
+            [NSNumber numberWithFloat:4],
+            nil];
+
+    id converted = [self.converter convertPropertyValue:value];
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+
+    STAssertNotNil(converted, nil);
+    STAssertEquals([converted UIEdgeInsetsValue], UIEdgeInsetsMake(1, 2, 3, 4), nil);
+
+    STAssertEqualObjects(code, @"UIEdgeInsetsMake(1.0, 2.0, 3.0, 4.0)", nil);
 }
 
 @end

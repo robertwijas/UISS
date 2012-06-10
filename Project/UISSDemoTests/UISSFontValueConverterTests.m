@@ -11,7 +11,7 @@
 
 @interface UISSFontValueConverterTests : SenTestCase
 
-@property (nonatomic, strong) UISSFontValueConverter *converter;
+@property(nonatomic, strong) UISSFontValueConverter *converter;
 
 @end
 
@@ -21,55 +21,48 @@
 
 - (void)testHelveticaNeue;
 {
-    UIFont *font = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                         @"HelveticaNeue",
-                                                         [NSNumber numberWithFloat:16],
-                                                         nil]];
-    
-    STAssertNotNil(font, nil);
-    STAssertEqualObjects(font.fontName, @"HelveticaNeue", nil);
-    STAssertEquals(font.pointSize, 16.0f, nil);
+    id value = [NSArray arrayWithObjects:@"HelveticaNeue",
+                                         [NSNumber numberWithFloat:16],
+                                         nil];
+    [self testValue:value expectedFont:[UIFont fontWithName:@"HelveticaNeue" size:16] expectedCode:@"[UIFont fontWithName:@\"HelveticaNeue\" size:16.0]"];
 }
 
 - (void)testDefaultSystemFontAsNumber;
 {
-    UIFont *font = [self.converter convertPropertyValue:[NSNumber numberWithFloat:14]];
-    
-    STAssertNotNil(font, nil);
-    STAssertEqualObjects(font, [UIFont systemFontOfSize:14], nil);
+    id value = [NSNumber numberWithFloat:14];
+    [self testValue:value expectedFont:[UIFont systemFontOfSize:14] expectedCode:@"[UIFont systemFontOfSize:14.0]"];
 }
 
 - (void)testDefaultSystemFont;
 {
-    UIFont *font = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                         @"system",
-                                                         [NSNumber numberWithFloat:14],
-                                                         nil]];
-    
-    STAssertNotNil(font, nil);
-    STAssertEqualObjects(font, [UIFont systemFontOfSize:14], nil);
+    id value = [NSArray arrayWithObjects:@"system", [NSNumber numberWithFloat:14], nil];
+    [self testValue:value expectedFont:[UIFont systemFontOfSize:14] expectedCode:@"[UIFont systemFontOfSize:14.0]"];
 }
 
 - (void)testDefaultSystemBoldFont;
 {
-    UIFont *font = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                         @"bold",
-                                                         [NSNumber numberWithFloat:14],
-                                                         nil]];
-    
-    STAssertNotNil(font, nil);
-    STAssertEqualObjects(font, [UIFont boldSystemFontOfSize:14], nil);
+    id value = [NSArray arrayWithObjects:@"bold", [NSNumber numberWithFloat:14], nil];
+    [self testValue:value expectedFont:[UIFont boldSystemFontOfSize:14] expectedCode:@"[UIFont boldSystemFontOfSize:14.0]"];
 }
 
 - (void)testDefaultSystemItalicFont;
 {
     UIFont *font = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
-                                                         @"italic",
-                                                         [NSNumber numberWithFloat:14],
-                                                         nil]];
-    
+            @"italic",
+            [NSNumber numberWithFloat:14],
+            nil]];
+
     STAssertNotNil(font, nil);
     STAssertEqualObjects(font, [UIFont italicSystemFontOfSize:14], nil);
+}
+
+- (void)testValue:(id)value expectedFont:(UIFont *)expectedFont expectedCode:(NSString *)expectedCode;
+{
+    UIFont *font = [self.converter convertPropertyValue:value];
+    STAssertEqualObjects(font, expectedFont, nil);
+
+    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 - (void)setUp;

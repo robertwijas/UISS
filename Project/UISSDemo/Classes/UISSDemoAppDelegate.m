@@ -27,6 +27,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // skip the rest if running tests
+    if ([[[NSProcessInfo processInfo] environment] objectForKey:@"TEST"]) {
+        return YES;
+    }
+
     self.uiss = [[UISS alloc] init];
     self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/39ulxi0b7bojx1k/uiss%20demo.json?dl=1"];
     self.uiss.refreshInterval = 5;
