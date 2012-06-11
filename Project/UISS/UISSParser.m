@@ -194,6 +194,7 @@
                              handler:(void (^)(NSInvocation *invocation))handler;
 {
     NSInvocation *invocation = [self selectInvocationForArguments:arguments from:invocations];
+    [invocation retainArguments];
     
     if (invocation) {
         [self setupInvocation:invocation forProperty:property withArguments:arguments];
