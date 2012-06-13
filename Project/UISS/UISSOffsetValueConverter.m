@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UISSOffsetValueConverter.h"
+#import "UISSArgument.h"
 
 @implementation UISSOffsetValueConverter
 
@@ -52,6 +52,21 @@
     } else {
         return @"UIOffsetZero";
     }
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
+}
+
+- (NSString *)generateCodeForArgument:(UISSArgument *)argument
+{
+    return [self generateCodeForPropertyValue:argument.value];
+}
+
+- (id)convertValueForArgument:(UISSArgument *)argument
+{
+    return [self convertPropertyValue:argument.value];
 }
 
 @end

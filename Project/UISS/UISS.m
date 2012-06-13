@@ -130,7 +130,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         NSMutableArray *invocations = [NSMutableArray array];
         
         [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-            [invocations addObject:invocation];
+            if (invocation) {
+                [invocations addObject:invocation];
+            }
         }];
         
         [self postOnMainQueueNotificationName:UISSDidParseStyleNotification];

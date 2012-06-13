@@ -10,6 +10,7 @@
 
 @interface NSString (UISS)
 
-- (NSString *)firstLetterCapitalizedString;
+- (NSString *)uppercaseFirstCharacterString;
+- (NSString *)lowercaseFirstCharacterString;
 
 @end

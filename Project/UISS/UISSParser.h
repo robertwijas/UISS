@@ -16,8 +16,7 @@
 @property (nonatomic, strong) UISSConfig *config;
 @property (nonatomic, strong) UISSConverter *converter;
 
-- (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
-
 - (NSArray *)parseDictionary:(NSDictionary *)dictionary;
+- (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
 
 @end

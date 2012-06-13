@@ -19,11 +19,16 @@
 {
     self = [super init];
     if (self) {
-        self.conversionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:UIToolbarPositionAny], @"any",
-                                     [NSNumber numberWithInteger:UIToolbarPositionBottom], @"bottom",
-                                     [NSNumber numberWithInteger:UIToolbarPositionTop], @"top",
-                                     nil];
+        self.stringToValueDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInteger:UIToolbarPositionAny], @"any",
+                                        [NSNumber numberWithInteger:UIToolbarPositionBottom], @"bottom",
+                                        [NSNumber numberWithInteger:UIToolbarPositionTop], @"top",
+                                        nil];
+        self.stringToCodeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"UIToolbarPositionAny", @"any",
+                                       @"UIToolbarPositionBottom", @"bottom",
+                                       @"UIToolbarPositionTop", @"top",
+                                       nil];
     }
     return self;
 }

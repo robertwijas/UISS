@@ -19,14 +19,22 @@
 {
     self = [super init];
     if (self) {
-        self.conversionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateNormal], @"normal",
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateHighlighted], @"highlighted",
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateDisabled], @"disabled",
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateSelected], @"selected",
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateReserved], @"reserved",
-                                     [NSNumber numberWithUnsignedInteger:UIControlStateApplication], @"application",
-                                     nil];
+        self.stringToValueDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateNormal], @"normal",
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateHighlighted], @"highlighted",
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateDisabled], @"disabled",
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateSelected], @"selected",
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateReserved], @"reserved",
+                                        [NSNumber numberWithUnsignedInteger:UIControlStateApplication], @"application",
+                                        nil];
+        self.stringToCodeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"UIControlStateNormal", @"normal",
+                                       @"UIControlStateHighlighted", @"highlighted",
+                                       @"UIControlStateDisabled", @"disabled",
+                                       @"UIControlStateSelected", @"selected",
+                                       @"UIControlStateReserved", @"reserved",
+                                       @"UIControlStateApplication", @"application",
+                                       nil];
     }
     return self;
 }

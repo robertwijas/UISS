@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UISSArgumentValueConverter.h"
 
-@protocol UISSPropertyValueConverter <NSObject>
+@protocol UISSPropertyValueConverter <UISSArgumentValueConverter>
 
 - (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 - (id)convertPropertyValue:(id)value;

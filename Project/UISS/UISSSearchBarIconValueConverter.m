@@ -19,12 +19,18 @@
 {
     self = [super init];
     if (self) {
-        self.conversionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:UISearchBarIconSearch], @"search",
-                                     [NSNumber numberWithInteger:UISearchBarIconClear], @"clear",
-                                     [NSNumber numberWithInteger:UISearchBarIconBookmark], @"bookmark",
-                                     [NSNumber numberWithInteger:UISearchBarIconResultsList], @"resultsList",
-                                     nil];
+        self.stringToValueDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInteger:UISearchBarIconSearch], @"search",
+                                        [NSNumber numberWithInteger:UISearchBarIconClear], @"clear",
+                                        [NSNumber numberWithInteger:UISearchBarIconBookmark], @"bookmark",
+                                        [NSNumber numberWithInteger:UISearchBarIconResultsList], @"resultsList",
+                                        nil];
+        self.stringToCodeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"UISearchBarIconSearch", @"search",
+                                       @"UISearchBarIconClear", @"clear",
+                                       @"UISearchBarIconBookmark", @"bookmark",
+                                       @"UISearchBarIconResultsList", @"resultsList",
+                                       nil];
     }
     return self;
 }

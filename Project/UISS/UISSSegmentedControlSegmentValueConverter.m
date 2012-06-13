@@ -19,13 +19,20 @@
 {
     self = [super init];
     if (self) {
-        self.conversionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:UISegmentedControlSegmentAny], @"any",
-                                     [NSNumber numberWithInteger:UISegmentedControlSegmentLeft], @"left",
-                                     [NSNumber numberWithInteger:UISegmentedControlSegmentCenter], @"center",
-                                     [NSNumber numberWithInteger:UISegmentedControlSegmentRight], @"right",
-                                     [NSNumber numberWithInteger:UISegmentedControlSegmentAlone], @"alone",
-                                     nil];
+        self.stringToValueDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInteger:UISegmentedControlSegmentAny], @"any",
+                                        [NSNumber numberWithInteger:UISegmentedControlSegmentLeft], @"left",
+                                        [NSNumber numberWithInteger:UISegmentedControlSegmentCenter], @"center",
+                                        [NSNumber numberWithInteger:UISegmentedControlSegmentRight], @"right",
+                                        [NSNumber numberWithInteger:UISegmentedControlSegmentAlone], @"alone",
+                                        nil];
+        self.stringToCodeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"UISegmentedControlSegmentAny", @"any",
+                                       @"UISegmentedControlSegmentLeft", @"left",
+                                       @"UISegmentedControlSegmentCenter", @"center",
+                                       @"UISegmentedControlSegmentRight", @"right",
+                                       @"UISegmentedControlSegmentAlone", @"alone",
+                                       nil];
     }
     return self;
 }

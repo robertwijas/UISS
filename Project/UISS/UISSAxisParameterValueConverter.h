@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UISSArgumentValueConverter.h"
 
-@protocol UISSAxisParameterValueConverter <NSObject>
+@protocol UISSAxisParameterValueConverter <UISSArgumentValueConverter>
 
 - (BOOL)canConvertAxisParameterWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 - (NSNumber *)convertAxisParameter:(id)value;

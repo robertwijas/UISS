@@ -14,10 +14,14 @@
 {
     self = [super init];
     if (self) {
-        self.conversionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:UIBarMetricsDefault], @"default",
-                                     [NSNumber numberWithInteger:UIBarMetricsLandscapePhone], @"landscapePhone",
-                                     nil];
+        self.stringToValueDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInteger:UIBarMetricsDefault], @"default",
+                                        [NSNumber numberWithInteger:UIBarMetricsLandscapePhone], @"landscapePhone",
+                                        nil];
+        self.stringToCodeDictionary= [NSDictionary dictionaryWithObjectsAndKeys:
+                                      @"UIBarMetricsDefault", @"default",
+                                      @"UIBarMetricsLandscapePhone", @"landscapePhone",
+                                      nil];
     }
     return self;
 }

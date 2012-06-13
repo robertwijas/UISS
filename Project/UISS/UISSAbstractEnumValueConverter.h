@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSString *propertyNameSuffix;
 @property (nonatomic, readonly) NSString *argumentType;
 
-@property (nonatomic, strong) NSDictionary *conversionDictionary;
+@property (nonatomic, strong) NSDictionary *stringToValueDictionary;
+@property (nonatomic, strong) NSDictionary *stringToCodeDictionary;
 
 @end

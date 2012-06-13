@@ -64,7 +64,7 @@
 		E12DA0DA155ABE5E0066CCC3 /* UISSFloatValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DA0D8155ABE5E0066CCC3 /* UISSFloatValueConverter.m */; };
 		E12DA0DD155ABEA00066CCC3 /* UISSFloatValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DA0DB155ABEA00066CCC3 /* UISSFloatValueConverterTests.m */; };
 		E12DA0DE155ABEA00066CCC3 /* UISSIntegerValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E12DA0DC155ABEA00066CCC3 /* UISSIntegerValueConverterTests.m */; };
-		E145C85315849A250087BB1B /* UISSCodeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C85215849A250087BB1B /* UISSCodeGeneratorTests.m */; };
+		E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E13B646515890CC800E3613B /* UISSArgumentValueConverter.h */; };
 		E145C8581584AF820087BB1B /* NSString+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E145C8561584AF820087BB1B /* NSString+UISS.h */; };
 		E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C8571584AF820087BB1B /* NSString+UISS.m */; };
 		E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */; };
@@ -97,8 +97,6 @@
 		E146984F1559B24C000F311F /* UISSImageValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E146984D1559B24C000F311F /* UISSImageValueConverter.m */; };
 		E1469852155A6D0E000F311F /* UISSTextAttributesValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E1469850155A6D0E000F311F /* UISSTextAttributesValueConverter.h */; };
 		E1469853155A6D0E000F311F /* UISSTextAttributesValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E1469851155A6D0E000F311F /* UISSTextAttributesValueConverter.m */; };
-		E1469856155A853D000F311F /* UISSParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E1469854155A853D000F311F /* UISSParserContext.h */; };
-		E1469857155A853D000F311F /* UISSParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E1469855155A853D000F311F /* UISSParserContext.m */; };
 		E146985A155A85EC000F311F /* UISSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E1469858155A85EC000F311F /* UISSParser.h */; };
 		E146985B155A85EC000F311F /* UISSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1469859155A85EC000F311F /* UISSParser.m */; };
 		E146985E155A8908000F311F /* NSInvocation+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E146985C155A8908000F311F /* NSInvocation+UISS.h */; };
@@ -132,10 +130,6 @@
 		E1ED8C0E1450D4E200302B61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1ED8C161450D4E200302B61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1ED8C141450D4E200302B61 /* InfoPlist.strings */; };
 		E1ED8C211450D5E600302B61 /* libUISS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438AF143F668000F87518 /* libUISS.a */; };
-		E1F2B9B51580E824008EE145 /* UISSCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F2B9B31580E824008EE145 /* UISSCodeGenerator.h */; };
-		E1F2B9B61580E824008EE145 /* UISSCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F2B9B41580E824008EE145 /* UISSCodeGenerator.m */; };
-		E1F2B9B91580E836008EE145 /* UISSInvocationsGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F2B9B71580E836008EE145 /* UISSInvocationsGenerator.h */; };
-		E1F2B9BA1580E836008EE145 /* UISSInvocationsGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F2B9B81580E836008EE145 /* UISSInvocationsGenerator.m */; };
 		E1F2B9C515814486008EE145 /* UISSPrivateAppearanceMethodsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F2B9C415814486008EE145 /* UISSPrivateAppearanceMethodsTests.m */; };
 		E1F48245156259FE00CFA72E /* UISSUIntegerValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F48243156259FE00CFA72E /* UISSUIntegerValueConverter.h */; };
 		E1F48246156259FE00CFA72E /* UISSUIntegerValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F48244156259FE00CFA72E /* UISSUIntegerValueConverter.m */; };
@@ -213,7 +207,7 @@
 		E12DA0D8155ABE5E0066CCC3 /* UISSFloatValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFloatValueConverter.m; sourceTree = "<group>"; };
 		E12DA0DB155ABEA00066CCC3 /* UISSFloatValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFloatValueConverterTests.m; sourceTree = "<group>"; };
 		E12DA0DC155ABEA00066CCC3 /* UISSIntegerValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSIntegerValueConverterTests.m; sourceTree = "<group>"; };
-		E145C85215849A250087BB1B /* UISSCodeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCodeGeneratorTests.m; sourceTree = "<group>"; };
+		E13B646515890CC800E3613B /* UISSArgumentValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSArgumentValueConverter.h; sourceTree = "<group>"; };
 		E145C8561584AF820087BB1B /* NSString+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UISS.h"; sourceTree = "<group>"; };
 		E145C8571584AF820087BB1B /* NSString+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UISS.m"; sourceTree = "<group>"; };
 		E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPropertySetterTests.m; sourceTree = "<group>"; };
@@ -236,9 +230,7 @@
 		E146982715583EE0000F311F /* UISSCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomView.h; sourceTree = "<group>"; };
 		E146982815583EE0000F311F /* UISSCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCustomView.m; sourceTree = "<group>"; };
 		E146982B155846F4000F311F /* example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = example.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		E146982D15584700000F311F /* ExampleJSONTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleJSONTests.h; sourceTree = "<group>"; };
 		E146982E15584700000F311F /* ExampleJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleJSONTests.m; sourceTree = "<group>"; };
-		E146983215584700000F311F /* UISSTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSTests.h; sourceTree = "<group>"; };
 		E146983315584700000F311F /* UISSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTests.m; sourceTree = "<group>"; };
 		E146983915584831000F311F /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		E146983B155905B7000F311F /* UISSPropertyValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSPropertyValueConverter.h; sourceTree = "<group>"; };
@@ -252,13 +244,10 @@
 		E146984D1559B24C000F311F /* UISSImageValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageValueConverter.m; sourceTree = "<group>"; };
 		E1469850155A6D0E000F311F /* UISSTextAttributesValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSTextAttributesValueConverter.h; sourceTree = "<group>"; };
 		E1469851155A6D0E000F311F /* UISSTextAttributesValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTextAttributesValueConverter.m; sourceTree = "<group>"; };
-		E1469854155A853D000F311F /* UISSParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParserContext.h; sourceTree = "<group>"; };
-		E1469855155A853D000F311F /* UISSParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParserContext.m; sourceTree = "<group>"; };
 		E1469858155A85EC000F311F /* UISSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParser.h; sourceTree = "<group>"; };
 		E1469859155A85EC000F311F /* UISSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParser.m; sourceTree = "<group>"; };
 		E146985C155A8908000F311F /* NSInvocation+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+UISS.h"; sourceTree = "<group>"; };
 		E146985D155A8908000F311F /* NSInvocation+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+UISS.m"; sourceTree = "<group>"; };
-		E1469860155A8B51000F311F /* UISSParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParserTests.h; sourceTree = "<group>"; };
 		E1469861155A8B51000F311F /* UISSParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParserTests.m; sourceTree = "<group>"; };
 		E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUserInterfaceIdiomPreprocessor.h; sourceTree = "<group>"; };
 		E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessor.m; sourceTree = "<group>"; };
@@ -291,10 +280,6 @@
 		E1ED8C0B1450D4E200302B61 /* UISSDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UISSDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED8C131450D4E200302B61 /* UISSDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSDemoTests-Info.plist"; sourceTree = "<group>"; };
 		E1ED8C151450D4E200302B61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1F2B9B31580E824008EE145 /* UISSCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCodeGenerator.h; sourceTree = "<group>"; };
-		E1F2B9B41580E824008EE145 /* UISSCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCodeGenerator.m; sourceTree = "<group>"; };
-		E1F2B9B71580E836008EE145 /* UISSInvocationsGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSInvocationsGenerator.h; sourceTree = "<group>"; };
-		E1F2B9B81580E836008EE145 /* UISSInvocationsGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSInvocationsGenerator.m; sourceTree = "<group>"; };
 		E1F2B9C415814486008EE145 /* UISSPrivateAppearanceMethodsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPrivateAppearanceMethodsTests.m; sourceTree = "<group>"; };
 		E1F48243156259FE00CFA72E /* UISSUIntegerValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUIntegerValueConverter.h; sourceTree = "<group>"; };
 		E1F48244156259FE00CFA72E /* UISSUIntegerValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUIntegerValueConverter.m; sourceTree = "<group>"; };
@@ -376,8 +361,6 @@
 				E116AF2A157ABBC900BFB3D1 /* UISSProperty.m */,
 				E116AF2D157ABBDF00BFB3D1 /* UISSAxisParameter.h */,
 				E116AF2E157ABBDF00BFB3D1 /* UISSAxisParameter.m */,
-				E1469854155A853D000F311F /* UISSParserContext.h */,
-				E1469855155A853D000F311F /* UISSParserContext.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -564,6 +547,7 @@
 				E129E5D015630DFF00E93185 /* Objects */,
 				E12DA0CF155ABD3B0066CCC3 /* Simple Types */,
 				E12DA0AC155A9B5E0066CCC3 /* Structures */,
+				E13B646515890CC800E3613B /* UISSArgumentValueConverter.h */,
 				E146983B155905B7000F311F /* UISSPropertyValueConverter.h */,
 				E14698471559078F000F311F /* UISSAxisParameterValueConverter.h */,
 				E145C85D1584DA3B0087BB1B /* UISSConverter.h */,
@@ -660,7 +644,6 @@
 			isa = PBXGroup;
 			children = (
 				E145C8551584AF650087BB1B /* Helpers */,
-				E1F2B9AD1580E7CF008EE145 /* Generators */,
 				E1F6E2F0157EC32E00A5187E /* Console */,
 				E1A775B915678FF8000406CC /* Parser */,
 				E1A7739415668F6C000406CC /* UIKit Helpers */,
@@ -725,14 +708,10 @@
 				E1A775BE1567A7E3000406CC /* Parser */,
 				E14698461559071E000F311F /* Value Converters */,
 				E146982A155846F4000F311F /* JSON */,
-				E146982D15584700000F311F /* ExampleJSONTests.h */,
 				E146982E15584700000F311F /* ExampleJSONTests.m */,
-				E146983215584700000F311F /* UISSTests.h */,
 				E146983315584700000F311F /* UISSTests.m */,
-				E1469860155A8B51000F311F /* UISSParserTests.h */,
 				E1469861155A8B51000F311F /* UISSParserTests.m */,
 				E1F2B9C415814486008EE145 /* UISSPrivateAppearanceMethodsTests.m */,
-				E145C85215849A250087BB1B /* UISSCodeGeneratorTests.m */,
 				E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */,
 			);
 			path = UISSDemoTests;
@@ -746,17 +725,6 @@
 				E1ED8C141450D4E200302B61 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E1F2B9AD1580E7CF008EE145 /* Generators */ = {
-			isa = PBXGroup;
-			children = (
-				E1F2B9B31580E824008EE145 /* UISSCodeGenerator.h */,
-				E1F2B9B41580E824008EE145 /* UISSCodeGenerator.m */,
-				E1F2B9B71580E836008EE145 /* UISSInvocationsGenerator.h */,
-				E1F2B9B81580E836008EE145 /* UISSInvocationsGenerator.m */,
-			);
-			name = Generators;
 			sourceTree = "<group>";
 		};
 		E1F6E2F0157EC32E00A5187E /* Console */ = {
@@ -782,7 +750,6 @@
 				E14698481559078F000F311F /* UISSAxisParameterValueConverter.h in Headers */,
 				E146984E1559B24C000F311F /* UISSImageValueConverter.h in Headers */,
 				E1469852155A6D0E000F311F /* UISSTextAttributesValueConverter.h in Headers */,
-				E1469856155A853D000F311F /* UISSParserContext.h in Headers */,
 				E146985A155A85EC000F311F /* UISSParser.h in Headers */,
 				E146985E155A8908000F311F /* NSInvocation+UISS.h in Headers */,
 				E12DA0B0155A9D410066CCC3 /* UISSSizeValueConverter.h in Headers */,
@@ -810,11 +777,10 @@
 				E1F6E2F4157EC35B00A5187E /* UISSStatusWindow.h in Headers */,
 				E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */,
 				E1076BEA157F6B1A00886759 /* UISSStatusWindowController.h in Headers */,
-				E1F2B9B51580E824008EE145 /* UISSCodeGenerator.h in Headers */,
-				E1F2B9B91580E836008EE145 /* UISSInvocationsGenerator.h in Headers */,
 				E145C8581584AF820087BB1B /* NSString+UISS.h in Headers */,
 				E145C85F1584DA3B0087BB1B /* UISSConverter.h in Headers */,
 				E145C8631584DCC70087BB1B /* UISSConfig.h in Headers */,
+				E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,7 +933,6 @@
 				E146984515590709000F311F /* UISSFontValueConverter.m in Sources */,
 				E146984F1559B24C000F311F /* UISSImageValueConverter.m in Sources */,
 				E1469853155A6D0E000F311F /* UISSTextAttributesValueConverter.m in Sources */,
-				E1469857155A853D000F311F /* UISSParserContext.m in Sources */,
 				E146985B155A85EC000F311F /* UISSParser.m in Sources */,
 				E146985F155A8908000F311F /* NSInvocation+UISS.m in Sources */,
 				E12DA0B1155A9D410066CCC3 /* UISSSizeValueConverter.m in Sources */,
@@ -994,8 +959,6 @@
 				E1F6E2F5157EC35B00A5187E /* UISSStatusWindow.m in Sources */,
 				E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */,
 				E1076BEB157F6B1A00886759 /* UISSStatusWindowController.m in Sources */,
-				E1F2B9B61580E824008EE145 /* UISSCodeGenerator.m in Sources */,
-				E1F2B9BA1580E836008EE145 /* UISSInvocationsGenerator.m in Sources */,
 				E1F6E2F5157EC35B00A51882 /* (null) in Sources */,
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
 				E145C8601584DA3B0087BB1B /* UISSConverter.m in Sources */,
@@ -1038,7 +1001,6 @@
 				E1A775C11567A814000406CC /* UISSVariablesPreprocessorTests.m in Sources */,
 				E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */,
 				E1F2B9C515814486008EE145 /* UISSPrivateAppearanceMethodsTests.m in Sources */,
-				E145C85315849A250087BB1B /* UISSCodeGeneratorTests.m in Sources */,
 				E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

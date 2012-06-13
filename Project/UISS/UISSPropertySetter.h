@@ -18,7 +18,16 @@
 @property (nonatomic, strong) UISSProperty *property;
 @property (nonatomic, copy) NSArray *axisParameters;
 
-- (id<UIAppearance>)target;
-- (SEL)selector;
+#pragma mark - calculated properties
+
+@property (nonatomic, strong, readonly) NSMethodSignature *methodSignature;
+
+@property (nonatomic, readonly) SEL selector;
+@property (nonatomic, readonly) NSArray *selectorParts;
+
+@property (nonatomic, readonly) id target;
+
+@property (nonatomic, readonly) NSString *generatedCode;
+@property (nonatomic, readonly) NSInvocation *invocation;
 
 @end

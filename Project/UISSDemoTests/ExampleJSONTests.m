@@ -6,8 +6,12 @@
 //  Copyright (c) 2011 57things. All rights reserved.
 //
 
-#import "ExampleJSONTests.h"
 #import "UISS.h"
+#import <SenTestingKit/SenTestingKit.h>
+
+@interface ExampleJSONTests : SenTestCase
+
+@end
 
 @implementation ExampleJSONTests
 

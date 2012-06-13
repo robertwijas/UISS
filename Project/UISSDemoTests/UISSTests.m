@@ -6,8 +6,12 @@
 //  Copyright (c) 2011 57things. All rights reserved.
 //
 
-#import "UISSTests.h"
+#import <SenTestingKit/SenTestingKit.h>
 #import "NSInvocation+UISS.h"
+
+@interface UISSTests : SenTestCase
+
+@end
 
 @implementation UISSTests
 
@@ -51,7 +55,5 @@
                           class:[UIToolbar class]
                        selector:@selector(setTintColor:) expected:NO];
 }
-
-#pragma mark - Parameters
 
 @end

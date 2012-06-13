@@ -6,8 +6,12 @@
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
-#import "UISSParserTests.h"
+#import <SenTestingKit/SenTestingKit.h>
 #import "UISSParser.h"
+
+@interface UISSParserTests : SenTestCase
+
+@end
 
 @implementation UISSParserTests
 

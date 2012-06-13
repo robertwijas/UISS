@@ -8,6 +8,7 @@
 
 #import "UISSImageValueConverter.h"
 #import "UISSEdgeInsetsValueConverter.h"
+#import "UISSArgument.h"
 
 @interface UISSImageValueConverter ()
 
@@ -118,6 +119,21 @@
     }];
 
     return result;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
+}
+
+- (NSString *)generateCodeForArgument:(UISSArgument *)argument
+{
+    return [self generateCodeForPropertyValue:argument.value];
+}
+
+- (id)convertValueForArgument:(UISSArgument *)argument
+{
+    return [self convertPropertyValue:argument.value];
 }
 
 @end

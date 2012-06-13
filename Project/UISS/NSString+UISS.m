@@ -10,10 +10,19 @@
 
 @implementation NSString (UISS)
 
-- (NSString *)firstLetterCapitalizedString;
+- (NSString *)uppercaseFirstCharacterString;
 {
     if (self.length > 0) {
         return [[[self substringToIndex:1] uppercaseString] stringByAppendingString:[self substringFromIndex:1]];
+    } else {
+        return [NSString string];
+    }
+}
+
+- (NSString *)lowercaseFirstCharacterString;
+{
+    if (self.length > 0) {
+        return [[[self substringToIndex:1] lowercaseString] stringByAppendingString:[self substringFromIndex:1]];
     } else {
         return [NSString string];
     }

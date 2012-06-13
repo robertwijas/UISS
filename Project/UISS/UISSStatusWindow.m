@@ -110,6 +110,8 @@
 
 - (void)updateStyle;
 {
+    // this prevents from changing status window style by UIAppearance proxies
+
     self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:1];
     self.containerView.backgroundColor = self.backgroundColor;
 
@@ -144,11 +146,11 @@
 {
     switch (orientation) {
         case UIInterfaceOrientationLandscapeLeft:
-            return CGAffineTransformMakeRotation(-M_PI_2);
+            return CGAffineTransformMakeRotation((CGFloat) -M_PI_2);
         case UIInterfaceOrientationLandscapeRight:
-            return CGAffineTransformMakeRotation(M_PI_2);
+            return CGAffineTransformMakeRotation((CGFloat) M_PI_2);
         case UIInterfaceOrientationPortraitUpsideDown:
-            return CGAffineTransformMakeRotation(M_PI);
+            return CGAffineTransformMakeRotation((CGFloat) M_PI);
         case UIInterfaceOrientationPortrait:
         default:
             return CGAffineTransformMakeRotation(0);
