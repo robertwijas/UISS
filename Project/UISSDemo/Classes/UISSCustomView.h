@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UISSCustomView : UIView
+@interface UISSCustomView : UIImageView
 
 - (void)setBackgroundImage:(UIImage *)image UI_APPEARANCE_SELECTOR;
 - (void)setBackgroundMargin:(CGFloat)backgroundMargin UI_APPEARANCE_SELECTOR;

@@ -139,7 +139,7 @@
         <class className="UISSCustomContainerView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UISSCustomContainerView.h"/>
         </class>
-        <class className="UISSCustomView" superclassName="UIView">
+        <class className="UISSCustomView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UISSCustomView.h"/>
         </class>
         <class className="UISSDemoFirstViewController" superclassName="UIViewController">

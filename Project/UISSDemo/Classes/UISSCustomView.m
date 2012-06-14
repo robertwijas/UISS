@@ -39,7 +39,7 @@
         UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
         backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
-        [self addSubview:backgroundView];
+        [self insertSubview:backgroundView atIndex:0];
         self.backgroundView = backgroundView;
     }
     

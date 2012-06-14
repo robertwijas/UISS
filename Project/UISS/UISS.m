@@ -167,9 +167,21 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         if (updated) {
             [self parseStyleData:self.data queue:queue completion:^(NSDictionary *dictionary) {
                 [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *propertySetters) {
+                    NSLog(@"UISS -- creating invocations");
+                    NSMutableArray *invocations = [NSMutableArray array];
                     for (UISSPropertySetter *propertySetter in propertySetters) {
-                        [propertySetter.invocation invoke];
+                        NSInvocation *invocation = propertySetter.invocation;
+                        if (invocation) {
+                            [invocations addObject:invocation];
+                        }
                     }
+
+                    NSLog(@"UISS -- number of invocations: %d", invocations.count);
+                    for (NSInvocation *invocation in invocations) {
+                        [invocation invoke];
+                    }
+                    
+                    NSLog(@"UISS -- Done");
                     completion(YES);
                 }];
             }];
