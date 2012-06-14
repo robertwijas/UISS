@@ -8,12 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <objc/runtime.h>
-
-@protocol UISSAppearancePrivate <NSObject>
-
-- (NSMutableArray *)_appearanceInvocations;
-
-@end
+#import "UISSAppearancePrivate.h"
 
 @interface UISSPrivateAppearanceMethodsTests : SenTestCase
 

@@ -13,6 +13,7 @@
 #import "UISSParser.h"
 #import "UISSStatusWindowController.h"
 #import "UISSPropertySetter.h"
+#import "UISSAppearancePrivate.h"
 
 NSString *const UISSWillDownloadStyleNotification = @"UISSWillDownloadStyleNotification";
 NSString *const UISSDidDownloadStyleNotification = @"UISSDidDownloadStyleNotification";
