@@ -30,6 +30,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @interface UISS ()
 
 @property (strong) NSData *data;
+@property (nonatomic, strong) NSMutableSet *configuredProxies;
+
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
 
 @end
@@ -42,6 +44,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @synthesize refreshInterval=_refreshInterval;
 
 @synthesize data=_data;
+@synthesize configuredProxies=_configuredProxies;
+
 @synthesize statusWindowController=_statusWindowController;
 
 - (id)init
@@ -50,6 +54,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     if (self) {
         self.config = [UISSConfig sharedConfig];
         self.statusWindowController = [[UISSStatusWindowController alloc] init];
+        self.configuredProxies = [NSMutableSet set];
     }
     return self;
 }
@@ -168,6 +173,12 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         if (updated) {
             [self parseStyleData:self.data queue:queue completion:^(NSDictionary *dictionary) {
                 [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *propertySetters) {
+                    NSLog(@"UISS -- reseting configured proxies");
+                    for (id appearance in self.configuredProxies) {
+                        [[appearance _appearanceInvocations] removeAllObjects];
+                    }
+                    [self.configuredProxies removeAllObjects];
+                    
                     NSLog(@"UISS -- creating invocations");
                     NSMutableArray *invocations = [NSMutableArray array];
                     for (UISSPropertySetter *propertySetter in propertySetters) {
@@ -180,9 +191,10 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                     NSLog(@"UISS -- number of invocations: %d", invocations.count);
                     for (NSInvocation *invocation in invocations) {
                         [invocation invoke];
+                        [self.configuredProxies addObject:invocation.target];
                     }
                     
-                    NSLog(@"UISS -- Done");
+                    NSLog(@"UISS -- number of configured proxies: %d", self.configuredProxies.count);
                     completion(YES);
                 }];
             }];
