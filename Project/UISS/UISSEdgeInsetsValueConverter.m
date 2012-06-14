@@ -7,13 +7,31 @@
 //
 
 #import "UISSEdgeInsetsValueConverter.h"
+#import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
+
+@interface UISSEdgeInsetsValueConverter ()
+
+@property (nonatomic, strong) UISSFloatValueConverter *floatValueConverter;
+
+@end
 
 @implementation UISSEdgeInsetsValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+@synthesize floatValueConverter;
+
+- (id)init
 {
-    return [argumentType isEqualToString:[NSString stringWithCString:@encode(UIEdgeInsets) encoding:NSUTF8StringEncoding]];
+    self = [super init];
+    if (self) {
+        self.floatValueConverter = [[UISSFloatValueConverter alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(UIEdgeInsets) encoding:NSUTF8StringEncoding]];
 }
 
 - (id)convertValue:(id)value;
@@ -33,20 +51,18 @@
 - (NSString *)generateCodeForValue:(id)value
 {
     id converted = [self convertValue:value];
-
+    
     if (converted) {
         UIEdgeInsets edgeInsets = [converted UIEdgeInsetsValue];
-
-        return [NSString stringWithFormat:@"UIEdgeInsetsMake(%.1f, %.1f, %.1f, %.1f)",
-                        edgeInsets.top, edgeInsets.left, edgeInsets.bottom, edgeInsets.right];
+        
+        return [NSString stringWithFormat:@"UIEdgeInsetsMake(%@, %@, %@, %@)",
+                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.top],
+                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.left],
+                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.bottom], 
+                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.right]];
     } else {
         return @"UIEdgeInsetsZero";
     }
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

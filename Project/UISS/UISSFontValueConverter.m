@@ -7,13 +7,31 @@
 //
 
 #import "UISSFontValueConverter.h"
+#import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
+
+@interface UISSFontValueConverter ()
+
+@property (nonatomic, strong) UISSFloatValueConverter *floatValueConverter;
+
+@end
 
 @implementation UISSFontValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+@synthesize floatValueConverter;
+
+- (id)init
 {
-    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"font"];
+    self = [super init];
+    if (self) {
+        self.floatValueConverter = [[UISSFloatValueConverter alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [argument.type hasPrefix:@"@"] && [[argument.name lowercaseString] hasSuffix:@"font"];
 }
 
 - (BOOL)convertValue:(id)value fontHandler:(void (^)(UIFont *))fontHandler codeHandler:(void (^)(NSString *))codeHandler;
@@ -30,28 +48,28 @@
                     fontHandler([UIFont systemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%.1f]", size]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else if ([name isEqualToString:@"bold"]) {
                 if (fontHandler) {
                     fontHandler([UIFont boldSystemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont boldSystemFontOfSize:%.1f]", size]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont boldSystemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else if ([name isEqualToString:@"italic"]) {
                 if (fontHandler) {
                     fontHandler([UIFont italicSystemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont italicSystemFontOfSize:%.1f]", size]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont italicSystemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else {
                 if (fontHandler) {
                     fontHandler([UIFont fontWithName:name size:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont fontWithName:@\"%@\" size:%.1f]", name, size]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont fontWithName:@\"%@\" size:%@]", name, [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             }
 
@@ -64,7 +82,7 @@
             fontHandler([UIFont systemFontOfSize:size]);
         }
         if (codeHandler) {
-            codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%.1f]", size]);
+            codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
         }
 
         return YES;
@@ -95,11 +113,6 @@
     }];
 
     return result;
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

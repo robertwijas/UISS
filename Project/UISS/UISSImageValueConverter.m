@@ -29,9 +29,9 @@
     return self;
 }
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
-    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"image"];
+    return [argument.type hasPrefix:@"@"] && [[argument.name lowercaseString] hasSuffix:@"image"];
 }
 
 - (id)edgeInsetsValueFromImageArray:(NSArray *)array;
@@ -119,11 +119,6 @@
     }];
 
     return result;
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

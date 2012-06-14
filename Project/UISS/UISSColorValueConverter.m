@@ -8,30 +8,36 @@
 
 #import "UISSColorValueConverter.h"
 #import "UISSImageValueConverter.h"
+#import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
 
 @interface UISSColorValueConverter ()
 
 @property(nonatomic, strong) UISSImageValueConverter *imageValueConverter;
+@property(nonatomic, strong) UISSFloatValueConverter *floatValueConverter;
 
 @end
 
 @implementation UISSColorValueConverter
 
 @synthesize imageValueConverter;
+@synthesize floatValueConverter;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.imageValueConverter = [[UISSImageValueConverter alloc] init];
+        self.floatValueConverter = [[UISSFloatValueConverter alloc] init];
+        self.floatValueConverter.precision = 3;
     }
+    
     return self;
 }
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
-    return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"color"];
+    return [argument.type hasPrefix:@"@"] && [[argument.name lowercaseString] hasSuffix:@"color"];
 }
 
 - (BOOL)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
@@ -40,12 +46,15 @@
     if (colorHandler) {
         colorHandler([UIColor colorWithRed:red green:green blue:blue alpha:alpha]);
     }
-
+    
     if (codeHandler) {
-        codeHandler([NSString stringWithFormat:@"[UIColor colorWithRed:%.3f green:%.3f blue:%.3f alpha:%.3f]",
-                                               red, green, blue, alpha]);
+        codeHandler([NSString stringWithFormat:@"[UIColor colorWithRed:%@ green:%@ blue:%@ alpha:%@]",
+                     [self.floatValueConverter generateCodeForFloatValue:red],
+                     [self.floatValueConverter generateCodeForFloatValue:green],
+                     [self.floatValueConverter generateCodeForFloatValue:blue],
+                     [self.floatValueConverter generateCodeForFloatValue:alpha]]);
     }
-
+    
     return YES;
 }
 
@@ -53,17 +62,17 @@
 {
     if ([colorString hasPrefix:@"#"]) {
         NSScanner *scanner = [NSScanner scannerWithString:[colorString substringFromIndex:1]];
-
+        
         unsigned long long hexValue;
         if ([scanner scanHexLongLong:&hexValue]) {
             CGFloat red = ((hexValue & 0xFF0000) >> 16) / 255.0f;
             CGFloat green = ((hexValue & 0x00FF00) >> 8) / 255.0f;
             CGFloat blue = (hexValue & 0x0000FF) / 255.0f;
-
+            
             return [self colorWithRed:red green:green blue:blue alpha:1.0 colorHandler:colorHandler codeHandler:codeHandler];
         }
     }
-
+    
     return NO;
 }
 
@@ -72,18 +81,18 @@
     if (![selectorString hasSuffix:@"Color"]) {
         selectorString = [selectorString stringByAppendingString:@"Color"];
     }
-
+    
     SEL colorSelector = NSSelectorFromString(selectorString);
-
+    
     if ([UIColor respondsToSelector:colorSelector]) {
         if (colorHandler) {
             colorHandler([UIColor performSelector:colorSelector]);
         }
-
+        
         if (codeHandler) {
             codeHandler([NSString stringWithFormat:@"[UIColor %@]", selectorString]);
         }
-
+        
         return YES;
     } else {
         return NO;
@@ -98,11 +107,11 @@
         if (colorHandler) {
             colorHandler([UIColor colorWithPatternImage:patternImage]);
         }
-
+        
         if (codeHandler) {
             codeHandler([NSString stringWithFormat:@"[UIColor colorWithPatternImage:%@]", [self.imageValueConverter generateCodeForValue:patternImageString]]);
         }
-
+        
         return YES;
     } else {
         return NO;
@@ -114,15 +123,15 @@
     if ([self colorFromHexString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
         return YES;
     };
-
+    
     if ([self colorFromSelectorString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
         return YES;
     };
-
+    
     if ([self colorFromPatterImageString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
         return YES;
     };
-
+    
     return NO;
 }
 
@@ -132,35 +141,37 @@
         NSArray *array = (NSArray *) value;
         CGFloat red = 1, green = 1, blue = 1;
         __block CGFloat alpha = 1;
-
+        
         if (array.count > 0) {
             if ([[array objectAtIndex:0] isKindOfClass:[NSString class]]) {
                 return [self colorFromString:[array objectAtIndex:0]
-                        colorHandler:^(UIColor *color) {
-                            if (colorHandler) {
-                                if (array.count > 1) {
-                                    alpha = [[array objectAtIndex:1] floatValue];
-                                    colorHandler([color colorWithAlphaComponent:alpha]);
+                                colorHandler:^(UIColor *color) {
+                                    if (colorHandler) {
+                                        if (array.count > 1) {
+                                            alpha = [[array objectAtIndex:1] floatValue];
+                                            colorHandler([color colorWithAlphaComponent:alpha]);
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                        codeHandler:^(NSString *code) {
-                            if (codeHandler) {
-                                if (array.count > 1) {
-                                    alpha = [[array objectAtIndex:1] floatValue];
-                                    codeHandler([NSString stringWithFormat:@"[%@ colorWithAlphaComponent:%.3f]", code, alpha]);
-                                }
-                            }
-                        }];
+                                 codeHandler:^(NSString *code) {
+                                     if (codeHandler) {
+                                         if (array.count > 1) {
+                                             alpha = [[array objectAtIndex:1] floatValue];
+                                             codeHandler([NSString stringWithFormat:@"[%@ colorWithAlphaComponent:%@]",
+                                                          code, 
+                                                          [self.floatValueConverter generateCodeForFloatValue:alpha]]);
+                                         }
+                                     }
+                                 }];
             } else {
                 red = [[array objectAtIndex:0] intValue] / 255.0f;
-
+                
                 if (array.count > 1) {
                     green = [[array objectAtIndex:1] intValue] / 255.0f;
-
+                    
                     if (array.count > 2) {
                         blue = [[array objectAtIndex:2] intValue] / 255.0f;
-
+                        
                         if (array.count > 3) {
                             alpha = [[array objectAtIndex:3] floatValue];
                         }
@@ -168,7 +179,7 @@
                 }
             }
         }
-
+        
         return [self colorWithRed:red green:green blue:blue alpha:alpha colorHandler:colorHandler codeHandler:codeHandler];
     } else if ([value isKindOfClass:[NSString class]]) {
         return [self colorFromString:value colorHandler:colorHandler codeHandler:codeHandler];
@@ -180,30 +191,25 @@
 - (id)convertValue:(id)value;
 {
     __block UIColor *result = nil;
-
+    
     [self convertValue:value
-                  colorHandler:^(UIColor *color) {
-                      result = color;
-                  }
-                   codeHandler:nil];
-
+          colorHandler:^(UIColor *color) {
+              result = color;
+          }
+           codeHandler:nil];
+    
     return result;
 }
 
 - (NSString *)generateCodeForValue:(id)value
 {
     __block NSString *result = nil;
-
+    
     [self convertValue:value colorHandler:nil codeHandler:^(NSString *code) {
         result = code;
     }];
-
+    
     return result;
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

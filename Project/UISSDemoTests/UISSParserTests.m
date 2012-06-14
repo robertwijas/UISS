@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSParser.h"
+#import "UISSPropertySetter.h"
 
 @interface UISSParserTests : SenTestCase
 
@@ -109,16 +110,20 @@
 - (void)parserTestWithDictionary:(NSDictionary *)dictionary assertionsAfterInvoke:(void (^)(NSInvocation *))assertions;
 {
     UISSParser *parser = [[UISSParser alloc] init];
+
+    NSMutableArray *invokedInvocations = [NSMutableArray array];
+
+    NSArray *propertySetters = [parser parseDictionary:dictionary];
+    for (UISSPropertySetter *propertySetter in propertySetters) {
+        NSInvocation *invocation = propertySetter.invocation;
+        if (invocation) {
+            [invocation invoke];
+            [invokedInvocations addObject:invocation];
+            assertions(invocation);
+        }
+    }
     
-    __block BOOL handlerCalled = NO;
-    [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-        handlerCalled = YES;
-        [invocation invoke];
-        
-        assertions(invocation);
-    }];
-    
-    STAssertTrue(handlerCalled, nil);
+    STAssertTrue([invokedInvocations count], @"expected at least one invocation");
 }
 
 @end

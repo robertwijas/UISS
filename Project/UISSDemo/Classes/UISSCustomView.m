@@ -11,18 +11,26 @@
 @interface UISSCustomView ()
 
 @property (nonatomic, weak) UIImageView *backgroundView;
+@property (nonatomic) CGFloat backgroundMargin;
 
 @end
 
 @implementation UISSCustomView
 
 @synthesize backgroundView=_backgroundView;
+@synthesize backgroundMargin=_backgroundMargin;
 
 - (void)setBackgroundImage:(UIImage *)image;
 {
     NSLog(@"DEMO: setBackgroundImage");
     
     self.backgroundView.image = image;
+}
+
+- (void)setBackgroundMargin:(CGFloat)backgroundMargin;
+{
+    _backgroundMargin = backgroundMargin;
+    [self setNeedsLayout];
 }
 
 - (UIImageView *)backgroundView;
@@ -43,6 +51,9 @@
     NSLog(@"DEMO: layoutSubviews");
 
     [super layoutSubviews];
+    
+    UIEdgeInsets backgroundEdgeInsets = UIEdgeInsetsMake(self.backgroundMargin, self.backgroundMargin, self.backgroundMargin, self.backgroundMargin);
+    self.backgroundView.frame = UIEdgeInsetsInsetRect(self.bounds, backgroundEdgeInsets);
 }
 
 @end

@@ -7,13 +7,31 @@
 //
 
 #import "UISSOffsetValueConverter.h"
+#import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
+
+@interface UISSOffsetValueConverter ()
+
+@property (nonatomic, strong) UISSFloatValueConverter *floatValueConverter;
+
+@end
 
 @implementation UISSOffsetValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+@synthesize floatValueConverter;
+
+- (id)init
 {
-    return [argumentType isEqualToString:[NSString stringWithCString:@encode(UIOffset) encoding:NSUTF8StringEncoding]];
+    self = [super init];
+    if (self) {
+        self.floatValueConverter = [[UISSFloatValueConverter alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(UIOffset) encoding:NSUTF8StringEncoding]];
 }
 
 - (id)convertValue:(id)value;
@@ -43,20 +61,16 @@
 - (NSString *)generateCodeForValue:(id)value
 {
     id converted = [self convertValue:value];
-
+    
     if (converted) {
         UIOffset offset = [converted UIOffsetValue];
-
-        return [NSString stringWithFormat:@"UIOffsetMake(%.1f, %.1f)",
-                        offset.horizontal, offset.vertical];
+        
+        return [NSString stringWithFormat:@"UIOffsetMake(%@, %@)",
+                [self.floatValueConverter generateCodeForFloatValue:offset.horizontal],
+                [self.floatValueConverter generateCodeForFloatValue:offset.vertical]];
     } else {
         return @"UIOffsetZero";
     }
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

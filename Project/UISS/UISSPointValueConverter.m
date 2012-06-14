@@ -7,13 +7,31 @@
 //
 
 #import "UISSPointValueConverter.h"
+#import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
+
+@interface UISSPointValueConverter ()
+
+@property (nonatomic, strong) UISSFloatValueConverter *floatValueConverter;
+
+@end
 
 @implementation UISSPointValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+@synthesize floatValueConverter;
+
+- (id)init
 {
-    return [argumentType isEqualToString:[NSString stringWithCString:@encode(CGPoint) encoding:NSUTF8StringEncoding]];
+    self = [super init];
+    if (self) {
+        self.floatValueConverter = [[UISSFloatValueConverter alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(CGPoint) encoding:NSUTF8StringEncoding]];
 }
 
 - (id)convertValue:(id)value;
@@ -47,16 +65,12 @@
     if (converted) {
         CGPoint point = [converted CGPointValue];
 
-        return [NSString stringWithFormat:@"CGPointMake(%.1f, %.1f)",
-                        point.x, point.y];
+        return [NSString stringWithFormat:@"CGPointMake(%@, %@)",
+                [self.floatValueConverter generateCodeForFloatValue:point.x],
+                [self.floatValueConverter generateCodeForFloatValue:point.y]];
     } else {
         return @"CGPointZero";
     }
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

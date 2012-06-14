@@ -22,6 +22,7 @@
 - (void)setUp;
 {
     self.converter = [[UISSFloatValueConverter alloc] init];
+    self.converter.precision = 4;
 }
 
 - (void)tearDown;
@@ -38,6 +39,16 @@
     [value getValue:&floatValue];
     
     STAssertEquals(floatValue, 0.5f, nil);
+}
+
+- (void)testGeneratedCodeFromString;
+{
+    STAssertEqualObjects([self.converter generateCodeForValue:@"1.123"], @"1.1230", nil);
+}
+
+- (void)testGeneratedCodeFromNumber;
+{
+    STAssertEqualObjects([self.converter generateCodeForValue:[NSNumber numberWithFloat:1.123]], @"1.1230", nil);
 }
 
 @end

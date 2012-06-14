@@ -11,9 +11,20 @@
 
 @implementation UISSFloatValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+@synthesize precision=_precision;
+
+- (id)init
 {
-    return [argumentType isEqualToString:[NSString stringWithCString:@encode(CGFloat) encoding:NSUTF8StringEncoding]];
+    self = [super init];
+    if (self) {
+        self.precision = UISS_FLOAT_VALUE_CONVERTER_DEFAULT_PRECISION;
+    }
+    return self;
+}
+
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+{
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(CGFloat) encoding:NSUTF8StringEncoding]];
 }
 
 - (id)convertValue:(id)value;
@@ -26,14 +37,19 @@
     return nil;
 }
 
-- (NSString *)generateCodeForValue:(id)value
+- (NSString *)generateCodeForFloatValue:(CGFloat)floatValue;
 {
-    return nil;
+    NSString *format = [NSString stringWithFormat:@"%%.%df", self.precision];
+    return [NSString stringWithFormat:format, floatValue];
 }
 
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
+- (NSString *)generateCodeForValue:(id)value
 {
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
+    if ([value respondsToSelector:@selector(floatValue)]) {
+        return [self generateCodeForFloatValue:[value floatValue]];
+    }
+
+    return nil;
 }
 
 @end

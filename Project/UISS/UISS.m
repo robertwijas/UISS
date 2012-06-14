@@ -8,10 +8,11 @@
 
 #import "UISS.h"
 
-#import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
+
 #import "UISSParser.h"
 #import "UISSStatusWindowController.h"
-#import <objc/runtime.h>
+#import "UISSPropertySetter.h"
 
 NSString *const UISSWillDownloadStyleNotification = @"UISSWillDownloadStyleNotification";
 NSString *const UISSDidDownloadStyleNotification = @"UISSDidDownloadStyleNotification";
@@ -34,6 +35,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @implementation UISS
 
+@synthesize config=_config;
+
 @synthesize url=_url;
 @synthesize refreshInterval=_refreshInterval;
 
@@ -44,6 +47,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 {
     self = [super init];
     if (self) {
+        self.config = [UISSConfig sharedConfig];
         self.statusWindowController = [[UISSStatusWindowController alloc] init];
     }
     return self;
@@ -121,24 +125,20 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
 }
 
-- (void)parseStyleDictionary:(NSDictionary *)dictionary queue:(dispatch_queue_t)queue completion:(void (^)(NSArray *invocations))completion;
+- (void)parseStyleDictionary:(NSDictionary *)dictionary queue:(dispatch_queue_t)queue completion:(void (^)(NSArray *propertySetters))completion;
 {
     [self postOnMainQueueNotificationName:UISSWillParseStyleNotification];
     
     void (^block)() = ^{
         UISSParser *parser = [[UISSParser alloc] init];
-        NSMutableArray *invocations = [NSMutableArray array];
+        parser.config = self.config;
         
-        [parser parseDictionary:dictionary handler:^(NSInvocation *invocation) {
-            if (invocation) {
-                [invocations addObject:invocation];
-            }
-        }];
+        NSArray *propertySetters = [parser parseDictionary:dictionary];
         
         [self postOnMainQueueNotificationName:UISSDidParseStyleNotification];
         
         [self dispatchOnMainQueueIfNecessary:^{
-            completion(invocations); 
+            completion(propertySetters); 
         }];
     };
     
@@ -166,9 +166,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [self downloadStyleDataFromUrl:self.url queue:queue completion:^(BOOL updated) {
         if (updated) {
             [self parseStyleData:self.data queue:queue completion:^(NSDictionary *dictionary) {
-                [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *invocations) {
-                    for (NSInvocation *invocation in invocations) {
-                        [invocation invoke];
+                [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *propertySetters) {
+                    for (UISSPropertySetter *propertySetter in propertySetters) {
+                        [propertySetter.invocation invoke];
                     }
                     completion(YES);
                 }];

@@ -10,7 +10,6 @@
 
 #import <objc/runtime.h>
 
-#import "NSInvocation+UISS.h"
 #import "UISSColorValueConverter.h"
 #import "UISSConfig.h"
 #import "UISSIntegerValueConverter.h"
@@ -129,15 +128,6 @@
     }
 
     return [self parseDictionary:dictionary appearanceStack:[NSMutableArray array]];
-}
-
-- (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
-{
-    NSAssert(handler, @"handler block is required");
-    NSArray *propertySetters = [self parseDictionary:dictionary];
-    for (UISSPropertySetter *propertySetter in propertySetters) {
-        handler(propertySetter.invocation);
-    }
 }
 
 @end

@@ -21,16 +21,6 @@
 @synthesize stringToValueDictionary = _stringToValueDictionary;
 @synthesize stringToCodeDictionary = _stringToCodeDictionary;
 
-
-- (BOOL)canConvertAxisParameterWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
-{
-    if (![argumentType isEqualToString:self.argumentType]) return NO;
-    if (![value isKindOfClass:[NSString class]]) return NO;
-    if (![[name lowercaseString] hasSuffix:[self.propertyNameSuffix lowercaseString]]) return NO;
-    
-    return YES;
-}
-
 - (NSString *)propertyNameSuffix
 {
     return nil;
@@ -43,7 +33,11 @@
 
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
-    return [self canConvertAxisParameterWithName:argument.name value:argument.value argumentType:argument.type];
+    if (![argument.type isEqualToString:self.argumentType]) return NO;
+    if (![argument.value isKindOfClass:[NSString class]]) return NO;
+    if (![[argument.name lowercaseString] hasSuffix:[self.propertyNameSuffix lowercaseString]]) return NO;
+    
+    return YES;
 }
 
 - (NSString *)generateCodeForValue:(id)value;

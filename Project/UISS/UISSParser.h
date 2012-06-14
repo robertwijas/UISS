@@ -15,6 +15,5 @@
 @property (nonatomic, strong) UISSConfig *config;
 
 - (NSArray *)parseDictionary:(NSDictionary *)dictionary;
-- (void)parseDictionary:(NSDictionary *)dictionary handler:(void (^)(NSInvocation *invocation))handler;
 
 @end

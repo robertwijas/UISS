@@ -11,14 +11,9 @@
 
 @implementation UISSUIntegerValueConverter
 
-- (BOOL)canConvertPropertyWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
+- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
-    return [argumentType isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]];
-}
-
-- (BOOL)canConvertAxisParameterWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
-{
-    return [self canConvertPropertyWithName:name value:value argumentType:argumentType];
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]];
 }
 
 - (NSNumber *)convertValue:(id)value;
@@ -32,12 +27,11 @@
 
 - (NSString *)generateCodeForValue:(id)value
 {
+    if ([value respondsToSelector:@selector(unsignedIntegerValue)]) {
+        return [NSString stringWithFormat:@"%d", [value unsignedIntegerValue]];
+    }
+    
     return nil;
-}
-
-- (BOOL)canConvertValueForArgument:(UISSArgument *)argument
-{
-    return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
 @end

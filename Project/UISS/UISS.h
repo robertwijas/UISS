@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 57things. All rights reserved.
 //
 
+#import "UISSConfig.h"
+
 extern NSString *const UISSWillDownloadStyleNotification;
 extern NSString *const UISSDidDownloadStyleNotification;
 
@@ -20,6 +22,7 @@ extern NSString *const UISSDidRefreshViewsNotification;
 
 @interface UISS : NSObject
 
+@property (nonatomic, strong) UISSConfig *config;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, assign) NSTimeInterval refreshInterval;
 

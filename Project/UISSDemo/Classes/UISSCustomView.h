@@ -11,5 +11,6 @@
 @interface UISSCustomView : UIView
 
 - (void)setBackgroundImage:(UIImage *)image UI_APPEARANCE_SELECTOR;
+- (void)setBackgroundMargin:(CGFloat)backgroundMargin UI_APPEARANCE_SELECTOR;
 
 @end
