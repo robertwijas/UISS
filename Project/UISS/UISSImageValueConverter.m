@@ -47,7 +47,7 @@
     return edgeInsetsValue;
 }
 
-- (BOOL)convertPropertyValue:(id)value imageHandler:(void (^)(UIImage *))imageHandler codeHandler:(void (^)(NSString *))codeHandler;
+- (BOOL)convertValue:(id)value imageHandler:(void (^)(UIImage *))imageHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if ([value isKindOfClass:[NSString class]]) {
         if (imageHandler) {
@@ -62,12 +62,12 @@
     } else if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *) value;
 
-        return [self convertPropertyValue:[array objectAtIndex:0]
+        return [self convertValue:[array objectAtIndex:0]
                 imageHandler:^(UIImage *image) {
                     if (imageHandler) {
                         if (image && array.count > 1) {
                             id edgeInsetsValue = [self edgeInsetsValueFromImageArray:array];
-                            id edgeInsetsConverted  = [self.edgeInsetsValueConverter convertPropertyValue:edgeInsetsValue];
+                            id edgeInsetsConverted  = [self.edgeInsetsValueConverter convertValue:edgeInsetsValue];
 
                             if (edgeInsetsConverted) {
                                 UIEdgeInsets edgeInsets = [edgeInsetsConverted UIEdgeInsetsValue];
@@ -82,7 +82,7 @@
                     if (codeHandler) {
                         if (code && array.count > 1) {
                             id edgeInsetsValue = [self edgeInsetsValueFromImageArray:array];
-                            id edgeInsetsCode = [self.edgeInsetsValueConverter generateCodeForPropertyValue:edgeInsetsValue];
+                            id edgeInsetsCode = [self.edgeInsetsValueConverter generateCodeForValue:edgeInsetsValue];
 
                             if (edgeInsetsCode) {
                                 code = [NSString stringWithFormat:@"[%@ resizableImageWithCapInsets:%@]", code, edgeInsetsCode];
@@ -97,11 +97,11 @@
     return NO;
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     __block UIImage *result = nil;
 
-    [self convertPropertyValue:value
+    [self convertValue:value
                   imageHandler:^(UIImage *image) {
                       result = image;
                   }
@@ -110,11 +110,11 @@
     return result;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     __block NSString *result = nil;
 
-    [self convertPropertyValue:value imageHandler:nil codeHandler:^(NSString *code) {
+    [self convertValue:value imageHandler:nil codeHandler:^(NSString *code) {
         result = code;
     }];
 
@@ -124,16 +124,6 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
-}
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
 }
 
 @end

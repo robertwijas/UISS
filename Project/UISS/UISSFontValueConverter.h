@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UISSPropertyValueConverter.h"
+#import "UISSArgumentValueConverter.h"
 
-@interface UISSFontValueConverter : NSObject <UISSPropertyValueConverter>
+@interface UISSFontValueConverter : NSObject <UISSArgumentValueConverter>
 
 @end

@@ -43,10 +43,10 @@
 
 - (void)testValue:(id)value expectedSize:(CGSize)expectedSize expectedCode:(NSString *)expectedCode;
 {
-    id converted = [self.converter convertPropertyValue:value];
+    id converted = [self.converter convertValue:value];
     STAssertEquals([converted CGSizeValue], expectedSize, nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 

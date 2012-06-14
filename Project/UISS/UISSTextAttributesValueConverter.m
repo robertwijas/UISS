@@ -44,18 +44,18 @@
 
 - (void)convertProperty:(NSString *)propertyName fromDictionary:(NSDictionary *)dictionary
            toDictionary:(NSMutableDictionary *)converterDictionary withKey:(NSString *)key
-         usingConverter:(id <UISSPropertyValueConverter>)converter;
+         usingConverter:(id<UISSArgumentValueConverter>)converter;
 {
     id value = [dictionary objectForKey:propertyName];
     if (value) {
-        id converted = [converter convertPropertyValue:value];
+        id converted = [converter convertValue:value];
         if (converted) {
             [converterDictionary setObject:converted forKey:key];
         }
     }
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     if ([value isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *) value;
@@ -81,7 +81,7 @@
     return nil;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     if ([value isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *) value;
@@ -90,22 +90,22 @@
 
         id fontValue = [dictionary objectForKey:UISS_FONT_KEY];
         if (fontValue) {
-            [objectAndKeys appendFormat:@"%@, %@,", [self.fontConverter generateCodeForPropertyValue:fontValue], @"UITextAttributeFont"];
+            [objectAndKeys appendFormat:@"%@, %@,", [self.fontConverter generateCodeForValue:fontValue], @"UITextAttributeFont"];
         }
 
         id textColorValue = [dictionary objectForKey:UISS_TEXT_COLOR_KEY];
         if (textColorValue) {
-            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForPropertyValue:textColorValue], @"UITextAttributeTextColor"];
+            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForValue:textColorValue], @"UITextAttributeTextColor"];
         }
 
         id textShadowColor = [dictionary objectForKey:UISS_TEXT_SHADOW_COLOR_KEY];
         if (textShadowColor) {
-            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForPropertyValue:textShadowColor], @"UITextAttributeTextShadowColor"];
+            [objectAndKeys appendFormat:@"%@, %@,", [self.colorConverter generateCodeForValue:textShadowColor], @"UITextAttributeTextShadowColor"];
         }
 
         id textShadowOffset = [dictionary objectForKey:UISS_TEXT_SHADOW_OFFSET_KEY];
         if (textShadowOffset) {
-            [objectAndKeys appendFormat:@"[NSValue valueWithUIOffset:%@], %@,", [self.offsetConverter generateCodeForPropertyValue:textShadowOffset], @"UITextAttributeTextShadowOffset"];
+            [objectAndKeys appendFormat:@"[NSValue valueWithUIOffset:%@], %@,", [self.offsetConverter generateCodeForValue:textShadowOffset], @"UITextAttributeTextShadowOffset"];
         }
 
         if (objectAndKeys.length) {
@@ -119,16 +119,6 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
-}
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
 }
 
 @end

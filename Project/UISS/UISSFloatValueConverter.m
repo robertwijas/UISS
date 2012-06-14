@@ -16,7 +16,7 @@
     return [argumentType isEqualToString:[NSString stringWithCString:@encode(CGFloat) encoding:NSUTF8StringEncoding]];
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     if ([value isKindOfClass:[NSNumber class]]) {
         CGFloat floatValue = [value floatValue];
@@ -26,7 +26,7 @@
     return nil;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     return nil;
 }
@@ -34,16 +34,6 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
-}
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
 }
 
 @end

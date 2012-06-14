@@ -16,22 +16,12 @@
     return [argumentType isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]];
 }
 
-- (id)convertPropertyValue:(id)value;
-{
-    if ([value isKindOfClass:[NSNumber class]]) {
-        NSUInteger unsignedIntegerValue = [value unsignedIntegerValue];
-        return [NSValue value:&unsignedIntegerValue withObjCType:@encode(NSUInteger)];
-    }
-    
-    return nil;
-}
-
 - (BOOL)canConvertAxisParameterWithName:(NSString *)name value:(id)value argumentType:(NSString *)argumentType;
 {
     return [self canConvertPropertyWithName:name value:value argumentType:argumentType];
 }
 
-- (NSNumber *)convertAxisParameter:(id)value;
+- (NSNumber *)convertValue:(id)value;
 {
     if ([value isKindOfClass:[NSNumber class]]) {
         return value;
@@ -40,7 +30,7 @@
     }
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     return nil;
 }
@@ -48,16 +38,6 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
-}
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
 }
 
 @end

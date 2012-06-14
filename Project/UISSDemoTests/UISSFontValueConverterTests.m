@@ -47,7 +47,7 @@
 
 - (void)testDefaultSystemItalicFont;
 {
-    UIFont *font = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
+    UIFont *font = [self.converter convertValue:[NSArray arrayWithObjects:
             @"italic",
             [NSNumber numberWithFloat:14],
             nil]];
@@ -58,10 +58,10 @@
 
 - (void)testValue:(id)value expectedFont:(UIFont *)expectedFont expectedCode:(NSString *)expectedCode;
 {
-    UIFont *font = [self.converter convertPropertyValue:value];
+    UIFont *font = [self.converter convertValue:value];
     STAssertEqualObjects(font, expectedFont, nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 

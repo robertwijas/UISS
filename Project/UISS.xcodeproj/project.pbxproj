@@ -68,8 +68,6 @@
 		E145C8581584AF820087BB1B /* NSString+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E145C8561584AF820087BB1B /* NSString+UISS.h */; };
 		E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C8571584AF820087BB1B /* NSString+UISS.m */; };
 		E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */; };
-		E145C85F1584DA3B0087BB1B /* UISSConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E145C85D1584DA3B0087BB1B /* UISSConverter.h */; };
-		E145C8601584DA3B0087BB1B /* UISSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C85E1584DA3B0087BB1B /* UISSConverter.m */; };
 		E145C8631584DCC70087BB1B /* UISSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = E145C8611584DCC70087BB1B /* UISSConfig.h */; };
 		E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E145C8621584DCC70087BB1B /* UISSConfig.m */; };
 		E14698131558313A000F311F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = E146980F1558313A000F311F /* first.png */; };
@@ -86,12 +84,10 @@
 		E146983415584700000F311F /* ExampleJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E146982E15584700000F311F /* ExampleJSONTests.m */; };
 		E146983715584700000F311F /* UISSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E146983315584700000F311F /* UISSTests.m */; };
 		E146983A15584831000F311F /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
-		E146983C155905B7000F311F /* UISSPropertyValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E146983B155905B7000F311F /* UISSPropertyValueConverter.h */; };
 		E1469840155905FE000F311F /* UISSColorValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E146983E155905FE000F311F /* UISSColorValueConverter.h */; };
 		E1469841155905FE000F311F /* UISSColorValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E146983F155905FE000F311F /* UISSColorValueConverter.m */; };
 		E146984415590709000F311F /* UISSFontValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E146984215590709000F311F /* UISSFontValueConverter.h */; };
 		E146984515590709000F311F /* UISSFontValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E146984315590709000F311F /* UISSFontValueConverter.m */; };
-		E14698481559078F000F311F /* UISSAxisParameterValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E14698471559078F000F311F /* UISSAxisParameterValueConverter.h */; };
 		E146984B15598AAB000F311F /* UISSColorValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E146984A15598AAB000F311F /* UISSColorValueConverterTests.m */; };
 		E146984E1559B24C000F311F /* UISSImageValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E146984C1559B24C000F311F /* UISSImageValueConverter.h */; };
 		E146984F1559B24C000F311F /* UISSImageValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E146984D1559B24C000F311F /* UISSImageValueConverter.m */; };
@@ -173,46 +169,44 @@
 		E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSearchBarIconValueConverter.m; sourceTree = "<group>"; };
 		E129E5CC1562F86000E93185 /* UISSCustomContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomContainerView.h; sourceTree = "<group>"; };
 		E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCustomContainerView.m; sourceTree = "<group>"; };
-		E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageValueConverterTests.m; sourceTree = "<group>"; };
-		E129E5D61563CCFB00E93185 /* UISSFontValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFontValueConverterTests.m; sourceTree = "<group>"; };
-		E129E5D91563D44200E93185 /* UISSTextAttributesValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTextAttributesValueConverterTests.m; sourceTree = "<group>"; };
+		E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSImageValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E129E5D61563CCFB00E93185 /* UISSFontValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSFontValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E129E5D91563D44200E93185 /* UISSTextAttributesValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSTextAttributesValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E129E5DC1563DE5000E93185 /* UISSBarMetricsValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSBarMetricsValueConverter.h; sourceTree = "<group>"; };
 		E129E5DD1563DE5000E93185 /* UISSBarMetricsValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSBarMetricsValueConverter.m; sourceTree = "<group>"; };
 		E129E5E01563DE7B00E93185 /* UISSControlStateValueConveter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSControlStateValueConveter.h; sourceTree = "<group>"; };
 		E129E5E11563DE7B00E93185 /* UISSControlStateValueConveter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSControlStateValueConveter.m; sourceTree = "<group>"; };
 		E129E5E41563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSegmentedControlSegmentValueConverter.h; sourceTree = "<group>"; };
 		E129E5E51563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSegmentedControlSegmentValueConverter.m; sourceTree = "<group>"; };
-		E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUIKitEnumsValueConvetersTests.m; sourceTree = "<group>"; };
+		E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSUIKitEnumsValueConvetersTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAbstractEnumValueConverter.h; sourceTree = "<group>"; };
 		E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSAbstractEnumValueConverter.m; sourceTree = "<group>"; };
 		E12C10A7157ACB0C00F9008D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E12DA0AE155A9D410066CCC3 /* UISSSizeValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSizeValueConverter.h; sourceTree = "<group>"; };
-		E12DA0AF155A9D410066CCC3 /* UISSSizeValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSizeValueConverter.m; sourceTree = "<group>"; };
+		E12DA0AF155A9D410066CCC3 /* UISSSizeValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSSizeValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0B2155A9D550066CCC3 /* UISSRectValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSRectValueConverter.h; sourceTree = "<group>"; };
-		E12DA0B3155A9D550066CCC3 /* UISSRectValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSRectValueConverter.m; sourceTree = "<group>"; };
-		E12DA0BA155A9F640066CCC3 /* UISSSizeValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSizeValueConverterTests.m; sourceTree = "<group>"; };
+		E12DA0B3155A9D550066CCC3 /* UISSRectValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSRectValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0BA155A9F640066CCC3 /* UISSSizeValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSSizeValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0BC155AB88F0066CCC3 /* UISSEdgeInsetsValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSEdgeInsetsValueConverter.h; sourceTree = "<group>"; };
-		E12DA0BD155AB88F0066CCC3 /* UISSEdgeInsetsValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSEdgeInsetsValueConverter.m; sourceTree = "<group>"; };
+		E12DA0BD155AB88F0066CCC3 /* UISSEdgeInsetsValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSEdgeInsetsValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0C0155AB8A50066CCC3 /* UISSOffsetValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSOffsetValueConverter.h; sourceTree = "<group>"; };
-		E12DA0C1155AB8A50066CCC3 /* UISSOffsetValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSOffsetValueConverter.m; sourceTree = "<group>"; };
-		E12DA0C4155AB9940066CCC3 /* UISSEdgeInsetsValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSEdgeInsetsValueConverterTests.m; sourceTree = "<group>"; };
-		E12DA0C5155AB9940066CCC3 /* UISSOffsetValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSOffsetValueConverterTests.m; sourceTree = "<group>"; };
-		E12DA0C6155AB9940066CCC3 /* UISSRectValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSRectValueConverterTests.m; sourceTree = "<group>"; };
+		E12DA0C1155AB8A50066CCC3 /* UISSOffsetValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSOffsetValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0C4155AB9940066CCC3 /* UISSEdgeInsetsValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSEdgeInsetsValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0C5155AB9940066CCC3 /* UISSOffsetValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSOffsetValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0C6155AB9940066CCC3 /* UISSRectValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSRectValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0CB155ABCF30066CCC3 /* UISSPointValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSPointValueConverter.h; sourceTree = "<group>"; };
-		E12DA0CC155ABCF40066CCC3 /* UISSPointValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPointValueConverter.m; sourceTree = "<group>"; };
-		E12DA0D0155ABD770066CCC3 /* UISSPointValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPointValueConverterTests.m; sourceTree = "<group>"; };
+		E12DA0CC155ABCF40066CCC3 /* UISSPointValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSPointValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0D0155ABD770066CCC3 /* UISSPointValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSPointValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0D3155ABE500066CCC3 /* UISSIntegerValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSIntegerValueConverter.h; sourceTree = "<group>"; };
-		E12DA0D4155ABE500066CCC3 /* UISSIntegerValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSIntegerValueConverter.m; sourceTree = "<group>"; };
+		E12DA0D4155ABE500066CCC3 /* UISSIntegerValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSIntegerValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E12DA0D7155ABE5E0066CCC3 /* UISSFloatValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSFloatValueConverter.h; sourceTree = "<group>"; };
-		E12DA0D8155ABE5E0066CCC3 /* UISSFloatValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFloatValueConverter.m; sourceTree = "<group>"; };
-		E12DA0DB155ABEA00066CCC3 /* UISSFloatValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFloatValueConverterTests.m; sourceTree = "<group>"; };
-		E12DA0DC155ABEA00066CCC3 /* UISSIntegerValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSIntegerValueConverterTests.m; sourceTree = "<group>"; };
+		E12DA0D8155ABE5E0066CCC3 /* UISSFloatValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSFloatValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0DB155ABEA00066CCC3 /* UISSFloatValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSFloatValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E12DA0DC155ABEA00066CCC3 /* UISSIntegerValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSIntegerValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E13B646515890CC800E3613B /* UISSArgumentValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSArgumentValueConverter.h; sourceTree = "<group>"; };
 		E145C8561584AF820087BB1B /* NSString+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UISS.h"; sourceTree = "<group>"; };
 		E145C8571584AF820087BB1B /* NSString+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UISS.m"; sourceTree = "<group>"; };
 		E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPropertySetterTests.m; sourceTree = "<group>"; };
-		E145C85D1584DA3B0087BB1B /* UISSConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSConverter.h; sourceTree = "<group>"; };
-		E145C85E1584DA3B0087BB1B /* UISSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConverter.m; sourceTree = "<group>"; };
 		E145C8611584DCC70087BB1B /* UISSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSConfig.h; sourceTree = "<group>"; };
 		E145C8621584DCC70087BB1B /* UISSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConfig.m; sourceTree = "<group>"; };
 		E146980F1558313A000F311F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
@@ -233,17 +227,15 @@
 		E146982E15584700000F311F /* ExampleJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleJSONTests.m; sourceTree = "<group>"; };
 		E146983315584700000F311F /* UISSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTests.m; sourceTree = "<group>"; };
 		E146983915584831000F311F /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
-		E146983B155905B7000F311F /* UISSPropertyValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSPropertyValueConverter.h; sourceTree = "<group>"; };
 		E146983E155905FE000F311F /* UISSColorValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSColorValueConverter.h; sourceTree = "<group>"; };
-		E146983F155905FE000F311F /* UISSColorValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSColorValueConverter.m; sourceTree = "<group>"; };
+		E146983F155905FE000F311F /* UISSColorValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSColorValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E146984215590709000F311F /* UISSFontValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSFontValueConverter.h; sourceTree = "<group>"; };
-		E146984315590709000F311F /* UISSFontValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSFontValueConverter.m; sourceTree = "<group>"; };
-		E14698471559078F000F311F /* UISSAxisParameterValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAxisParameterValueConverter.h; sourceTree = "<group>"; };
+		E146984315590709000F311F /* UISSFontValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSFontValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E146984A15598AAB000F311F /* UISSColorValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSColorValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E146984C1559B24C000F311F /* UISSImageValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSImageValueConverter.h; sourceTree = "<group>"; };
-		E146984D1559B24C000F311F /* UISSImageValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageValueConverter.m; sourceTree = "<group>"; };
+		E146984D1559B24C000F311F /* UISSImageValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSImageValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E1469850155A6D0E000F311F /* UISSTextAttributesValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSTextAttributesValueConverter.h; sourceTree = "<group>"; };
-		E1469851155A6D0E000F311F /* UISSTextAttributesValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTextAttributesValueConverter.m; sourceTree = "<group>"; };
+		E1469851155A6D0E000F311F /* UISSTextAttributesValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSTextAttributesValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E1469858155A85EC000F311F /* UISSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParser.h; sourceTree = "<group>"; };
 		E1469859155A85EC000F311F /* UISSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParser.m; sourceTree = "<group>"; };
 		E146985C155A8908000F311F /* NSInvocation+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+UISS.h"; sourceTree = "<group>"; };
@@ -282,7 +274,7 @@
 		E1ED8C151450D4E200302B61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1F2B9C415814486008EE145 /* UISSPrivateAppearanceMethodsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSPrivateAppearanceMethodsTests.m; sourceTree = "<group>"; };
 		E1F48243156259FE00CFA72E /* UISSUIntegerValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUIntegerValueConverter.h; sourceTree = "<group>"; };
-		E1F48244156259FE00CFA72E /* UISSUIntegerValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUIntegerValueConverter.m; sourceTree = "<group>"; };
+		E1F48244156259FE00CFA72E /* UISSUIntegerValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSUIntegerValueConverter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E1F6E2F2157EC35B00A5187E /* UISSStatusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusWindow.h; sourceTree = "<group>"; };
 		E1F6E2F3157EC35B00A5187E /* UISSStatusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStatusWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -548,10 +540,6 @@
 				E12DA0CF155ABD3B0066CCC3 /* Simple Types */,
 				E12DA0AC155A9B5E0066CCC3 /* Structures */,
 				E13B646515890CC800E3613B /* UISSArgumentValueConverter.h */,
-				E146983B155905B7000F311F /* UISSPropertyValueConverter.h */,
-				E14698471559078F000F311F /* UISSAxisParameterValueConverter.h */,
-				E145C85D1584DA3B0087BB1B /* UISSConverter.h */,
-				E145C85E1584DA3B0087BB1B /* UISSConverter.m */,
 			);
 			name = "Value Converters";
 			sourceTree = "<group>";
@@ -744,10 +732,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E146983C155905B7000F311F /* UISSPropertyValueConverter.h in Headers */,
 				E1469840155905FE000F311F /* UISSColorValueConverter.h in Headers */,
 				E146984415590709000F311F /* UISSFontValueConverter.h in Headers */,
-				E14698481559078F000F311F /* UISSAxisParameterValueConverter.h in Headers */,
 				E146984E1559B24C000F311F /* UISSImageValueConverter.h in Headers */,
 				E1469852155A6D0E000F311F /* UISSTextAttributesValueConverter.h in Headers */,
 				E146985A155A85EC000F311F /* UISSParser.h in Headers */,
@@ -778,7 +764,6 @@
 				E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */,
 				E1076BEA157F6B1A00886759 /* UISSStatusWindowController.h in Headers */,
 				E145C8581584AF820087BB1B /* NSString+UISS.h in Headers */,
-				E145C85F1584DA3B0087BB1B /* UISSConverter.h in Headers */,
 				E145C8631584DCC70087BB1B /* UISSConfig.h in Headers */,
 				E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */,
 			);
@@ -961,7 +946,6 @@
 				E1076BEB157F6B1A00886759 /* UISSStatusWindowController.m in Sources */,
 				E1F6E2F5157EC35B00A51882 /* (null) in Sources */,
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
-				E145C8601584DA3B0087BB1B /* UISSConverter.m in Sources */,
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@
     return [argumentType hasPrefix:@"@"] && [[name lowercaseString] hasSuffix:@"font"];
 }
 
-- (BOOL)convertPropertyValue:(id)value fontHandler:(void (^)(UIFont *))fontHandler codeHandler:(void (^)(NSString *))codeHandler;
+- (BOOL)convertValue:(id)value fontHandler:(void (^)(UIFont *))fontHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *) value;
@@ -73,11 +73,11 @@
     return NO;
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     __block UIFont *result = nil;
 
-    [self convertPropertyValue:value
+    [self convertValue:value
                    fontHandler:^(UIFont *font) {
                        result = font;
                    }
@@ -86,11 +86,11 @@
     return result;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     __block NSString *result = nil;
 
-    [self convertPropertyValue:value fontHandler:nil codeHandler:^(NSString *code) {
+    [self convertValue:value fontHandler:nil codeHandler:^(NSString *code) {
         result = code;
     }];
 
@@ -101,16 +101,5 @@
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
-}
-
 
 @end

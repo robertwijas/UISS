@@ -31,7 +31,7 @@
 
 - (void)testConversionFromNumber;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithFloat:0.5f]];
+    id value = [self.converter convertValue:[NSNumber numberWithFloat:0.5f]];
     STAssertTrue([value isKindOfClass:[NSValue class]], nil);
     
     CGFloat floatValue = 0;

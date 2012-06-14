@@ -93,14 +93,14 @@
 - (BOOL)colorFromPatterImageString:(NSString *)patternImageString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     // UIColor with pattern
-    UIImage *patternImage = [self.imageValueConverter convertPropertyValue:patternImageString];
+    UIImage *patternImage = [self.imageValueConverter convertValue:patternImageString];
     if (patternImage) {
         if (colorHandler) {
             colorHandler([UIColor colorWithPatternImage:patternImage]);
         }
 
         if (codeHandler) {
-            codeHandler([NSString stringWithFormat:@"[UIColor colorWithPatternImage:%@]", [self.imageValueConverter generateCodeForPropertyValue:patternImageString]]);
+            codeHandler([NSString stringWithFormat:@"[UIColor colorWithPatternImage:%@]", [self.imageValueConverter generateCodeForValue:patternImageString]]);
         }
 
         return YES;
@@ -126,7 +126,7 @@
     return NO;
 }
 
-- (BOOL)convertPropertyValue:(id)value colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
+- (BOOL)convertValue:(id)value colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler;
 {
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *) value;
@@ -177,11 +177,11 @@
     }
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     __block UIColor *result = nil;
 
-    [self convertPropertyValue:value
+    [self convertValue:value
                   colorHandler:^(UIColor *color) {
                       result = color;
                   }
@@ -190,11 +190,11 @@
     return result;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
     __block NSString *result = nil;
 
-    [self convertPropertyValue:value colorHandler:nil codeHandler:^(NSString *code) {
+    [self convertValue:value colorHandler:nil codeHandler:^(NSString *code) {
         result = code;
     }];
 
@@ -205,16 +205,5 @@
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
 }
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
-}
-
 
 @end

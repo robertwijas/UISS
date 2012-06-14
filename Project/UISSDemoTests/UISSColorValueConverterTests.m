@@ -83,8 +83,8 @@
 
 - (void)testColorValue:(id)value expectedColor:(UIColor *)expectedColor expectedCode:(NSString *)expectedCode;
 {
-    UIColor *color = [self.converter convertPropertyValue:value];
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    UIColor *color = [self.converter convertValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
 
     if (expectedColor != nil) {
         STAssertNotNil(color, nil);

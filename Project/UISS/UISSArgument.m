@@ -45,12 +45,12 @@
 
 - (id)convertedValue;
 {
-    return [self.converter convertValueForArgument:self];
+    return [self.converter convertValue:self.value];
 }
 
 - (NSString *)generatedCode;
 {
-    return [self.converter generateCodeForArgument:self];
+    return [self.converter generateCodeForValue:self.value];
 }
 
 @end

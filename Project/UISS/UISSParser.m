@@ -11,29 +11,21 @@
 #import <objc/runtime.h>
 
 #import "NSInvocation+UISS.h"
-
 #import "UISSColorValueConverter.h"
-
 #import "UISSConfig.h"
-#import "UISSConverter.h"
-
 #import "UISSIntegerValueConverter.h"
-
 #import "UISSDictionaryPreprocessor.h"
-
 #import "UISSPropertySetter.h"
 
 @implementation UISSParser
 
 @synthesize config = _config;
-@synthesize converter = _converter;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.config = [UISSConfig sharedConfig];
-        self.converter = [[UISSConverter alloc] init];
     }
     
     return self;

@@ -31,7 +31,7 @@
 
 - (void)testUnsignedInteger;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithUnsignedInteger:10]];
+    id value = [self.converter convertValue:[NSNumber numberWithUnsignedInteger:10]];
     STAssertTrue([value isKindOfClass:[NSValue class]], nil);
     
     NSUInteger unsignedIntegerValue = 0;
@@ -42,7 +42,7 @@
 
 - (void)testInteger;
 {
-    id value = [self.converter convertPropertyValue:[NSNumber numberWithInteger:-10]];
+    id value = [self.converter convertValue:[NSNumber numberWithInteger:-10]];
     STAssertTrue([value isKindOfClass:[NSValue class]], nil);
     
     NSInteger integerValue = 0;

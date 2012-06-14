@@ -38,8 +38,8 @@
             [NSNumber numberWithFloat:4],
             nil];
 
-    id converted = [self.converter convertPropertyValue:value];
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    id converted = [self.converter convertValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
 
     STAssertNotNil(converted, nil);
     STAssertEquals([converted UIEdgeInsetsValue], UIEdgeInsetsMake(1, 2, 3, 4), nil);

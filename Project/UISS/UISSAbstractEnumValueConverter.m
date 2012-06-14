@@ -31,15 +31,6 @@
     return YES;
 }
 
-- (NSNumber *)convertAxisParameter:(id)value;
-{
-    if ([value isKindOfClass:[NSString class]]) {
-        return [self.stringToValueDictionary objectForKey:value];
-    }
-    
-    return nil;
-}
-
 - (NSString *)propertyNameSuffix
 {
     return nil;
@@ -55,14 +46,14 @@
     return [self canConvertAxisParameterWithName:argument.name value:argument.value argumentType:argument.type];
 }
 
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
+- (NSString *)generateCodeForValue:(id)value;
 {
-    return [self.stringToCodeDictionary objectForKey:argument.value];
+    return [self.stringToCodeDictionary objectForKey:value];
 }
 
-- (id)convertValueForArgument:(UISSArgument *)argument
+- (id)convertValue:(id)value
 {
-    return [self convertAxisParameter:argument.value];
+    return [self.stringToValueDictionary objectForKey:value];
 }
 
 @end

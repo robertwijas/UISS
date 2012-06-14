@@ -42,10 +42,10 @@
 
 - (void)testValue:(id)value expectedPoint:(CGPoint)expectedPoint expectedCode:(NSString *)expectedCode;
 {
-    id converted = [self.converter convertPropertyValue:value];
+    id converted = [self.converter convertValue:value];
     STAssertEquals([converted CGPointValue], expectedPoint, nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 

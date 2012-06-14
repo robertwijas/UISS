@@ -62,11 +62,11 @@
 
 - (void)testValue:(id)value expectedCode:(NSString *)expectedCode assertBlock:(void (^)(NSDictionary *))assertBlock;
 {
-    NSDictionary *attributes = [self.converter convertPropertyValue:value];
+    NSDictionary *attributes = [self.converter convertValue:value];
     STAssertNotNil(attributes, nil);
     assertBlock(attributes);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 

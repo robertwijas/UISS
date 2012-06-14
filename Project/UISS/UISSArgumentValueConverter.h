@@ -13,7 +13,8 @@
 @protocol UISSArgumentValueConverter <NSObject>
 
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument;
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument;
-- (id)convertValueForArgument:(UISSArgument *)argument;
+
+- (NSString *)generateCodeForValue:(id)value;
+- (id)convertValue:(id)value;
 
 @end

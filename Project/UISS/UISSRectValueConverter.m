@@ -16,7 +16,7 @@
     return [argumentType isEqualToString:[NSString stringWithCString:@encode(CGRect) encoding:NSUTF8StringEncoding]];
 }
 
-- (id)convertPropertyValue:(id)value;
+- (id)convertValue:(id)value;
 {
     if ([value isKindOfClass:[NSArray class]] && [value count] == 4) {
         NSArray *array = (NSArray *) value;
@@ -31,9 +31,9 @@
     return nil;
 }
 
-- (NSString *)generateCodeForPropertyValue:(id)value
+- (NSString *)generateCodeForValue:(id)value
 {
-    id converted = [self convertPropertyValue:value];
+    id converted = [self convertValue:value];
 
     if (converted) {
         CGRect rect = [converted CGRectValue];
@@ -48,16 +48,6 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
     return [self canConvertPropertyWithName:argument.name value:argument.value argumentType:argument.type];
-}
-
-- (NSString *)generateCodeForArgument:(UISSArgument *)argument
-{
-    return [self generateCodeForPropertyValue:argument.value];
-}
-
-- (id)convertValueForArgument:(UISSArgument *)argument
-{
-    return [self convertPropertyValue:argument.value];
 }
 
 @end

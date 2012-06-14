@@ -45,10 +45,10 @@
 
 - (void)testValue:(id)value expectedOffset:(UIOffset)expectedOffset expectedCode:(NSString *)expectedCode;
 {
-    id converted = [self.converter convertPropertyValue:value];
+    id converted = [self.converter convertValue:value];
     STAssertEquals([converted UIOffsetValue], expectedOffset, nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 

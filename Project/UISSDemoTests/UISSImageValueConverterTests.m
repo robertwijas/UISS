@@ -21,12 +21,12 @@
 
 - (void)testSimleImageAsString;
 {
-    UIImage *image = [self.converter convertPropertyValue:@"background"];
+    UIImage *image = [self.converter convertValue:@"background"];
 
     STAssertNotNil(image, nil);
     STAssertEqualObjects(image, [UIImage imageNamed:@"background"], nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:@"background"];
+    NSString *code = [self.converter generateCodeForValue:@"background"];
     STAssertEqualObjects(code, @"[UIImage imageNamed:@\"background\"]", nil);
 }
 
@@ -41,18 +41,18 @@
                                                  nil],
                                          nil];
 
-    UIImage *image = [self.converter convertPropertyValue:value];
+    UIImage *image = [self.converter convertValue:value];
 
     STAssertNotNil(image, nil);
     STAssertEquals(image.capInsets, UIEdgeInsetsMake(1, 2, 3, 4), nil);
 
-    NSString *code = [self.converter generateCodeForPropertyValue:value];
+    NSString *code = [self.converter generateCodeForValue:value];
     STAssertEqualObjects(code, @"[[UIImage imageNamed:@\"background\"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 2.0, 3.0, 4.0)]", nil);
 }
 
 - (void)testResizableDefinedInOneArray;
 {
-    UIImage *image = [self.converter convertPropertyValue:[NSArray arrayWithObjects:
+    UIImage *image = [self.converter convertValue:[NSArray arrayWithObjects:
             @"background",
             [NSNumber numberWithFloat:1],
             [NSNumber numberWithFloat:2],

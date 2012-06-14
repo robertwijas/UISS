@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UISSAxisParameterValueConverter.h"
+#import "UISSArgumentValueConverter.h"
 
-@interface UISSAbstractEnumValueConverter : NSObject <UISSAxisParameterValueConverter>
+@interface UISSAbstractEnumValueConverter : NSObject <UISSArgumentValueConverter>
 
 @end
 
