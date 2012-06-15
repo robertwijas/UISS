@@ -1,17 +1,17 @@
 {
   "Variables": {
+    "color": "yellowColor"
   },
   "UIToolbar": {
-    "tintColor": "yellowColor",
-    "backgroundImage": "black.png"
+    "tintColor": "$color",
+    "backgroundImage": ["black", "any", "default"]
   },
   "UINavigationBar": {
-    "tintColor": "redColor",
-    "titleVerticalPositionAdjustment": 10,
-    "backgroundImage": ["black.png", "landscapePhone"]
+    "titleVerticalPositionAdjustment": [10, "default"],
+    "backgroundImage": ["black", "landscapePhone"]
   },
   "UITabBarItem": {
     "titlePositionAdjustment": [[10, 10]],
-    "titleTextAttributes": {"font":24}
+    "titleTextAttributes": [{"font":24}, "normal"]
   }
 }

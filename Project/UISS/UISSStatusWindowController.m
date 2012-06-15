@@ -20,6 +20,11 @@
 
 @synthesize statusWindow=_statusWindow;
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id)init
 {
     self = [super init];

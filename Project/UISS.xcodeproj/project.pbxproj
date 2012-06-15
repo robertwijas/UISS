@@ -30,6 +30,7 @@
 		E116C4F2156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */; };
 		E116C4F3156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */; };
 		E123BA1E158A38FA004F8633 /* UISSAppearancePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = E123BA1D158A38FA004F8633 /* UISSAppearancePrivate.h */; };
+		E123BD64158BA83B004F8633 /* UISSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E123BD63158BA83A004F8633 /* UISSTests.m */; };
 		E129E5CE1562F86100E93185 /* UISSCustomContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */; };
 		E129E5D41563C38D00E93185 /* UISSImageValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */; };
 		E129E5D71563CCFB00E93185 /* UISSFontValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5D61563CCFB00E93185 /* UISSFontValueConverterTests.m */; };
@@ -112,6 +113,7 @@
 		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 		E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */; };
 		E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */; };
+		E1C67BD3158BABC500E220BB /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
 		E1ED8BE31450D4E200302B61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 		E1ED8BE41450D4E200302B61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1ED8BE51450D4E200302B61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438E1143F674200F87518 /* CoreGraphics.framework */; };
@@ -166,6 +168,7 @@
 		E116C4F0156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSearchBarIconValueConverter.h; sourceTree = "<group>"; };
 		E116C4F1156E7E4200CA1BCB /* UISSSearchBarIconValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSearchBarIconValueConverter.m; sourceTree = "<group>"; };
 		E123BA1D158A38FA004F8633 /* UISSAppearancePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAppearancePrivate.h; sourceTree = "<group>"; };
+		E123BD63158BA83A004F8633 /* UISSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSTests.m; sourceTree = "<group>"; };
 		E129E5CC1562F86000E93185 /* UISSCustomContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCustomContainerView.h; sourceTree = "<group>"; };
 		E129E5CD1562F86100E93185 /* UISSCustomContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCustomContainerView.m; sourceTree = "<group>"; };
 		E129E5D31563C38D00E93185 /* UISSImageValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSImageValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -695,6 +698,7 @@
 				E1469861155A8B51000F311F /* UISSParserTests.m */,
 				E1F2B9C415814486008EE145 /* UISSPrivateAppearanceMethodsTests.m */,
 				E145C85B1584B7D40087BB1B /* UISSPropertySetterTests.m */,
+				E123BD63158BA83A004F8633 /* UISSTests.m */,
 			);
 			path = UISSDemoTests;
 			sourceTree = "<group>";
@@ -871,6 +875,7 @@
 				E10D5E5C1574BBA400185009 /* Icon@2x.png in Resources */,
 				E10D5E5D1574BBA400185009 /* iTunesArtwork.png in Resources */,
 				E10D5E5E1574BBA400185009 /* iTunesArtwork@2x.png in Resources */,
+				E1C67BD3158BABC500E220BB /* black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +983,7 @@
 				E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */,
 				E1F2B9C515814486008EE145 /* UISSPrivateAppearanceMethodsTests.m in Sources */,
 				E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */,
+				E123BD64158BA83B004F8633 /* UISSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,8 +29,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @interface UISS ()
 
+// last data successfully parsed
 @property (strong) NSData *data;
-@property (nonatomic, strong) NSMutableSet *configuredProxies;
+@property (nonatomic, strong) NSArray *propertySetters;
 
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
 
@@ -44,7 +45,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @synthesize refreshInterval=_refreshInterval;
 
 @synthesize data=_data;
-@synthesize configuredProxies=_configuredProxies;
+@synthesize propertySetters=_propertySetters;
 
 @synthesize statusWindowController=_statusWindowController;
 
@@ -54,7 +55,6 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     if (self) {
         self.config = [UISSConfig sharedConfig];
         self.statusWindowController = [[UISSStatusWindowController alloc] init];
-        self.configuredProxies = [NSMutableSet set];
     }
     return self;
 }
@@ -165,6 +165,19 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
 }
 
+- (void)resetConfiguredProxies;
+{
+    NSLog(@"UISS -- reseting configured proxies");
+    
+    NSMutableSet *done = [NSMutableSet set];
+    for (UISSPropertySetter *propertySetter in self.propertySetters) {
+        if ([done containsObject:propertySetter.target] == NO) {
+            [[propertySetter.target _appearanceInvocations] removeAllObjects];
+            [done addObject:propertySetter.target];
+        }
+    }
+}
+
 - (void)reloadUsingQueue:(dispatch_queue_t)queue completion:(void (^)(BOOL reloaded))completion;
 {
     NSLog(@"UISS -- reloading...");
@@ -173,15 +186,13 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         if (updated) {
             [self parseStyleData:self.data queue:queue completion:^(NSDictionary *dictionary) {
                 [self parseStyleDictionary:dictionary queue:queue completion:^(NSArray *propertySetters) {
-                    NSLog(@"UISS -- reseting configured proxies");
-                    for (id appearance in self.configuredProxies) {
-                        [[appearance _appearanceInvocations] removeAllObjects];
-                    }
-                    [self.configuredProxies removeAllObjects];
+                    [self resetConfiguredProxies];
+                    
+                    self.propertySetters = propertySetters;
                     
                     NSLog(@"UISS -- creating invocations");
                     NSMutableArray *invocations = [NSMutableArray array];
-                    for (UISSPropertySetter *propertySetter in propertySetters) {
+                    for (UISSPropertySetter *propertySetter in self.propertySetters) {
                         NSInvocation *invocation = propertySetter.invocation;
                         if (invocation) {
                             [invocations addObject:invocation];
@@ -191,10 +202,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                     NSLog(@"UISS -- number of invocations: %d", invocations.count);
                     for (NSInvocation *invocation in invocations) {
                         [invocation invoke];
-                        [self.configuredProxies addObject:invocation.target];
                     }
                     
-                    NSLog(@"UISS -- number of configured proxies: %d", self.configuredProxies.count);
+                    NSLog(@"UISS -- done");
                     completion(YES);
                 }];
             }];
@@ -221,6 +231,17 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                     
                     [self scheduleRefresh];
                 }];
+}
+
+- (NSString *)generateCode;
+{
+    NSMutableString *code = [NSMutableString string];
+    
+    for (UISSPropertySetter *propertySetter in self.propertySetters) {
+        [code appendFormat:@"%@\n", propertySetter.generatedCode];
+    }
+    
+    return code;
 }
 
 + (void)configureWithJSONFilePath:(NSString *)filePath;

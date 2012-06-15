@@ -29,6 +29,8 @@ extern NSString *const UISSDidRefreshViewsNotification;
 - (void)reload;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
+- (NSString *)generateCode;
+
 + (void)configureWithJSONFilePath:(NSString *)filePath;
 + (void)configureWithDefaultJSONFile;
 
