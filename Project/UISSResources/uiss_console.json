@@ -1,0 +1,18 @@
+{
+    "Variables": {
+    },
+    "UISSConsoleViewController": {
+        "UITabBar": {
+            "tintColor": "black",
+            "selectedImageTintColor": "lightGray",
+            "UITabBarItem": {
+                "titleTextAttributes": [[{"textColor": "white"}, "selected"],
+                                        [{"textColor": "lightGray"}, "normal"]]
+            }
+        },
+        "UINavigationBar": {
+            "tintColor": "lightGray",
+            "backgroundImage": [[null, "default"], [null, "landscapePhone"]]
+        }
+    }
+}

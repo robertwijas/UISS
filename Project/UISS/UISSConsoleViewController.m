@@ -38,11 +38,4 @@
     return YES;
 }
 
-- (void)viewDidLayoutSubviews;
-{
-    [super viewDidLayoutSubviews];
-    
-    self.tabBar.tintColor = [UIColor darkGrayColor];
-}
-
 @end

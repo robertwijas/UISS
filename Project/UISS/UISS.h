@@ -25,6 +25,7 @@ extern NSString *const UISSDidRefreshViewsNotification;
 @property (nonatomic, strong) UISSConfig *config;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, assign) NSTimeInterval refreshInterval;
+@property (nonatomic, assign) BOOL statusWindowEnabled;
 
 - (void)reload;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;

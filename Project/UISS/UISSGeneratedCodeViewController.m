@@ -24,6 +24,7 @@
     self = [super init];
     if (self) {
         self.uiss = uiss;
+        
     }
     return self;
 }
@@ -46,6 +47,7 @@
     [super viewDidLoad];
     
     self.title = @"Code";
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:self.title image:[UIImage imageNamed:@"UISSResources.bundle/code"] tag:0];
     
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Phone", @"Pad", nil]];
     segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;

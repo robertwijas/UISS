@@ -55,10 +55,30 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     self = [super init];
     if (self) {
         self.config = [UISSConfig sharedConfig];
-        self.statusWindowController = [[UISSStatusWindowController alloc] init];
-        self.statusWindowController.delegate = self;
     }
+    
     return self;
+}
+
+- (BOOL)statusWindowEnabled;
+{
+    return self.statusWindowController != nil;
+}
+
+- (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled;
+{
+    if (statusWindowEnabled) {
+        if (self.statusWindowController == nil) {
+            // configure Console
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss_console" ofType:@"json" inDirectory:@"UISSResources.bundle"];
+            [UISS configureWithJSONFilePath:filePath];
+            
+            self.statusWindowController = [[UISSStatusWindowController alloc] init];
+            self.statusWindowController.delegate = self;
+        }
+    } else {
+        self.statusWindowController = nil;
+    }
 }
 
 - (void)downloadStyleDataFromUrl:(NSURL *)url queue:(dispatch_queue_t)queue completion:(void (^)(BOOL updated, NSArray *errors))completion;
