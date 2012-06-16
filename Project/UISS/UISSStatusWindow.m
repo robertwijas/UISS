@@ -63,12 +63,8 @@
         [self addSubview:self.containerView];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeStatusBarFrame:) 
-                                                     name:UIApplicationDidChangeStatusBarFrameNotification 
+                                                     name:UIApplicationDidChangeStatusBarOrientationNotification 
                                                    object:nil];
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
-                                                                                               action:@selector(tapGestureRecognizerHandler:)];
-        [self addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
 }
@@ -78,28 +74,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self updateLayout];
     });
-}
-
-- (void)tapGestureRecognizerHandler:(UITapGestureRecognizer *)gestureRecognizer;
-{
-    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
-        UISSConsoleViewController *consoleViewController = [[UISSConsoleViewController alloc] init];
-        consoleViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        UIViewController *presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-        
-        if (presentingViewController.presentedViewController) {
-            if ([presentingViewController.presentedViewController isKindOfClass:[UISSConsoleViewController class]]) {
-                [presentingViewController dismissViewControllerAnimated:YES completion:nil];
-            } else {
-                [presentingViewController dismissViewControllerAnimated:YES completion:^{
-                    [presentingViewController presentViewController:consoleViewController animated:YES completion:nil];
-                }];
-            }
-        } else {
-            [presentingViewController presentViewController:consoleViewController animated:YES completion:nil];
-        }
-    }
 }
 
 - (void)updateLayout;

@@ -30,8 +30,10 @@ extern NSString *const UISSDidRefreshViewsNotification;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
 - (NSString *)generateCode;
+- (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
+                              codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 
-+ (void)configureWithJSONFilePath:(NSString *)filePath;
-+ (void)configureWithDefaultJSONFile;
++ (UISS *)configureWithJSONFilePath:(NSString *)filePath;
++ (UISS *)configureWithDefaultJSONFile;
 
 @end

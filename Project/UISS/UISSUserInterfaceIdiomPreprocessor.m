@@ -10,27 +10,16 @@
 
 @implementation UISSUserInterfaceIdiomPreprocessor
 
-@synthesize userInterfaceIdiom=_userInterfaceIdiom;
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
-    }
-    return self;
-}
-
-- (id)preprocessValueIfNecessary:(id)value;
+- (id)preprocessValueIfNecessary:(id)value userInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
 {
     if ([value isKindOfClass:[NSDictionary class]]) {
-        return [self preprocess:value];
+        return [self preprocess:value userInterfaceIdiom:userInterfaceIdiom];
     } else {
         return value;
     }
 }
 
-- (NSDictionary *)preprocess:(NSDictionary *)dictionary;
+- (NSDictionary *)preprocess:(NSDictionary *)dictionary userInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
 {
     NSMutableDictionary *preprocessed = [NSMutableDictionary dictionary];
     
@@ -38,12 +27,12 @@
         UIUserInterfaceIdiom idiom = [self userInterfaceIdiomFromKey:key];
         
         if (idiom == NSNotFound) {
-            [preprocessed setObject:[self preprocessValueIfNecessary:object] forKey:key];
+            [preprocessed setObject:[self preprocessValueIfNecessary:object userInterfaceIdiom:userInterfaceIdiom] forKey:key];
         } else {
-            if (idiom == self.userInterfaceIdiom) {
+            if (idiom == userInterfaceIdiom) {
                 // skip everything thats not a dictionary
                 if ([object isKindOfClass:[NSDictionary class]]) {
-                    [preprocessed addEntriesFromDictionary:[self preprocess:object]];
+                    [preprocessed addEntriesFromDictionary:[self preprocess:object userInterfaceIdiom:userInterfaceIdiom]];
                 }
             }
         }

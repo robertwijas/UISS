@@ -26,7 +26,7 @@
                                 @"v1", @"k1",
                                 @"v2", @"k2", nil];
     
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     
     STAssertNotNil(preprocessed, nil);
     STAssertEqualObjects(dictionary, preprocessed, nil);
@@ -38,9 +38,7 @@
                                 @"v1", @"k1",
                                 @"phone-value", @"Phone", nil];
     
-    self.preprocessor.userInterfaceIdiom = UIUserInterfaceIdiomPad;
-    
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPad];
     
     STAssertNotNil(preprocessed, nil);
     STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");
@@ -53,9 +51,7 @@
                                 [NSDictionary dictionaryWithObject:@"pad-value" forKey:@"pad-key"], @"Pad",
                                 [NSDictionary dictionaryWithObject:@"phone-value" forKey:@"phone-key"], @"Phone", nil];
     
-    self.preprocessor.userInterfaceIdiom = UIUserInterfaceIdiomPhone;
-    
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     
     STAssertNotNil(preprocessed, nil);
     STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");
@@ -69,9 +65,7 @@
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:nestedDictionary
                                                            forKey:@"root"];
     
-    self.preprocessor.userInterfaceIdiom = UIUserInterfaceIdiomPhone;
-    
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     STAssertTrue([preprocessed.allKeys containsObject:@"root"], nil);
     STAssertEqualObjects([[preprocessed objectForKey:@"root"] objectForKey:@"key"], @"value", nil);
 }
@@ -82,9 +76,7 @@
                                 [NSDictionary dictionaryWithObject:@"pad-value" forKey:@"pad-key"], @"pad",
                                 [NSDictionary dictionaryWithObject:@"phone-value" forKey:@"phone-key"], @"iphone", nil];
     
-    self.preprocessor.userInterfaceIdiom = UIUserInterfaceIdiomPhone;
-    
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     
     STAssertNotNil(preprocessed, nil);
     STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");

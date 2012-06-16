@@ -142,7 +142,7 @@
                                 componentStyleDictionary, @"Component",
                                 nil];
     
-    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary];
+    NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     
     STAssertFalse([preprocessed.allKeys containsObject:@"Variables"], @"Variables dictionary should be removed");
     

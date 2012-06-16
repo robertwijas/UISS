@@ -19,12 +19,14 @@
 @implementation UISSParser
 
 @synthesize config = _config;
+@synthesize userInterfaceIdiom = _userInterfaceIdiom;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.config = [UISSConfig sharedConfig];
+        self.userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
     }
     
     return self;
@@ -124,7 +126,7 @@
 - (NSArray *)parseDictionary:(NSDictionary *)dictionary;
 {
     for (id<UISSDictionaryPreprocessor>preprocessor in self.config.preprocessors) {
-        dictionary = [preprocessor preprocess:dictionary];
+        dictionary = [preprocessor preprocess:dictionary userInterfaceIdiom:self.userInterfaceIdiom];
     }
 
     return [self parseDictionary:dictionary appearanceStack:[NSMutableArray array]];

@@ -10,6 +10,6 @@
 
 @protocol UISSDictionaryPreprocessor <NSObject>
 
-- (NSDictionary *)preprocess:(NSDictionary *)dictionary;
+- (NSDictionary *)preprocess:(NSDictionary *)dictionary userInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
 
 @end

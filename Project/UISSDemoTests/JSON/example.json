@@ -1,17 +1,23 @@
 {
-  "Variables": {
-    "color": "yellowColor"
-  },
-  "UIToolbar": {
-    "tintColor": "$color",
-    "backgroundImage": ["black", "any", "default"]
-  },
-  "UINavigationBar": {
-    "titleVerticalPositionAdjustment": [10, "default"],
-    "backgroundImage": ["black", "landscapePhone"]
-  },
-  "UITabBarItem": {
-    "titlePositionAdjustment": [[10, 10]],
-    "titleTextAttributes": [{"font":24}, "normal"]
-  }
+    "Variables": {
+        "color": "yellowColor"
+    },
+    "UIToolbar": {
+        "tintColor": "$color",
+        "backgroundImage": ["black", "any", "default"]
+    },
+    "UINavigationBar": {
+        "Pad": {
+            "tintColor": "green"
+        },
+        "Phone": {
+            "tintColor": "red"
+        },
+        "titleVerticalPositionAdjustment": [10, "default"],
+        "backgroundImage": ["black", "landscapePhone"]
+    },
+    "UITabBarItem": {
+        "titlePositionAdjustment": [[10, 10]],
+        "titleTextAttributes": [{"font":24}, "normal"]
+    }
 }

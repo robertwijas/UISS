@@ -13,6 +13,7 @@
 @interface UISSParser : NSObject
 
 @property (nonatomic, strong) UISSConfig *config;
+@property (nonatomic, assign) UIUserInterfaceIdiom userInterfaceIdiom;
 
 - (NSArray *)parseDictionary:(NSDictionary *)dictionary;
 

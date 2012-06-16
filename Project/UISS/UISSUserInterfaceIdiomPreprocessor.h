@@ -11,6 +11,4 @@
 
 @interface UISSUserInterfaceIdiomPreprocessor : NSObject <UISSDictionaryPreprocessor>
 
-@property (nonatomic, assign) UIUserInterfaceIdiom userInterfaceIdiom;
-
 @end

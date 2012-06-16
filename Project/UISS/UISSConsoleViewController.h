@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UISSConsoleViewController : UIViewController
+@class UISS;
+
+@interface UISSConsoleViewController : UITabBarController
+
+- (id)initWithUISS:(UISS *)uiss;
 
 @end

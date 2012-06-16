@@ -133,7 +133,7 @@ typedef id (^ResolveBlock)(NSString *);
     }
 }
 
-- (NSDictionary *)preprocess:(NSDictionary *)dictionary;
+- (NSDictionary *)preprocess:(NSDictionary *)dictionary userInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
 {
     // clean up
     [self.variables removeAllObjects];

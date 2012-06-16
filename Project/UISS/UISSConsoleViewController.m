@@ -7,22 +7,42 @@
 //
 
 #import "UISSConsoleViewController.h"
+#import "UISSGeneratedCodeViewController.h"
+#import "UISS.h"
 
 @interface UISSConsoleViewController ()
+
+@property (nonatomic, strong) UISS *uiss;
 
 @end
 
 @implementation UISSConsoleViewController
 
-- (void)viewDidLoad
+@synthesize uiss=_uiss;
+
+- (id)initWithUISS:(UISS *)uiss;
 {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
+    self = [super init];
+    if (self) {
+        self.uiss = uiss;
+        
+        UISSGeneratedCodeViewController *generatedCodeViewController = [[UISSGeneratedCodeViewController alloc] initWithUISS:self.uiss];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:generatedCodeViewController];
+        self.viewControllers = [NSArray arrayWithObject:navigationController];
+    }
+    return self;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 {
     return YES;
+}
+
+- (void)viewDidLayoutSubviews;
+{
+    [super viewDidLayoutSubviews];
+    
+    self.tabBar.tintColor = [UIColor darkGrayColor];
 }
 
 @end

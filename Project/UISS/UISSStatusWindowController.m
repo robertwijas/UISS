@@ -18,6 +18,7 @@
 
 @implementation UISSStatusWindowController
 
+@synthesize delegate=_delegate;
 @synthesize statusWindow=_statusWindow;
 
 - (void)dealloc
@@ -32,10 +33,22 @@
         [self registerForNotifications];
         
         self.statusWindow = [[UISSStatusWindow alloc] init];
-        [self.statusWindow makeKeyAndVisible];
-        [self.statusWindow resignKeyWindow];
+        self.statusWindow.hidden = NO;
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
+                                                                                               action:@selector(tapGestureRecognizerHandler:)];
+        [self.statusWindow addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
+}
+
+- (void)tapGestureRecognizerHandler:(UIGestureRecognizer *)gestureRecognizer;
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
+        if ([self.delegate respondsToSelector:@selector(statusWindowControllerDidSelect:)]) {
+            [self.delegate statusWindowControllerDidSelect:self];
+        }
+    }
 }
 
 - (void)registerForNotifications;
@@ -48,7 +61,7 @@
                                              selector:@selector(didDownloadStyle:) 
                                                  name:UISSDidDownloadStyleNotification 
                                                object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(willParseStyle:) 
                                                  name:UISSWillParseStyleNotification 
@@ -57,7 +70,7 @@
                                              selector:@selector(didParseStyle:) 
                                                  name:UISSDidParseStyleNotification 
                                                object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(willApplyStyle:) 
                                                  name:UISSWillApplyStyleNotification 
@@ -66,7 +79,7 @@
                                              selector:@selector(didApplyStyle:) 
                                                  name:UISSDidApplyStyleNotification 
                                                object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(willRefreshViews:) 
                                                  name:UISSWillRefreshViewsNotification 

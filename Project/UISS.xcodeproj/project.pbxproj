@@ -114,6 +114,8 @@
 		E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */; };
 		E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */; };
 		E1C67BD3158BABC500E220BB /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
+		E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */; };
+		E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */; };
 		E1ED8BE31450D4E200302B61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 		E1ED8BE41450D4E200302B61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1ED8BE51450D4E200302B61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438E1143F674200F87518 /* CoreGraphics.framework */; };
@@ -261,6 +263,8 @@
 		E1B43904143F702200F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSConsoleViewController.h; sourceTree = "<group>"; };
 		E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConsoleViewController.m; sourceTree = "<group>"; };
+		E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSGeneratedCodeViewController.h; sourceTree = "<group>"; };
+		E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSGeneratedCodeViewController.m; sourceTree = "<group>"; };
 		E1ED8BE11450D4E100302B61 /* UISSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED8BE81450D4E200302B61 /* UISSDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSDemo-Info.plist"; sourceTree = "<group>"; };
 		E1ED8BEA1450D4E200302B61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -719,6 +723,8 @@
 				E1076BED157F6B2500886759 /* Status Window */,
 				E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */,
 				E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */,
+				E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */,
+				E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */,
 			);
 			name = Console;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				E145C8631584DCC70087BB1B /* UISSConfig.h in Headers */,
 				E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */,
 				E123BA1E158A38FA004F8633 /* UISSAppearancePrivate.h in Headers */,
+				E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +952,7 @@
 				E1F6E2F5157EC35B00A51882 /* (null) in Sources */,
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
+				E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

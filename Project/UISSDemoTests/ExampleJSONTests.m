@@ -11,62 +11,85 @@
 
 @interface ExampleJSONTests : SenTestCase
 
+@property (nonatomic, strong) UISS *uiss;
+
 @end
 
 @implementation ExampleJSONTests
 
-- (void)configureOnce;
-{
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    NSString *jsonFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"example" ofType:@"json"];
-    [UISS configureWithJSONFilePath:jsonFilePath];
-  });
-}
+@synthesize uiss=_uiss;
 
 - (void)setUp
 {
-  [super setUp];
+    [super setUp];
+    
+    NSString *jsonFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"example" ofType:@"json"];
+    self.uiss = [UISS configureWithJSONFilePath:jsonFilePath];
+}
 
-  [self configureOnce];
+- (void)testGeneratedCode;
+{
+    NSString *code = [self.uiss generateCode];
+    STAssertNotNil(code, nil);
+    
+    STAssertTrue([code rangeOfString:@"[[UIToolbar appearance] setTintColor:[UIColor yellowColor]];"].location != NSNotFound, nil);
+    STAssertTrue([code rangeOfString:@"[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@\"black\"] forBarMetrics:UIBarMetricsLandscapePhone];"].location != NSNotFound, nil);
+}
+
+- (void)testGeneratedCodeForPad;
+{
+    [self.uiss generateCodeForUserInterfaceIdiom:UIUserInterfaceIdiomPad codeHandler:^(NSString *code, NSArray *errors) {
+        STAssertTrue(errors.count == 0, @"errors are unexpected");
+        STAssertNotNil(code, nil);
+        STAssertTrue([code rangeOfString:@"[[UINavigationBar appearance] setTintColor:[UIColor greenColor]];"].location != NSNotFound, nil);
+    }];
+}
+
+- (void)testGeneratedCodeForPhone;
+{
+    [self.uiss generateCodeForUserInterfaceIdiom:UIUserInterfaceIdiomPhone codeHandler:^(NSString *code, NSArray *errors) {
+        STAssertTrue(errors.count == 0, @"errors are unexpected");
+        STAssertNotNil(code, nil);
+        STAssertTrue([code rangeOfString:@"[[UINavigationBar appearance] setTintColor:[UIColor redColor]];"].location != NSNotFound, nil);
+    }];
 }
 
 - (void)testToolbarTintColor;
 {
-  STAssertEqualObjects([[UIToolbar appearance] tintColor], [UIColor yellowColor], nil);
+    STAssertEqualObjects([[UIToolbar appearance] tintColor], [UIColor yellowColor], nil);
 }
 
 - (void)testToolbarBackgroundImage;
 {
-  UIImage *backgroundImage = [[UIToolbar appearance] backgroundImageForToolbarPosition:UIToolbarPositionAny 
-                                                                            barMetrics:UIBarMetricsDefault];
-  STAssertNotNil(backgroundImage, nil);
-  STAssertEqualObjects([backgroundImage class], [UIImage class], @"bad property class", nil);
+    UIImage *backgroundImage = [[UIToolbar appearance] backgroundImageForToolbarPosition:UIToolbarPositionAny 
+                                                                              barMetrics:UIBarMetricsDefault];
+    STAssertNotNil(backgroundImage, nil);
+    STAssertEqualObjects([backgroundImage class], [UIImage class], @"bad property class", nil);
 }
 
 - (void)testTabBarItemTitlePositionAdjustment;
 {
-  UIOffset titlePositionAdjustment = [[UITabBarItem appearance] titlePositionAdjustment];
-  STAssertEquals(titlePositionAdjustment, UIOffsetMake(10, 10), nil);
+    UIOffset titlePositionAdjustment = [[UITabBarItem appearance] titlePositionAdjustment];
+    STAssertEquals(titlePositionAdjustment, UIOffsetMake(10, 10), nil);
 }
 
 - (void)testNavigationBarTitleVerticalPositionAdjustment;
 {
-  STAssertEquals([[UINavigationBar appearance] titleVerticalPositionAdjustmentForBarMetrics:UIBarMetricsDefault], 10.0f, nil);
+    STAssertEquals([[UINavigationBar appearance] titleVerticalPositionAdjustmentForBarMetrics:UIBarMetricsDefault], 10.0f, nil);
 }
 
 - (void)testNavigationBarBackgroundImageForBarMetricsLandscapePhone;
 {
-  STAssertNotNil([[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsLandscapePhone], nil);
+    STAssertNotNil([[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsLandscapePhone], nil);
 }
 
 - (void)testTabBarItemTitleTextAttributes;
 {
-  UIFont *font = [[[UITabBarItem appearance] titleTextAttributesForState:UIControlStateNormal] objectForKey:UITextAttributeFont];
-  STAssertNotNil(font, nil);
-  if (font) {
-    STAssertEqualObjects(font, [UIFont systemFontOfSize:24], nil);
-  }
+    UIFont *font = [[[UITabBarItem appearance] titleTextAttributesForState:UIControlStateNormal] objectForKey:UITextAttributeFont];
+    STAssertNotNil(font, nil);
+    if (font) {
+        STAssertEqualObjects(font, [UIFont systemFontOfSize:24], nil);
+    }
 }
 
 @end
