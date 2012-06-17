@@ -113,6 +113,8 @@
 		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 		E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */; };
 		E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */; };
+		E1C08347158E334E007A88E6 /* UISSError.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C08345158E334E007A88E6 /* UISSError.h */; };
+		E1C08348158E334E007A88E6 /* UISSError.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C08346158E334E007A88E6 /* UISSError.m */; };
 		E1C67BD3158BABC500E220BB /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
 		E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */; };
 		E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */; };
@@ -276,6 +278,8 @@
 		E1B43904143F702200F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSConsoleViewController.h; sourceTree = "<group>"; };
 		E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConsoleViewController.m; sourceTree = "<group>"; };
+		E1C08345158E334E007A88E6 /* UISSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSError.h; sourceTree = "<group>"; };
+		E1C08346158E334E007A88E6 /* UISSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSError.m; sourceTree = "<group>"; };
 		E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSGeneratedCodeViewController.h; sourceTree = "<group>"; };
 		E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSGeneratedCodeViewController.m; sourceTree = "<group>"; };
 		E1C67BDC158CE98A00E220BB /* UISSResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UISSResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,6 +503,8 @@
 				E145C8561584AF820087BB1B /* NSString+UISS.h */,
 				E145C8571584AF820087BB1B /* NSString+UISS.m */,
 				E123BA1D158A38FA004F8633 /* UISSAppearancePrivate.h */,
+				E1C08345158E334E007A88E6 /* UISSError.h */,
+				E1C08346158E334E007A88E6 /* UISSError.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -824,6 +830,7 @@
 				E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */,
 				E123BA1E158A38FA004F8633 /* UISSAppearancePrivate.h in Headers */,
 				E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */,
+				E1C08347158E334E007A88E6 /* UISSError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1044,7 @@
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
 				E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */,
+				E1C08348158E334E007A88E6 /* UISSError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1352,6 +1360,7 @@
 				E1C67BE8158CE98A00E220BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1ED8C1A1450D4E200302B61 /* Build configuration list for PBXNativeTarget "UISSDemo" */ = {
 			isa = XCConfigurationList;

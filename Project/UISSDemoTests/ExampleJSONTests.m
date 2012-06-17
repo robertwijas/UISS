@@ -27,15 +27,6 @@
     self.uiss = [UISS configureWithJSONFilePath:jsonFilePath];
 }
 
-- (void)testGeneratedCode;
-{
-    NSString *code = [self.uiss generateCode];
-    STAssertNotNil(code, nil);
-    
-    STAssertTrue([code rangeOfString:@"[[UIToolbar appearance] setTintColor:[UIColor yellowColor]];"].location != NSNotFound, nil);
-    STAssertTrue([code rangeOfString:@"[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@\"black\"] forBarMetrics:UIBarMetricsLandscapePhone];"].location != NSNotFound, nil);
-}
-
 - (void)testGeneratedCodeForPad;
 {
     [self.uiss generateCodeForUserInterfaceIdiom:UIUserInterfaceIdiomPad codeHandler:^(NSString *code, NSArray *errors) {
