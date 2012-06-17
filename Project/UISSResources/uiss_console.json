@@ -12,7 +12,14 @@
         },
         "UINavigationBar": {
             "tintColor": "lightGray",
-            "backgroundImage": [[null, "default"], [null, "landscapePhone"]]
+            "backgroundImage": [[null, "default"], [null, "landscapePhone"]],
+            "UISegmentedControl": {
+                "backgroundImage": [[null, "normal", "default"],
+                                    [null, "disabled", "default"]],
+                "dividerImage": [[null, "disabled", "normal", "default"],
+                                 [null, "normal", "disabled", "default"],
+                                 [null, "normal", "normal", "default"]]
+            }
         }
     }
 }

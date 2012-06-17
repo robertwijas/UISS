@@ -71,7 +71,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         if (self.statusWindowController == nil) {
             // configure Console
             NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss_console" ofType:@"json" inDirectory:@"UISSResources.bundle"];
-            [UISS configureWithJSONFilePath:filePath];
+            if (filePath) {
+                [UISS configureWithJSONFilePath:filePath];
+            }
             
             self.statusWindowController = [[UISSStatusWindowController alloc] init];
             self.statusWindowController.delegate = self;
