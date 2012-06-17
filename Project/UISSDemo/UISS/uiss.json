@@ -1,57 +1,71 @@
 {
     "Variables": {
-        "tintColor": "red",
-        "backgroundColor": ["#770077", 0.5],
-        "insets": [100, 100, 100, 100]
+        "mainColor": "red"
     },
+    
     "Phone": {
         "UINavigationBar": {
-            "backgroundImage": ["background.png", "default"]
+            "tintColor": "gray"
         }
     },
     "Pad": {
         "UINavigationBar": {
-            "tintColor": "$tintColor"
+            "backgroundImage": ["background.png", "default"]
+        }
+    },
+    "UITabBar": {
+        "tintColor": "darkGray",
+        "selectedImageTintColor": "$mainColor",
+        "UITabBarItem": {
+            "titleTextAttributes": [[{"textColor": "red"}, "selected"],
+                                    [{"textColor": "white"}, "normal"]]
         }
     },
     "UIToolbar": {
-        "tintColor": "greenColor",
+        "tintColor": "lightGray",
         "backgroundImage": ["background", "bottom"]
     },
     "UISSCustomView": {
-        "backgroundImage": "background.png"
+        "-backgroundImage": "background.png",
+        "image": "background.png",
+        "backgroundImage": null,
+        "backgroundColor": "gray",
+        "backgroundMargin": 20,
+        "UIImageView": {
+            "backgroundColor": "red"
+        }
     },
     "UILabel": {
         "Phone": {
             "textColor": "blue"
         },
         "Pad": {
-            "textColor": "red"
+            "textColor": "orange"
         }
     },
     "UISSCustomContainerView": {
-        "backgroundColor": ["$backgroundColor"]
+        "backgroundColor": [["#8899ff", 0.5]]
     },
     "UISSDemoSecondViewController": {
         "UILabel": {
-            "textColor": "orange",
+            "textColor": "white",
             "backgroundColor": "black"
         },
         "UISSCustomContainerView": {
             "UILabel": {
                 "backgroundColor": "white",
-                "textColor": "blue"
+                "textColor": "black"
             }
         }
     },
     "UISSDemoFirstViewController": {
         "UIButton": {
-            "titleColor": [["green", "normal"], ["yellow", "highlighted"]],
+            "titleColor": [["black", "normal"], ["white", "highlighted"]],
             "backgroundImage": ["background", "highlighted"],
-            "contentEdgeInsets": ["$insets"]
         },
         "UILabel": {
-            "textColor": "orange"
+            "textColor": "blue",
+            "backgroundColor": "lightGray"
         }
     }
 }

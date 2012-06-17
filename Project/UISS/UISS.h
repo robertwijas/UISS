@@ -30,7 +30,6 @@ extern NSString *const UISSDidRefreshViewsNotification;
 - (void)reload;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
-- (NSString *)generateCode;
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
                               codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 

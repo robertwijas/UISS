@@ -15,6 +15,7 @@
 #import "UISSPropertySetter.h"
 #import "UISSAppearancePrivate.h"
 #import "UISSConsoleViewController.h"
+#import "UISSError.h"
 
 NSString *const UISSWillDownloadStyleNotification = @"UISSWillDownloadStyleNotification";
 NSString *const UISSDidDownloadStyleNotification = @"UISSDidDownloadStyleNotification";
@@ -241,15 +242,24 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                 }];
 }
 
-- (NSString *)generateCode;
+- (void)generateCodeFromPropertySetters:(NSArray *)propertySetters 
+                            codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 {
-    NSMutableString *code = [NSMutableString string];
+    NSAssert(codeHandler, @"code handler required");
     
-    for (UISSPropertySetter *propertySetter in self.propertySetters) {
-        [code appendFormat:@"%@\n", propertySetter.generatedCode];
+    NSMutableString *code = [NSMutableString string];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    for (UISSPropertySetter *propertySetter in propertySetters) {
+        NSString *generatedCode = propertySetter.generatedCode;
+        if (generatedCode) {
+            [code appendFormat:@"%@\n", generatedCode];
+        } else {
+            [errors addObject:[UISSError errorWithCode:UISSPropertySetterGenerateCodeError]];
+        }
     }
     
-    return code;
+    codeHandler(code, errors);
 }
 
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
@@ -260,13 +270,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                 userInterfaceIdiom:userInterfaceIdiom
                              queue:nil
                         completion:^(NSArray *propertySetters) {
-                            NSMutableString *code = [NSMutableString string];
-                            
-                            for (UISSPropertySetter *propertySetter in propertySetters) {
-                                [code appendFormat:@"%@\n", propertySetter.generatedCode];
-                            }
-                            
-                            codeHandler(code, nil);
+                            [self generateCodeFromPropertySetters:propertySetters codeHandler:codeHandler];
                         }];
     }];
 }
