@@ -234,7 +234,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 {
     [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) 
                 completion:^(BOOL reloaded, NSArray *errors){
-                    if (errors.count) {
+                    if (reloaded) {
                         [self refreshViews];
                     }
                     
