@@ -12,7 +12,7 @@
 
 @interface UISSPropertySetter : NSObject
 
-@property (nonatomic, strong) Class<UIAppearance> appearanceClass;
+@property (nonatomic, strong) Class appearanceClass;
 @property (nonatomic, copy) NSArray *containment; // array of Class<UIAppearanceContainer>
 
 @property (nonatomic, strong) UISSProperty *property;
