@@ -51,8 +51,8 @@
 
 - (void)updateLayout;
 {
-    self.frame = [self frameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
     self.transform = [self transformForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    self.frame = [self frameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
 }
 
 - (CGRect)frameForOrientation:(UIInterfaceOrientation)orientation;
