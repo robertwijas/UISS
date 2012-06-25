@@ -69,7 +69,7 @@
     if (_methodSignature == nil) {
         SEL selector = self.selector;
         if (selector) {
-            _methodSignature = [(id)self.target methodSignatureForSelector:selector];
+            _methodSignature = [self.appearanceClass instanceMethodSignatureForSelector:selector];
         }
     }
     
