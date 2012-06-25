@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UISSStatusView.h"
 
 @interface UISSStatusWindow : UIWindow
 
-@property (nonatomic, strong, readonly) UILabel *titleLabel;
-@property (nonatomic, strong, readonly) UILabel *statusLabel;
-@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong, readonly) UISSStatusView *statusView;
 
 @end

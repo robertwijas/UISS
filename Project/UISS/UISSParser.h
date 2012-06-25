@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UISSConfig *config;
 @property (nonatomic, assign) UIUserInterfaceIdiom userInterfaceIdiom;
 
-- (NSArray *)parseDictionary:(NSDictionary *)dictionary;
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary; // returns array of PropertySetters
 
 @end

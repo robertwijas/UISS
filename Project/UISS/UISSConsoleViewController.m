@@ -8,6 +8,7 @@
 
 #import "UISSConsoleViewController.h"
 #import "UISSGeneratedCodeViewController.h"
+#import "UISSErrorsViewController.h"
 #import "UISS.h"
 
 @interface UISSConsoleViewController ()
@@ -27,8 +28,27 @@
         self.uiss = uiss;
         
         UISSGeneratedCodeViewController *generatedCodeViewController = [[UISSGeneratedCodeViewController alloc] initWithUISS:self.uiss];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:generatedCodeViewController];
-        self.viewControllers = [NSArray arrayWithObject:navigationController];
+        generatedCodeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:generatedCodeViewController.title 
+                                                                               image:[UIImage imageNamed:@"UISSResources.bundle/code"] 
+                                                                                 tag:0];
+        UINavigationController *generatedCodeNavigationController = [[UINavigationController alloc] initWithRootViewController:generatedCodeViewController];
+        
+        
+        UISSErrorsViewController *errorsViewController = [[UISSErrorsViewController alloc] init];
+        UITabBarItem *errorsTabBarItem =[[UITabBarItem alloc] initWithTitle:errorsViewController.title 
+                                                                        image:[UIImage imageNamed:@"UISSResources.bundle/errors"] 
+                                                                          tag:0];
+        if (self.uiss.style.errors.count) {
+            errorsTabBarItem.badgeValue = [NSString stringWithFormat:@"%d", self.uiss.style.errors.count];
+        }
+        errorsViewController.tabBarItem = errorsTabBarItem;
+        errorsViewController.errors = self.uiss.style.errors;
+        
+        self.viewControllers = [NSArray arrayWithObjects:generatedCodeNavigationController, errorsViewController, nil];
+        
+        if (self.uiss.style.errors.count) {
+            self.selectedViewController = errorsViewController;
+        }
     }
     return self;
 }

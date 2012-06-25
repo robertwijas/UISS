@@ -100,6 +100,12 @@
 		E15B384B1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */; };
 		E15B384C1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */; };
 		E15B384F157257C3005BFF73 /* UISSDictionaryPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */; };
+		E18C7C1F158F52B1000D45AC /* UISSErrorsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */; };
+		E18C7C20158F52B1000D45AC /* UISSErrorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */; };
+		E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = E1914CAD158F99BB00E04977 /* UISSStyle.h */; };
+		E1914CB0158F99BB00E04977 /* UISSStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E1914CAE158F99BB00E04977 /* UISSStyle.m */; };
+		E1914CB4158FA2FC00E04977 /* errors.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB2158FA2FC00E04977 /* errors.png */; };
+		E1914CB5158FA2FC00E04977 /* errors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB3158FA2FC00E04977 /* errors@2x.png */; };
 		E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */; };
 		E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A7739615668F80000406CC /* UILabel+UISS.h */; };
 		E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7739715668F80000406CC /* UILabel+UISS.m */; };
@@ -111,6 +117,8 @@
 		E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1B438B9143F668000F87518 /* UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B438B8143F668000F87518 /* UISS.m */; };
 		E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
+		E1BBEBEF1598776D001F7A60 /* UISSStatusView.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BBEBED1598776C001F7A60 /* UISSStatusView.h */; };
+		E1BBEBF01598776D001F7A60 /* UISSStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BBEBEE1598776C001F7A60 /* UISSStatusView.m */; };
 		E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */; };
 		E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */; };
 		E1C08347158E334E007A88E6 /* UISSError.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C08345158E334E007A88E6 /* UISSError.h */; };
@@ -260,6 +268,12 @@
 		E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUserInterfaceIdiomPreprocessor.h; sourceTree = "<group>"; };
 		E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessor.m; sourceTree = "<group>"; };
 		E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSDictionaryPreprocessor.h; sourceTree = "<group>"; };
+		E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSErrorsViewController.h; sourceTree = "<group>"; };
+		E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSErrorsViewController.m; sourceTree = "<group>"; };
+		E1914CAD158F99BB00E04977 /* UISSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStyle.h; sourceTree = "<group>"; };
+		E1914CAE158F99BB00E04977 /* UISSStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStyle.m; sourceTree = "<group>"; };
+		E1914CB2158FA2FC00E04977 /* errors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errors.png; sourceTree = "<group>"; };
+		E1914CB3158FA2FC00E04977 /* errors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errors@2x.png"; sourceTree = "<group>"; };
 		E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessorTests.m; sourceTree = "<group>"; };
 		E1A7739615668F80000406CC /* UILabel+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+UISS.h"; sourceTree = "<group>"; };
 		E1A7739715668F80000406CC /* UILabel+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+UISS.m"; sourceTree = "<group>"; };
@@ -276,6 +290,8 @@
 		E1B438C0143F668000F87518 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E1B438E1143F674200F87518 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E1B43904143F702200F87518 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E1BBEBED1598776C001F7A60 /* UISSStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusView.h; sourceTree = "<group>"; };
+		E1BBEBEE1598776C001F7A60 /* UISSStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStatusView.m; sourceTree = "<group>"; };
 		E1BCCC33157F634B001E4429 /* UISSConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSConsoleViewController.h; sourceTree = "<group>"; };
 		E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConsoleViewController.m; sourceTree = "<group>"; };
 		E1C08345158E334E007A88E6 /* UISSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSError.h; sourceTree = "<group>"; };
@@ -357,6 +373,8 @@
 				E1F6E2F3157EC35B00A5187E /* UISSStatusWindow.m */,
 				E1076BE8157F6B1A00886759 /* UISSStatusWindowController.h */,
 				E1076BE9157F6B1A00886759 /* UISSStatusWindowController.m */,
+				E1BBEBED1598776C001F7A60 /* UISSStatusView.h */,
+				E1BBEBEE1598776C001F7A60 /* UISSStatusView.m */,
 			);
 			name = "Status Window";
 			sourceTree = "<group>";
@@ -678,6 +696,8 @@
 				E146983D155905DD000F311F /* Value Converters */,
 				E1B438B7143F668000F87518 /* UISS.h */,
 				E1B438B8143F668000F87518 /* UISS.m */,
+				E1914CAD158F99BB00E04977 /* UISSStyle.h */,
+				E1914CAE158F99BB00E04977 /* UISSStyle.m */,
 				E145C8611584DCC70087BB1B /* UISSConfig.h */,
 				E145C8621584DCC70087BB1B /* UISSConfig.m */,
 				E1B438B5143F668000F87518 /* Supporting Files */,
@@ -708,6 +728,8 @@
 		E1C67BDF158CE98A00E220BB /* UISSResources */ = {
 			isa = PBXGroup;
 			children = (
+				E1914CB2158FA2FC00E04977 /* errors.png */,
+				E1914CB3158FA2FC00E04977 /* errors@2x.png */,
 				E1C67BEF158CF5C300E220BB /* code.png */,
 				E1C67BF0158CF5C300E220BB /* code@2x.png */,
 				E1C67BE0158CE98A00E220BB /* Supporting Files */,
@@ -784,6 +806,8 @@
 				E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */,
 				E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */,
 				E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */,
+				E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */,
+				E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */,
 			);
 			name = Console;
 			sourceTree = "<group>";
@@ -831,6 +855,9 @@
 				E123BA1E158A38FA004F8633 /* UISSAppearancePrivate.h in Headers */,
 				E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */,
 				E1C08347158E334E007A88E6 /* UISSError.h in Headers */,
+				E18C7C1F158F52B1000D45AC /* UISSErrorsViewController.h in Headers */,
+				E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */,
+				E1BBEBEF1598776D001F7A60 /* UISSStatusView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,6 +973,8 @@
 				E1C67BEA158CE9A700E220BB /* uiss_console.json in Resources */,
 				E1C67BF1158CF5C300E220BB /* code.png in Resources */,
 				E1C67BF2158CF5C300E220BB /* code@2x.png in Resources */,
+				E1914CB4158FA2FC00E04977 /* errors.png in Resources */,
+				E1914CB5158FA2FC00E04977 /* errors@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1074,9 @@
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
 				E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */,
 				E1C08348158E334E007A88E6 /* UISSError.m in Sources */,
+				E18C7C20158F52B1000D45AC /* UISSErrorsViewController.m in Sources */,
+				E1914CB0158F99BB00E04977 /* UISSStyle.m in Sources */,
+				E1BBEBF01598776D001F7A60 /* UISSStatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

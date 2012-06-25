@@ -1,5 +1,7 @@
 # What is UISS?
 
+UISS stands for UIKit Style Sheet.
+
 UISS is an iOS library that provides you with a convenient way to define the style of your application.  
 UISS is built on top of UIKit UIAppearance proxies.
 

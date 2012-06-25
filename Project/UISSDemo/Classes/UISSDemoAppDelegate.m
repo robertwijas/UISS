@@ -34,7 +34,7 @@
 
     self.uiss = [[UISS alloc] init];
     self.uiss.statusWindowEnabled = YES;
-    self.uiss.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/39ulxi0b7bojx1k/uiss%20demo.json?dl=1"];
+    self.uiss.style.url = [NSURL URLWithString:@"https://dl.dropbox.com/s/39ulxi0b7bojx1k/uiss%20demo.json?dl=1"];
     self.uiss.refreshInterval = 5;
     
     [self.uiss registerReloadGestureRecognizerInView:self.window];

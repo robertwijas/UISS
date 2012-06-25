@@ -9,10 +9,14 @@
 #import "UISSStatusWindowController.h"
 #import "UISSStatusWindow.h"
 #import "UISS.h"
+#import "UISSStyle.h"
 
 @interface UISSStatusWindowController ()
 
 @property (nonatomic, strong) UISSStatusWindow *statusWindow;
+@property (nonatomic, readonly) UISSStatusView *statusView;
+
+@property (nonatomic, strong) NSDictionary *statusDictionary;
 
 @end
 
@@ -20,6 +24,8 @@
 
 @synthesize delegate=_delegate;
 @synthesize statusWindow=_statusWindow;
+
+@synthesize statusDictionary;
 
 - (void)dealloc
 {
@@ -30,6 +36,18 @@
 {
     self = [super init];
     if (self) {
+        
+        self.statusDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"Parsing Style Data", UISSStyleWillParseDataNotification,
+                                 @"Style Data Parsed", UISSStyleDidParseDataNotification,
+                                 @"Parsing Style Dictionary", UISSStyleWillParseDictionaryNotification,
+                                 @"Style Dictionary Parsed", UISSStyleDidParseDictionaryNotification,
+                                 @"Applying Style", UISSWillApplyStyleNotification,
+                                 @"Style Applied", UISSDidApplyStyleNotification,
+                                 @"Refreshing Views", UISSWillRefreshViewsNotification,
+                                 @"Views Refreshed", UISSDidRefreshViewsNotification,
+                                 nil];
+        
         [self registerForNotifications];
         
         self.statusWindow = [[UISSStatusWindow alloc] init];
@@ -51,91 +69,101 @@
     }
 }
 
+- (UISSStatusView *)statusView;
+{
+    return self.statusWindow.statusView;
+}
+
 - (void)registerForNotifications;
 {
+    
+    // UISSStyle
+    
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(willDownloadStyle:) 
-                                                 name:UISSWillDownloadStyleNotification 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleWillDownloadNotification 
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(didDownloadStyle:) 
-                                                 name:UISSDidDownloadStyleNotification 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleDidDownloadNotification 
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(willParseStyle:) 
-                                                 name:UISSWillParseStyleNotification 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleWillParseDataNotification 
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(didParseStyle:) 
-                                                 name:UISSDidParseStyleNotification 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleDidParseDataNotification 
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(willApplyStyle:) 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleWillParseDictionaryNotification 
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(updateStatusViewForNotification:) 
+                                                 name:UISSStyleDidParseDictionaryNotification 
+                                               object:nil];
+    
+    // UISS
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(updateStatusViewForNotification:) 
                                                  name:UISSWillApplyStyleNotification 
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(didApplyStyle:) 
+                                             selector:@selector(updateStatusViewForNotification:) 
                                                  name:UISSDidApplyStyleNotification 
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(willRefreshViews:) 
+                                             selector:@selector(updateStatusViewForNotification:) 
                                                  name:UISSWillRefreshViewsNotification 
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(didRefreshViews:) 
+                                             selector:@selector(updateStatusViewForNotification:) 
                                                  name:UISSDidRefreshViewsNotification 
                                                object:nil];
 }
 
-- (void)willDownloadStyle:(NSNotification *)notification;
+- (NSString *)titleForNotification:(NSNotification *)notification;
 {
-    [self.statusWindow.activityIndicator startAnimating];
-    self.statusWindow.statusLabel.text = @"";
+    return @"UISS";
 }
 
-- (void)didDownloadStyle:(NSNotification *)notification;
+- (NSString *)statusForNotification:(NSNotification *)notification;
 {
-    [self.statusWindow.activityIndicator stopAnimating];
-    self.statusWindow.statusLabel.text = @"";
+    return [self.statusDictionary objectForKey:notification.name];
 }
 
-- (void)willParseStyle:(NSNotification *)notification;
+- (BOOL)activityForNotfication:(NSNotification *)notification;
 {
-    [self.statusWindow.activityIndicator startAnimating];
-    self.statusWindow.statusLabel.text = @"Parsing Style";    
+    return [notification.name rangeOfString:@"Will"].location != NSNotFound;
 }
 
-- (void)didParseStyle:(NSNotification *)notification;
+- (BOOL)errorForNotification:(NSNotification *)notification;
 {
-    [self.statusWindow.activityIndicator stopAnimating];
-    self.statusWindow.statusLabel.text = @"Style Parsed";
+    if ([notification.object isKindOfClass:[UISSStyle class]]) {
+        UISSStyle *style = notification.object;
+        return style.errors.count > 0;
+    } else  if ([notification.object isKindOfClass:[UISS class]]) {
+        UISS *uiss = notification.object;
+        return uiss.style.errors.count > 0;
+    }
+    
+    return NO;
 }
 
-- (void)willApplyStyle:(NSNotification *)notification;
+- (void)updateStatusViewForNotification:(NSNotification *)notification;
 {
-    [self.statusWindow.activityIndicator startAnimating];
-    self.statusWindow.statusLabel.text = @"Applying Style";
-}
-
-- (void)didApplyStyle:(NSNotification *)notification;
-{
-    [self.statusWindow.activityIndicator stopAnimating];
-    self.statusWindow.statusLabel.text = @"Style Applied";
-}
-
-- (void)willRefreshViews:(NSNotification *)notification;
-{
-    [self.statusWindow.activityIndicator startAnimating];
-    self.statusWindow.statusLabel.text = @"Refreshing Views";
-}
-
-- (void)didRefreshViews:(NSNotification *)notification;
-{
-    [self.statusWindow.activityIndicator stopAnimating];
-    self.statusWindow.statusLabel.text = @"Views Refreshed";
+    // notification may not arrive on main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.statusView setTitle:[self titleForNotification:notification]
+                           status:[self statusForNotification:notification]
+                         activity:[self activityForNotfication:notification]
+                            error:[self errorForNotification:notification]];
+    });
 }
 
 @end

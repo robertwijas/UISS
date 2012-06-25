@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const UISSErrorDomain;
+extern NSString * const UISSPopertySetterErrorKey;
 
-enum {
+typedef enum {
     UISSPropertySetterGenerateCodeError = 5701,
     UISSPropertySetterCreateInvocationError = 5702,
     UISSParseJSONError = 5703,
@@ -20,5 +21,6 @@ enum {
 @interface UISSError : NSError
 
 + (UISSError *)errorWithCode:(NSInteger)code;
++ (UISSError *)errorWithCode:(NSInteger)code userInfo:(NSDictionary *)userInfo;
 
 @end

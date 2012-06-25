@@ -30,16 +30,16 @@
 - (NSString *)selectorRegexp
 {
     NSMutableString *regexp = [NSMutableString stringWithFormat:@"^set%@:", [self.property.name uppercaseFirstCharacterString]];
-
+    
     for (NSUInteger i = 0; i < self.axisParameters.count; i++) {
         if (i == 0) {
             [regexp appendString:@"for"];
         }
         [regexp appendString:@"\\w+:"];
     }
-
+    
     [regexp appendString:@"$"];
-
+    
     return regexp;
 }
 
@@ -80,15 +80,15 @@
 {
     unsigned int count = 0;
     Method *methods = class_copyMethodList(class, &count);
-
+    
     for (int i = 0; i < count; i++) {
         SEL selector = method_getName(methods[i]);
         NSString *selectorString = NSStringFromSelector(selector);
-
+        
         if ([selectorString rangeOfString:regexp options:NSRegularExpressionSearch].location != NSNotFound) {
             // this favours selector with shorter name
             // the purpose of this is to pick forState: instead of forStates:
-
+            
             if (currentBestSelector == NULL || NSStringFromSelector(currentBestSelector).length > selectorString.length) {
                 // found new shorter selector
                 currentBestSelector = selector;
@@ -96,7 +96,7 @@
         }
     }
     free(methods);
-
+    
     Class superclass = class_getSuperclass(class);
     if ([superclass conformsToProtocol:@protocol(UIAppearance)]) {
         return [self findSelectorMatchingRegexp:regexp class:superclass currentBestSelector:currentBestSelector];
@@ -213,7 +213,7 @@
     invocation.target = self.target;
     
     [invocation retainArguments];
-
+    
     id converted = [self.property convertedValue];
     if ([converted isKindOfClass:[NSValue class]]) {
         NSUInteger size;
@@ -238,10 +238,9 @@
             [invocation setArgument:&integer atIndex:argumentIndex];
         }
     }];
-
+    
     return invocation;
 }
-
 
 - (id)target;
 {
@@ -293,6 +292,15 @@
         default:
             return nil;
     }
+}
+
+- (NSString *)description;
+{
+    return [NSString stringWithFormat:@"[%@ - appearanceClass: %@, property.name: %@, property.value: %@]",
+            NSStringFromClass(self.class),
+            NSStringFromClass(self.appearanceClass),
+            self.property.name,
+            self.property.value];
 }
 
 @end

@@ -7,12 +7,7 @@
 //
 
 #import "UISSConfig.h"
-
-extern NSString *const UISSWillDownloadStyleNotification;
-extern NSString *const UISSDidDownloadStyleNotification;
-
-extern NSString *const UISSWillParseStyleNotification;
-extern NSString *const UISSDidParseStyleNotification;
+#import "UISSStyle.h"
 
 extern NSString *const UISSWillApplyStyleNotification;
 extern NSString *const UISSDidApplyStyleNotification;
@@ -23,9 +18,10 @@ extern NSString *const UISSDidRefreshViewsNotification;
 @interface UISS : NSObject
 
 @property (nonatomic, strong) UISSConfig *config;
-@property (nonatomic, strong) NSURL *url;
 @property (nonatomic, assign) NSTimeInterval refreshInterval;
 @property (nonatomic, assign) BOOL statusWindowEnabled;
+
+@property (nonatomic, strong) UISSStyle *style;
 
 - (void)reload;
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
