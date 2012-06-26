@@ -1,6 +1,6 @@
 # What is UISS?
 
-UISS stands for UIKit Style Sheet.
+UISS stands for UIKit Style Sheets.
 
 UISS is an iOS library that provides you with a convenient way to define the style of your application.  
 UISS is built on top of UIKit UIAppearance proxies.
@@ -36,6 +36,8 @@ in UISS it looks like this:
 
 no big difference here, so lets look at more complex example:
 
+**TODO**
+
 # Install
 
 * get the code
@@ -56,7 +58,7 @@ This should be called before your views are displayed, the common place for that
 
 ### Remote
 
-If you want to load your style for remote location to enable live updates, here's how to do that:
+If you want to load your style from remote location to enable live updates, here's how to do that:
 
 ```objc
     UISS *uiss = [[UISS alloc] init];
