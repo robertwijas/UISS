@@ -100,6 +100,8 @@
 		E15B384B1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */; };
 		E15B384C1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */; };
 		E15B384F157257C3005BFF73 /* UISSDictionaryPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */; };
+		E17E43BD159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */; };
+		E17E43BE159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */; };
 		E18C7C1F158F52B1000D45AC /* UISSErrorsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */; };
 		E18C7C20158F52B1000D45AC /* UISSErrorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */; };
 		E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = E1914CAD158F99BB00E04977 /* UISSStyle.h */; };
@@ -270,6 +272,8 @@
 		E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUserInterfaceIdiomPreprocessor.h; sourceTree = "<group>"; };
 		E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessor.m; sourceTree = "<group>"; };
 		E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSDictionaryPreprocessor.h; sourceTree = "<group>"; };
+		E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSDisabledKeysPreprocessor.h; sourceTree = "<group>"; };
+		E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSDisabledKeysPreprocessor.m; sourceTree = "<group>"; };
 		E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSErrorsViewController.h; sourceTree = "<group>"; };
 		E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSErrorsViewController.m; sourceTree = "<group>"; };
 		E1914CAD158F99BB00E04977 /* UISSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStyle.h; sourceTree = "<group>"; };
@@ -727,6 +731,8 @@
 				E1A775BB1567945D000406CC /* UISSVariablesPreprocessor.m */,
 				E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */,
 				E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */,
+				E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */,
+				E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */,
 			);
 			name = Preprocessora;
 			sourceTree = "<group>";
@@ -865,6 +871,7 @@
 				E18C7C1F158F52B1000D45AC /* UISSErrorsViewController.h in Headers */,
 				E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */,
 				E1BBEBEF1598776D001F7A60 /* UISSStatusView.h in Headers */,
+				E17E43BD159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1085,6 +1092,7 @@
 				E18C7C20158F52B1000D45AC /* UISSErrorsViewController.m in Sources */,
 				E1914CB0158F99BB00E04977 /* UISSStyle.m in Sources */,
 				E1BBEBF01598776D001F7A60 /* UISSStatusView.m in Sources */,
+				E17E43BE159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

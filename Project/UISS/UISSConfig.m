@@ -26,6 +26,7 @@
 #import "UISSSearchBarIconValueConverter.h"
 #import "UISSUserInterfaceIdiomPreprocessor.h"
 #import "UISSVariablesPreprocessor.h"
+#import "UISSDisabledKeysPreprocessor.h"
 
 @implementation UISSConfig
 
@@ -48,55 +49,56 @@
 - (NSArray *)defaultPropertyValueConverters
 {
     return [NSArray arrayWithObjects:
-                                        [[UISSColorValueConverter alloc] init],
-                                        [[UISSImageValueConverter alloc] init],
-                                        [[UISSFontValueConverter alloc] init],
-                                        [[UISSTextAttributesValueConverter alloc] init],
-
-                                        [[UISSSizeValueConverter alloc] init],
-                                        [[UISSPointValueConverter alloc] init],
-                                        [[UISSEdgeInsetsValueConverter alloc] init],
-                                        [[UISSRectValueConverter alloc] init],
-                                        [[UISSOffsetValueConverter alloc] init],
-
-                                        [[UISSIntegerValueConverter alloc] init],
-                                        [[UISSUIntegerValueConverter alloc] init],
-                                        [[UISSFloatValueConverter alloc] init],
-                                        nil];
+            [[UISSColorValueConverter alloc] init],
+            [[UISSImageValueConverter alloc] init],
+            [[UISSFontValueConverter alloc] init],
+            [[UISSTextAttributesValueConverter alloc] init],
+            
+            [[UISSSizeValueConverter alloc] init],
+            [[UISSPointValueConverter alloc] init],
+            [[UISSEdgeInsetsValueConverter alloc] init],
+            [[UISSRectValueConverter alloc] init],
+            [[UISSOffsetValueConverter alloc] init],
+            
+            [[UISSIntegerValueConverter alloc] init],
+            [[UISSUIntegerValueConverter alloc] init],
+            [[UISSFloatValueConverter alloc] init],
+            nil];
 }
 
 - (NSArray *)defaultAxisParameterValueConverters
 {
     return [NSArray arrayWithObjects:
-                                             [[UISSBarMetricsValueConverter alloc] init],
-                                             [[UISSControlStateValueConveter alloc] init],
-                                             [[UISSSegmentedControlSegmentValueConverter alloc] init],
-                                             [[UISSToolbarPositionConverter alloc] init],
-                                             [[UISSSearchBarIconValueConverter alloc] init],
-
-                                             [[UISSIntegerValueConverter alloc] init],
-                                             [[UISSUIntegerValueConverter alloc] init],
-                                             nil];
+            [[UISSBarMetricsValueConverter alloc] init],
+            [[UISSControlStateValueConveter alloc] init],
+            [[UISSSegmentedControlSegmentValueConverter alloc] init],
+            [[UISSToolbarPositionConverter alloc] init],
+            [[UISSSearchBarIconValueConverter alloc] init],
+            
+            [[UISSIntegerValueConverter alloc] init],
+            [[UISSUIntegerValueConverter alloc] init],
+            nil];
 }
 
 - (NSArray *)defaultPreprocessors
 {
     return [NSArray arrayWithObjects:
-                              [[UISSUserInterfaceIdiomPreprocessor alloc] init],
-                              [[UISSVariablesPreprocessor alloc] init],
-                              nil];
+            [[UISSDisabledKeysPreprocessor alloc] init],
+            [[UISSUserInterfaceIdiomPreprocessor alloc] init],
+            [[UISSVariablesPreprocessor alloc] init],
+            nil];
 }
 
 - (id)init
 {
     self = [super init];
-
+    
     if (self) {
         self.propertyValueConverters = [self defaultPropertyValueConverters];
         self.axisParameterValueConverters = [self defaultAxisParameterValueConverters];
         self.preprocessors = [self defaultPreprocessors];
     }
-
+    
     return self;
 }
 
