@@ -10,7 +10,9 @@
 #import "UISSPropertySetter.h"
 
 NSString * const UISSErrorDomain = @"UISSErrorDomain";
+
 NSString * const UISSPopertySetterErrorKey = @"UISSPopertySetterErrorKey";
+NSString * const UISSInvalidClassNameErrorKey = @"UISSUnknownClassErrorKey";
 
 @implementation UISSError
 
@@ -31,10 +33,12 @@ NSString * const UISSPopertySetterErrorKey = @"UISSPopertySetterErrorKey";
             return [NSString stringWithFormat:@"Cannot generate code for: %@", [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
         case UISSPropertySetterCreateInvocationError:
             return [NSString stringWithFormat:@"Cannot create NSInvocation for: %@", [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
-        case UISSParseJSONError:
-            return @"Cannot parse JSON";
         case UISSUnknownClassError:
-            return @"Unknown Class";
+            return [NSString stringWithFormat:@"Unknown Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+        case UISSInvalidAppearanceClassError:
+            return [NSString stringWithFormat:@"Invalid Appearance Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+        case UISSInvalidAppearanceContainerClassError:
+            return [NSString stringWithFormat:@"Invalid Appearance Container Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
         default:
             return nil;
     }

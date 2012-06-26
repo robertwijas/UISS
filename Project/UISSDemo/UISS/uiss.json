@@ -13,6 +13,7 @@
             "backgroundImage": ["background.png", "default"]
         }
     },
+
     "UITabBar": {
         "tintColor": "darkGray",
         "selectedImageTintColor": "$mainColor",
@@ -23,12 +24,10 @@
     },
     "UIToolbar": {
         "tintColor": "lightGray",
-        "backgroundImage": ["background", "bottom"]
+        "backgroundImage": ["background", "bottom", "default"]
     },
     "UISSCustomView": {
-        "-backgroundImage": "background.png",
         "image": "background.png",
-        "backgroundImage": null,
         "backgroundColor": "gray",
         "backgroundMargin": 20,
         "UIImageView": {

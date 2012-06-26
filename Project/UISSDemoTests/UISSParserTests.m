@@ -9,14 +9,79 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSParser.h"
 #import "UISSPropertySetter.h"
+#import "UISSError.h"
 
 @interface UISSParserTests : SenTestCase
+
+@property (nonatomic, strong) UISSParser *parser;
 
 @end
 
 @implementation UISSParserTests
 
-#pragma mark - Tests
+@synthesize parser=_parser;
+
+#pragma mark - Errors
+
+- (void)testUnknownClassNameWithoutContainment;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]
+                                                           forKey:@"UnknownClass"];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    [self.parser parseDictionary:dictionary errors:errors];
+    
+    STAssertEquals(errors.count, (NSUInteger)1, @"expected one error");
+    NSError *error = errors.lastObject;
+    STAssertEquals(error.code, UISSUnknownClassError, nil);
+    STAssertEqualObjects([error.userInfo objectForKey:UISSInvalidClassNameErrorKey], @"UnknownClass", nil);
+}
+
+- (void)testInvalidAppearanceContainerClass;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]
+                                                           forKey:@"UIToolbar"];
+    dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"UIBarButtonItem"];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    [self.parser parseDictionary:dictionary errors:errors];
+
+    STAssertEquals(errors.count, (NSUInteger)1, @"expected one error");
+    NSError *error = errors.lastObject;
+    STAssertEquals(error.code, UISSInvalidAppearanceContainerClassError, nil);
+    STAssertEqualObjects([error.userInfo objectForKey:UISSInvalidClassNameErrorKey], @"UIBarButtonItem", nil);
+}
+
+- (void)testInvalidAppearanceClass;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]
+                                                           forKey:@"NSString"];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    [self.parser parseDictionary:dictionary errors:errors];
+    
+    STAssertEquals(errors.count, (NSUInteger)1, @"expected one error");
+    NSError *error = errors.lastObject;
+    STAssertEquals(error.code, UISSInvalidAppearanceClassError, nil);
+    STAssertEqualObjects([error.userInfo objectForKey:UISSInvalidClassNameErrorKey], @"NSString", nil);
+}
+
+- (void)testInvalidAppearanceClassInContainer;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]
+                                                           forKey:@"UIBadToolbar"];
+    dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"UIPopoverController"];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    [self.parser parseDictionary:dictionary errors:errors];
+    
+    STAssertEquals(errors.count, (NSUInteger)1, @"expected one error");
+    NSError *error = errors.lastObject;
+    STAssertEquals(error.code, UISSUnknownClassError, nil);
+    STAssertEqualObjects([error.userInfo objectForKey:UISSInvalidClassNameErrorKey], @"UIBadToolbar", nil);
+}
+
+#pragma mark - Invocations
 
 - (void)testToolbarTintColor;
 {
@@ -119,6 +184,18 @@
     }
     
     STAssertTrue([invokedInvocations count], @"expected at least one invocation");
+}
+
+#pragma mark - Setup
+
+- (void)setUp;
+{
+    self.parser = [[UISSParser alloc] init];
+}
+
+- (void)tearDown;
+{
+    self.parser = nil;
 }
 
 @end

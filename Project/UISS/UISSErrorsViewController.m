@@ -54,7 +54,7 @@
     
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.textLabel.text = [error debugDescription];
+    cell.textLabel.text = [error localizedDescription];
     
     return cell;
 }

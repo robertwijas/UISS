@@ -89,9 +89,23 @@
 - (void)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl;
 {
     UIUserInterfaceIdiom userInterfaceIdiom = segmentedControl.selectedSegmentIndex == 0 ? UIUserInterfaceIdiomPhone : UIUserInterfaceIdiomPad;
+    segmentedControl.enabled = NO;
+    
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIBarButtonItem *activityBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicatorView];
+    
+    self.navigationItem.rightBarButtonItem = activityBarButtonItem;
+    
+    [activityIndicatorView startAnimating];
+    
     [self.uiss generateCodeForUserInterfaceIdiom:userInterfaceIdiom codeHandler:^(NSString *code, NSArray *errors) {
+        // remove activity indicator
+        self.navigationItem.rightBarButtonItem = nil;
+        
         self.errors = errors;
         self.textView.text = code;
+        
+        segmentedControl.enabled = YES;
     }];
 }
 

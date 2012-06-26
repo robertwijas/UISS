@@ -15,6 +15,7 @@
 #import "UISSIntegerValueConverter.h"
 #import "UISSDictionaryPreprocessor.h"
 #import "UISSPropertySetter.h"
+#import "UISSError.h"
 
 @implementation UISSParser
 
@@ -58,78 +59,108 @@
 }
 
 - (UISSPropertySetter *)propertySetterForName:(NSString *)name withArguments:(NSArray *)arguments
-                                      appearanceStack:(NSArray *)appearanceStack;
+                              appearanceStack:(NSArray *)appearanceStack;
 {
     UISSPropertySetter *propertySetter = [[UISSPropertySetter alloc] init];
-
+    
     propertySetter.appearanceClass = appearanceStack.lastObject;
     propertySetter.containment = [appearanceStack subarrayWithRange:NSMakeRange(0, appearanceStack.count - 1)];
-
+    
     UISSProperty *property = [[UISSProperty alloc] init];
     property.name = name;
     property.value = [arguments objectAtIndex:0];
-
+    
     propertySetter.property = property;
-
+    
     NSMutableArray *axisParameters = [NSMutableArray array];
-
+    
     for (NSUInteger idx = 1; idx < arguments.count; idx++) {
         UISSAxisParameter *axisParameter = [[UISSAxisParameter alloc] init];
         axisParameter.value = [arguments objectAtIndex:idx];
         [axisParameters addObject:axisParameter];
     }
-
+    
     propertySetter.axisParameters = axisParameters;
-
+    
     return propertySetter;
 }
 
-- (NSArray *)parseDictionary:(NSDictionary *)dictionary appearanceStack:(NSMutableArray *)appearanceStack;
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary appearanceStack:(NSMutableArray *)appearanceStack errors:(NSMutableArray *)errors;
 {
     NSMutableArray *propertySetters = [NSMutableArray array];
-
+    
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         Class class = NSClassFromString(key);
         
-        if ([class conformsToProtocol:@protocol(UIAppearance)]) {
-            NSLog(@"UISS -- component: %@", key);
-            
-            [appearanceStack addObject:class];
-            [propertySetters addObjectsFromArray:[self parseDictionary:obj appearanceStack:appearanceStack]];
-            [appearanceStack removeLastObject];
-        } else if ([class conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-            // TODO check if last object is a container
-            [appearanceStack addObject:class];
-            [propertySetters addObjectsFromArray:[self parseDictionary:obj appearanceStack:appearanceStack]];
-            [appearanceStack removeLastObject];
-        } else {
-            // property
-            NSLog(@"UISS - property: %@", key);
-            NSArray *arguments = [self argumentsArrayFrom:obj];
-            
-            // detect multiple values
-            if ([self multipleAxisValuesDetectedInArgumentsArray:arguments]) {
-                for (NSArray *args in arguments) {
-                    [propertySetters addObject:[self propertySetterForName:key withArguments:args appearanceStack:appearanceStack]];
+        if (class) {
+            if ([class conformsToProtocol:@protocol(UIAppearance)] || [class conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+                Class currentContainer = appearanceStack.lastObject;
+                
+                if (currentContainer == nil || [currentContainer conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+                    NSLog(@"UISS - component: %@", key);
+
+                    [appearanceStack addObject:class];
+                    [propertySetters addObjectsFromArray:[self parseDictionary:obj appearanceStack:appearanceStack errors:errors]];
+                    [appearanceStack removeLastObject];
+                } else {
+                    [errors addObject:[UISSError errorWithCode:UISSInvalidAppearanceContainerClassError
+                                                      userInfo:[NSDictionary dictionaryWithObject:NSStringFromClass(currentContainer)
+                                                                                           forKey:UISSInvalidClassNameErrorKey]]];
                 }
             } else {
-                [propertySetters addObject:[self propertySetterForName:key withArguments:arguments appearanceStack:appearanceStack]];
+                [errors addObject:[UISSError errorWithCode:UISSInvalidAppearanceClassError 
+                                                  userInfo:[NSDictionary dictionaryWithObject:key forKey:UISSInvalidClassNameErrorKey]]];
+            }
+        } else {
+            if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[key characterAtIndex:0]]) {
+                // first letter capitalized so I guess this supposed to be a class
+                [errors addObject:[UISSError errorWithCode:UISSUnknownClassError 
+                                                  userInfo:[NSDictionary dictionaryWithObject:key forKey:UISSInvalidClassNameErrorKey]]];
+            } else {
+                Class currentClass = appearanceStack.lastObject;
+                
+                if (currentClass == nil) {
+                    [errors addObject:[UISSError errorWithCode:UISSUnknownClassError 
+                                                      userInfo:[NSDictionary dictionaryWithObject:key forKey:UISSInvalidClassNameErrorKey]]];
+                } else if ([appearanceStack.lastObject conformsToProtocol:@protocol(UIAppearance)] == NO) {
+                    [errors addObject:[UISSError errorWithCode:UISSInvalidAppearanceClassError
+                                                      userInfo:[NSDictionary dictionaryWithObject:NSStringFromClass(currentClass)
+                                                                                           forKey:UISSInvalidClassNameErrorKey]]];
+                } else {
+                    // property
+                    NSLog(@"UISS - property: %@", key);
+                    NSArray *arguments = [self argumentsArrayFrom:obj];
+                    
+                    // detect multiple values
+                    if ([self multipleAxisValuesDetectedInArgumentsArray:arguments]) {
+                        for (NSArray *args in arguments) {
+                            [propertySetters addObject:[self propertySetterForName:key withArguments:args appearanceStack:appearanceStack]];
+                        }
+                    } else {
+                        [propertySetters addObject:[self propertySetterForName:key withArguments:arguments appearanceStack:appearanceStack]];
+                    }
+                }
             }
         }
     }];
-
+    
     return propertySetters;
 }
 
 #pragma mark - Public
 
-- (NSArray *)parseDictionary:(NSDictionary *)dictionary;
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary errors:(NSMutableArray *)errors;
 {
     for (id<UISSDictionaryPreprocessor>preprocessor in self.config.preprocessors) {
         dictionary = [preprocessor preprocess:dictionary userInterfaceIdiom:self.userInterfaceIdiom];
     }
+    
+    return [self parseDictionary:dictionary appearanceStack:[NSMutableArray array] errors:errors];
+}
 
-    return [self parseDictionary:dictionary appearanceStack:[NSMutableArray array]];
+- (NSArray *)parseDictionary:(NSDictionary *)dictionary;
+{
+    return [self parseDictionary:dictionary errors:nil];
 }
 
 @end

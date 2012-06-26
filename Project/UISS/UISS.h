@@ -18,14 +18,19 @@ extern NSString *const UISSDidRefreshViewsNotification;
 @interface UISS : NSObject
 
 @property (nonatomic, strong) UISSConfig *config;
-@property (nonatomic, assign) NSTimeInterval refreshInterval;
 @property (nonatomic, assign) BOOL statusWindowEnabled;
 
 @property (nonatomic, strong) UISSStyle *style;
 
+- (void)enableAutoReloadWithTimeInterval:(NSTimeInterval)timeInterval;
+- (void)disableAutoReload;
+
+- (void)load;
 - (void)reload;
+
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
+// codeHandler is called on main thread
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
                               codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 

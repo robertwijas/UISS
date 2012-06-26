@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const UISSErrorDomain;
+
 extern NSString * const UISSPopertySetterErrorKey;
+extern NSString * const UISSInvalidClassNameErrorKey;
 
 typedef enum {
     UISSPropertySetterGenerateCodeError = 5701,
     UISSPropertySetterCreateInvocationError = 5702,
-    UISSParseJSONError = 5703,
-    UISSUnknownClassError = 5704
+    UISSUnknownClassError = 5703,
+    UISSInvalidAppearanceClassError = 5704,
+    UISSInvalidAppearanceContainerClassError = 5705
 } UISSErrorCode;
 
 @interface UISSError : NSError

@@ -25,17 +25,24 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @interface UISS () <UISSStatusWindowControllerDelegate>
 
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
+@property (nonatomic, strong) NSTimer *autoReloadTimer;
+@property (nonatomic, assign) dispatch_queue_t queue; // all style parsing is done on the queue
 
 @end
 
 @implementation UISS
 
 @synthesize config=_config;
-@synthesize refreshInterval=_refreshInterval;
 
 @synthesize style=_style;
 
 @synthesize statusWindowController=_statusWindowController;
+@synthesize autoReloadTimer=_autoReloadTimer;
+
+@synthesize queue=_queue;
+
+
+#pragma mark - Contructors
 
 - (id)init
 {
@@ -43,42 +50,102 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     if (self) {
         self.config = [UISSConfig sharedConfig];
         self.style = [[UISSStyle alloc] init];
+        
+        self.queue = dispatch_queue_create("com.robertwijas.uiss.queue", DISPATCH_QUEUE_SERIAL);
     }
     
     return self;
 }
 
-- (BOOL)statusWindowEnabled;
++ (UISS *)configureWithJSONFilePath:(NSString *)filePath;
 {
-    return self.statusWindowController != nil;
+    UISS *uiss = [[UISS alloc] init];
+    uiss.style.url = [NSURL fileURLWithPath:filePath];
+    [uiss load];
+    return uiss;
 }
 
-- (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled;
++ (UISS *)configureWithDefaultJSONFile;
 {
-    if (statusWindowEnabled) {
-        if (self.statusWindowController == nil) {
-            // configure Console
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss_console" ofType:@"json" inDirectory:@"UISSResources.bundle"];
-            if (filePath) {
-                [UISS configureWithJSONFilePath:filePath];
-            }
-            
-            self.statusWindowController = [[UISSStatusWindowController alloc] init];
-            self.statusWindowController.delegate = self;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss" ofType:@"json"];
+    return [self configureWithJSONFilePath:filePath];
+}
+
+- (void)configureAppearanceWithPropertySetters:(NSArray *)propertySetters errors:(NSMutableArray *)errors;
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillApplyStyleNotification object:self];
+
+    [self resetAppearance];
+    
+    NSMutableArray *invocations = [NSMutableArray array];
+    
+    for (UISSPropertySetter *propertySetter in propertySetters) {
+        NSInvocation *invocation = propertySetter.invocation;
+        if (invocation) {
+            [invocations addObject:invocation];
+        } else {
+            [errors addObject:[UISSError errorWithCode:UISSPropertySetterCreateInvocationError 
+                                              userInfo:[NSDictionary dictionaryWithObject:propertySetter forKey:UISSPopertySetterErrorKey]]];
         }
-    } else {
-        self.statusWindowController = nil;
+    }
+    
+    for (NSInvocation *invocation in invocations) {
+        [invocation invoke];
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidApplyStyleNotification object:self];
+}
+
+- (void)reload;
+{
+    NSLog(@"UISS -- reloading...");
+    
+    dispatch_async(self.queue, ^{
+        // if new data downloaded
+        if ([self.style downloadData]) {
+            UIUserInterfaceIdiom userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
+            
+            [self.style parseDictionaryForUserInterfaceIdiom:userInterfaceIdiom withConfig:self.config];
+            NSArray *propertySetters = [self.style propertySettersForUserInterfaceIdiom:userInterfaceIdiom];
+            
+            if (propertySetters) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self configureAppearanceWithPropertySetters:propertySetters errors:self.style.errors];
+                    [self refreshViews];
+                });
+            }
+        }
+    });
+}
+
+- (void)load;
+{
+    __block NSArray *propertySetters = nil;
+    
+    dispatch_sync(self.queue, ^{
+        UIUserInterfaceIdiom userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
+        if ([self.style parseDictionaryForUserInterfaceIdiom:userInterfaceIdiom withConfig:self.config]) {
+            propertySetters = [self.style propertySettersForUserInterfaceIdiom:userInterfaceIdiom];
+        }
+    });
+    
+    if (propertySetters) {
+        [self configureAppearanceWithPropertySetters:propertySetters errors:self.style.errors];
     }
 }
 
-- (void)scheduleRefresh;
+- (void)refreshViews;
 {
-    if (self.refreshInterval) {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.refreshInterval * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self reloadAsync];
-        });
+    [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillRefreshViewsNotification object:self];
+    
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        for (UIView *view in window.subviews) {
+            [view removeFromSuperview];
+            [window addSubview:view];
+        }
     }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidRefreshViewsNotification object:self];
 }
 
 - (void)resetAppearance;
@@ -96,128 +163,53 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
 }
 
-- (void)configureAppearanceWithPropertySetters:(NSArray *)propertySetters;
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillApplyStyleNotification object:self];
-
-    [self resetAppearance];
-    
-    NSMutableArray *invocations = [NSMutableArray array];
-    
-    for (UISSPropertySetter *propertySetter in propertySetters) {
-        NSInvocation *invocation = propertySetter.invocation;
-        if (invocation) {
-            [invocations addObject:invocation];
-        } else {
-            // TODO: error
-        }
-    }
-    
-    for (NSInvocation *invocation in invocations) {
-        [invocation invoke];
-    }
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidApplyStyleNotification object:self];
-}
-
-- (void)reloadUsingQueue:(dispatch_queue_t)queue completion:(void (^)(BOOL reloaded, NSArray *errors))completion;
-{
-    NSLog(@"UISS -- reloading...");
-    
-    if ([self.style downloadData]) {
-        if ([self.style parseDictionaryForUserInterfaceIdiom:[UIDevice currentDevice].userInterfaceIdiom withConfig:self.config]) {
-            NSArray *propertySetters = [self.style propertySettersForUserInterfaceIdiom:[UIDevice currentDevice].userInterfaceIdiom];
-            [self configureAppearanceWithPropertySetters:propertySetters];
-            completion(YES, self.style.errors);
-        } else {
-            completion(NO, self.style.errors);
-        }
-    } else {
-        completion(NO, self.style.errors);
-    }    
-}
-
-- (void)reload;
-{
-    [self reloadUsingQueue:nil completion:^(BOOL reloaded, NSArray *errors) {
-        self.style.errors = errors;
-        
-        [self scheduleRefresh];
-    }];
-}
-
-- (void)reloadAsync;
-{
-    [self reloadUsingQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) 
-                completion:^(BOOL reloaded, NSArray *errors){
-                    self.style.errors = errors;
-                    
-                    if (reloaded) {
-                        [self refreshViews];
-                    }
-                    
-                    [self scheduleRefresh];
-                }];
-}
-
-- (void)generateCodeFromPropertySetters:(NSArray *)propertySetters 
-                            codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
-{
-    NSAssert(codeHandler, @"code handler required");
-    
-    NSMutableString *code = [NSMutableString string];
-    NSMutableArray *errors = [NSMutableArray array];
-    
-    for (UISSPropertySetter *propertySetter in propertySetters) {
-        NSString *generatedCode = propertySetter.generatedCode;
-        if (generatedCode) {
-            [code appendFormat:@"%@\n", generatedCode];
-        } else {
-            [errors addObject:[UISSError errorWithCode:UISSPropertySetterGenerateCodeError 
-                                              userInfo:[NSDictionary dictionaryWithObject:propertySetter forKey:UISSPopertySetterErrorKey]]];
-        }
-    }
-    
-    codeHandler(code, errors);
-}
+#pragma mark - Code Generation
 
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
                               codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 {
-    if ([self.style parseDictionaryForUserInterfaceIdiom:userInterfaceIdiom withConfig:self.config]) {
-        [self generateCodeFromPropertySetters:[self.style propertySettersForUserInterfaceIdiom:userInterfaceIdiom]
-                                  codeHandler:codeHandler];
-    } else {
-        codeHandler(nil, self.style.errors);
-    }
-}
-
-+ (UISS *)configureWithJSONFilePath:(NSString *)filePath;
-{
-    UISS *uiss = [[UISS alloc] init];
-    uiss.style.url = [NSURL fileURLWithPath:filePath];
-    [uiss reload];
-    return uiss;
-}
-
-+ (UISS *)configureWithDefaultJSONFile;
-{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss" ofType:@"json"];
-    return [self configureWithJSONFilePath:filePath];
-}
-
-- (void)refreshViews;
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillRefreshViewsNotification object:self];
+    NSAssert(codeHandler, @"code handler required");
     
-    for (UIWindow *window in [UIApplication sharedApplication].windows) {
-        for (UIView *view in window.subviews) {
-            [view removeFromSuperview];
-            [window addSubview:view];
+    dispatch_async(self.queue, ^{
+        [self.style parseDictionaryForUserInterfaceIdiom:userInterfaceIdiom withConfig:self.config];
+        NSArray *propertySetters = [self.style propertySettersForUserInterfaceIdiom:userInterfaceIdiom];
+        
+        NSMutableString *code = [NSMutableString string];
+        NSMutableArray *errors = [NSMutableArray array];
+        
+        for (UISSPropertySetter *propertySetter in propertySetters) {
+            NSString *generatedCode = propertySetter.generatedCode;
+            if (generatedCode) {
+                [code appendFormat:@"%@\n", generatedCode];
+            } else {
+                [errors addObject:[UISSError errorWithCode:UISSPropertySetterGenerateCodeError 
+                                                  userInfo:[NSDictionary dictionaryWithObject:propertySetter forKey:UISSPopertySetterErrorKey]]];
+            }
         }
-    }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            codeHandler(code, errors);
+        });
+    });
+}
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidRefreshViewsNotification object:self];
+#pragma mark - Auto Refresh
+
+- (void)enableAutoReloadWithTimeInterval:(NSTimeInterval)timeInterval;
+{
+    [self disableAutoReload];
+    
+    self.autoReloadTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval 
+                                                             target:self
+                                                           selector:@selector(reload)
+                                                           userInfo:nil
+                                                            repeats:YES];
+}
+
+- (void)disableAutoReload;
+{
+    [self.autoReloadTimer invalidate];
+    self.autoReloadTimer = nil;
 }
 
 #pragma mark - Reload Gesture Recognizer Support
@@ -249,9 +241,36 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 - (void)reloadGestureRecognizerHandler:(UILongPressGestureRecognizer *)gestureRecognizer;
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self reloadAsync];
+        [self reload];
     }
 }
+
+
+#pragma mark - Status Window
+
+- (BOOL)statusWindowEnabled;
+{
+    return self.statusWindowController != nil;
+}
+
+- (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled;
+{
+    if (statusWindowEnabled) {
+        if (self.statusWindowController == nil) {
+            // configure Console
+            NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss_console" ofType:@"json" inDirectory:@"UISSResources.bundle"];
+            if (filePath) {
+                [UISS configureWithJSONFilePath:filePath];
+            }
+            
+            self.statusWindowController = [[UISSStatusWindowController alloc] init];
+            self.statusWindowController.delegate = self;
+        }
+    } else {
+        self.statusWindowController = nil;
+    }
+}
+
 
 #pragma mark - Console
 

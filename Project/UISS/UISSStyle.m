@@ -26,6 +26,15 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
 @synthesize propertySettersPhone=_propertySettersPhone;
 @synthesize errors=_errors;
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.errors = [NSMutableArray array];
+    }
+    return self;
+}
+
 - (void)setUrl:(NSURL *)url;
 {
     if (_url != url) {
@@ -41,7 +50,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
         _data = data;
         
         self.dictionary = nil;
-        self.errors = nil;
+        [self.errors removeAllObjects];
     }
 }
 
@@ -77,15 +86,6 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
     }
 }
 
-- (void)addError:(NSError *)error;
-{
-    if (self.errors) {
-        self.errors = [self.errors arrayByAddingObject:error];
-    } else {
-        self.errors = [NSArray arrayWithObject:error];
-    }
-}
-
 #pragma mark - Parsing
 
 - (BOOL)downloadData;
@@ -100,7 +100,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
                                            error:&error];
     
     if (error) {
-        [self addError:error];
+        [self.errors addObject:error];
     } else {
         if (data && [data isEqualToData:self.data] == NO) {
             self.data = data;
@@ -131,7 +131,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
                                                                  error:&error];
     
     if (error) {
-        [self addError:error];
+        [self.errors addObject:error];
     } else {
         self.dictionary = dictionary;
         dataParsed = YES;
@@ -164,7 +164,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
     parser.userInterfaceIdiom = userInterfaceIdiom;
     parser.config = config;
 
-    propertySetters = [parser parseDictionary:self.dictionary];
+    propertySetters = [parser parseDictionary:self.dictionary errors:self.errors];
     
     if (propertySetters) {
         [self setPropertySetters:propertySetters forUserInterfaceIdiom:userInterfaceIdiom];

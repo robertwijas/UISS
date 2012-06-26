@@ -28,9 +28,7 @@ extern NSString *const UISSStyleDidParseDictionaryNotification;
 @property (nonatomic, strong) NSArray *propertySettersPad;
 @property (nonatomic, strong) NSArray *propertySettersPhone;
 
-@property (nonatomic, strong) NSArray *errors;
-
-- (void)addError:(NSError *)error;
+@property (nonatomic, strong) NSMutableArray *errors;
 
 - (BOOL)downloadData;
 - (BOOL)parseData;
