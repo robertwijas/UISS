@@ -108,8 +108,8 @@ Tapping on UISS status bar will present console view where:
 
 | UISS JSON | Objecive-C |
 | ---- | ---------- |
-| "imageName" | [UIImage imageNamed:@"imageName"] |
-| [["imageName", 1, 2, 3, 4]] | [[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)] |
+| ```"imageName"``` | ```[UIImage imageNamed:@"imageName"]``` |
+| ```[["imageName", 1, 2, 3, 4]]``` | ```[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]``` |
 
 ## Variables
 
