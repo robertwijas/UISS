@@ -119,7 +119,8 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 
 #### Colors with pattern image
 ```JSON
-"patternImageName"```
+"patternImageName"
+```
 ```objc
 [UIColor colorWithPatternImage:@"patternImageName"]
 ```
@@ -127,6 +128,7 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 #### RGB
 ```JSON
 [[0, 255, 255]]
+```
 ```objc
 [UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
 ```
