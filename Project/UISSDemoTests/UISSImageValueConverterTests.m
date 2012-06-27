@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSImageValueConverter.h"
+#import "UISSArgument.h"
 
 @interface UISSImageValueConverterTests : SenTestCase
 
@@ -18,6 +19,15 @@
 @implementation UISSImageValueConverterTests
 
 @synthesize converter;
+
+- (void)testNullImage;
+{
+    UIImage *image = [self.converter convertValue:[NSNull null]];
+    STAssertNil(image, nil);
+    
+    NSString *code = [self.converter generateCodeForValue:[NSNull null]];
+    STAssertEqualObjects(code, @"nil", nil);
+}
 
 - (void)testSimleImageAsString;
 {

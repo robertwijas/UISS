@@ -92,6 +92,15 @@
                         }
                     }
                 }];
+    } else if ([value isKindOfClass:[NSNull class]]) {
+        if (imageHandler) {
+            imageHandler(nil);
+        }
+        if (codeHandler) {
+            codeHandler(@"nil");
+        }
+        
+        return YES;
     }
 
     return NO;
