@@ -93,6 +93,24 @@ Tapping on UISS status bar will present console view where:
 
 ## Converters
 
+### Colors
+
+| UISS JSON | Objecive-C |
+| ---- | ---------- |
+| "redColor" | [UIColor redColor] |
+| "red" | [UIColor red] |
+| [["red", 0.5]] | [[UIColor red] colorWithAlphaComponent:0.5f] |
+| "patternImageName" | [UIColor colorWithPatternImage:@"patternImageName"] |
+| "#ffffff" | [UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1] |
+| [["#ffffff", 0.5] | [UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0.5] |
+
+### Images
+
+| UISS JSON | Objecive-C |
+| ---- | ---------- |
+| "imageName" | [UIImage imageNamed:@"imageName"] |
+| [["imageName", 1, 2, 3, 4]] | [[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)] |
+
 ## Variables
 
 ## User Interface Idioms
