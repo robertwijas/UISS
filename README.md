@@ -93,23 +93,73 @@ Tapping on UISS status bar will present console view where:
 
 ## Converters
 
+UISS has value converters for every type used to set _UIAppearance_ properties. These convertes provide useful shortcuts and convinient syntax for defining your properties.
+
+Here are some examples and eqivalent values in _Objective-C_ code.
+
 ### Colors
 
-| UISS JSON | Objecive-C |
-| ---- | ---------- |
-| ```"redColor"``` | ```[UIColor redColor]``` |
-| ```"red"``` | ```[UIColor red]``` |
-| ```[["red", 0.5]]``` | ```[[UIColor red] colorWithAlphaComponent:0.5f]``` |
-| ```"patternImageName"``` | ```[UIColor colorWithPatternImage:@"patternImageName"]``` |
-| ```"#ffffff"``` | ```[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]``` |
-| ```[["#ffffff", 0.5]]``` | ```[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:0.5]``` |
+#### Hex
+```JSON
+"#ffffff"
+```
+```objc
+[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
+```
+
+#### Default UIColor colors
+```JSON
+"red"
+"redColor"
+```
+```objc
+[UIColor redColor]
+[UIColor redColor]
+```
+
+#### Colors with pattern image
+```JSON
+"patternImageName"```
+```objc
+[UIColor colorWithPatternImage:@"patternImageName"]
+```
+
+#### RGB
+```JSON
+[[0, 255, 255]]
+```objc
+[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
+```
+
+#### Colors with alpha
+```JSON
+[["#ffffff", 0.5]]
+[["red", 0.5]]
+[[0, 255, 255, 0.5]]
+```
+```objc
+[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
+[[UIColor redColor] colorWithAlphaComponent:0.5f]
+[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
+```
 
 ### Images
 
-| UISS JSON | Objecive-C |
-| ---- | ---------- |
-| ```"imageName"``` | ```[UIImage imageNamed:@"imageName"]``` |
-| ```[["imageName", 1, 2, 3, 4]]``` | ```[[UIImage imageNamed:@"imageName"]\n resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]``` |
+#### Simple image with name:
+```JSON
+"imageName"
+```
+```objc
+[UIImage imageNamed:@"imageName"]
+```
+
+#### Resizable images:
+```JSON
+[["imageName", 1, 2, 3, 4]]
+```
+```objc
+[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]
+```
 
 ## Variables
 
