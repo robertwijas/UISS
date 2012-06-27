@@ -97,7 +97,7 @@ Tapping on UISS status bar will present console view where:
 
 | UISS JSON | Objecive-C |
 | ---- | ---------- |
-| ```"redColor"``` | [UIColor redColor] |
+| ```JSON "redColor"``` | [UIColor redColor] |
 | "red" | [UIColor red] |
 | [["red", 0.5]] | [[UIColor red] colorWithAlphaComponent:0.5f] |
 | "patternImageName" | [UIColor colorWithPatternImage:@"patternImageName"] |
