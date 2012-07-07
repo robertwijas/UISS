@@ -183,6 +183,15 @@
         return [self colorWithRed:red green:green blue:blue alpha:alpha colorHandler:colorHandler codeHandler:codeHandler];
     } else if ([value isKindOfClass:[NSString class]]) {
         return [self colorFromString:value colorHandler:colorHandler codeHandler:codeHandler];
+    } else if ([value isKindOfClass:[NSNull class]]) {
+        if (colorHandler) {
+            colorHandler(nil);
+        }
+        if (codeHandler) {
+            codeHandler(@"nil");
+        }
+        
+        return YES;
     } else {
         return NO;
     }

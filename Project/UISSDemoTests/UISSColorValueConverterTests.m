@@ -19,6 +19,15 @@
 
 @synthesize converter = _converter;
 
+- (void)testNull;
+{
+    UIColor *color = [self.converter convertValue:[NSNull null]];
+    STAssertNil(color, nil);
+    
+    NSString *code = [self.converter generateCodeForValue:[NSNull null]];
+    STAssertEqualObjects(code, @"nil", nil);
+}
+
 - (void)testExactColorSelector;
 {
     [self testColorValue:@"yellowColor" expectedColor:[UIColor yellowColor] expectedCode:@"[UIColor yellowColor]"];

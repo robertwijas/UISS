@@ -1248,6 +1248,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					UISS_DEBUG,
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -1297,10 +1298,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UISS/UISS-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					UISS_DEBUG,
-					"$(inherited)",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
