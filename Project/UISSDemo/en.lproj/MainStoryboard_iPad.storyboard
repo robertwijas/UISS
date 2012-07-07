@@ -84,7 +84,7 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" id="hYa-CX-dWu" customClass="UISSCustomView">
                                 <rect key="frame" x="0.0" y="755" width="768" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="5F8-vr-c4j" customClass="UISSCustomContainerView">

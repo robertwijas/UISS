@@ -1,6 +1,6 @@
 {
     "Variables": {
-        "mainColor": "red"
+        "tabbarColor": "darkGray"
     },
     
     "Phone": {
@@ -15,23 +15,27 @@
     },
 
     "UITabBar": {
-        "tintColor": "yellow",
+        "tintColor": "$tabbarColor",
         "selectedImageTintColor": "blue",
         "UITabBarItem": {
-            "titleTextAttributes": [[{"textColor": "black"}, "selected"],
-                                    [{"textColor": "darkGray"}, "normal"]]
+            "titleTextAttributes": [[{"textColor": "white"}, "selected"],
+                                    [{"textColor": "lightGray"}, "normal"]]
+        },
+        "UILabel": {
+            "backgroundColor": "clear"
         }
     },
     "UIToolbar": {
-        "tintColor": "red",
+        "tintColor": "blue",
         "backgroundImage": ["background", "bottom", "default"]
     },
     "UISSCustomView": {
+        "debugBorderColor": "red",
         "image": "background.png",
         "backgroundColor": "gray",
         "backgroundMargin": 20,
         "UIImageView": {
-            "backgroundColor": "red"
+            "backgroundColor": [["lightGray", 0.2]]
         }
     },
     "UILabel": {
@@ -53,6 +57,7 @@
                 "backgroundColor": "black"
             },
             "UISSCustomContainerView": {
+                "debugBorderColor": "black",
                 "UILabel": {
                     "backgroundColor": "white",
                     "textColor": "black"
@@ -62,10 +67,13 @@
         "UISSDemoFirstViewController": {
             "UIButton": {
                 "titleColor": [["black", "normal"], ["white", "highlighted"]],
-                "backgroundImage": [["background", "highlighted"], ["blue", "normal"]]
+                "backgroundImage": [["background", "highlighted"], ["blue", "normal"]],
+                "UILabel": {
+                    "backgroundColor": "clear"
+                }
             },
             "UILabel": {
-                "textColor": "red",
+                "textColor": "white",
                 "backgroundColor": "darkGray"
             }
         }
