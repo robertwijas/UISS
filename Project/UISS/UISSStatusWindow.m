@@ -11,8 +11,6 @@
 
 @interface UISSStatusWindow ()
 
-@property (nonatomic, strong, readwrite) UISSStatusView *statusView;
-
 @end
 
 @implementation UISSStatusWindow
@@ -29,11 +27,6 @@
     self = [super initWithFrame:[UIApplication sharedApplication].statusBarFrame];
     if (self) {
         self.windowLevel = UIWindowLevelStatusBar + 1;
-        
-        self.statusView = [[UISSStatusView alloc] initWithFrame:self.bounds];
-        self.statusView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        
-        [self addSubview:self.statusView];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeStatusBarFrame:) 
                                                      name:UIApplicationDidChangeStatusBarOrientationNotification 
@@ -53,6 +46,8 @@
 {
     self.transform = [self transformForOrientation:[UIApplication sharedApplication].statusBarOrientation];
     self.frame = [self frameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    
+    self.rootViewController.view.frame = self.bounds;
 }
 
 - (CGRect)frameForOrientation:(UIInterfaceOrientation)orientation;

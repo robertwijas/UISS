@@ -10,7 +10,7 @@
 
 @protocol UISSStatusWindowControllerDelegate;
 
-@interface UISSStatusWindowController : NSObject
+@interface UISSStatusWindowController : UIViewController
 
 @property (nonatomic, weak) id<UISSStatusWindowControllerDelegate> delegate;
 

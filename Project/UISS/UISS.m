@@ -16,6 +16,7 @@
 #import "UISSConsoleViewController.h"
 #import "UISSError.h"
 #import "UISSCodeGenerator.h"
+#import "UISSStatusWindow.h"
 
 NSString *const UISSWillApplyStyleNotification = @"UISSWillApplyStyleNotification";
 NSString *const UISSDidApplyStyleNotification = @"UISSDidApplyStyleNotification";
@@ -26,6 +27,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @interface UISS () <UISSStatusWindowControllerDelegate>
 
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
+@property (nonatomic, strong) UISSStatusWindow *statusWindow;
+
 @property (nonatomic, strong) NSTimer *autoReloadTimer;
 @property (nonatomic, assign) dispatch_queue_t queue; // all style parsing is done on the queue
 
@@ -38,12 +41,12 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @implementation UISS
 
 @synthesize config=_config;
-
 @synthesize style=_style;
 
 @synthesize statusWindowController=_statusWindowController;
-@synthesize autoReloadTimer=_autoReloadTimer;
+@synthesize statusWindow=_statusWindow;
 
+@synthesize autoReloadTimer=_autoReloadTimer;
 @synthesize queue=_queue;
 
 @synthesize codeGenerator=_codeGenerator;
@@ -256,7 +259,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 - (BOOL)statusWindowEnabled;
 {
-    return self.statusWindowController != nil;
+    return self.statusWindow != nil;
 }
 
 - (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled;
@@ -269,11 +272,17 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
                 [UISS configureWithJSONFilePath:filePath];
             }
             
-            self.statusWindowController = [[UISSStatusWindowController alloc] init];
-            self.statusWindowController.delegate = self;
+            self.statusWindow = [[UISSStatusWindow alloc] init];
+            
+            UISSStatusWindowController *statusWindowController = [[UISSStatusWindowController alloc] init];
+            statusWindowController.delegate = self;
+            
+            self.statusWindow.rootViewController = statusWindowController;
+            
+            self.statusWindow.hidden = NO;
         }
     } else {
-        self.statusWindowController = nil;
+        self.statusWindow = nil;
     }
 }
 

@@ -13,9 +13,7 @@
 
 @interface UISSStatusWindowController ()
 
-@property (nonatomic, strong) UISSStatusWindow *statusWindow;
 @property (nonatomic, readonly) UISSStatusView *statusView;
-
 @property (nonatomic, strong) NSDictionary *statusDictionary;
 
 @end
@@ -23,7 +21,6 @@
 @implementation UISSStatusWindowController
 
 @synthesize delegate=_delegate;
-@synthesize statusWindow=_statusWindow;
 
 @synthesize statusDictionary;
 
@@ -49,15 +46,23 @@
                                  nil];
         
         [self registerForNotifications];
-        
-        self.statusWindow = [[UISSStatusWindow alloc] init];
-        self.statusWindow.hidden = NO;
-        
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
-                                                                                               action:@selector(tapGestureRecognizerHandler:)];
-        [self.statusWindow addGestureRecognizer:tapGestureRecognizer];
     }
     return self;
+}
+
+- (void)loadView;
+{
+    self.view = [[UISSStatusView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+}
+
+- (void)viewDidLoad;
+{
+    [super viewDidLoad];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self 
+                                                                                           action:@selector(tapGestureRecognizerHandler:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)tapGestureRecognizerHandler:(UIGestureRecognizer *)gestureRecognizer;
@@ -71,7 +76,7 @@
 
 - (UISSStatusView *)statusView;
 {
-    return self.statusWindow.statusView;
+    return (UISSStatusView *)self.view;
 }
 
 - (void)registerForNotifications;
