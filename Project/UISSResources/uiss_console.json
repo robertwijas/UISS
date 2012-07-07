@@ -20,6 +20,18 @@
                                  [null, "normal", "disabled", "default"],
                                  [null, "normal", "normal", "default"]]
             }
+        },
+        "UISSErrorsViewController": {
+            "UILabel": {
+                "textAttributes": {
+                    "font": ["HelveticaNeue-Medium", 14]
+                }
+            }
+        },
+        "UISSGeneratedCodeViewController": {
+            "UITextView": {
+                "font": [["CourierNewPSMT", 12]]
+            }
         }
     }
 }

@@ -27,6 +27,8 @@
 @synthesize methodSignature=_methodSignature;
 @synthesize selector=_selector;
 
+@synthesize group=_group;
+
 - (NSString *)selectorRegexp
 {
     NSMutableString *regexp = [NSMutableString stringWithFormat:@"^set%@:", [self.property.name uppercaseFirstCharacterString]];

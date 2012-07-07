@@ -21,7 +21,40 @@
 
 @synthesize parser=_parser;
 
+#pragma mark - Groups
+
+- (void)testGroups;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow" forKey:@"tintColor"]
+                                                           forKey:@"UIToolbar"];
+    dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"@Group"];
+    
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    NSArray *propertySetters = [self.parser parseDictionary:dictionary errors:errors];
+    
+    STAssertEquals(errors.count, (NSUInteger)0, @"expected no errors");
+    STAssertEquals(propertySetters.count, (NSUInteger)1, @"expected one property setter");
+    
+    UISSPropertySetter *propertySetter = [propertySetters lastObject];
+    STAssertEqualObjects(propertySetter.group, @"Group", nil);
+}
+
 #pragma mark - Errors
+
+- (void)testInvalidAppearanceDictionary;
+{
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:@"Invalid dictionary"
+                                                           forKey:@"UIToolbar"];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    [self.parser parseDictionary:dictionary errors:errors];
+    
+    STAssertEquals(errors.count, (NSUInteger)1, @"expected one error");
+    NSError *error = errors.lastObject;
+    STAssertEquals(error.code, UISSInvalidAppearanceDictionaryError, nil);
+    STAssertEqualObjects([error.userInfo objectForKey:UISSInvalidAppearanceDictionaryErrorKey], dictionary, nil);
+}
 
 - (void)testUnknownClassNameWithoutContainment;
 {

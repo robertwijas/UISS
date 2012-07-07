@@ -16,22 +16,22 @@ UISS has the power to:
 
 UISS do not enforce any dependencies on your app. You can generate Objective-C code for your UISS style so you do not even have to link with UISS library in your production build.
 
-# Yeah, yeah, nice ideas, but how does it really look like?
+# But how does it really look like?
 
 Assuming you're familiar with UIAppearance proxy you probably wrote a piece of code similar to this one:
 
 ```objc
-    [[UITabBar appearance] setTintColor:[UIColor darkGrayColor]]
+[[UITabBar appearance] setTintColor:[UIColor darkGrayColor]]
 ```
 
 in UISS it looks like this:
 
 ```json
-    {
-        "UITabBar": {
-            "tintColor": "darkGray",
-        }
+{
+    "UITabBar": {
+        "tintColor": "darkGray",
     }
+}
 ```
 
 no big difference here, so lets look at more complex example:
@@ -51,7 +51,7 @@ no big difference here, so lets look at more complex example:
 The simplest way to start with UISS is to create `uiss.json` file and add it to your project's resources. To activate this file add this line:
 
 ```objc
-    [UISS configureWithDefaultJSONFile];
+[UISS configureWithDefaultJSONFile];
 ```
 
 This should be called before your views are displayed, the common place for that is your Application Delegate's _didFinishLaunching_ method.
@@ -60,18 +60,16 @@ This should be called before your views are displayed, the common place for that
 
 If you want to load your style from remote location to enable live updates, here's how to do that:
 
-```objc
-    UISS *uiss = [[UISS alloc] init];
-    uiss.style.url = [NSURL URLWithString:@"http://your.awesome.domain/uiss.json"];
-    [uiss load];
-```
+	UISS *uiss = [[UISS alloc] init];
+	uiss.style.url = [NSURL URLWithString:@"http://your.awesome.domain/uiss.json"];
+	[uiss load];
 
 ### Live updates
 
 UISS can detect if your style changed and automatically update your interface. To enable this feature call this method:
 
 ```objc
-    [uiss enableAutoReloadWithTimeInterval:3];
+[uiss enableAutoReloadWithTimeInterval:3];
 ```
 
 ### Status bar
@@ -91,79 +89,88 @@ Tapping on UISS status bar will present console view where:
 
 # Sytax
 
+## Axis parameters
+
+## Containment
+
 ## Converters
 
-UISS has value converters for every type used to set _UIAppearance_ properties. These convertes provide useful shortcuts and convinient syntax for defining your properties.
+UISS has value converters for every type used to set _UIAppearance_ properties. These converters provide useful shortcuts and convinient syntax for defining your properties.
 
 Here are some examples and eqivalent values in _Objective-C_ code.
 
 ### Colors
 
 #### Hex
-```JSON
-"#ffffff"
-```
-```objc
-[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
-```
+
+	"#ffffff"
+	[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
 
 #### Default UIColor colors
-```JSON
-"red"
-"redColor"
-```
-```objc
-[UIColor redColor]
-[UIColor redColor]
-```
+
+	"red"
+	[UIColor redColor]
+
+	"redColor"
+	[UIColor redColor]
 
 #### Colors with pattern image
-```JSON
-"patternImageName"
-```
-```objc
-[UIColor colorWithPatternImage:@"patternImageName"]
-```
+
+	"patternImageName"
+	[UIColor colorWithPatternImage:@"patternImageName"]
 
 #### RGB
-```JSON
-[[0, 255, 255]]
-```
-```objc
-[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
-```
+
+	[[0, 255, 255]]
+	[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
 
 #### Colors with alpha
-```JSON
-[["#ffffff", 0.5]]
-[["red", 0.5]]
-[[0, 255, 255, 0.5]]
-```
-```objc
-[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
-[[UIColor redColor] colorWithAlphaComponent:0.5f]
-[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
-```
+
+	["#ffffff", 0.5]
+	[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
+
+	["red", 0.5]
+	[[UIColor redColor] colorWithAlphaComponent:0.5f]
+
+	[0, 255, 255, 0.5]
+	[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
 
 ### Images
 
 #### Simple image with name:
-```JSON
-"imageName"
-```
-```objc
-[UIImage imageNamed:@"imageName"]
-```
+
+	"imageName"
+	[UIImage imageNamed:@"imageName"]
 
 #### Resizable images:
-```JSON
-[["imageName", 1, 2, 3, 4]]
-```
-```objc
-[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]
-```
+
+	["imageName", 1, 2, 3, 4]
+	[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]
+
+### Fonts
+
+### TextAttributes
+
+### Structures
+
+### UIKit Enums
 
 ## Variables
 
 ## User Interface Idioms
 
+## Comments
+
+JSON specification doesn't support comments. But sometimes being able to easly disable some parts of your UISS style can be really useful. You can do that by adding ```-``` prefix to dictionary keys. UISS will ignore those keys without reporting errors. Example:
+
+	{
+		"UIToolbar": {
+			"-tintColor": "blue",
+			"backgroundImage": ["background", "any", "default"]
+		},
+		"-UITabbar": {
+			"tintColor": "blue"
+		}
+	}
+
+This will only set _UIToolbar's_ background image.

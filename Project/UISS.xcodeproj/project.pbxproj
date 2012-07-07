@@ -109,6 +109,11 @@
 		E1914CB4158FA2FC00E04977 /* errors.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB2158FA2FC00E04977 /* errors.png */; };
 		E1914CB5158FA2FC00E04977 /* errors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB3158FA2FC00E04977 /* errors@2x.png */; };
 		E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */; };
+		E19B54E915A7689D005AFD13 /* UISSParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E19B54E715A7689D005AFD13 /* UISSParserContext.h */; };
+		E19B54EA15A7689D005AFD13 /* UISSParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E19B54E815A7689D005AFD13 /* UISSParserContext.m */; };
+		E19B54EF15A81F56005AFD13 /* UISSCodeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = E19B54ED15A81F56005AFD13 /* UISSCodeGenerator.h */; };
+		E19B54F015A81F56005AFD13 /* UISSCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = E19B54EE15A81F56005AFD13 /* UISSCodeGenerator.m */; };
+		E19B54F415A82070005AFD13 /* UISSCodeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19B54F315A82070005AFD13 /* UISSCodeGeneratorTests.m */; };
 		E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A7739615668F80000406CC /* UILabel+UISS.h */; };
 		E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7739715668F80000406CC /* UILabel+UISS.m */; };
 		E1A775B21566E8D6000406CC /* UISSToolbarPositionConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */; };
@@ -281,6 +286,11 @@
 		E1914CB2158FA2FC00E04977 /* errors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errors.png; sourceTree = "<group>"; };
 		E1914CB3158FA2FC00E04977 /* errors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errors@2x.png"; sourceTree = "<group>"; };
 		E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessorTests.m; sourceTree = "<group>"; };
+		E19B54E715A7689D005AFD13 /* UISSParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParserContext.h; sourceTree = "<group>"; };
+		E19B54E815A7689D005AFD13 /* UISSParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParserContext.m; sourceTree = "<group>"; };
+		E19B54ED15A81F56005AFD13 /* UISSCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSCodeGenerator.h; sourceTree = "<group>"; };
+		E19B54EE15A81F56005AFD13 /* UISSCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCodeGenerator.m; sourceTree = "<group>"; };
+		E19B54F315A82070005AFD13 /* UISSCodeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSCodeGeneratorTests.m; sourceTree = "<group>"; };
 		E1A7739615668F80000406CC /* UILabel+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+UISS.h"; sourceTree = "<group>"; };
 		E1A7739715668F80000406CC /* UILabel+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+UISS.m"; sourceTree = "<group>"; };
 		E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSToolbarPositionConverter.h; sourceTree = "<group>"; };
@@ -629,6 +639,23 @@
 			name = Preprocessors;
 			sourceTree = "<group>";
 		};
+		E19B54EC15A81F3D005AFD13 /* Code Generator */ = {
+			isa = PBXGroup;
+			children = (
+				E19B54ED15A81F56005AFD13 /* UISSCodeGenerator.h */,
+				E19B54EE15A81F56005AFD13 /* UISSCodeGenerator.m */,
+			);
+			name = "Code Generator";
+			sourceTree = "<group>";
+		};
+		E19B54F115A82055005AFD13 /* Code Generator */ = {
+			isa = PBXGroup;
+			children = (
+				E19B54F315A82070005AFD13 /* UISSCodeGeneratorTests.m */,
+			);
+			name = "Code Generator";
+			sourceTree = "<group>";
+		};
 		E1A7739415668F6C000406CC /* UIKit Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +674,8 @@
 				E1BD5E0F1568095D00288A28 /* Preprocessora */,
 				E1469858155A85EC000F311F /* UISSParser.h */,
 				E1469859155A85EC000F311F /* UISSParser.m */,
+				E19B54E715A7689D005AFD13 /* UISSParserContext.h */,
+				E19B54E815A7689D005AFD13 /* UISSParserContext.m */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -699,6 +728,7 @@
 		E1B438B4143F668000F87518 /* UISS */ = {
 			isa = PBXGroup;
 			children = (
+				E19B54EC15A81F3D005AFD13 /* Code Generator */,
 				E145C8551584AF650087BB1B /* Helpers */,
 				E1F6E2F0157EC32E00A5187E /* Console */,
 				E1A775B915678FF8000406CC /* Parser */,
@@ -787,6 +817,7 @@
 		E1ED8C111450D4E200302B61 /* UISSDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				E19B54F115A82055005AFD13 /* Code Generator */,
 				E1ED8C121450D4E200302B61 /* Supporting Files */,
 				E1A775BE1567A7E3000406CC /* Parser */,
 				E14698461559071E000F311F /* Value Converters */,
@@ -872,6 +903,8 @@
 				E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */,
 				E1BBEBEF1598776D001F7A60 /* UISSStatusView.h in Headers */,
 				E17E43BD159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h in Headers */,
+				E19B54E915A7689D005AFD13 /* UISSParserContext.h in Headers */,
+				E19B54EF15A81F56005AFD13 /* UISSCodeGenerator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1093,6 +1126,8 @@
 				E1914CB0158F99BB00E04977 /* UISSStyle.m in Sources */,
 				E1BBEBF01598776D001F7A60 /* UISSStatusView.m in Sources */,
 				E17E43BE159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m in Sources */,
+				E19B54EA15A7689D005AFD13 /* UISSParserContext.m in Sources */,
+				E19B54F015A81F56005AFD13 /* UISSCodeGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,6 +1174,7 @@
 				E1F2B9C515814486008EE145 /* UISSPrivateAppearanceMethodsTests.m in Sources */,
 				E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */,
 				E123BD64158BA83B004F8633 /* UISSTests.m in Sources */,
+				E19B54F415A82070005AFD13 /* UISSCodeGeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

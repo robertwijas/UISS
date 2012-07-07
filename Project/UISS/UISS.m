@@ -15,6 +15,7 @@
 #import "UISSAppearancePrivate.h"
 #import "UISSConsoleViewController.h"
 #import "UISSError.h"
+#import "UISSCodeGenerator.h"
 
 NSString *const UISSWillApplyStyleNotification = @"UISSWillApplyStyleNotification";
 NSString *const UISSDidApplyStyleNotification = @"UISSDidApplyStyleNotification";
@@ -27,6 +28,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
 @property (nonatomic, strong) NSTimer *autoReloadTimer;
 @property (nonatomic, assign) dispatch_queue_t queue; // all style parsing is done on the queue
+
+@property (nonatomic, strong) UISSCodeGenerator *codeGenerator;
 
 @end
 
@@ -41,6 +44,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @synthesize queue=_queue;
 
+@synthesize codeGenerator=_codeGenerator;
 
 #pragma mark - Contructors
 
@@ -52,6 +56,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         self.style = [[UISSStyle alloc] init];
         
         self.queue = dispatch_queue_create("com.robertwijas.uiss.queue", DISPATCH_QUEUE_SERIAL);
+        
+        self.codeGenerator = [[UISSCodeGenerator alloc] init];
     }
     
     return self;
@@ -75,7 +81,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillApplyStyleNotification object:self];
 
-    [self resetAppearance];
+    [self resetAppearanceForPropertySetters:propertySetters];
     
     NSMutableArray *invocations = [NSMutableArray array];
     
@@ -148,12 +154,11 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidRefreshViewsNotification object:self];
 }
 
-- (void)resetAppearance;
+- (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters;
 {
     NSLog(@"UISS -- reseting appearance");
     
     NSMutableSet *done = [NSMutableSet set];
-    NSArray *propertySetters = [self.style propertySettersForUserInterfaceIdiom:[UIDevice currentDevice].userInterfaceIdiom];
     
     for (UISSPropertySetter *propertySetter in propertySetters) {
         if ([done containsObject:propertySetter.target] == NO) {
@@ -173,19 +178,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     dispatch_async(self.queue, ^{
         [self.style parseDictionaryForUserInterfaceIdiom:userInterfaceIdiom withConfig:self.config];
         NSArray *propertySetters = [self.style propertySettersForUserInterfaceIdiom:userInterfaceIdiom];
-        
-        NSMutableString *code = [NSMutableString string];
         NSMutableArray *errors = [NSMutableArray array];
         
-        for (UISSPropertySetter *propertySetter in propertySetters) {
-            NSString *generatedCode = propertySetter.generatedCode;
-            if (generatedCode) {
-                [code appendFormat:@"%@\n", generatedCode];
-            } else {
-                [errors addObject:[UISSError errorWithCode:UISSPropertySetterGenerateCodeError 
-                                                  userInfo:[NSDictionary dictionaryWithObject:propertySetter forKey:UISSPopertySetterErrorKey]]];
-            }
-        }
+        NSString *code = [self.codeGenerator generateCodeForPropertySetters:propertySetters errors:errors];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             codeHandler(code, errors);

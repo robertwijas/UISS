@@ -13,6 +13,7 @@ NSString * const UISSErrorDomain = @"UISSErrorDomain";
 
 NSString * const UISSPopertySetterErrorKey = @"UISSPopertySetterErrorKey";
 NSString * const UISSInvalidClassNameErrorKey = @"UISSUnknownClassErrorKey";
+NSString * const UISSInvalidAppearanceDictionaryErrorKey = @"UISSInvalidAppearanceDictionaryErrorKey";
 
 @implementation UISSError
 
@@ -39,6 +40,8 @@ NSString * const UISSInvalidClassNameErrorKey = @"UISSUnknownClassErrorKey";
             return [NSString stringWithFormat:@"Invalid Appearance Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
         case UISSInvalidAppearanceContainerClassError:
             return [NSString stringWithFormat:@"Invalid Appearance Container Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+        case UISSInvalidAppearanceDictionaryError:
+            return [NSString stringWithFormat:@"Invalid Appearance Dictionary: %@", [self.userInfo objectForKey:UISSInvalidAppearanceDictionaryErrorKey]];
         default:
             return nil;
     }

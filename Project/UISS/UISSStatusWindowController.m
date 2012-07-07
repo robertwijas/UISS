@@ -157,13 +157,19 @@
 
 - (void)updateStatusViewForNotification:(NSNotification *)notification;
 {
-    // notification may not arrive on main thread
-    dispatch_async(dispatch_get_main_queue(), ^{
+    void (^block)(void) = ^{
         [self.statusView setTitle:[self titleForNotification:notification]
                            status:[self statusForNotification:notification]
                          activity:[self activityForNotfication:notification]
                             error:[self errorForNotification:notification]];
-    });
+    };
+    
+    // notification may not arrive on main thread
+    if (dispatch_get_current_queue() != dispatch_get_main_queue()) {
+        dispatch_async(dispatch_get_main_queue(), block);
+    } else {
+        block();
+    }
 }
 
 @end

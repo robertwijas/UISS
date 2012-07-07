@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UISSProperty *property;
 @property (nonatomic, copy) NSArray *axisParameters;
 
+@property (nonatomic, strong) NSString *group;
+
 #pragma mark - calculated properties
 
 @property (nonatomic, strong, readonly) NSMethodSignature *methodSignature;

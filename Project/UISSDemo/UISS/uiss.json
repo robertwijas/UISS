@@ -15,15 +15,15 @@
     },
 
     "UITabBar": {
-        "tintColor": "darkGray",
-        "selectedImageTintColor": "$mainColor",
+        "tintColor": "yellow",
+        "selectedImageTintColor": "blue",
         "UITabBarItem": {
-            "titleTextAttributes": [[{"textColor": "red"}, "selected"],
-                                    [{"textColor": "white"}, "normal"]]
+            "titleTextAttributes": [[{"textColor": "black"}, "selected"],
+                                    [{"textColor": "darkGray"}, "normal"]]
         }
     },
     "UIToolbar": {
-        "tintColor": "lightGray",
+        "tintColor": "red",
         "backgroundImage": ["background", "bottom", "default"]
     },
     "UISSCustomView": {
@@ -45,26 +45,28 @@
     "UISSCustomContainerView": {
         "backgroundColor": [["#8899ff", 0.5]]
     },
-    "UISSDemoSecondViewController": {
-        "UILabel": {
-            "textColor": "white",
-            "backgroundColor": "black"
-        },
-        "UISSCustomContainerView": {
+    "@Controllers": {
+        "UISSDemoSecondViewController": {
             "UILabel": {
-                "backgroundColor": "white",
-                "textColor": "black"
+                "textColor": "white",
+                "backgroundColor": "black"
+            },
+            "UISSCustomContainerView": {
+                "UILabel": {
+                    "backgroundColor": "white",
+                    "textColor": "black"
+                }
             }
-        }
-    },
-    "UISSDemoFirstViewController": {
-        "UIButton": {
-            "titleColor": [["black", "normal"], ["white", "highlighted"]],
-            "backgroundImage": ["background", "highlighted"],
         },
-        "UILabel": {
-            "textColor": "blue",
-            "backgroundColor": "lightGray"
+        "UISSDemoFirstViewController": {
+            "UIButton": {
+                "titleColor": [["black", "normal"], ["white", "highlighted"]],
+                "backgroundImage": [["background", "highlighted"], ["blue", "normal"]]
+            },
+            "UILabel": {
+                "textColor": "red",
+                "backgroundColor": "black"
+            }
         }
     }
 }
