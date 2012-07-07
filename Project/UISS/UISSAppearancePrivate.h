@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef UISS_DEBUG
+
 @protocol UISSAppearancePrivate <NSObject>
 
 - (NSMutableArray *)_appearanceInvocations;
 
 @end
+
+#endif

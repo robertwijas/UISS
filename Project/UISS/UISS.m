@@ -31,6 +31,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @property (nonatomic, strong) UISSCodeGenerator *codeGenerator;
 
+@property (nonatomic, strong) NSMutableArray *configuredAppearanceProxies;
+
 @end
 
 @implementation UISS
@@ -46,6 +48,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @synthesize codeGenerator=_codeGenerator;
 
+@synthesize configuredAppearanceProxies=_configuredAppearanceProxies;
+
 #pragma mark - Contructors
 
 - (id)init
@@ -58,6 +62,10 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         self.queue = dispatch_queue_create("com.robertwijas.uiss.queue", DISPATCH_QUEUE_SERIAL);
         
         self.codeGenerator = [[UISSCodeGenerator alloc] init];
+        
+#ifdef UISS_DEBUG
+        self.configuredAppearanceProxies = [NSMutableArray array];
+#endif
     }
     
     return self;
@@ -96,6 +104,10 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
     
     for (NSInvocation *invocation in invocations) {
+        if ([self.configuredAppearanceProxies containsObject:invocation.target] == NO) {
+            [self.configuredAppearanceProxies addObject:invocation.target];
+        }
+        
         [invocation invoke];
     }
 
@@ -156,16 +168,15 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 - (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters;
 {
+#ifdef UISS_DEBUG
     NSLog(@"UISS -- reseting appearance");
     
-    NSMutableSet *done = [NSMutableSet set];
-    
-    for (UISSPropertySetter *propertySetter in propertySetters) {
-        if ([done containsObject:propertySetter.target] == NO) {
-            [[propertySetter.target _appearanceInvocations] removeAllObjects];
-            [done addObject:propertySetter.target];
-        }
+    for (id appearanceProxy in self.configuredAppearanceProxies) {
+        [[appearanceProxy _appearanceInvocations] removeAllObjects];
     }
+    
+    [self.configuredAppearanceProxies removeAllObjects];
+#endif
 }
 
 #pragma mark - Code Generation

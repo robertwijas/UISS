@@ -39,7 +39,8 @@
             "textColor": "blue"
         },
         "Pad": {
-            "textColor": "orange"
+            "textColor": "orange",
+            "backgroundColor": "green"
         }
     },
     "UISSCustomContainerView": {
@@ -65,7 +66,7 @@
             },
             "UILabel": {
                 "textColor": "red",
-                "backgroundColor": "black"
+                "backgroundColor": "darkGray"
             }
         }
     }

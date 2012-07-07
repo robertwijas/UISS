@@ -21,7 +21,6 @@
 
 @synthesize codeGenerator;
 
-
 - (void)testCodeGenerationWithGroups;
 {
     UISSPropertySetter *propertySetter = [[UISSPropertySetter alloc] init];
@@ -40,7 +39,9 @@
     
     STAssertNotNil(code, nil);
     STAssertEquals(errors.count, (NSUInteger)0, nil);
-    STAssertEqualObjects(code, @"// Group\n[[UIToolbar appearance] setTintColor:[UIColor greenColor]];\n", nil);
+    
+    NSString *expectedCode = [NSString stringWithFormat:@"// Group\n%@\n", [propertySetter generatedCode]];
+    STAssertEqualObjects(code, expectedCode, nil);
 }
 
 - (void)setUp;
