@@ -75,7 +75,7 @@ UISS can detect if your style changed and automatically update your interface. T
 ### Status bar
 
 ```objc
-    uiss.statusWindowEnabled = YES;
+uiss.statusWindowEnabled = YES;
 ```
 
 UISS will take a small portion of the screen (usually taken by status bar) to show you what is going on behind the scenes.
@@ -103,74 +103,256 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 
 #### Hex
 
-	"#ffffff"
-	[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
+```json
+"#ffffff"
+```
+```objc
+[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
+````
 
 #### Default UIColor colors
 
-	"red"
-	[UIColor redColor]
-
-	"redColor"
-	[UIColor redColor]
+```json
+"red"
+```
+```objc
+[UIColor redColor]
+````
+```json
+"redColor"
+```
+```objc
+[UIColor redColor]
+````
 
 #### Colors with pattern image
 
-	"patternImageName"
-	[UIColor colorWithPatternImage:@"patternImageName"]
+```json
+"patternImageName"
+```
+```objc
+[UIColor colorWithPatternImage:@"patternImageName"]
+````
 
 #### RGB
 
-	[[0, 255, 255]]
-	[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
+```json
+[0, 255, 255]
+```
+```objc
+[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
+````
 
 #### Colors with alpha
 
-	["#ffffff", 0.5]
-	[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
-
-	["red", 0.5]
-	[[UIColor redColor] colorWithAlphaComponent:0.5f]
-
-	[0, 255, 255, 0.5]
-	[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
+```json
+["#ffffff", 0.5]
+```
+```objc
+[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
+````
+```json
+["red", 0.5]
+```
+```objc
+[[UIColor redColor] colorWithAlphaComponent:0.5f]
+````
+```json
+[0, 255, 255, 0.5]
+```
+```objc
+[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
+````
 
 ### Images
 
 #### Simple image with name:
 
-	"imageName"
-	[UIImage imageNamed:@"imageName"]
+```json
+"imageName"
+```
+```objc
+[UIImage imageNamed:@"imageName"]
+````
 
 #### Resizable images:
 
-	["imageName", 1, 2, 3, 4]
-	[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]
+```json
+["imageName", 1, 2, 3, 4]
+```
+```objc
+[[UIImage imageNamed:@"imageName"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 2, 3, 4)]
+````
 
 ### Fonts
 
+```json
+14
+```
+```objc
+[UIFont systemFontOfSize:14.0f]
+````
+```json
+["bold", 14]
+```
+```objc
+[UIFont boldSystemFontOfSize:14.0f]
+````
+```json
+["italic", 20]
+```
+```objc
+[UIFont italicSystemFontOfSize:14.0f]
+````
+```json
+["Georgia-Italic", 12]
+```
+```objc
+[UIFont fontWithName:@"Georgia-Italic" size:12.0f]
+````
+
 ### TextAttributes
+
+```json
+{
+	"font": ["bold", 12],
+	"textColor": "black",
+	"textShadowColor": "lightGray",
+	"textShadowOffset": [1, 2]
+}
+```
+```objc
+[NSDictionary dictionaryWithObjectsAndKeys:
+ [UIFont boldSystemFontOfSize:12], UITextAttributeFont,
+ [UIColor blackColor], UITextAttributeTextColor,
+ [UIColor lightGrayColor], UITextAttributeTextShadowColor,
+ [NSValue valueWithUIOffset:UIOffsetMake(1, 2)], UITextAttributeTextShadowOffset, nil];
+````
 
 ### Structures
 
+#### CGSize
+
+| JSON | Objective-C |
+-------|--------------
+| ```1``` | ```CGSizeMake(1, 1)``` |
+| ```[1]``` | ```CGSizeMake(1, 1)``` |
+| ```[1, 2]``` | ```CGSizeMake(1, 2)``` |
+
+
+#### CGRect
+
+| JSON | Objective-C |
+-------|--------------
+| ```[1, 2, 3, 4]``` | ```CGRectMake(1, 2)``` |
+
+#### UIEdgeInsets
+
+| JSON | Objective-C |
+-------|--------------
+| ```[1, 2, 3, 4]``` | ```UIEdgeInsetsMake(1, 2)``` |
+
+#### UIOffset
+
+| JSON | Objective-C |
+-------|--------------
+| ```1``` | ```UIOffsetMake(1, 1)``` |
+| ```[1]``` | ```UIOffsetMake(1, 1)``` |
+| ```[1, 2]``` | ```UIOffsetMake(1, 2)``` |
+
+#### CGPoint
+
+| JSON | Objective-C |
+-------|--------------
+| ```1``` | ```CGPointMake(1, 1)``` |
+| ```[1]``` | ```CGPointMake(1, 1)``` |
+| ```[1, 2]``` | ```CGPointMake(1, 2)``` |
+
 ### UIKit Enums
+
+#### UIBarMetrics
+
+| JSON | Objective-C |
+-------|--------------
+| ```default``` | ```UIBarMetricsDefault``` |
+| ```landscapePhone``` | ```UIBarMetricsLandscapePhone``` |
+
+#### UIControlState
+
+| JSON | Objective-C |
+-------|--------------
+| ```normal``` | ```UIControlStateNormal``` |
+| ```highlighted``` | ```UIControlStateHighlighted``` |
+| ```disabled``` | ```UIControlStateDisabled``` |
+| ```selected``` | ```UIControlStateSelected``` |
+| ```reserved``` | ```UIControlStateReserved``` |
+| ```application``` | ```UIControlStateApplication``` |
+
+#### UISegmentedControlSegment
+
+| JSON | Objective-C |
+-------|--------------
+| ```any``` | ```UISegmentedControlSegmentAny``` |
+| ```left``` | ```UISegmentedControlSegmentLeft``` |
+| ```center``` | ```UISegmentedControlSegmentCenter``` |
+| ```right``` | ```UISegmentedControlSegmentRight``` |
+| ```alone``` | ```UISegmentedControlSegmentAlone``` |
+
+#### UIToolbarPosition
+
+| JSON | Objective-C |
+-------|--------------
+| ```any``` | ```UIToolbarPositionAny``` |
+| ```bottom``` | ```UIToolbarPositionBottom``` |
+| ```top``` | ```UIToolbarPositionTop``` |
+
+#### UISearchBarIcon
+
+| JSON | Objective-C |
+-------|--------------
+| ```search``` | ```UISearchBarIconSearch``` |
+| ```clear``` | ```UISearchBarIconClear``` |
+| ```bookmark``` | ```UISearchBarIconBookmark``` |
+| ```resultsList``` | ```UISearchBarIconResultsList``` |
 
 ## Variables
 
+You can define variables that can be used in your UISS style. All variables shoud be defined under _Variables_ key in your style dictionary. To reference a variable prefix its name with _$_ sign.
+
+Example:
+
+```json
+{
+	"Variables": {
+		"tintColor": "red"
+	},
+
+	"UIToolbar": {
+		"tintColor": "$tintColor"
+	}
+}
+```
+
 ## User Interface Idioms
+
+
 
 ## Comments
 
-JSON specification doesn't support comments. But sometimes being able to easly disable some parts of your UISS style can be really useful. You can do that by adding ```-``` prefix to dictionary keys. UISS will ignore those keys without reporting errors. Example:
+JSON specification doesn't support comments. But sometimes being able to easly disable some parts of your UISS style can be really useful. You can do that by adding ```-``` prefix to dictionary keys. UISS will ignore those keys without reporting errors.
 
-	{
-		"UIToolbar": {
-			"-tintColor": "blue",
-			"backgroundImage": ["background", "any", "default"]
-		},
-		"-UITabbar": {
-			"tintColor": "blue"
-		}
+Example:
+
+```json
+{
+	"UIToolbar": {
+		"-tintColor": "blue",
+		"backgroundImage": ["background", "any", "default"]
+	},
+	"-UITabbar": {
+		"tintColor": "blue"
 	}
+}
+```
 
 This will only set _UIToolbar's_ background image.
