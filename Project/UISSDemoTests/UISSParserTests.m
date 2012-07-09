@@ -38,6 +38,7 @@
     
     UISSPropertySetter *propertySetter = [propertySetters lastObject];
     STAssertEqualObjects(propertySetter.group, @"Group", nil);
+    STAssertEquals(propertySetter.containment.count, (NSUInteger)0, nil);
 }
 
 #pragma mark - Errors

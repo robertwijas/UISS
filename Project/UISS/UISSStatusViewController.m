@@ -177,6 +177,20 @@
     }
 }
 
+#pragma mark - Interface Orientation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    self.view.window.hidden = YES; // Bad animation workaround
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    self.view.window.hidden = NO; // Bad animation workaround
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 {
     return YES;

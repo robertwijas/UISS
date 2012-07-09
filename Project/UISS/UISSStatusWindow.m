@@ -25,6 +25,8 @@
 - (id)init
 {
     self = [super initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+    self.clipsToBounds = YES;
+    self.backgroundColor = [UIColor clearColor];
     if (self) {
         self.windowLevel = UIWindowLevelStatusBar + 1;
         
@@ -44,9 +46,7 @@
 
 - (void)updateLayout;
 {
-    self.transform = [self transformForOrientation:[UIApplication sharedApplication].statusBarOrientation];
     self.frame = [self frameForOrientation:[UIApplication sharedApplication].statusBarOrientation];
-    
     self.rootViewController.view.frame = self.bounds;
 }
 
@@ -65,21 +65,6 @@
         case UIInterfaceOrientationPortrait:
         default:
             return CGRectMake(0, 0, screenSize.width, height);
-    }
-}
-
-- (CGAffineTransform)transformForOrientation:(UIInterfaceOrientation)orientation;
-{
-    switch (orientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-            return CGAffineTransformMakeRotation((CGFloat) -M_PI_2);
-        case UIInterfaceOrientationLandscapeRight:
-            return CGAffineTransformMakeRotation((CGFloat) M_PI_2);
-        case UIInterfaceOrientationPortraitUpsideDown:
-            return CGAffineTransformMakeRotation((CGFloat) M_PI);
-        case UIInterfaceOrientationPortrait:
-        default:
-            return CGAffineTransformMakeRotation(0);
     }
 }
 
