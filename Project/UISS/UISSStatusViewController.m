@@ -1,24 +1,24 @@
 //
-//  UISSStatusWindowController.m
+//  UISSStatusViewController.m
 //  UISS
 //
 //  Created by Robert Wijas on 6/6/12.
 //  Copyright (c) 2012 57things. All rights reserved.
 //
 
-#import "UISSStatusWindowController.h"
+#import "UISSStatusViewController.h"
 #import "UISSStatusWindow.h"
 #import "UISS.h"
 #import "UISSStyle.h"
 
-@interface UISSStatusWindowController ()
+@interface UISSStatusViewController ()
 
 @property (nonatomic, readonly) UISSStatusView *statusView;
 @property (nonatomic, strong) NSDictionary *statusDictionary;
 
 @end
 
-@implementation UISSStatusWindowController
+@implementation UISSStatusViewController
 
 @synthesize delegate=_delegate;
 
@@ -175,6 +175,11 @@
     } else {
         block();
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+{
+    return YES;
 }
 
 @end

@@ -43,7 +43,7 @@
         self.statusLabel.textAlignment = UITextAlignmentRight;
         
         self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
         self.activityIndicator.center = CGPointMake(roundf(self.bounds.size.width*0.5), roundf(self.bounds.size.height*0.5));
         self.activityIndicator.transform = CGAffineTransformMakeScale(0.75, 0.75);
         

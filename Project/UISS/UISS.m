@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import "UISSStatusWindowController.h"
+#import "UISSStatusViewController.h"
 #import "UISSPropertySetter.h"
 #import "UISSAppearancePrivate.h"
 #import "UISSConsoleViewController.h"
@@ -26,7 +26,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @interface UISS () <UISSStatusWindowControllerDelegate>
 
-@property (nonatomic, strong) UISSStatusWindowController *statusWindowController;
+@property (nonatomic, strong) UISSStatusViewController *statusWindowController;
 @property (nonatomic, strong) UISSStatusWindow *statusWindow;
 
 @property (nonatomic, strong) NSTimer *autoReloadTimer;
@@ -274,7 +274,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
             
             self.statusWindow = [[UISSStatusWindow alloc] init];
             
-            UISSStatusWindowController *statusWindowController = [[UISSStatusWindowController alloc] init];
+            UISSStatusViewController *statusWindowController = [[UISSStatusViewController alloc] init];
             statusWindowController.delegate = self;
             
             self.statusWindow.rootViewController = statusWindowController;
@@ -289,7 +289,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 #pragma mark - Console
 
-- (void)statusWindowControllerDidSelect:(UISSStatusWindowController *)statusWindowController;
+- (void)statusWindowControllerDidSelect:(UISSStatusViewController *)statusWindowController;
 {
     [self presentConsoleViewController];
 }

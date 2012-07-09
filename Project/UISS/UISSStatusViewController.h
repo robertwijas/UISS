@@ -1,5 +1,5 @@
 //
-//  UISSStatusWindowController.h
+//  UISSStatusViewController.h
 //  UISS
 //
 //  Created by Robert Wijas on 6/6/12.
@@ -10,7 +10,7 @@
 
 @protocol UISSStatusWindowControllerDelegate;
 
-@interface UISSStatusWindowController : UIViewController
+@interface UISSStatusViewController : UIViewController
 
 @property (nonatomic, weak) id<UISSStatusWindowControllerDelegate> delegate;
 
@@ -19,7 +19,7 @@
 @protocol UISSStatusWindowControllerDelegate <NSObject>
 
 @optional
-- (void)statusWindowControllerDidSelect:(UISSStatusWindowController *)statusWindowController;
+- (void)statusWindowControllerDidSelect:(UISSStatusViewController *)statusWindowController;
 
 @end
 

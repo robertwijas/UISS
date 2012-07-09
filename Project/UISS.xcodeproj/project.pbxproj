@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E1076BEA157F6B1A00886759 /* UISSStatusWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1076BE8157F6B1A00886759 /* UISSStatusWindowController.h */; };
-		E1076BEB157F6B1A00886759 /* UISSStatusWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1076BE9157F6B1A00886759 /* UISSStatusWindowController.m */; };
+		E1076BEA157F6B1A00886759 /* UISSStatusViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1076BE8157F6B1A00886759 /* UISSStatusViewController.h */; };
+		E1076BEB157F6B1A00886759 /* UISSStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1076BE9157F6B1A00886759 /* UISSStatusViewController.m */; };
 		E10D5E551574BBA400185009 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E4B1574BBA400185009 /* Icon-72.png */; };
 		E10D5E561574BBA400185009 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E4C1574BBA400185009 /* Icon-72@2x.png */; };
 		E10D5E571574BBA400185009 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D5E4D1574BBA400185009 /* Icon-Small-50.png */; };
@@ -179,8 +179,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E1076BE8157F6B1A00886759 /* UISSStatusWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusWindowController.h; sourceTree = "<group>"; };
-		E1076BE9157F6B1A00886759 /* UISSStatusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStatusWindowController.m; sourceTree = "<group>"; };
+		E1076BE8157F6B1A00886759 /* UISSStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusViewController.h; sourceTree = "<group>"; };
+		E1076BE9157F6B1A00886759 /* UISSStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStatusViewController.m; sourceTree = "<group>"; };
 		E10D5E4B1574BBA400185009 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		E10D5E4C1574BBA400185009 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		E10D5E4D1574BBA400185009 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -389,8 +389,8 @@
 			children = (
 				E1F6E2F2157EC35B00A5187E /* UISSStatusWindow.h */,
 				E1F6E2F3157EC35B00A5187E /* UISSStatusWindow.m */,
-				E1076BE8157F6B1A00886759 /* UISSStatusWindowController.h */,
-				E1076BE9157F6B1A00886759 /* UISSStatusWindowController.m */,
+				E1076BE8157F6B1A00886759 /* UISSStatusViewController.h */,
+				E1076BE9157F6B1A00886759 /* UISSStatusViewController.m */,
 				E1BBEBED1598776C001F7A60 /* UISSStatusView.h */,
 				E1BBEBEE1598776C001F7A60 /* UISSStatusView.m */,
 			);
@@ -891,7 +891,7 @@
 				E116AF2F157ABBE000BFB3D1 /* UISSAxisParameter.h in Headers */,
 				E1F6E2F4157EC35B00A5187E /* UISSStatusWindow.h in Headers */,
 				E1BCCC35157F634B001E4429 /* UISSConsoleViewController.h in Headers */,
-				E1076BEA157F6B1A00886759 /* UISSStatusWindowController.h in Headers */,
+				E1076BEA157F6B1A00886759 /* UISSStatusViewController.h in Headers */,
 				E145C8581584AF820087BB1B /* NSString+UISS.h in Headers */,
 				E145C8631584DCC70087BB1B /* UISSConfig.h in Headers */,
 				E13B646615890CC800E3613B /* UISSArgumentValueConverter.h in Headers */,
@@ -1115,7 +1115,7 @@
 				E116AF30157ABBE000BFB3D1 /* UISSAxisParameter.m in Sources */,
 				E1F6E2F5157EC35B00A5187E /* UISSStatusWindow.m in Sources */,
 				E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */,
-				E1076BEB157F6B1A00886759 /* UISSStatusWindowController.m in Sources */,
+				E1076BEB157F6B1A00886759 /* UISSStatusViewController.m in Sources */,
 				E1F6E2F5157EC35B00A51882 /* (null) in Sources */,
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
