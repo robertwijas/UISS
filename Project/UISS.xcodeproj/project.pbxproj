@@ -106,8 +106,6 @@
 		E18C7C20158F52B1000D45AC /* UISSErrorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */; };
 		E1914CAF158F99BB00E04977 /* UISSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = E1914CAD158F99BB00E04977 /* UISSStyle.h */; };
 		E1914CB0158F99BB00E04977 /* UISSStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E1914CAE158F99BB00E04977 /* UISSStyle.m */; };
-		E1914CB4158FA2FC00E04977 /* errors.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB2158FA2FC00E04977 /* errors.png */; };
-		E1914CB5158FA2FC00E04977 /* errors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1914CB3158FA2FC00E04977 /* errors@2x.png */; };
 		E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */; };
 		E19B54E915A7689D005AFD13 /* UISSParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E19B54E715A7689D005AFD13 /* UISSParserContext.h */; };
 		E19B54EA15A7689D005AFD13 /* UISSParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E19B54E815A7689D005AFD13 /* UISSParserContext.m */; };
@@ -133,12 +131,7 @@
 		E1C67BD3158BABC500E220BB /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
 		E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */; };
 		E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */; };
-		E1C67BDE158CE98A00E220BB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C67BDD158CE98A00E220BB /* CoreFoundation.framework */; };
-		E1C67BE4158CE98A00E220BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1C67BE2158CE98A00E220BB /* InfoPlist.strings */; };
-		E1C67BEA158CE9A700E220BB /* uiss_console.json in Resources */ = {isa = PBXBuildFile; fileRef = E1C67BE9158CE9A700E220BB /* uiss_console.json */; };
-		E1C67BED158CEC8500E220BB /* UISSResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1C67BDC158CE98A00E220BB /* UISSResources.bundle */; };
-		E1C67BF1158CF5C300E220BB /* code.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C67BEF158CF5C300E220BB /* code.png */; };
-		E1C67BF2158CF5C300E220BB /* code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C67BF0158CF5C300E220BB /* code@2x.png */; };
+		E1EB6E2015C07B4F00F4055F /* UISSResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1EB6E1E15C07A8500F4055F /* UISSResources.bundle */; };
 		E1ED8BE31450D4E200302B61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B43904143F702200F87518 /* UIKit.framework */; };
 		E1ED8BE41450D4E200302B61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438B2143F668000F87518 /* Foundation.framework */; };
 		E1ED8BE51450D4E200302B61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B438E1143F674200F87518 /* CoreGraphics.framework */; };
@@ -162,13 +155,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1C67BEB158CE9C900E220BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1B438A6143F667F00F87518 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1C67BDB158CE98A00E220BB;
-			remoteInfo = UISSResources;
-		};
 		E1ED8C0F1450D4E200302B61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1B438A6143F667F00F87518 /* Project object */;
@@ -283,8 +269,6 @@
 		E18C7C1E158F52B1000D45AC /* UISSErrorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSErrorsViewController.m; sourceTree = "<group>"; };
 		E1914CAD158F99BB00E04977 /* UISSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStyle.h; sourceTree = "<group>"; };
 		E1914CAE158F99BB00E04977 /* UISSStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStyle.m; sourceTree = "<group>"; };
-		E1914CB2158FA2FC00E04977 /* errors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errors.png; sourceTree = "<group>"; };
-		E1914CB3158FA2FC00E04977 /* errors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errors@2x.png"; sourceTree = "<group>"; };
 		E19759FE15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessorTests.m; sourceTree = "<group>"; };
 		E19B54E715A7689D005AFD13 /* UISSParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSParserContext.h; sourceTree = "<group>"; };
 		E19B54E815A7689D005AFD13 /* UISSParserContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSParserContext.m; sourceTree = "<group>"; };
@@ -314,14 +298,8 @@
 		E1C08346158E334E007A88E6 /* UISSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSError.m; sourceTree = "<group>"; };
 		E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSGeneratedCodeViewController.h; sourceTree = "<group>"; };
 		E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSGeneratedCodeViewController.m; sourceTree = "<group>"; };
-		E1C67BDC158CE98A00E220BB /* UISSResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UISSResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1C67BDD158CE98A00E220BB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		E1C67BE1158CE98A00E220BB /* UISSResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSResources-Info.plist"; sourceTree = "<group>"; };
-		E1C67BE3158CE98A00E220BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1C67BE5158CE98A00E220BB /* UISSResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISSResources-Prefix.pch"; sourceTree = "<group>"; };
-		E1C67BE9158CE9A700E220BB /* uiss_console.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uiss_console.json; sourceTree = "<group>"; };
-		E1C67BEF158CF5C300E220BB /* code.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = code.png; sourceTree = "<group>"; };
-		E1C67BF0158CF5C300E220BB /* code@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "code@2x.png"; sourceTree = "<group>"; };
+		E1EB6E1E15C07A8500F4055F /* UISSResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UISSResources.bundle; sourceTree = "<group>"; };
 		E1ED8BE11450D4E100302B61 /* UISSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UISSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1ED8BE81450D4E200302B61 /* UISSDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UISSDemo-Info.plist"; sourceTree = "<group>"; };
 		E1ED8BEA1450D4E200302B61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -348,14 +326,6 @@
 			files = (
 				E1B438B3143F668000F87518 /* Foundation.framework in Frameworks */,
 				E1B43906143F702F00F87518 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1C67BD9158CE98A00E220BB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1C67BDE158CE98A00E220BB /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,9 +664,9 @@
 				E1B438B4143F668000F87518 /* UISS */,
 				E1ED8BE61450D4E200302B61 /* UISSDemo */,
 				E1ED8C111450D4E200302B61 /* UISSDemoTests */,
-				E1C67BDF158CE98A00E220BB /* UISSResources */,
 				E1B438B1143F668000F87518 /* Frameworks */,
 				E1B438B0143F668000F87518 /* Products */,
+				E1EB6E1E15C07A8500F4055F /* UISSResources.bundle */,
 			);
 			sourceTree = "<group>";
 			tabWidth = 4;
@@ -707,7 +677,6 @@
 				E1B438AF143F668000F87518 /* libUISS.a */,
 				E1ED8BE11450D4E100302B61 /* UISSDemo.app */,
 				E1ED8C0B1450D4E200302B61 /* UISSDemoTests.octest */,
-				E1C67BDC158CE98A00E220BB /* UISSResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -765,29 +734,6 @@
 				E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */,
 			);
 			name = Preprocessora;
-			sourceTree = "<group>";
-		};
-		E1C67BDF158CE98A00E220BB /* UISSResources */ = {
-			isa = PBXGroup;
-			children = (
-				E1914CB2158FA2FC00E04977 /* errors.png */,
-				E1914CB3158FA2FC00E04977 /* errors@2x.png */,
-				E1C67BEF158CF5C300E220BB /* code.png */,
-				E1C67BF0158CF5C300E220BB /* code@2x.png */,
-				E1C67BE0158CE98A00E220BB /* Supporting Files */,
-				E1C67BE9158CE9A700E220BB /* uiss_console.json */,
-			);
-			path = UISSResources;
-			sourceTree = "<group>";
-		};
-		E1C67BE0158CE98A00E220BB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1C67BE1158CE98A00E220BB /* UISSResources-Info.plist */,
-				E1C67BE2158CE98A00E220BB /* InfoPlist.strings */,
-				E1C67BE5158CE98A00E220BB /* UISSResources-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E1ED8BE61450D4E200302B61 /* UISSDemo */ = {
@@ -928,23 +874,6 @@
 			productReference = E1B438AF143F668000F87518 /* libUISS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E1C67BDB158CE98A00E220BB /* UISSResources */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1C67BE6158CE98A00E220BB /* Build configuration list for PBXNativeTarget "UISSResources" */;
-			buildPhases = (
-				E1C67BD8158CE98A00E220BB /* Sources */,
-				E1C67BD9158CE98A00E220BB /* Frameworks */,
-				E1C67BDA158CE98A00E220BB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = UISSResources;
-			productName = UISSResources;
-			productReference = E1C67BDC158CE98A00E220BB /* UISSResources.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		E1ED8BE01450D4E100302B61 /* UISSDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1ED8C1A1450D4E200302B61 /* Build configuration list for PBXNativeTarget "UISSDemo" */;
@@ -956,7 +885,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E1C67BEC158CE9C900E220BB /* PBXTargetDependency */,
 			);
 			name = UISSDemo;
 			productName = UISSDemo;
@@ -1006,30 +934,15 @@
 				E1B438AE143F668000F87518 /* UISS */,
 				E1ED8BE01450D4E100302B61 /* UISSDemo */,
 				E1ED8C0A1450D4E200302B61 /* UISSDemoTests */,
-				E1C67BDB158CE98A00E220BB /* UISSResources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E1C67BDA158CE98A00E220BB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1C67BE4158CE98A00E220BB /* InfoPlist.strings in Resources */,
-				E1C67BEA158CE9A700E220BB /* uiss_console.json in Resources */,
-				E1C67BF1158CF5C300E220BB /* code.png in Resources */,
-				E1C67BF2158CF5C300E220BB /* code@2x.png in Resources */,
-				E1914CB4158FA2FC00E04977 /* errors.png in Resources */,
-				E1914CB5158FA2FC00E04977 /* errors@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1ED8BDF1450D4E100302B61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C67BED158CEC8500E220BB /* UISSResources.bundle in Resources */,
 				E1ED8BEB1450D4E200302B61 /* InfoPlist.strings in Resources */,
 				E1ED8BF41450D4E200302B61 /* MainStoryboard_iPhone.storyboard in Resources */,
 				E1ED8BF71450D4E200302B61 /* MainStoryboard_iPad.storyboard in Resources */,
@@ -1050,6 +963,7 @@
 				E10D5E5D1574BBA400185009 /* iTunesArtwork.png in Resources */,
 				E10D5E5E1574BBA400185009 /* iTunesArtwork@2x.png in Resources */,
 				E1C67BD3158BABC500E220BB /* black.png in Resources */,
+				E1EB6E2015C07B4F00F4055F /* UISSResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,13 +1045,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1C67BD8158CE98A00E220BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1ED8BDD1450D4E100302B61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1181,11 +1088,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1C67BEC158CE9C900E220BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1C67BDB158CE98A00E220BB /* UISSResources */;
-			targetProxy = E1C67BEB158CE9C900E220BB /* PBXContainerItemProxy */;
-		};
 		E1ED8C101450D4E200302B61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1ED8BE01450D4E100302B61 /* UISSDemo */;
@@ -1194,14 +1096,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E1C67BE2158CE98A00E220BB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1C67BE3158CE98A00E220BB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		E1ED8BE91450D4E200302B61 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1318,46 +1212,6 @@
 			};
 			name = Release;
 		};
-		E1C67BE7158CE98A00E220BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UISSResources/UISSResources-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "UISSResources/UISSResources-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		E1C67BE8158CE98A00E220BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UISSResources/UISSResources-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "UISSResources/UISSResources-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		E1ED8C1B1450D4E200302B61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1436,15 +1290,6 @@
 			buildConfigurations = (
 				E1B438D4143F668000F87518 /* Debug */,
 				E1B438D5143F668000F87518 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E1C67BE6158CE98A00E220BB /* Build configuration list for PBXNativeTarget "UISSResources" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1C67BE7158CE98A00E220BB /* Debug */,
-				E1C67BE8158CE98A00E220BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
