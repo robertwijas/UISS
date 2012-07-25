@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.description = 'UISS stands for UIKit Style Sheets. UISS is an iOS library that provides you with a convenient way to define the style of your application. UISS is built on top of UIKit UIAppearance proxies.'
   s.platform = :ios, '5.0'
   s.source_files = 'Project/UISS'
-  s.resource = "Project/UISSResources.bundle"
+  s.resources = "Project/UISSResources.bundle"
   s.clean_paths = "Project/UISSDemo", "Project/UISSDemoTests"
   s.frameworks = 'Foundation', 'UIKit'
   s.requires_arc = true
