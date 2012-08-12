@@ -2,7 +2,6 @@
     "Variables": {
         "tabbarColor": "darkGray"
     },
-    
     "Phone": {
         "UINavigationBar": {
             "tintColor": "gray"
