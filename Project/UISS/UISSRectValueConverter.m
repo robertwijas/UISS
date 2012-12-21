@@ -56,10 +56,10 @@
         CGRect rect = [converted CGRectValue];
         
         return [NSString stringWithFormat:@"CGRectMake(%@, %@, %@, %@)",
-                [self.floatValueConverter generateCodeForFloatValue:rect.origin.x],
-                [self.floatValueConverter generateCodeForFloatValue:rect.origin.y],
-                [self.floatValueConverter generateCodeForFloatValue:rect.size.width],
-                [self.floatValueConverter generateCodeForFloatValue:rect.size.height]];
+                                          [self.floatValueConverter generateCodeForFloatValue:rect.origin.x],
+                                          [self.floatValueConverter generateCodeForFloatValue:rect.origin.y],
+                                          [self.floatValueConverter generateCodeForFloatValue:rect.size.width],
+                                          [self.floatValueConverter generateCodeForFloatValue:rect.size.height]];
     } else {
         return @"CGRectZero";
     }

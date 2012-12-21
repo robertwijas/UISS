@@ -100,6 +100,8 @@
 		E15B384B1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */; };
 		E15B384C1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */; };
 		E15B384F157257C3005BFF73 /* UISSDictionaryPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */; };
+		E16055381684F90100722458 /* NSArray+UISS.h in Headers */ = {isa = PBXBuildFile; fileRef = E16055361684F90100722458 /* NSArray+UISS.h */; };
+		E16055391684F90100722458 /* NSArray+UISS.m in Sources */ = {isa = PBXBuildFile; fileRef = E16055371684F90100722458 /* NSArray+UISS.m */; };
 		E17E43BD159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */; };
 		E17E43BE159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */; };
 		E18C7C1F158F52B1000D45AC /* UISSErrorsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */; };
@@ -151,7 +153,6 @@
 		E1F48246156259FE00CFA72E /* UISSUIntegerValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F48244156259FE00CFA72E /* UISSUIntegerValueConverter.m */; };
 		E1F6E2F4157EC35B00A5187E /* UISSStatusWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F6E2F2157EC35B00A5187E /* UISSStatusWindow.h */; };
 		E1F6E2F5157EC35B00A5187E /* UISSStatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F6E2F3157EC35B00A5187E /* UISSStatusWindow.m */; };
-		E1F6E2F5157EC35B00A51882 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,8 @@
 		E15B38491572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSUserInterfaceIdiomPreprocessor.h; sourceTree = "<group>"; };
 		E15B384A1572579F005BFF73 /* UISSUserInterfaceIdiomPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSUserInterfaceIdiomPreprocessor.m; sourceTree = "<group>"; };
 		E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSDictionaryPreprocessor.h; sourceTree = "<group>"; };
+		E16055361684F90100722458 /* NSArray+UISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+UISS.h"; sourceTree = "<group>"; };
+		E16055371684F90100722458 /* NSArray+UISS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+UISS.m"; sourceTree = "<group>"; };
 		E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSDisabledKeysPreprocessor.h; sourceTree = "<group>"; };
 		E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSDisabledKeysPreprocessor.m; sourceTree = "<group>"; };
 		E18C7C1D158F52B1000D45AC /* UISSErrorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSErrorsViewController.h; sourceTree = "<group>"; };
@@ -503,16 +506,13 @@
 			name = "Simple Types";
 			sourceTree = "<group>";
 		};
-		E145C8551584AF650087BB1B /* Helpers */ = {
+		E145C8551584AF650087BB1B /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				E145C8561584AF820087BB1B /* NSString+UISS.h */,
-				E145C8571584AF820087BB1B /* NSString+UISS.m */,
-				E123BA1D158A38FA004F8633 /* UISSAppearancePrivate.h */,
 				E1C08345158E334E007A88E6 /* UISSError.h */,
 				E1C08346158E334E007A88E6 /* UISSError.m */,
 			);
-			name = Helpers;
+			name = Errors;
 			sourceTree = "<group>";
 		};
 		E146980E1558313A000F311F /* Images */ = {
@@ -600,6 +600,25 @@
 			name = "Value Converters";
 			sourceTree = "<group>";
 		};
+		E16055341684F8A500722458 /* Helper Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E145C8561584AF820087BB1B /* NSString+UISS.h */,
+				E145C8571584AF820087BB1B /* NSString+UISS.m */,
+				E16055361684F90100722458 /* NSArray+UISS.h */,
+				E16055371684F90100722458 /* NSArray+UISS.m */,
+			);
+			name = "Helper Categories";
+			sourceTree = "<group>";
+		};
+		E160553E1684F9BA00722458 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				E123BA1D158A38FA004F8633 /* UISSAppearancePrivate.h */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		E19759FC15725C000076674C /* Preprocessors */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,7 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				E116AF31157ABBEB00BFB3D1 /* Model */,
-				E1BD5E0F1568095D00288A28 /* Preprocessora */,
+				E1BD5E0F1568095D00288A28 /* Preprocessors */,
 				E1469858155A85EC000F311F /* UISSParser.h */,
 				E1469859155A85EC000F311F /* UISSParser.m */,
 				E19B54E715A7689D005AFD13 /* UISSParserContext.h */,
@@ -697,8 +716,10 @@
 		E1B438B4143F668000F87518 /* UISS */ = {
 			isa = PBXGroup;
 			children = (
+				E16055341684F8A500722458 /* Helper Categories */,
+				E160553E1684F9BA00722458 /* Private */,
 				E19B54EC15A81F3D005AFD13 /* Code Generator */,
-				E145C8551584AF650087BB1B /* Helpers */,
+				E145C8551584AF650087BB1B /* Errors */,
 				E1F6E2F0157EC32E00A5187E /* Console */,
 				E1A775B915678FF8000406CC /* Parser */,
 				E1A7739415668F6C000406CC /* UIKit Helpers */,
@@ -722,7 +743,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E1BD5E0F1568095D00288A28 /* Preprocessora */ = {
+		E1BD5E0F1568095D00288A28 /* Preprocessors */ = {
 			isa = PBXGroup;
 			children = (
 				E15B384E157257C3005BFF73 /* UISSDictionaryPreprocessor.h */,
@@ -733,7 +754,7 @@
 				E17E43BB159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h */,
 				E17E43BC159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m */,
 			);
-			name = Preprocessora;
+			name = Preprocessors;
 			sourceTree = "<group>";
 		};
 		E1ED8BE61450D4E200302B61 /* UISSDemo */ = {
@@ -851,6 +872,7 @@
 				E17E43BD159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.h in Headers */,
 				E19B54E915A7689D005AFD13 /* UISSParserContext.h in Headers */,
 				E19B54EF15A81F56005AFD13 /* UISSCodeGenerator.h in Headers */,
+				E16055381684F90100722458 /* NSArray+UISS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,7 +1052,6 @@
 				E1F6E2F5157EC35B00A5187E /* UISSStatusWindow.m in Sources */,
 				E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */,
 				E1076BEB157F6B1A00886759 /* UISSStatusViewController.m in Sources */,
-				E1F6E2F5157EC35B00A51882 /* (null) in Sources */,
 				E145C8591584AF820087BB1B /* NSString+UISS.m in Sources */,
 				E145C8641584DCC70087BB1B /* UISSConfig.m in Sources */,
 				E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */,
@@ -1042,6 +1063,7 @@
 				E17E43BE159A6B4200DFBB26 /* UISSDisabledKeysPreprocessor.m in Sources */,
 				E19B54EA15A7689D005AFD13 /* UISSParserContext.m in Sources */,
 				E19B54F015A81F56005AFD13 /* UISSCodeGenerator.m in Sources */,
+				E16055391684F90100722458 /* NSArray+UISS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

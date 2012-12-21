@@ -161,7 +161,7 @@
         [containmentCode appendString:@"nil"];
         
         return [NSString stringWithFormat:@"[%@ appearanceWhenContainedIn:%@]",
-                NSStringFromClass(self.appearanceClass), containmentCode];
+                                          NSStringFromClass(self.appearanceClass), containmentCode];
     } else {
         return [NSString stringWithFormat:@"[%@ appearance]", NSStringFromClass(self.appearanceClass)];
     }
@@ -232,7 +232,8 @@
         NSInteger argumentIndex = index + 3;
         NSNumber *converted = [axisParameter convertedValue];
         
-        if ([axisParameter.type isEqualToString:[NSString stringWithCString:@encode(NSUInteger) encoding:NSUTF8StringEncoding]]) {
+        if ([axisParameter.type isEqualToString:[NSString stringWithCString:@encode(NSUInteger)
+                                                                   encoding:NSUTF8StringEncoding]]) {
             NSUInteger unsignedInteger = [converted unsignedIntegerValue];
             [invocation setArgument:&unsignedInteger atIndex:argumentIndex];
         } else {
@@ -247,7 +248,7 @@
 - (id)target;
 {
     // This may be the ugliest method I have ever written
-    // but I do not know how to call this method having NSArray of arguments
+    // but I do not know how to call this method having NSArray+UISS of arguments
     
     switch (self.containment.count) {
         case 0:
@@ -299,10 +300,10 @@
 - (NSString *)description;
 {
     return [NSString stringWithFormat:@"[%@ - appearanceClass: %@, property.name: %@, property.value: %@]",
-            NSStringFromClass(self.class),
-            NSStringFromClass(self.appearanceClass),
-            self.property.name,
-            self.property.value];
+                                      NSStringFromClass(self.class),
+                                      NSStringFromClass(self.appearanceClass),
+                                      self.property.name,
+                                      self.property.value];
 }
 
 @end

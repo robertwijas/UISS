@@ -51,7 +51,7 @@
 
 - (void)testTextAttributesWithTextShadowOffset;
 {
-    [self testValue:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects: [NSNumber numberWithFloat:2], nil] forKey:@"textShadowOffset"]
+    [self testValue:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:2], nil] forKey:@"textShadowOffset"]
             expectedCode:[NSString stringWithFormat:@"[NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithUIOffset:UIOffsetMake(2.0, 2.0)], UITextAttributeTextShadowOffset, nil]"]
             assertBlock:^(NSDictionary *attributes) {
                 STAssertNotNil([attributes objectForKey:UITextAttributeTextShadowOffset], nil);

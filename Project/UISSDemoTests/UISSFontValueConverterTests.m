@@ -48,9 +48,9 @@
 - (void)testDefaultSystemItalicFont;
 {
     UIFont *font = [self.converter convertValue:[NSArray arrayWithObjects:
-            @"italic",
-            [NSNumber numberWithFloat:14],
-            nil]];
+                                                                 @"italic",
+                                                                 [NSNumber numberWithFloat:14],
+                                                                 nil]];
 
     STAssertNotNil(font, nil);
     STAssertEqualObjects(font, [UIFont italicSystemFontOfSize:14], nil);

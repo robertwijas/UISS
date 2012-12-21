@@ -31,17 +31,23 @@ NSString * const UISSInvalidAppearanceDictionaryErrorKey = @"UISSInvalidAppearan
 {
     switch (code) {
         case UISSPropertySetterGenerateCodeError:
-            return [NSString stringWithFormat:@"Cannot generate code for: %@", [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
+            return [NSString stringWithFormat:@"Cannot generate code for: %@",
+                                              [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
         case UISSPropertySetterCreateInvocationError:
-            return [NSString stringWithFormat:@"Cannot create NSInvocation for: %@", [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
+            return [NSString stringWithFormat:@"Cannot create NSInvocation for: %@",
+                                              [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
         case UISSUnknownClassError:
-            return [NSString stringWithFormat:@"Unknown Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+            return [NSString stringWithFormat:@"Unknown Class: %@",
+                                              [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
         case UISSInvalidAppearanceClassError:
-            return [NSString stringWithFormat:@"Invalid Appearance Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+            return [NSString stringWithFormat:@"Invalid Appearance Class: %@",
+                                              [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
         case UISSInvalidAppearanceContainerClassError:
-            return [NSString stringWithFormat:@"Invalid Appearance Container Class: %@", [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
+            return [NSString stringWithFormat:@"Invalid Appearance Container Class: %@",
+                                              [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
         case UISSInvalidAppearanceDictionaryError:
-            return [NSString stringWithFormat:@"Invalid Appearance Dictionary: %@", [self.userInfo objectForKey:UISSInvalidAppearanceDictionaryErrorKey]];
+            return [NSString stringWithFormat:@"Invalid Appearance Dictionary: %@",
+                                              [self.userInfo objectForKey:UISSInvalidAppearanceDictionaryErrorKey]];
         default:
             return nil;
     }

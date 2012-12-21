@@ -31,7 +31,8 @@
 
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument
 {
-    return [argument.type isEqualToString:[NSString stringWithCString:@encode(UIEdgeInsets) encoding:NSUTF8StringEncoding]];
+    return [argument.type isEqualToString:[NSString stringWithCString:@encode(UIEdgeInsets)
+                                                             encoding:NSUTF8StringEncoding]];
 }
 
 - (id)convertValue:(id)value;
@@ -56,10 +57,10 @@
         UIEdgeInsets edgeInsets = [converted UIEdgeInsetsValue];
         
         return [NSString stringWithFormat:@"UIEdgeInsetsMake(%@, %@, %@, %@)",
-                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.top],
-                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.left],
-                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.bottom], 
-                [self.floatValueConverter generateCodeForFloatValue:edgeInsets.right]];
+                                          [self.floatValueConverter generateCodeForFloatValue:edgeInsets.top],
+                                          [self.floatValueConverter generateCodeForFloatValue:edgeInsets.left],
+                                          [self.floatValueConverter generateCodeForFloatValue:edgeInsets.bottom],
+                                          [self.floatValueConverter generateCodeForFloatValue:edgeInsets.right]];
     } else {
         return @"UIEdgeInsetsZero";
     }

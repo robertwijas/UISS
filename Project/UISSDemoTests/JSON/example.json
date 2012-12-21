@@ -4,7 +4,7 @@
     },
     "UIToolbar": {
         "tintColor": "$color",
-        "backgroundImage": ["black", "any", "default"]
+        "backgroundImage:any:default": "black"
     },
     "UINavigationBar": {
         "Pad": {
@@ -13,11 +13,11 @@
         "Phone": {
             "tintColor": "red"
         },
-        "titleVerticalPositionAdjustment": [10, "default"],
-        "backgroundImage": ["black", "landscapePhone"]
+        "titleVerticalPositionAdjustment:default": 10,
+        "backgroundImage:landscapePhone": "black"
     },
     "UITabBarItem": {
-        "titlePositionAdjustment": [[10, 10]],
-        "titleTextAttributes": [{"font":24}, "normal"]
+        "titlePositionAdjustment": [10, 10],
+        "titleTextAttributes:normal": {"font":24}
     }
 }

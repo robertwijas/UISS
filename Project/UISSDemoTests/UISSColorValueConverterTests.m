@@ -55,26 +55,29 @@
 
 - (void)testRGBArray;
 {
-    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil]
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0],
+                                                   [NSNumber numberWithInt:0], nil]
             expectedColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]
             expectedCode:@"[UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1.000]"];
 
-    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil]
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0],
+                                                   [NSNumber numberWithInt:0], nil]
             expectedColor:[UIColor redColor]
             expectedCode:@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:1.000]"];
 }
 
 - (void)testColorsWithAlpha;
 {
-    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithFloat:0.2], nil]
+    [self testColorValue:[NSArray arrayWithObjects:[NSNumber numberWithInt:255], [NSNumber numberWithInt:0],
+                                                   [NSNumber numberWithInt:0], [NSNumber numberWithFloat:0.2], nil]
             expectedColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.2]
             expectedCode:@"[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.200]"];
 
-    [self testColorValue:[NSArray arrayWithObjects:@"yellow", [NSNumber numberWithFloat:0.2],nil]
+    [self testColorValue:[NSArray arrayWithObjects:@"yellow", [NSNumber numberWithFloat:0.2], nil]
             expectedColor:[[UIColor yellowColor] colorWithAlphaComponent:0.2]
             expectedCode:@"[[UIColor yellowColor] colorWithAlphaComponent:0.200]"];
 
-    [self testColorValue:[NSArray arrayWithObjects:@"#00ff00", [NSNumber numberWithFloat:0.2],nil]
+    [self testColorValue:[NSArray arrayWithObjects:@"#00ff00", [NSNumber numberWithFloat:0.2], nil]
             expectedColor:[[UIColor greenColor] colorWithAlphaComponent:0.2]
             expectedCode:@"[[UIColor colorWithRed:0.000 green:1.000 blue:0.000 alpha:1.000] colorWithAlphaComponent:0.200]"];
 }

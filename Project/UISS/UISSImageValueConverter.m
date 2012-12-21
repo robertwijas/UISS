@@ -85,7 +85,8 @@
                             id edgeInsetsCode = [self.edgeInsetsValueConverter generateCodeForValue:edgeInsetsValue];
 
                             if (edgeInsetsCode) {
-                                code = [NSString stringWithFormat:@"[%@ resizableImageWithCapInsets:%@]", code, edgeInsetsCode];
+                                code = [NSString stringWithFormat:@"[%@ resizableImageWithCapInsets:%@]", code,
+                                                                  edgeInsetsCode];
                             }
 
                             codeHandler(code);

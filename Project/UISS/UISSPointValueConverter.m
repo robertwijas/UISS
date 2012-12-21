@@ -66,8 +66,8 @@
         CGPoint point = [converted CGPointValue];
 
         return [NSString stringWithFormat:@"CGPointMake(%@, %@)",
-                [self.floatValueConverter generateCodeForFloatValue:point.x],
-                [self.floatValueConverter generateCodeForFloatValue:point.y]];
+                                          [self.floatValueConverter generateCodeForFloatValue:point.x],
+                                          [self.floatValueConverter generateCodeForFloatValue:point.y]];
     } else {
         return @"CGPointZero";
     }

@@ -6,19 +6,21 @@
             "tintColor": "black",
             "selectedImageTintColor": "lightGray",
             "UITabBarItem": {
-                "titleTextAttributes": [[{"textColor": "white"}, "selected"],
-                                        [{"textColor": "lightGray"}, "normal"]]
+                "titleTextAttributes:selected": {"textColor": "white"},
+                "titleTextAttributes:normal": {"textColor": "lightGray"}
             }
         },
         "UINavigationBar": {
             "tintColor": "lightGray",
-            "backgroundImage": [[null, "default"], [null, "landscapePhone"]],
+            "backgroundImage:default": null,
+            "backgroundImage:landscapePhone": null,
             "UISegmentedControl": {
-                "backgroundImage": [[null, "normal", "default"],
-                                    [null, "disabled", "default"]],
-                "dividerImage": [[null, "disabled", "normal", "default"],
-                                 [null, "normal", "disabled", "default"],
-                                 [null, "normal", "normal", "default"]]
+                "backgroundImage:normal:default": null,
+                "backgroundImage:disabled:default": null,
+
+                "dividerImage:disabled:normal:default": null,
+                "dividerImage:normal:disabled:default": null,
+                "dividerImage:normal:normal:default": null
             }
         },
         "UISSErrorsViewController": {

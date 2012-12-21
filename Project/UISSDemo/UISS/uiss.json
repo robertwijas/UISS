@@ -1,6 +1,9 @@
 {
     "Variables": {
-        "tabbarColor": "darkGray"
+        "tabbarColor": "darkGray",
+        "buttonTitleColor": [13, 107, 180, 1.0],
+        "buttonTitieColorHighlighted": "magenta",
+        "font": ["italic", 22]
     },
     "Phone": {
         "UINavigationBar": {
@@ -9,7 +12,7 @@
     },
     "Pad": {
         "UINavigationBar": {
-            "backgroundImage": ["background.png", "default"]
+            "backgroundImage:default": "background.png"
         }
     },
 
@@ -17,16 +20,16 @@
         "tintColor": "$tabbarColor",
         "selectedImageTintColor": "blue",
         "UITabBarItem": {
-            "titleTextAttributes": [[{"textColor": "white"}, "selected"],
-                                    [{"textColor": "lightGray"}, "normal"]]
+            "titleTextAttributes:normal": {"textColor": "lightGray"},
+            "titleTextAttributes:selected": {"textColor": "white"}
         },
         "UILabel": {
             "backgroundColor": "clear"
         }
     },
     "UIToolbar": {
-        "tintColor": "blue",
-        "backgroundImage": ["background", "bottom", "default"]
+        "tintColor": "darkGray",
+        "backgroundImage:bottom:default": "background"
     },
     "UISSCustomView": {
         "debugBorderColor": "red",
@@ -34,7 +37,7 @@
         "backgroundColor": "gray",
         "backgroundMargin": 20,
         "UIImageView": {
-            "backgroundColor": [["lightGray", 0.2]]
+            "backgroundColor": ["lightGray", 0.2]
         }
     },
     "UILabel": {
@@ -47,7 +50,7 @@
         }
     },
     "UISSCustomContainerView": {
-        "backgroundColor": [["#8899ff", 0.5]]
+        "backgroundColor": ["#8899ff", 0.5]
     },
     "@Controllers": {
         "UISSDemoSecondViewController": {
@@ -65,15 +68,18 @@
         },
         "UISSDemoFirstViewController": {
             "UIButton": {
-                "titleColor": [["black", "normal"], ["white", "highlighted"]],
-                "backgroundImage": [["background", "highlighted"], ["blue", "normal"]],
+                "titleColor:normal": "$buttonTitleColor",
+                "titleColor:highlighted": "$buttonTitieColorHighlighted",
+                "backgroundImage:highlighted": "background",
                 "UILabel": {
-                    "backgroundColor": "clear"
+                    "backgroundColor": "clear",
+                    "font": 14
                 }
             },
             "UILabel": {
-                "textColor": "white",
-                "backgroundColor": "darkGray"
+                "textColor": ["white", 0.75],
+                "backgroundColor": "#334455",
+                "font": ["Cochin-Italic", 28]
             }
         }
     }

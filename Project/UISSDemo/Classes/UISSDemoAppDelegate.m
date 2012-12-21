@@ -3,7 +3,7 @@
 //  UISSDemo
 //
 //  Created by Robert Wijas on 10/21/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 57things. All rights reserved.
 //
 
 #import "UISSDemoAppDelegate.h"
@@ -33,12 +33,12 @@
     }
 
     self.uiss = [[UISS alloc] init];
-    self.uiss.style.url = [NSURL URLWithString:@"http://uiss.10.0.1.12.xip.io/uiss_demo.json"];
+    self.uiss.style.url = [NSURL URLWithString:@"http://uiss.10.0.1.7.xip.io/uiss_demo.json"];
     self.uiss.statusWindowEnabled = YES;
     [self.uiss registerReloadGestureRecognizerInView:self.window];
 
     [self.uiss load];
-    [self.uiss enableAutoReloadWithTimeInterval:3];
+    [self.uiss enableAutoReloadWithTimeInterval:1];
     
     
     // Local style

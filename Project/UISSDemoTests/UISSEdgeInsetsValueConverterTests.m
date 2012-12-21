@@ -32,11 +32,11 @@
 - (void)testEdgeInsetsAsArray;
 {
     id value = [NSArray arrayWithObjects:
-            [NSNumber numberWithFloat:1],
-            [NSNumber numberWithFloat:2],
-            [NSNumber numberWithFloat:3],
-            [NSNumber numberWithFloat:4],
-            nil];
+                                [NSNumber numberWithFloat:1],
+                                [NSNumber numberWithFloat:2],
+                                [NSNumber numberWithFloat:3],
+                                [NSNumber numberWithFloat:4],
+                                nil];
 
     id converted = [self.converter convertValue:value];
     NSString *code = [self.converter generateCodeForValue:value];

@@ -66,8 +66,8 @@
         CGSize size = [converted CGSizeValue];
         
         return [NSString stringWithFormat:@"CGSizeMake(%@, %@)",
-                [self.floatValueConverter generateCodeForFloatValue:size.width],
-                [self.floatValueConverter generateCodeForFloatValue:size.height]];
+                                          [self.floatValueConverter generateCodeForFloatValue:size.width],
+                                          [self.floatValueConverter generateCodeForFloatValue:size.height]];
     } else {
         return @"CGSizeZero";
     }

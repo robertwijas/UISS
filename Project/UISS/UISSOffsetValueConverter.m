@@ -9,6 +9,7 @@
 #import "UISSOffsetValueConverter.h"
 #import "UISSFloatValueConverter.h"
 #import "UISSArgument.h"
+#import "NSArray+UISS.h"
 
 @interface UISSOffsetValueConverter ()
 
@@ -39,12 +40,12 @@
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *)value;
         CGFloat horizontal = 0, vertical = 0;
-        
-        if (array.count > 0) {
+
+        if ([array canConvertToFloatObjectAtIndex:0]) {
             horizontal = [[array objectAtIndex:0] floatValue];
         }
-        
-        if (array.count > 1) {
+
+        if ([array canConvertToFloatObjectAtIndex:1]) {
             vertical = [[array objectAtIndex:1] floatValue];
         } else {
             vertical = horizontal;
@@ -66,8 +67,8 @@
         UIOffset offset = [converted UIOffsetValue];
         
         return [NSString stringWithFormat:@"UIOffsetMake(%@, %@)",
-                [self.floatValueConverter generateCodeForFloatValue:offset.horizontal],
-                [self.floatValueConverter generateCodeForFloatValue:offset.vertical]];
+                                          [self.floatValueConverter generateCodeForFloatValue:offset.horizontal],
+                                          [self.floatValueConverter generateCodeForFloatValue:offset.vertical]];
     } else {
         return @"UIOffsetZero";
     }

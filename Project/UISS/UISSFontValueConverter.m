@@ -48,28 +48,32 @@
                     fontHandler([UIFont systemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]",
+                                                           [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else if ([name isEqualToString:@"bold"]) {
                 if (fontHandler) {
                     fontHandler([UIFont boldSystemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont boldSystemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont boldSystemFontOfSize:%@]",
+                                                           [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else if ([name isEqualToString:@"italic"]) {
                 if (fontHandler) {
                     fontHandler([UIFont italicSystemFontOfSize:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont italicSystemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont italicSystemFontOfSize:%@]",
+                                                           [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             } else {
                 if (fontHandler) {
                     fontHandler([UIFont fontWithName:name size:size]);
                 }
                 if (codeHandler) {
-                    codeHandler([NSString stringWithFormat:@"[UIFont fontWithName:@\"%@\" size:%@]", name, [self.floatValueConverter generateCodeForFloatValue:size]]);
+                    codeHandler([NSString stringWithFormat:@"[UIFont fontWithName:@\"%@\" size:%@]", name,
+                                                           [self.floatValueConverter generateCodeForFloatValue:size]]);
                 }
             }
 
@@ -82,7 +86,8 @@
             fontHandler([UIFont systemFontOfSize:size]);
         }
         if (codeHandler) {
-            codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]", [self.floatValueConverter generateCodeForFloatValue:size]]);
+            codeHandler([NSString stringWithFormat:@"[UIFont systemFontOfSize:%@]",
+                                                   [self.floatValueConverter generateCodeForFloatValue:size]]);
         }
 
         return YES;

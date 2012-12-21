@@ -152,11 +152,8 @@
 
 - (void)testButtonTitleColorForState;
 {
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:
-                                                                                                      @"green",
-                                                                                                      [NSNumber numberWithUnsignedInteger:UIControlStateHighlighted],
-                                                                                                      nil]
-                                                                                              forKey:@"titleColor"]
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"green"
+                                                                                              forKey:@"titleColor:highlighted"]
                                                            forKey:@"UIButton"];
     
     
@@ -167,11 +164,8 @@
 
 - (void)testSimpleContainment;
 {
-    NSDictionary *buttonDictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:
-                                                                                                            @"green",
-                                                                                                            [NSNumber numberWithUnsignedInteger:UIControlStateHighlighted],
-                                                                                                            nil]
-                                                                                                    forKey:@"titleColor"]
+    NSDictionary *buttonDictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"green"
+                                                                                                    forKey:@"titleColor:highlighted"]
                                                                  forKey:@"UIButton"];
     NSDictionary *containmentDictionary = [NSDictionary dictionaryWithObject:buttonDictionary forKey:@"UINavigationController"];
     
@@ -184,11 +178,8 @@
 
 - (void)testContainment;
 {
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:
-                                                                                                      @"yellow",
-                                                                                                      [NSNumber numberWithUnsignedInteger:UIControlStateHighlighted],
-                                                                                                      nil]
-                                                                                              forKey:@"titleColor"]
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"yellow"
+                                                                                              forKey:@"titleColor:highlighted"]
                                                            forKey:@"UIButton"];
     dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"UIImageView"];
     dictionary = [NSDictionary dictionaryWithObject:dictionary forKey:@"UINavigationController"];

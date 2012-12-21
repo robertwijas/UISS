@@ -1,5 +1,5 @@
 //
-//  NSString+UISS.h
+//  NSString+UISS+UISSParser+UISS.h
 //  UISS
 //
 //  Created by Robert Wijas on 6/10/12.

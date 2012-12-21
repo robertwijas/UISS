@@ -44,11 +44,11 @@
 {
     id value = [NSArray arrayWithObjects:@"background",
                                          [NSArray arrayWithObjects:
-                                                 [NSNumber numberWithFloat:1],
-                                                 [NSNumber numberWithFloat:2],
-                                                 [NSNumber numberWithFloat:3],
-                                                 [NSNumber numberWithFloat:4],
-                                                 nil],
+                                                          [NSNumber numberWithFloat:1],
+                                                          [NSNumber numberWithFloat:2],
+                                                          [NSNumber numberWithFloat:3],
+                                                          [NSNumber numberWithFloat:4],
+                                                          nil],
                                          nil];
 
     UIImage *image = [self.converter convertValue:value];
@@ -63,12 +63,12 @@
 - (void)testResizableDefinedInOneArray;
 {
     UIImage *image = [self.converter convertValue:[NSArray arrayWithObjects:
-            @"background",
-            [NSNumber numberWithFloat:1],
-            [NSNumber numberWithFloat:2],
-            [NSNumber numberWithFloat:3],
-            [NSNumber numberWithFloat:4],
-            nil]];
+                                                                   @"background",
+                                                                   [NSNumber numberWithFloat:1],
+                                                                   [NSNumber numberWithFloat:2],
+                                                                   [NSNumber numberWithFloat:3],
+                                                                   [NSNumber numberWithFloat:4],
+                                                                   nil]];
 
     STAssertNotNil(image, nil);
     STAssertEquals(image.capInsets, UIEdgeInsetsMake(1, 2, 3, 4), nil);
