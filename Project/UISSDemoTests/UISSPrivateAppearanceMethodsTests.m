@@ -17,8 +17,7 @@
 @implementation UISSPrivateAppearanceMethodsTests
 
 
-- (void)testDebugAppearancePrivateMethodsAndProperties;
-{
+- (void)testDebugAppearancePrivateMethodsAndProperties; {
     unsigned int count = 0;
     Method *methods = class_copyMethodList(NSClassFromString(@"_UIAppearance"), &count);
 
@@ -31,13 +30,12 @@
     NSLog(@"Properies:");
     objc_property_t *properties = class_copyPropertyList(NSClassFromString(@"_UIAppearance"), &count);
     for (int i = 0; i < count; i++) {
-        objc_property_t  property = properties[i];
-        NSLog(@"%@", [NSString stringWithUTF8String:property_getName(property)]);
+        objc_property_t property = properties[i];
+        NSLog(@"%@", @(property_getName(property)));
     }
 }
 
-- (void)testAppearanceInvocationsGetterExistence;
-{
+- (void)testAppearanceInvocationsGetterExistence; {
     id appearance = [UIView appearance];
     STAssertTrue([appearance respondsToSelector:@selector(_appearanceInvocations)], @"UISS assumes that appearance has _appearanceInvocations method");
 
@@ -48,8 +46,7 @@
     STAssertTrue([appearanceInvocations isKindOfClass:[NSMutableArray class]], @"UISS assumes that _appearanceInvocations returns NSMutableArray");
 }
 
-- (void)testClearingAllAppearanceInvocations;
-{
+- (void)testClearingAllAppearanceInvocations; {
     id appearance = [UIToolbar appearance];
     [appearance setTintColor:[UIColor redColor]];
 

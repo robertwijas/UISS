@@ -9,13 +9,9 @@
 #import "UISSDemoAppDelegate.h"
 #import "UISS.h"
 
-#import "UISSDemoSecondViewController.h"
-#import "UISSStatusWindow.h"
-
 @interface UISSDemoAppDelegate ()
 
-@property (nonatomic, strong) UISS *uiss;
-@property (nonatomic, strong) UISSStatusWindow *statusWindow;
+@property(nonatomic, strong) UISS *uiss;
 
 @end
 
@@ -23,10 +19,8 @@
 
 @synthesize window = _window;
 @synthesize uiss = _uiss;
-@synthesize statusWindow = _statusWindow;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // skip the rest if running tests
     if ([[[NSProcessInfo processInfo] environment] objectForKey:@"TEST"]) {
         return YES;
@@ -38,12 +32,12 @@
     [self.uiss registerReloadGestureRecognizerInView:self.window];
 
     [self.uiss load];
-    [self.uiss enableAutoReloadWithTimeInterval:1];
-    
-    
+    [self.uiss enableAutoReloadWithTimeInterval:0.1];
+
+
     // Local style
     //[UISS configureWithDefaultJSONFile];
-    
+
     return YES;
 }
 

@@ -19,30 +19,25 @@
 
 @synthesize converter = _converter;
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.converter = [[UISSSizeValueConverter alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.converter = nil;
 }
 
-- (void)testSizeAsArray;
-{
-    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1], [NSNumber numberWithFloat:2], nil]
-            expectedSize:CGSizeMake(1, 2) expectedCode:@"CGSizeMake(1.0, 2.0)"];
+- (void)testSizeAsArray; {
+    [self testValue:@[@1.0f, @2.0f]
+       expectedSize:CGSizeMake(1, 2) expectedCode:@"CGSizeMake(1.0, 2.0)"];
 }
 
-- (void)testSizeAsNumber;
-{
-    [self testValue:[NSNumber numberWithFloat:1]
-            expectedSize:CGSizeMake(1, 1) expectedCode:@"CGSizeMake(1.0, 1.0)"];
+- (void)testSizeAsNumber; {
+    [self testValue:@1.0f
+       expectedSize:CGSizeMake(1, 1) expectedCode:@"CGSizeMake(1.0, 1.0)"];
 }
 
-- (void)testValue:(id)value expectedSize:(CGSize)expectedSize expectedCode:(NSString *)expectedCode;
-{
+- (void)testValue:(id)value expectedSize:(CGSize)expectedSize expectedCode:(NSString *)expectedCode; {
     id converted = [self.converter convertValue:value];
     STAssertEquals([converted CGSizeValue], expectedSize, nil);
 

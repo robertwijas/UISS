@@ -19,23 +19,19 @@
 
 @synthesize converter = _converter;
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.converter = [[UISSRectValueConverter alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.converter = nil;
 }
 
-- (void)testRectAsArray;
-{
-    id value = [NSArray arrayWithObjects:[NSNumber numberWithFloat:1],
-                                         [NSNumber numberWithFloat:2],
-                                         [NSNumber numberWithFloat:3],
-                                         [NSNumber numberWithFloat:4],
-                                         nil];
+- (void)testRectAsArray; {
+    id value = @[@1.0f,
+            @2.0f,
+            @3.0f,
+            @4.0f];
     id converted = [self.converter convertValue:value];
     STAssertEquals([converted CGRectValue], CGRectMake(1, 2, 3, 4), nil);
 

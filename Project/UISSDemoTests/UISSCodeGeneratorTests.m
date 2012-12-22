@@ -9,11 +9,10 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSCodeGenerator.h"
 #import "UISSPropertySetter.h"
-#import "UISSProperty.h"
 
 @interface UISSCodeGeneratorTests : SenTestCase
 
-@property (nonatomic, strong) UISSCodeGenerator *codeGenerator;
+@property(nonatomic, strong) UISSCodeGenerator *codeGenerator;
 
 @end
 
@@ -21,36 +20,33 @@
 
 @synthesize codeGenerator;
 
-- (void)testCodeGenerationWithGroups;
-{
+- (void)testCodeGenerationWithGroups; {
     UISSPropertySetter *propertySetter = [[UISSPropertySetter alloc] init];
     propertySetter.group = @"Group";
     propertySetter.appearanceClass = [UIToolbar class];
-    
+
     UISSProperty *property = [[UISSProperty alloc] init];
     property.name = @"tintColor";
     property.value = @"green";
-    
+
     propertySetter.property = property;
-    
+
     NSMutableArray *errors = [NSMutableArray array];
-    
-    NSString *code = [self.codeGenerator generateCodeForPropertySetters:[NSArray arrayWithObject:propertySetter] errors:errors];
-    
+
+    NSString *code = [self.codeGenerator generateCodeForPropertySetters:@[propertySetter] errors:errors];
+
     STAssertNotNil(code, nil);
-    STAssertEquals(errors.count, (NSUInteger)0, nil);
-    
+    STAssertEquals(errors.count, (NSUInteger) 0, nil);
+
     NSString *expectedCode = [NSString stringWithFormat:@"// Group\n%@\n", [propertySetter generatedCode]];
     STAssertEqualObjects(code, expectedCode, nil);
 }
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.codeGenerator = [[UISSCodeGenerator alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.codeGenerator = nil;
 }
 

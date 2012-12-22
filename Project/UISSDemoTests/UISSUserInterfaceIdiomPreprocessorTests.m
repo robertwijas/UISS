@@ -11,85 +11,72 @@
 
 @interface UISSUserInterfaceIdiomPreprocessorTests : SenTestCase
 
-@property (nonatomic, strong) UISSUserInterfaceIdiomPreprocessor *preprocessor;
+@property(nonatomic, strong) UISSUserInterfaceIdiomPreprocessor *preprocessor;
 
 @end
 
 @implementation UISSUserInterfaceIdiomPreprocessorTests
 
 
-@synthesize preprocessor=_preprocessor;
+@synthesize preprocessor = _preprocessor;
 
-- (void)testDictionaryWithoutIdiomBranches;
-{
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"v1", @"k1",
-                                @"v2", @"k2", nil];
-    
+- (void)testDictionaryWithoutIdiomBranches; {
+    NSDictionary *dictionary = @{@"k1" : @"v1",
+            @"k2" : @"v2"};
+
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
-    
+
     STAssertNotNil(preprocessed, nil);
     STAssertEqualObjects(dictionary, preprocessed, nil);
 }
 
-- (void)testDictionaryWithPhoneBranchOnDeviceWithPadIdiom;
-{
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"v1", @"k1",
-                                @"phone-value", @"Phone", nil];
-    
+- (void)testDictionaryWithPhoneBranchOnDeviceWithPadIdiom; {
+    NSDictionary *dictionary = @{@"k1" : @"v1",
+            @"Phone" : @"phone-value"};
+
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPad];
-    
+
     STAssertNotNil(preprocessed, nil);
-    STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");
-    STAssertEquals([preprocessed objectForKey:@"k1"], @"v1", nil);
+    STAssertEquals(preprocessed.count, (NSUInteger) 1, @"only one object could survive");
+    STAssertEquals(preprocessed[@"k1"], @"v1", nil);
 }
 
-- (void)testDictionaryWithPhoneAndPadBranchOnDeviceWithPhoneIdiom;
-{
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSDictionary dictionaryWithObject:@"pad-value" forKey:@"pad-key"], @"Pad",
-                                [NSDictionary dictionaryWithObject:@"phone-value" forKey:@"phone-key"], @"Phone", nil];
-    
+- (void)testDictionaryWithPhoneAndPadBranchOnDeviceWithPhoneIdiom; {
+    NSDictionary *dictionary = @{@"Pad" : @{@"pad-key" : @"pad-value"},
+            @"Phone" : @{@"phone-key" : @"phone-value"}};
+
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
-    
+
     STAssertNotNil(preprocessed, nil);
-    STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");
-    STAssertEqualObjects([preprocessed objectForKey:@"phone-key"], @"phone-value", nil);
+    STAssertEquals(preprocessed.count, (NSUInteger) 1, @"only one object could survive");
+    STAssertEqualObjects(preprocessed[@"phone-key"], @"phone-value", nil);
 }
 
-- (void)testDictionaryWithNestedPhoneBranchOnPhoneIdiom;
-{
-    NSDictionary *nestedDictionary = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:@"value" forKey:@"key"]
-                                                                 forKey:@"Phone"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:nestedDictionary
-                                                           forKey:@"root"];
-    
+- (void)testDictionaryWithNestedPhoneBranchOnPhoneIdiom; {
+    NSDictionary *nestedDictionary = @{@"Phone" : @{@"key" : @"value"}};
+    NSDictionary *dictionary = @{@"root" : nestedDictionary};
+
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
     STAssertTrue([preprocessed.allKeys containsObject:@"root"], nil);
-    STAssertEqualObjects([[preprocessed objectForKey:@"root"] objectForKey:@"key"], @"value", nil);
+    STAssertEqualObjects(preprocessed[@"root"][@"key"], @"value", nil);
 }
 
-- (void)testPreprocessorShouldIgnoreLetterCase;
-{
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSDictionary dictionaryWithObject:@"pad-value" forKey:@"pad-key"], @"pad",
-                                [NSDictionary dictionaryWithObject:@"phone-value" forKey:@"phone-key"], @"iphone", nil];
-    
+- (void)testPreprocessorShouldIgnoreLetterCase; {
+    NSDictionary *dictionary = @{@"pad" : @{@"pad-key" : @"pad-value"},
+            @"iphone" : @{@"phone-key" : @"phone-value"}};
+
     NSDictionary *preprocessed = [self.preprocessor preprocess:dictionary userInterfaceIdiom:UIUserInterfaceIdiomPhone];
-    
+
     STAssertNotNil(preprocessed, nil);
-    STAssertEquals(preprocessed.count, (NSUInteger)1, @"only one object could survive");
-    STAssertEqualObjects([preprocessed objectForKey:@"phone-key"], @"phone-value", nil);
+    STAssertEquals(preprocessed.count, (NSUInteger) 1, @"only one object could survive");
+    STAssertEqualObjects(preprocessed[@"phone-key"], @"phone-value", nil);
 }
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.preprocessor = [[UISSUserInterfaceIdiomPreprocessor alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.preprocessor = nil;
 }
 

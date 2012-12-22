@@ -19,29 +19,24 @@
 
 @synthesize converter = _converter;
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.converter = [[UISSPointValueConverter alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.converter = nil;
 }
 
-- (void)testPointAsArray;
-{
-    [self testValue:[NSArray arrayWithObjects:[NSNumber numberWithFloat:1], [NSNumber numberWithFloat:2], nil]
-            expectedPoint:CGPointMake(1, 2) expectedCode:@"CGPointMake(1.0, 2.0)"];
+- (void)testPointAsArray; {
+    [self testValue:@[@1.0f, @2.0f]
+      expectedPoint:CGPointMake(1, 2) expectedCode:@"CGPointMake(1.0, 2.0)"];
 }
 
-- (void)testPointAsNumber;
-{
-    [self testValue:[NSNumber numberWithFloat:1] expectedPoint:CGPointMake(1, 1) expectedCode:@"CGPointMake(1.0, 1.0)"];
+- (void)testPointAsNumber; {
+    [self testValue:@1.0f expectedPoint:CGPointMake(1, 1) expectedCode:@"CGPointMake(1.0, 1.0)"];
 }
 
-- (void)testValue:(id)value expectedPoint:(CGPoint)expectedPoint expectedCode:(NSString *)expectedCode;
-{
+- (void)testValue:(id)value expectedPoint:(CGPoint)expectedPoint expectedCode:(NSString *)expectedCode; {
     id converted = [self.converter convertValue:value];
     STAssertEquals([converted CGPointValue], expectedPoint, nil);
 

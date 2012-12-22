@@ -8,7 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSImageValueConverter.h"
-#import "UISSArgument.h"
 
 @interface UISSImageValueConverterTests : SenTestCase
 
@@ -20,17 +19,15 @@
 
 @synthesize converter;
 
-- (void)testNullImage;
-{
+- (void)testNullImage; {
     UIImage *image = [self.converter convertValue:[NSNull null]];
     STAssertNil(image, nil);
-    
+
     NSString *code = [self.converter generateCodeForValue:[NSNull null]];
     STAssertEqualObjects(code, @"nil", nil);
 }
 
-- (void)testSimleImageAsString;
-{
+- (void)testSimleImageAsString; {
     UIImage *image = [self.converter convertValue:@"background"];
 
     STAssertNotNil(image, nil);
@@ -40,16 +37,12 @@
     STAssertEqualObjects(code, @"[UIImage imageNamed:@\"background\"]", nil);
 }
 
-- (void)testResizableWithEdgeInsetsDefinedInSubarray;
-{
-    id value = [NSArray arrayWithObjects:@"background",
-                                         [NSArray arrayWithObjects:
-                                                          [NSNumber numberWithFloat:1],
-                                                          [NSNumber numberWithFloat:2],
-                                                          [NSNumber numberWithFloat:3],
-                                                          [NSNumber numberWithFloat:4],
-                                                          nil],
-                                         nil];
+- (void)testResizableWithEdgeInsetsDefinedInSubarray; {
+    id value = @[@"background",
+            @[@1.0f,
+                    @2.0f,
+                    @3.0f,
+                    @4.0f]];
 
     UIImage *image = [self.converter convertValue:value];
 
@@ -60,27 +53,22 @@
     STAssertEqualObjects(code, @"[[UIImage imageNamed:@\"background\"] resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 2.0, 3.0, 4.0)]", nil);
 }
 
-- (void)testResizableDefinedInOneArray;
-{
-    UIImage *image = [self.converter convertValue:[NSArray arrayWithObjects:
-                                                                   @"background",
-                                                                   [NSNumber numberWithFloat:1],
-                                                                   [NSNumber numberWithFloat:2],
-                                                                   [NSNumber numberWithFloat:3],
-                                                                   [NSNumber numberWithFloat:4],
-                                                                   nil]];
+- (void)testResizableDefinedInOneArray; {
+    UIImage *image = [self.converter convertValue:@[@"background",
+            @1.0f,
+            @2.0f,
+            @3.0f,
+            @4.0f]];
 
     STAssertNotNil(image, nil);
     STAssertEquals(image.capInsets, UIEdgeInsetsMake(1, 2, 3, 4), nil);
 }
 
-- (void)setUp;
-{
+- (void)setUp; {
     self.converter = [[UISSImageValueConverter alloc] init];
 }
 
-- (void)tearDown;
-{
+- (void)tearDown; {
     self.converter = nil;
 }
 
