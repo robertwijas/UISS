@@ -9,7 +9,6 @@
 #import "UISSConsoleViewController.h"
 #import "UISSGeneratedCodeViewController.h"
 #import "UISSErrorsViewController.h"
-#import "UISS.h"
 
 @interface UISSConsoleViewController ()
 

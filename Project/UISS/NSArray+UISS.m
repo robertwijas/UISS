@@ -1,5 +1,5 @@
 //
-//  NSArray+UISS+UISSParser.m
+//  NSArray+UISS.m
 //  UISS
 //
 //  Created by Robert Wijas on 21/12/2012.

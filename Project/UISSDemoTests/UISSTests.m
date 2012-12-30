@@ -7,7 +7,6 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "UISS.h"
 
 @interface UISSTests : SenTestCase
 

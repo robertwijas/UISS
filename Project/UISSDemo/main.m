@@ -6,8 +6,6 @@
 //  Copyright (c) 2011 57things. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "UISSDemoAppDelegate.h"
 
 int main(int argc, char *argv[])

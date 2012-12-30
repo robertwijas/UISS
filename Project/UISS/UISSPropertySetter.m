@@ -19,16 +19,6 @@
 
 @implementation UISSPropertySetter
 
-@synthesize appearanceClass=_appearanceClass;
-@synthesize containment=_containment;
-@synthesize property=_property;
-@synthesize axisParameters=_axisParameters;
-
-@synthesize methodSignature=_methodSignature;
-@synthesize selector=_selector;
-
-@synthesize group=_group;
-
 - (NSString *)selectorRegexp
 {
     NSMutableString *regexp = [NSMutableString stringWithFormat:@"^set%@:", [self.property.name uppercaseFirstCharacterString]];
@@ -60,7 +50,9 @@
     if (selector) {
         NSArray *selectorParts = [NSStringFromSelector(self.selector) componentsSeparatedByString:@":"];
         // remove last empty part
-        return [selectorParts subarrayWithRange:NSMakeRange(0, selectorParts.count - 1)];
+        selectorParts = [selectorParts subarrayWithRange:NSMakeRange(0, selectorParts.count - 1)];
+
+        return selectorParts;
     }
     
     return nil;
@@ -230,14 +222,14 @@
     
     [self.axisParameters enumerateObjectsUsingBlock:^(UISSAxisParameter *axisParameter, NSUInteger index, BOOL *stop) {
         NSInteger argumentIndex = index + 3;
-        NSNumber *converted = [axisParameter convertedValue];
+        NSNumber *number = [axisParameter convertedValue];
         
         if ([axisParameter.type isEqualToString:[NSString stringWithCString:@encode(NSUInteger)
                                                                    encoding:NSUTF8StringEncoding]]) {
-            NSUInteger unsignedInteger = [converted unsignedIntegerValue];
+            NSUInteger unsignedInteger = [number unsignedIntegerValue];
             [invocation setArgument:&unsignedInteger atIndex:argumentIndex];
         } else {
-            NSInteger integer = [converted integerValue];
+            NSInteger integer = [number integerValue];
             [invocation setArgument:&integer atIndex:argumentIndex];
         }
     }];

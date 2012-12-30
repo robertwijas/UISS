@@ -96,7 +96,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
     
     NSError *error;
     NSData *data = [NSData dataWithContentsOfURL:self.url 
-                                         options:0 
+                                         options:(NSDataReadingOptions) 0
                                            error:&error];
     
     if (error) {

@@ -24,13 +24,13 @@
     NSMutableDictionary *preprocessed = [NSMutableDictionary dictionary];
     
     [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, id object, BOOL *stop) {
-        UIUserInterfaceIdiom idiom = [self userInterfaceIdiomFromKey:key];
+        UIUserInterfaceIdiom idiom = (UIUserInterfaceIdiom) [self userInterfaceIdiomFromKey:key];
         
         if (idiom == NSNotFound) {
             [preprocessed setObject:[self preprocessValueIfNecessary:object userInterfaceIdiom:userInterfaceIdiom] forKey:key];
         } else {
             if (idiom == userInterfaceIdiom) {
-                // skip everything thats not a dictionary
+                // skip everything that's not a dictionary
                 if ([object isKindOfClass:[NSDictionary class]]) {
                     [preprocessed addEntriesFromDictionary:[self preprocess:object userInterfaceIdiom:userInterfaceIdiom]];
                 }
@@ -41,7 +41,7 @@
     return preprocessed;
 }
 
-- (UIUserInterfaceIdiom)userInterfaceIdiomFromKey:(NSString *)key;
+- (NSInteger)userInterfaceIdiomFromKey:(NSString *)key;
 {
     NSString *lowercaseKey = [key lowercaseString];
     

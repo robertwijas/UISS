@@ -20,7 +20,7 @@
 #import "UISSUIntegerValueConverter.h"
 #import "UISSFloatValueConverter.h"
 #import "UISSBarMetricsValueConverter.h"
-#import "UISSControlStateValueConveter.h"
+#import "UISSControlStateValueConverter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
 #import "UISSToolbarPositionConverter.h"
 #import "UISSSearchBarIconValueConverter.h"
@@ -70,7 +70,7 @@
 {
     return [NSArray arrayWithObjects:
                             [[UISSBarMetricsValueConverter alloc] init],
-                            [[UISSControlStateValueConveter alloc] init],
+                            [[UISSControlStateValueConverter alloc] init],
                             [[UISSSegmentedControlSegmentValueConverter alloc] init],
                             [[UISSToolbarPositionConverter alloc] init],
                             [[UISSSearchBarIconValueConverter alloc] init],

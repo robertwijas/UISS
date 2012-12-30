@@ -10,18 +10,18 @@
 
 extern NSString * const UISSErrorDomain;
 
-extern NSString * const UISSPopertySetterErrorKey;
+extern NSString * const UISSPropertySetterErrorKey;
 extern NSString * const UISSInvalidClassNameErrorKey;
 extern NSString * const UISSInvalidAppearanceDictionaryErrorKey;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, UISSErrorCode) {
     UISSPropertySetterGenerateCodeError = 5701,
     UISSPropertySetterCreateInvocationError = 5702,
     UISSUnknownClassError = 5703,
     UISSInvalidAppearanceClassError = 5704,
     UISSInvalidAppearanceContainerClassError = 5705,
     UISSInvalidAppearanceDictionaryError = 5706
-} UISSErrorCode;
+};
 
 @interface UISSError : NSError
 

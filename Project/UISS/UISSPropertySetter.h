@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong, readonly) NSMethodSignature *methodSignature;
 
-@property (nonatomic, readonly) SEL selector;
+@property (nonatomic, assign, readonly) SEL selector;
 @property (nonatomic, readonly) NSArray *selectorParts;
 
 @property (nonatomic, readonly) id target;

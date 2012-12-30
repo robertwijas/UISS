@@ -16,12 +16,7 @@
 
 @implementation UISSArgument
 
-@synthesize propertySetter = _propertySetter;
-
-@synthesize config = _config;
-
 @synthesize name = _name;
-@synthesize value = _value;
 
 - (id)init
 {

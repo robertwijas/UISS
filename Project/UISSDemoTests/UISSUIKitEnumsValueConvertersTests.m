@@ -1,5 +1,5 @@
 //
-//  UISSUIKitEnumsValueConvetersTests.m
+//  UISSUIKitEnumsValueConvertersTests.m
 //  UISS
 //
 //  Created by Robert Wijas on 5/16/12.
@@ -8,16 +8,16 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSBarMetricsValueConverter.h"
-#import "UISSControlStateValueConveter.h"
+#import "UISSControlStateValueConverter.h"
 #import "UISSSegmentedControlSegmentValueConverter.h"
 #import "UISSToolbarPositionConverter.h"
 #import "UISSSearchBarIconValueConverter.h"
 
-@interface UISSUIKitEnumsValueConvetersTests : SenTestCase
+@interface UISSUIKitEnumsValueConvertersTests : SenTestCase
 
 @end
 
-@implementation UISSUIKitEnumsValueConvetersTests
+@implementation UISSUIKitEnumsValueConvertersTests
 
 - (void)testBarMetrics;
 {
@@ -31,7 +31,7 @@
 
 - (void)testControlState;
 {
-    UISSControlStateValueConveter *converter = [[UISSControlStateValueConveter alloc] init];
+    UISSControlStateValueConverter *converter = [[UISSControlStateValueConverter alloc] init];
     
     STAssertEquals([[converter convertValue:@"normal"] unsignedIntegerValue], (UIControlState)UIControlStateNormal, nil);
     STAssertEquals([[converter convertValue:@"highlighted"] unsignedIntegerValue], (UIControlState)UIControlStateHighlighted, nil);
@@ -56,7 +56,7 @@
     STAssertNil([converter convertValue:@"dummy"], nil);
 }
 
-- (void)testToolbarPositionCoverter;
+- (void)testToolbarPositionConverter;
 {
     UISSToolbarPositionConverter *converter = [[UISSToolbarPositionConverter alloc] init];
     

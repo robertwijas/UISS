@@ -10,11 +10,14 @@
 
 #import "UISSStatusViewController.h"
 #import "UISSPropertySetter.h"
-#import "UISSAppearancePrivate.h"
 #import "UISSConsoleViewController.h"
 #import "UISSError.h"
 #import "UISSCodeGenerator.h"
 #import "UISSStatusWindow.h"
+
+#ifdef UISS_DEBUG
+#import "UISSAppearancePrivate.h"
+#endif
 
 NSString *const UISSWillApplyStyleNotification = @"UISSWillApplyStyleNotification";
 NSString *const UISSDidApplyStyleNotification = @"UISSDidApplyStyleNotification";
@@ -51,7 +54,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @synthesize configuredAppearanceProxies = _configuredAppearanceProxies;
 
-#pragma mark - Contructors
+#pragma mark - Constructors
 
 - (id)init {
     self = [super init];
@@ -97,7 +100,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
         } else {
             [errors addObject:[UISSError errorWithCode:UISSPropertySetterCreateInvocationError
                                               userInfo:[NSDictionary dictionaryWithObject:propertySetter
-                                                                                   forKey:UISSPopertySetterErrorKey]]];
+                                                                                   forKey:UISSPropertySetterErrorKey]]];
         }
     }
 
@@ -161,7 +164,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 - (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters; {
 #ifdef UISS_DEBUG
-    NSLog(@"UISS -- reseting appearance");
+    NSLog(@"UISS -- resetting appearance");
 
     for (id appearanceProxy in self.configuredAppearanceProxies) {
         [[appearanceProxy _appearanceInvocations] removeAllObjects];

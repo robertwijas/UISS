@@ -48,7 +48,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSError *error = [self.errors objectAtIndex:indexPath.row];
+    NSError *error = [self.errors objectAtIndex:(NSUInteger) indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

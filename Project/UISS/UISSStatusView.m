@@ -55,7 +55,7 @@
 }
 
 - (void)stopAnimatingActivityIndicator {
-    [self.activityIndicator startAnimating];
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)setTitle:(NSString *)title status:(NSString *)status activity:(BOOL)activity error:(BOOL)error; {

@@ -37,11 +37,11 @@
 		E129E5DA1563D44200E93185 /* UISSTextAttributesValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5D91563D44200E93185 /* UISSTextAttributesValueConverterTests.m */; };
 		E129E5DE1563DE5000E93185 /* UISSBarMetricsValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5DC1563DE5000E93185 /* UISSBarMetricsValueConverter.h */; };
 		E129E5DF1563DE5000E93185 /* UISSBarMetricsValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5DD1563DE5000E93185 /* UISSBarMetricsValueConverter.m */; };
-		E129E5E21563DE7B00E93185 /* UISSControlStateValueConveter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5E01563DE7B00E93185 /* UISSControlStateValueConveter.h */; };
-		E129E5E31563DE7B00E93185 /* UISSControlStateValueConveter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5E11563DE7B00E93185 /* UISSControlStateValueConveter.m */; };
+		E129E5E21563DE7B00E93185 /* UISSControlStateValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5E01563DE7B00E93185 /* UISSControlStateValueConverter.h */; };
+		E129E5E31563DE7B00E93185 /* UISSControlStateValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5E11563DE7B00E93185 /* UISSControlStateValueConverter.m */; };
 		E129E5E61563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5E41563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h */; };
 		E129E5E71563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5E51563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m */; };
-		E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */; };
+		E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m */; };
 		E129E5EE1563F54800E93185 /* UISSAbstractEnumValueConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */; };
 		E129E5EF1563F54800E93185 /* UISSAbstractEnumValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */; };
 		E12C10A8157ACB0C00F9008D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12C10A7157ACB0C00F9008D /* QuartzCore.framework */; };
@@ -197,11 +197,11 @@
 		E129E5D91563D44200E93185 /* UISSTextAttributesValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSTextAttributesValueConverterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E129E5DC1563DE5000E93185 /* UISSBarMetricsValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSBarMetricsValueConverter.h; sourceTree = "<group>"; };
 		E129E5DD1563DE5000E93185 /* UISSBarMetricsValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSBarMetricsValueConverter.m; sourceTree = "<group>"; };
-		E129E5E01563DE7B00E93185 /* UISSControlStateValueConveter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSControlStateValueConveter.h; sourceTree = "<group>"; };
-		E129E5E11563DE7B00E93185 /* UISSControlStateValueConveter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSControlStateValueConveter.m; sourceTree = "<group>"; };
+		E129E5E01563DE7B00E93185 /* UISSControlStateValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSControlStateValueConverter.h; sourceTree = "<group>"; };
+		E129E5E11563DE7B00E93185 /* UISSControlStateValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSControlStateValueConverter.m; sourceTree = "<group>"; };
 		E129E5E41563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSegmentedControlSegmentValueConverter.h; sourceTree = "<group>"; };
 		E129E5E51563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSegmentedControlSegmentValueConverter.m; sourceTree = "<group>"; };
-		E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSUIKitEnumsValueConvetersTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UISSUIKitEnumsValueConvertersTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E129E5EC1563F54800E93185 /* UISSAbstractEnumValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSAbstractEnumValueConverter.h; sourceTree = "<group>"; };
 		E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSAbstractEnumValueConverter.m; sourceTree = "<group>"; };
 		E12C10A7157ACB0C00F9008D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -435,8 +435,8 @@
 				E129E5ED1563F54800E93185 /* UISSAbstractEnumValueConverter.m */,
 				E129E5DC1563DE5000E93185 /* UISSBarMetricsValueConverter.h */,
 				E129E5DD1563DE5000E93185 /* UISSBarMetricsValueConverter.m */,
-				E129E5E01563DE7B00E93185 /* UISSControlStateValueConveter.h */,
-				E129E5E11563DE7B00E93185 /* UISSControlStateValueConveter.m */,
+				E129E5E01563DE7B00E93185 /* UISSControlStateValueConverter.h */,
+				E129E5E11563DE7B00E93185 /* UISSControlStateValueConverter.m */,
 				E129E5E41563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h */,
 				E129E5E51563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m */,
 				E1A775B01566E8D6000406CC /* UISSToolbarPositionConverter.h */,
@@ -450,7 +450,7 @@
 		E129E5E81563DECB00E93185 /* UIKit Enums */ = {
 			isa = PBXGroup;
 			children = (
-				E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m */,
+				E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m */,
 			);
 			name = "UIKit Enums";
 			sourceTree = "<group>";
@@ -843,7 +843,7 @@
 				E12DA0D9155ABE5E0066CCC3 /* UISSFloatValueConverter.h in Headers */,
 				E1F48245156259FE00CFA72E /* UISSUIntegerValueConverter.h in Headers */,
 				E129E5DE1563DE5000E93185 /* UISSBarMetricsValueConverter.h in Headers */,
-				E129E5E21563DE7B00E93185 /* UISSControlStateValueConveter.h in Headers */,
+				E129E5E21563DE7B00E93185 /* UISSControlStateValueConverter.h in Headers */,
 				E129E5E61563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.h in Headers */,
 				E129E5EE1563F54800E93185 /* UISSAbstractEnumValueConverter.h in Headers */,
 				E1A7739815668F80000406CC /* UILabel+UISS.h in Headers */,
@@ -1037,7 +1037,7 @@
 				E12DA0DA155ABE5E0066CCC3 /* UISSFloatValueConverter.m in Sources */,
 				E1F48246156259FE00CFA72E /* UISSUIntegerValueConverter.m in Sources */,
 				E129E5DF1563DE5000E93185 /* UISSBarMetricsValueConverter.m in Sources */,
-				E129E5E31563DE7B00E93185 /* UISSControlStateValueConveter.m in Sources */,
+				E129E5E31563DE7B00E93185 /* UISSControlStateValueConverter.m in Sources */,
 				E129E5E71563DEB700E93185 /* UISSSegmentedControlSegmentValueConverter.m in Sources */,
 				E129E5EF1563F54800E93185 /* UISSAbstractEnumValueConverter.m in Sources */,
 				E1A7739915668F80000406CC /* UILabel+UISS.m in Sources */,
@@ -1097,7 +1097,7 @@
 				E129E5D41563C38D00E93185 /* UISSImageValueConverterTests.m in Sources */,
 				E129E5D71563CCFB00E93185 /* UISSFontValueConverterTests.m in Sources */,
 				E129E5DA1563D44200E93185 /* UISSTextAttributesValueConverterTests.m in Sources */,
-				E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvetersTests.m in Sources */,
+				E129E5EB1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m in Sources */,
 				E1A775C11567A814000406CC /* UISSVariablesPreprocessorTests.m in Sources */,
 				E19759FF15725C220076674C /* UISSUserInterfaceIdiomPreprocessorTests.m in Sources */,
 				E1F2B9C515814486008EE145 /* UISSPrivateAppearanceMethodsTests.m in Sources */,

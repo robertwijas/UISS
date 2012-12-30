@@ -9,7 +9,6 @@
 #import "UISSStatusViewController.h"
 #import "UISSStatusWindow.h"
 #import "UISS.h"
-#import "UISSStyle.h"
 
 @interface UISSStatusViewController ()
 
@@ -53,7 +52,6 @@
 - (void)loadView;
 {
     self.view = [[UISSStatusView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 }
 
 - (void)viewDidLoad;
@@ -142,7 +140,7 @@
     return [self.statusDictionary objectForKey:notification.name];
 }
 
-- (BOOL)activityForNotfication:(NSNotification *)notification;
+- (BOOL)activityForNotification:(NSNotification *)notification;
 {
     return [notification.name rangeOfString:@"Will"].location != NSNotFound;
 }
@@ -165,7 +163,7 @@
     void (^block)(void) = ^{
         [self.statusView setTitle:[self titleForNotification:notification]
                            status:[self statusForNotification:notification]
-                         activity:[self activityForNotfication:notification]
+                         activity:[self activityForNotification:notification]
                             error:[self errorForNotification:notification]];
     };
     

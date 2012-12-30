@@ -12,7 +12,6 @@
 
 #import "UISSColorValueConverter.h"
 #import "UISSConfig.h"
-#import "UISSIntegerValueConverter.h"
 #import "UISSDictionaryPreprocessor.h"
 #import "UISSPropertySetter.h"
 #import "UISSError.h"

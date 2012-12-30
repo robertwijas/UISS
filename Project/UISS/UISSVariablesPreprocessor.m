@@ -49,7 +49,7 @@ typedef id (^ResolveBlock)(NSString *);
     NSString *name = [self variableNameFromValue:value];
     
     if (name) {
-        id value = resolveBlock(name);
+        value = resolveBlock(name);
         
         if (value == nil) {
             value = [NSNull null];
@@ -71,7 +71,8 @@ typedef id (^ResolveBlock)(NSString *);
 {
     if ([value isKindOfClass:[NSArray class]]) {
         NSMutableArray *resolved = [NSMutableArray array];
-        [value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSArray *array = value;
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [resolved addObject:[self resolveNestedValuesForValue:obj withResolveBlock:resolveBlock]];
         }];
         return resolved;

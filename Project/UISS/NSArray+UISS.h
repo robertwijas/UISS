@@ -1,5 +1,5 @@
 //
-//  NSArray+UISS+UISSParser.h
+//  NSArray+UISS.h
 //  UISS
 //
 //  Created by Robert Wijas on 21/12/2012.
@@ -10,8 +10,8 @@
 
 @interface NSArray (UISS)
 
-- (BOOL)canConvertToIntObjectAtIndex:(NSUInteger)index1;
+- (BOOL)canConvertToIntObjectAtIndex:(NSUInteger)index;
 
-- (BOOL)canConvertToFloatObjectAtIndex:(NSUInteger)index1;
+- (BOOL)canConvertToFloatObjectAtIndex:(NSUInteger)index;
 
 @end

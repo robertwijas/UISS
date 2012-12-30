@@ -34,7 +34,8 @@
             }
         } else {
             [errors addObject:[UISSError errorWithCode:UISSPropertySetterGenerateCodeError 
-                                              userInfo:[NSDictionary dictionaryWithObject:propertySetter forKey:UISSPopertySetterErrorKey]]];
+                                              userInfo:[NSDictionary dictionaryWithObject:propertySetter
+                                                                                   forKey:UISSPropertySetterErrorKey]]];
         }
     }
     

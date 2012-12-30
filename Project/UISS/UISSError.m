@@ -7,11 +7,10 @@
 //
 
 #import "UISSError.h"
-#import "UISSPropertySetter.h"
 
 NSString * const UISSErrorDomain = @"UISSErrorDomain";
 
-NSString * const UISSPopertySetterErrorKey = @"UISSPopertySetterErrorKey";
+NSString * const UISSPropertySetterErrorKey = @"UISSPropertySetterErrorKey";
 NSString * const UISSInvalidClassNameErrorKey = @"UISSUnknownClassErrorKey";
 NSString * const UISSInvalidAppearanceDictionaryErrorKey = @"UISSInvalidAppearanceDictionaryErrorKey";
 
@@ -32,10 +31,10 @@ NSString * const UISSInvalidAppearanceDictionaryErrorKey = @"UISSInvalidAppearan
     switch (code) {
         case UISSPropertySetterGenerateCodeError:
             return [NSString stringWithFormat:@"Cannot generate code for: %@",
-                                              [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
+                             [self.userInfo objectForKey:UISSPropertySetterErrorKey]];
         case UISSPropertySetterCreateInvocationError:
             return [NSString stringWithFormat:@"Cannot create NSInvocation for: %@",
-                                              [self.userInfo objectForKey:UISSPopertySetterErrorKey]];
+                             [self.userInfo objectForKey:UISSPropertySetterErrorKey]];
         case UISSUnknownClassError:
             return [NSString stringWithFormat:@"Unknown Class: %@",
                                               [self.userInfo objectForKey:UISSInvalidClassNameErrorKey]];
@@ -55,7 +54,7 @@ NSString * const UISSInvalidAppearanceDictionaryErrorKey = @"UISSInvalidAppearan
 
 - (NSString *)localizedDescription;
 {
-    return [NSString stringWithFormat:@"%@. (%@ error %d.)", [self descriptionForCode:self.code], self.domain, self.code];
+    return [NSString stringWithFormat:@"%@. (%@ error %d.)", [self descriptionForCode:(UISSErrorCode) self.code], self.domain, self.code];
 }
 
 @end

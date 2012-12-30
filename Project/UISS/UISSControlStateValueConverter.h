@@ -1,5 +1,5 @@
 //
-//  UISSControlStateValueConveter.h
+//  UISSControlStateValueConverter.h
 //  UISS
 //
 //  Created by Robert Wijas on 5/16/12.
@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "UISSAbstractEnumValueConverter.h"
 
-@interface UISSControlStateValueConveter : UISSAbstractEnumValueConverter
+@interface UISSControlStateValueConverter : UISSAbstractEnumValueConverter
 
 @end

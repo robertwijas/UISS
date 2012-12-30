@@ -7,7 +7,6 @@
 //
 
 #import "UISSStatusWindow.h"
-#import "UISSConsoleViewController.h"
 
 @interface UISSStatusWindow ()
 

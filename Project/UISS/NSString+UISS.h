@@ -1,5 +1,5 @@
 //
-//  NSString+UISS+UISSParser+UISS.h
+//  NSString+UISS.h
 //  UISS
 //
 //  Created by Robert Wijas on 6/10/12.
@@ -11,6 +11,7 @@
 @interface NSString (UISS)
 
 - (NSString *)uppercaseFirstCharacterString;
+
 - (NSString *)lowercaseFirstCharacterString;
 
 @end
