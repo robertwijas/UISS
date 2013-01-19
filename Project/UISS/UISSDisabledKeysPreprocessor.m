@@ -10,8 +10,6 @@
 
 @implementation UISSDisabledKeysPreprocessor
 
-@synthesize prefix=_prefix;
-
 - (id)init
 {
     self = [super init];

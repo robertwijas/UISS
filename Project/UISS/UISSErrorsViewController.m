@@ -53,7 +53,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = [error localizedDescription];
+    cell.textLabel.text = error.localizedDescription;
     
     return cell;
 }

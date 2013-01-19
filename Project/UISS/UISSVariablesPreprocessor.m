@@ -20,10 +20,6 @@ typedef id (^ResolveBlock)(NSString *);
 
 @implementation UISSVariablesPreprocessor
 
-@synthesize variablesKey=_variablesKey;
-@synthesize variables=_variables;
-@synthesize variablePrefix=_variablePrefix;
-
 - (id)init
 {
     self = [super init];

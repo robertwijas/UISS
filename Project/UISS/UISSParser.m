@@ -19,10 +19,6 @@
 
 @implementation UISSParser
 
-@synthesize config = _config;
-@synthesize userInterfaceIdiom = _userInterfaceIdiom;
-@synthesize groupPrefix = _groupPrefix;
-
 - (id)init {
     self = [super init];
     if (self) {

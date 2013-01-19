@@ -11,11 +11,6 @@
 
 @implementation UISSParserContext
 
-@synthesize appearanceStack;
-@synthesize groupsStack;
-@synthesize errors;
-@synthesize propertySetters;
-
 - (id)init
 {
     self = [super init];
