@@ -30,6 +30,16 @@
                 }
             }
         },
+        "UISSSettingsViewController": {
+            "UILabel": {
+                "textAttributes": {
+                    "textColor": "darkGray"
+                }
+            },
+            "UITableView": {
+                "backgroundUISSColor": "white"
+            }
+        },
         "UISSGeneratedCodeViewController": {
             "UITextView": {
                 "font": [["CourierNewPSMT", 12]]
