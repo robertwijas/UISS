@@ -27,8 +27,10 @@
 {
     self = [super init];
     if (self) {
-        self.title = @"Code";
         self.uiss = uiss;
+
+        self.title = @"Code";
+        self.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/code"];
     }
     return self;
 }

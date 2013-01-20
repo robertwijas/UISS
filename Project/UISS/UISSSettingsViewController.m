@@ -19,24 +19,31 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         self.uiss = uiss;
-        
-        self.title = @"Settings";
 
-        UISSSettingDescriptor *urlSettingDescriptor = [[UISSSettingDescriptor alloc] init];
-        urlSettingDescriptor.name = @"URL";
-        urlSettingDescriptor.title = @"UISS Style URL";
-        urlSettingDescriptor.info = @"You can provide an URL to your UISS JSON file.";
-        urlSettingDescriptor.valueProvider = ^{
-            return self.uiss.style.url.absoluteString;
-        };
-        urlSettingDescriptor.valueChangeHandler = ^(id value) {
-            NSLog(@"changing value to: %@", value);
-        };
-        
-        self.settingDescriptors = @[urlSettingDescriptor];
+        self.title = @"Settings";
+        self.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/settings"];
+
+        [self setupSettingDescriptors];
     }
 
     return self;
+}
+
+- (void)setupSettingDescriptors {
+    UISS *uiss = self.uiss;
+
+    UISSSettingDescriptor *urlSettingDescriptor = [[UISSSettingDescriptor alloc] init];
+    urlSettingDescriptor.name = @"URL";
+    urlSettingDescriptor.title = @"UISS Style URL";
+    urlSettingDescriptor.info = @"You can provide an URL to your UISS JSON file.";
+    urlSettingDescriptor.valueProvider = ^{
+        return uiss.style.url.absoluteString;
+    };
+    urlSettingDescriptor.valueChangeHandler = ^(id value) {
+        NSLog(@"changing value to: %@", value);
+    };
+
+    self.settingDescriptors = @[urlSettingDescriptor];
 }
 
 #pragma mark - View

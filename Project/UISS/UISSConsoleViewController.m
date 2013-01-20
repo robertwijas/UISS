@@ -28,39 +28,39 @@
 
         // Errors
         UISSErrorsViewController *errorsViewController = [[UISSErrorsViewController alloc] init];
-        errorsViewController.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/errors"];
-        errorsViewController.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
+        errorsViewController.navigationItem.leftBarButtonItem = [self createCloseBarButton];
         if (self.uiss.style.errors.count) {
-            errorsViewController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", self.uiss.style.errors.count];
+            errorsViewController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",
+                                                                                    self.uiss.style.errors.count];
         }
         errorsViewController.errors = self.uiss.style.errors;
 
         UINavigationController *errorsNavigationController = [[UINavigationController alloc] initWithRootViewController:errorsViewController];
 
         // Config
-        UISSSettingsViewController *configViewController = [[UISSSettingsViewController alloc] initWithUISS:self.uiss];
-        configViewController.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
-        configViewController.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/settings"];
-        UINavigationController *configNavigationController = [[UINavigationController alloc] initWithRootViewController:configViewController];
+        UISSSettingsViewController *settingsViewController = [[UISSSettingsViewController alloc] initWithUISS:self.uiss];
+        settingsViewController.navigationItem.leftBarButtonItem = [self createCloseBarButton];
+        UINavigationController *configNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
 
 
         // Code
         UISSGeneratedCodeViewController *generatedCodeViewController = [[UISSGeneratedCodeViewController alloc] initWithUISS:self.uiss];
-        generatedCodeViewController.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/code"];
-        generatedCodeViewController.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
+        generatedCodeViewController.navigationItem.leftBarButtonItem = [self createCloseBarButton];
         UINavigationController *generatedCodeNavigationController = [[UINavigationController alloc] initWithRootViewController:generatedCodeViewController];
 
         self.viewControllers = [NSArray arrayWithObjects:errorsNavigationController, configNavigationController,
                                                          generatedCodeNavigationController, nil];
 
         if (self.uiss.style.errors.count) {
-            self.selectedViewController = errorsViewController;
+            self.selectedViewController = errorsNavigationController;
+        } else {
+            self.selectedViewController = configNavigationController;
         }
     }
     return self;
 }
 
-- (UIBarButtonItem *)closeBarButtonItem {
+- (UIBarButtonItem *)createCloseBarButton {
     return [[UIBarButtonItem alloc] initWithTitle:@"Close"
                                             style:UIBarButtonItemStyleBordered
                                            target:self

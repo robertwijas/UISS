@@ -23,6 +23,7 @@
     self = [super init];
     if (self) {
         self.title = @"Errors";
+        self.tabBarItem.image = [UIImage imageNamed:@"UISSResources.bundle/errors"];
     }
     return self;
 }
