@@ -26,14 +26,8 @@
         return YES;
     }
 
-    self.uiss = [[UISS alloc] init];
-    self.uiss.style.url = [NSURL URLWithString:@"http://uiss.10.0.1.7.xip.io/uiss_demo.json"];
-    self.uiss.statusWindowEnabled = YES;
-    [self.uiss registerReloadGestureRecognizerInView:self.window];
-
-    [self.uiss load];
-    [self.uiss enableAutoReloadWithTimeInterval:0.1];
-
+    // Remote Style
+    self.uiss = [UISS configureWithURL:[NSURL URLWithString:@"http://uiss.10.0.1.7.xip.io/uiss_demo.json"]];
 
     // Local style
     //[UISS configureWithDefaultJSONFile];

@@ -10,6 +10,9 @@
                 "titleTextAttributes:normal": {"textColor": "lightGray"}
             }
         },
+        "UISwitch": {
+            "onTintColor": "lightGray"
+        },
         "UINavigationBar": {
             "tintColor": "lightGray",
             "backgroundImage:default": null,
@@ -37,7 +40,14 @@
                 }
             },
             "UITableView": {
-                "backgroundUISSColor": "white"
+                "backgroundUISSColor": "white",
+                "UITableViewCell": {
+                    "UILabel": {
+                        "textAttributes": {
+                            "font": 14
+                        }
+                    }
+                }
             }
         },
         "UISSGeneratedCodeViewController": {

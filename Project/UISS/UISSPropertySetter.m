@@ -80,7 +80,7 @@
         NSString *selectorString = NSStringFromSelector(selector);
         
         if ([selectorString rangeOfString:regexp options:NSRegularExpressionSearch].location != NSNotFound) {
-            // this favours selector with shorter name
+            // this favours selector with shorter label
             // the purpose of this is to pick forState: instead of forStates:
             
             if (currentBestSelector == NULL || NSStringFromSelector(currentBestSelector).length > selectorString.length) {

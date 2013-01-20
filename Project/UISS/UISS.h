@@ -17,24 +17,30 @@ extern NSString *const UISSDidRefreshViewsNotification;
 
 @interface UISS : NSObject
 
-@property (nonatomic, strong) UISSConfig *config;
-@property (nonatomic, assign) BOOL statusWindowEnabled;
+@property(nonatomic, strong) UISSConfig *config;
+@property(nonatomic, assign) BOOL statusWindowEnabled;
 
-@property (nonatomic, strong) UISSStyle *style;
+@property(nonatomic) NSTimeInterval autoReloadTimeInterval;
+@property(nonatomic) BOOL autoReloadEnabled;
 
-- (void)enableAutoReloadWithTimeInterval:(NSTimeInterval)timeInterval;
-- (void)disableAutoReload;
+@property(nonatomic, strong) UISSStyle *style;
 
 - (void)load;
+
 - (void)reload;
 
 - (void)registerReloadGestureRecognizerInView:(UIView *)view;
 
 // codeHandler is called on main thread
-- (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom 
+- (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom
                               codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
 
+#pragma mark - Factory Methods
+
 + (UISS *)configureWithJSONFilePath:(NSString *)filePath;
+
 + (UISS *)configureWithDefaultJSONFile;
+
++ (UISS *)configureWithURL:(NSURL *)url;
 
 @end

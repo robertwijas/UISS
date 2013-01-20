@@ -74,19 +74,37 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     return self;
 }
 
-+ (UISS *)configureWithJSONFilePath:(NSString *)filePath; {
+#pragma mark - Factory Methods
+
++ (UISS *)configureWithJSONFilePath:(NSString *)filePath {
     UISS *uiss = [[UISS alloc] init];
     uiss.style.url = [NSURL fileURLWithPath:filePath];
     [uiss load];
     return uiss;
 }
 
-+ (UISS *)configureWithDefaultJSONFile; {
++ (UISS *)configureWithDefaultJSONFile {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"uiss" ofType:@"json"];
     return [self configureWithJSONFilePath:filePath];
 }
 
-- (void)configureAppearanceWithPropertySetters:(NSArray *)propertySetters errors:(NSMutableArray *)errors; {
++ (UISS *)configureWithURL:(NSURL *)url {
+    UISS *uiss = [[UISS alloc] init];
+
+    uiss.style.url = url;
+    uiss.statusWindowEnabled = YES;
+
+    [uiss load];
+
+    uiss.autoReloadTimeInterval = 5;
+    uiss.autoReloadEnabled = YES;
+
+    return uiss;
+}
+
+#pragma mark - Reloading Style
+
+- (void)configureAppearanceWithPropertySetters:(NSArray *)propertySetters errors:(NSMutableArray *)errors {
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillApplyStyleNotification object:self];
 
     [self resetAppearanceForPropertySetters:propertySetters];
@@ -115,7 +133,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidApplyStyleNotification object:self];
 }
 
-- (void)reload; {
+- (void)reload {
     dispatch_async(self.queue, ^{
         // if new data downloaded
         if ([self.style downloadData]) {
@@ -134,7 +152,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     });
 }
 
-- (void)load; {
+- (void)load {
     __block NSArray *propertySetters = nil;
 
     dispatch_sync(self.queue, ^{
@@ -149,7 +167,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
 }
 
-- (void)refreshViews; {
+- (void)refreshViews {
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillRefreshViewsNotification object:self];
 
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
@@ -162,7 +180,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidRefreshViewsNotification object:self];
 }
 
-- (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters; {
+- (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters {
 #ifdef UISS_DEBUG
     NSLog(@"UISS -- resetting appearance");
 
@@ -177,7 +195,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 #pragma mark - Code Generation
 
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom
-                              codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler; {
+                              codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler {
     NSAssert(codeHandler, @"code handler required");
 
     dispatch_async(self.queue, ^{
@@ -193,25 +211,37 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     });
 }
 
-#pragma mark - Auto Refresh
+#pragma mark - Auto Reload
 
-- (void)enableAutoReloadWithTimeInterval:(NSTimeInterval)timeInterval; {
-    [self disableAutoReload];
-
-    self.autoReloadTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
-                                                            target:self
-                                                          selector:@selector(reload)
-                                                          userInfo:nil repeats:YES];
+- (void)updateAutoReloadTimer {
+    if (self.autoReloadEnabled && self.autoReloadTimeInterval) {
+        self.autoReloadTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoReloadTimeInterval
+                                                                target:self
+                                                              selector:@selector(reload)
+                                                              userInfo:nil repeats:YES];
+    } else {
+        self.autoReloadTimer = nil;
+    }
 }
 
-- (void)disableAutoReload; {
-    [self.autoReloadTimer invalidate];
-    self.autoReloadTimer = nil;
+- (void)setAutoReloadTimer:(NSTimer *)autoReloadTimer {
+    [_autoReloadTimer invalidate];
+    _autoReloadTimer = autoReloadTimer;
+}
+
+- (void)setAutoReloadTimeInterval:(NSTimeInterval)autoReloadTimeInterval {
+    _autoReloadTimeInterval = autoReloadTimeInterval;
+    [self updateAutoReloadTimer];
+}
+
+- (void)setAutoReloadEnabled:(BOOL)autoReloadEnabled {
+    _autoReloadEnabled = autoReloadEnabled;
+    [self updateAutoReloadTimer];
 }
 
 #pragma mark - Reload Gesture Recognizer Support
 
-- (UIGestureRecognizer *)defaultGestureRecognizer; {
+- (UIGestureRecognizer *)defaultGestureRecognizer {
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
     recognizer.numberOfTouchesRequired = 1;
     recognizer.minimumPressDuration = 1;
@@ -219,7 +249,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     return recognizer;
 }
 
-- (void)registerReloadGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer inView:(UIView *)view; {
+- (void)registerReloadGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer inView:(UIView *)view {
     if (gestureRecognizer == nil) {
         gestureRecognizer = [self defaultGestureRecognizer];
     }
@@ -241,11 +271,11 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 #pragma mark - Status Window
 
-- (BOOL)statusWindowEnabled; {
+- (BOOL)statusWindowEnabled {
     return self.statusWindow != nil;
 }
 
-- (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled; {
+- (void)setStatusWindowEnabled:(BOOL)statusWindowEnabled {
     if (statusWindowEnabled) {
         if (self.statusWindowController == nil) {
             // configure Console
@@ -272,11 +302,11 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 #pragma mark - Console
 
-- (void)statusWindowControllerDidSelect:(UISSStatusViewController *)statusWindowController; {
+- (void)statusWindowControllerDidSelect:(UISSStatusViewController *)statusWindowController {
     [self presentConsoleViewController];
 }
 
-- (void)presentConsoleViewController; {
+- (void)presentConsoleViewController {
     UISSConsoleViewController *consoleViewController = [[UISSConsoleViewController alloc] initWithUISS:self];
     consoleViewController.modalPresentationStyle = UIModalPresentationFormSheet;
 

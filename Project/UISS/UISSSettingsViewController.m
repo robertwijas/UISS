@@ -32,18 +32,52 @@
 - (void)setupSettingDescriptors {
     UISS *uiss = self.uiss;
 
-    UISSSettingDescriptor *urlSettingDescriptor = [[UISSSettingDescriptor alloc] init];
-    urlSettingDescriptor.name = @"URL";
-    urlSettingDescriptor.title = @"UISS Style URL";
-    urlSettingDescriptor.info = @"You can provide an URL to your UISS JSON file.";
-    urlSettingDescriptor.valueProvider = ^{
+    UISSSettingDescriptor *styleUrl = [[UISSSettingDescriptor alloc] init];
+    styleUrl.label = @"URL";
+    styleUrl.title = @"Style URL";
+    styleUrl.info = @"You can provide an URL to your UISS JSON file.";
+    styleUrl.keyboardType = UIKeyboardTypeURL;
+    styleUrl.valueProvider = ^{
         return uiss.style.url.absoluteString;
     };
-    urlSettingDescriptor.valueChangeHandler = ^(id value) {
-        NSLog(@"changing value to: %@", value);
+    styleUrl.valueChangeHandler = ^(id value) {
+        uiss.style.url = [NSURL URLWithString:value];
     };
 
-    self.settingDescriptors = @[urlSettingDescriptor];
+    UISSSettingDescriptor *autoReloadEnabled = [[UISSSettingDescriptor alloc] init];
+    autoReloadEnabled.title = @"Auto Reload";
+    autoReloadEnabled.label = @"Enabled";
+    autoReloadEnabled.editorType = UISSSettingDescriptorEditorTypeSwitch;
+    autoReloadEnabled.valueProvider = ^{
+        return [NSNumber numberWithBool:uiss.autoReloadEnabled];
+    };
+    autoReloadEnabled.valueChangeHandler = ^(id value) {
+        uiss.autoReloadEnabled = [value boolValue];
+    };
+
+    UISSSettingDescriptor *autoReloadInterval = [[UISSSettingDescriptor alloc] init];
+    autoReloadInterval.title = @"Auto Reload Interval";
+    autoReloadInterval.label = @"In Seconds";
+    autoReloadInterval.keyboardType = UIKeyboardTypeDecimalPad;
+    autoReloadInterval.valueProvider = ^{
+        return [NSNumber numberWithDouble:uiss.autoReloadTimeInterval];
+    };
+    autoReloadInterval.valueChangeHandler = ^(id value) {
+        uiss.autoReloadTimeInterval = [value doubleValue];
+    };
+
+    UISSSettingDescriptor *statusWindowEnabled = [[UISSSettingDescriptor alloc] init];
+    statusWindowEnabled.title = @"Status Window";
+    statusWindowEnabled.label = @"Visible";
+    statusWindowEnabled.editorType = UISSSettingDescriptorEditorTypeSwitch;
+    statusWindowEnabled.valueProvider = ^{
+        return [NSNumber numberWithBool:uiss.statusWindowEnabled];
+    };
+    statusWindowEnabled.valueChangeHandler = ^(id value) {
+        uiss.statusWindowEnabled = [value boolValue];
+    };
+
+    self.settingDescriptors = @[styleUrl, autoReloadEnabled, autoReloadInterval, statusWindowEnabled];
 }
 
 #pragma mark - View
@@ -77,8 +111,24 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     UISSSettingDescriptor *settingDescriptor = self.settingDescriptors[(NSUInteger) indexPath.section];
-    cell.textLabel.text = settingDescriptor.name;
-    cell.detailTextLabel.text = settingDescriptor.valueProvider();
+
+    cell.textLabel.text = settingDescriptor.label;
+
+    if (settingDescriptor.editorType == UISSSettingDescriptorEditorTypeText) {
+        cell.detailTextLabel.text = settingDescriptor.stringValue;
+        cell.accessoryView = nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    } else if (settingDescriptor.editorType == UISSSettingDescriptorEditorTypeSwitch) {
+        UISwitch *switchAccessoryView = [[UISwitch alloc] init];
+        switchAccessoryView.on = [settingDescriptor.valueProvider() boolValue];
+        switchAccessoryView.tag = indexPath.section;
+
+        [switchAccessoryView addTarget:self action:@selector(switchAccessoryViewValueChanged:)
+                      forControlEvents:UIControlEventValueChanged];
+
+        cell.accessoryView = switchAccessoryView;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,7 +138,6 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                       reuseIdentifier:reuseIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
 
     return cell;
@@ -97,28 +146,41 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UISSSettingDescriptor *settingDescriptor = self.settingDescriptors[(NSUInteger) indexPath.section];
 
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change Setting"
-                                                        message:settingDescriptor.title
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Change", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    alertView.delegate = self;
+    if (settingDescriptor.editorType == UISSSettingDescriptorEditorTypeText) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Change Setting"
+                                                            message:settingDescriptor.title
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Change", nil];
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alertView.delegate = self;
 
-    [alertView textFieldAtIndex:0].text = settingDescriptor.valueProvider();
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        textField.text = settingDescriptor.stringValue;
+        textField.keyboardType = settingDescriptor.keyboardType;
 
-    [alertView show];
+        [alertView show];
+    }
 }
 
 #pragma mark - AlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSIndexPath *indexPathForSelectedRow = self.tableView.indexPathForSelectedRow;
+
     if (buttonIndex != alertView.cancelButtonIndex) {
-        UISSSettingDescriptor *settingDescriptor = self.settingDescriptors[(NSUInteger) self.tableView.indexPathForSelectedRow.section];
+        UISSSettingDescriptor *settingDescriptor = self.settingDescriptors[(NSUInteger) indexPathForSelectedRow.section];
         settingDescriptor.valueChangeHandler([alertView textFieldAtIndex:0].text);
+        [self.tableView reloadRowsAtIndexPaths:@[indexPathForSelectedRow]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow animated:YES];
+}
+
+- (void)switchAccessoryViewValueChanged:(UISwitch *)switchAccessoryView {
+    UISSSettingDescriptor *settingDescriptor = self.settingDescriptors[(NSUInteger) switchAccessoryView.tag];
+    settingDescriptor.valueChangeHandler(@(switchAccessoryView.on));
 }
 
 @end
