@@ -113,7 +113,7 @@ typedef id (^ResolveBlock)(NSString *);
     __weak UISSVariablesPreprocessor *weakSelf = self;
     NSMutableDictionary *unresolved = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     
-    __block ResolveBlock resolveBlock = ^(NSString *n) {
+    __block __weak ResolveBlock resolveBlock = ^(NSString *n) {
         if ([unresolved.allKeys containsObject:n]) {
             id value = [unresolved objectForKey:n];
             [unresolved removeObjectForKey:n];

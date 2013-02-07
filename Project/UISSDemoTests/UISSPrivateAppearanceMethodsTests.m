@@ -16,6 +16,7 @@
 
 @implementation UISSPrivateAppearanceMethodsTests
 
+#ifdef UISS_DEBUG
 
 - (void)testDebugAppearancePrivateMethodsAndProperties; {
     unsigned int count = 0;
@@ -58,5 +59,7 @@
     appearanceInvocations = [appearance _appearanceInvocations];
     STAssertTrue(appearanceInvocations.count == 0, @"all invocations should have been removed");
 }
+
+#endif
 
 @end
