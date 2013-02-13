@@ -38,11 +38,7 @@
 }
 
 - (void)testResizableWithEdgeInsetsDefinedInSubarray; {
-    id value = @[@"background",
-            @[@1.0f,
-                    @2.0f,
-                    @3.0f,
-                    @4.0f]];
+    id value = @[@"background", @[@1.0f, @2.0f, @3.0f, @4.0f]];
 
     UIImage *image = [self.converter convertValue:value];
 
@@ -54,11 +50,7 @@
 }
 
 - (void)testResizableDefinedInOneArray; {
-    UIImage *image = [self.converter convertValue:@[@"background",
-            @1.0f,
-            @2.0f,
-            @3.0f,
-            @4.0f]];
+    UIImage *image = [self.converter convertValue:@[@"background", @1.0f, @2.0f, @3.0f, @4.0f]];
 
     STAssertNotNil(image, nil);
     STAssertEquals(image.capInsets, UIEdgeInsetsMake(1, 2, 3, 4), nil);

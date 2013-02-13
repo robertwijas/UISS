@@ -169,6 +169,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E1EA711716CC5B5A00EE20F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1B438A6143F667F00F87518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1B438AE143F668000F87518;
+			remoteInfo = UISS;
+		};
 		E1ED8C0F1450D4E200302B61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1B438A6143F667F00F87518 /* Project object */;
@@ -965,6 +972,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E1EA711816CC5B5A00EE20F9 /* PBXTargetDependency */,
 			);
 			name = UISSDemo;
 			productName = UISSDemo;
@@ -1178,6 +1186,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E1EA711816CC5B5A00EE20F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1B438AE143F668000F87518 /* UISS */;
+			targetProxy = E1EA711716CC5B5A00EE20F9 /* PBXContainerItemProxy */;
+		};
 		E1ED8C101450D4E200302B61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1ED8BE01450D4E100302B61 /* UISSDemo */;
