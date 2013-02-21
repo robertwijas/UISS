@@ -1249,7 +1249,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					UISS_DEBUG,
 					"DEBUG=1",
 					"$(inherited)",
 				);

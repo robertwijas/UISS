@@ -8,9 +8,6 @@
 
 #import "UISSParser.h"
 
-#import <objc/runtime.h>
-
-#import "UISSColorValueConverter.h"
 #import "UISSConfig.h"
 #import "UISSDictionaryPreprocessor.h"
 #import "UISSPropertySetter.h"
@@ -65,7 +62,7 @@
         Class currentContainer = context.appearanceStack.lastObject;
 
         if (currentContainer == nil || [currentContainer conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-            NSLog(@"UISS - component: %@", NSStringFromClass(class));
+            UISS_LOG(@"component: %@", NSStringFromClass(class));
 
             if ([object isKindOfClass:[NSDictionary class]]) {
                 [context.appearanceStack addObject:class];
@@ -101,8 +98,7 @@
             [context addErrorWithCode:UISSInvalidAppearanceClassError object:NSStringFromClass(currentClass)
                                   key:UISSInvalidClassNameErrorKey];
         } else {
-            // property
-            NSLog(@"UISS - property: %@", key);
+            UISS_LOG(@"property: %@", key);
             [context.propertySetters addObject:[self propertySetterForKey:key withValue:value context:context]];
         }
     }

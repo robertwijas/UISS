@@ -15,7 +15,7 @@
 #import "UISSCodeGenerator.h"
 #import "UISSStatusWindow.h"
 
-#ifdef UISS_DEBUG
+#if UISS_DEBUG
 #import "UISSAppearancePrivate.h"
 #endif
 
@@ -66,12 +66,20 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
         self.codeGenerator = [[UISSCodeGenerator alloc] init];
 
-#ifdef UISS_DEBUG
+#if UISS_DEBUG
+        [self logDebugMessageOnce];
         self.configuredAppearanceProxies = [NSMutableArray array];
 #endif
     }
 
     return self;
+}
+
+- (void)logDebugMessageOnce {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSLog(@"UISS is running in DEBUG mode");
+    });
 }
 
 #pragma mark - Factory Methods
@@ -181,8 +189,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 }
 
 - (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters {
-#ifdef UISS_DEBUG
-    NSLog(@"UISS -- resetting appearance");
+#if UISS_DEBUG
+    UISS_LOG(@"resetting appearance");
 
     for (id appearanceProxy in self.configuredAppearanceProxies) {
         [[appearanceProxy _appearanceInvocations] removeAllObjects];

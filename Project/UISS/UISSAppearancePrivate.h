@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef UISS_DEBUG
+#if UISS_DEBUG
 
 @protocol UISSAppearancePrivate <NSObject>
 

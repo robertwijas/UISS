@@ -16,7 +16,7 @@
 
 @implementation UISSPrivateAppearanceMethodsTests
 
-#ifdef UISS_DEBUG
+#if UISS_DEBUG
 
 - (void)testDebugAppearancePrivateMethodsAndProperties; {
     unsigned int count = 0;
