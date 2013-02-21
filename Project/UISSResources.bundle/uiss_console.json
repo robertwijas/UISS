@@ -37,7 +37,8 @@
             "UILabel": {
                 "textAttributes": {
                     "textColor": "darkGray"
-                }
+                },
+                "backgroundUISSColor": "white"
             },
             "UITableView": {
                 "backgroundUISSColor": "white",
