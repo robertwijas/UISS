@@ -29,20 +29,6 @@
     STAssertNil([converter convertValue:@"dummy"], nil);
 }
 
-- (void)testControlState;
-{
-    UISSControlStateValueConverter *converter = [[UISSControlStateValueConverter alloc] init];
-    
-    STAssertEquals([[converter convertValue:@"normal"] unsignedIntegerValue], (UIControlState)UIControlStateNormal, nil);
-    STAssertEquals([[converter convertValue:@"highlighted"] unsignedIntegerValue], (UIControlState)UIControlStateHighlighted, nil);
-    STAssertEquals([[converter convertValue:@"disabled"] unsignedIntegerValue], (UIControlState)UIControlStateDisabled, nil);
-    STAssertEquals([[converter convertValue:@"selected"] unsignedIntegerValue], (UIControlState)UIControlStateSelected, nil);
-    STAssertEquals([[converter convertValue:@"application"] unsignedIntegerValue], (UIControlState)UIControlStateApplication, nil);
-    STAssertEquals([[converter convertValue:@"reserved"] unsignedIntegerValue], (UIControlState)UIControlStateReserved, nil);
-    
-    STAssertNil([converter convertValue:@"dummy"], nil);
-}
-
 - (void)testSegmentedControlSegment;
 {
     UISSSegmentedControlSegmentValueConverter *converter = [[UISSSegmentedControlSegmentValueConverter alloc] init];

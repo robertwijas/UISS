@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C8D2B032C59FD11A701C83C8 /* UISSSettingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B021E9CB72A0ADBADDEE /* UISSSettingDescriptor.h */; };
 		C8D2B2E56583BF0D585ECFC4 /* UISSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B93A4CE1D6D274BC9D3D /* UISSSettingsViewController.h */; };
+		C8D2B6D7D19B634D46ADF86E /* UISSControlStateValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2BEDF507CA856D0EC5FDF /* UISSControlStateValueConverterTests.m */; };
 		C8D2B737075866F8A4B09620 /* UISSImageResizingModeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2B2AB02BB0DD97B7675C3 /* UISSImageResizingModeConverter.m */; };
 		C8D2BABA25A2F8B6734D5E39 /* UISSImageResizingModeConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B85B301B08AE70AFFFB7 /* UISSImageResizingModeConverter.h */; };
 		C8D2BDE3D04A0D24CCA2E6B8 /* UISSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2BE76126D6B08745F39C2 /* UISSSettingsViewController.m */; };
@@ -192,6 +193,7 @@
 		C8D2B85B301B08AE70AFFFB7 /* UISSImageResizingModeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSImageResizingModeConverter.h; sourceTree = "<group>"; };
 		C8D2B93A4CE1D6D274BC9D3D /* UISSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSettingsViewController.h; sourceTree = "<group>"; };
 		C8D2BE76126D6B08745F39C2 /* UISSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSettingsViewController.m; sourceTree = "<group>"; };
+		C8D2BEDF507CA856D0EC5FDF /* UISSControlStateValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSControlStateValueConverterTests.m; sourceTree = "<group>"; };
 		E1076BE8157F6B1A00886759 /* UISSStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusViewController.h; sourceTree = "<group>"; };
 		E1076BE9157F6B1A00886759 /* UISSStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSStatusViewController.m; sourceTree = "<group>"; };
 		E10D5E4B1574BBA400185009 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				E129E5EA1563DEF100E93185 /* UISSUIKitEnumsValueConvertersTests.m */,
+				C8D2BEDF507CA856D0EC5FDF /* UISSControlStateValueConverterTests.m */,
 			);
 			name = "UIKit Enums";
 			sourceTree = "<group>";
@@ -1180,6 +1183,7 @@
 				E145C85C1584B7D40087BB1B /* UISSPropertySetterTests.m in Sources */,
 				E123BD64158BA83B004F8633 /* UISSTests.m in Sources */,
 				E19B54F415A82070005AFD13 /* UISSCodeGeneratorTests.m in Sources */,
+				C8D2B6D7D19B634D46ADF86E /* UISSControlStateValueConverterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
