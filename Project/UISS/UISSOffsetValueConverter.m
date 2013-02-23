@@ -19,8 +19,6 @@
 
 @implementation UISSOffsetValueConverter
 
-@synthesize floatValueConverter;
-
 - (id)init
 {
     self = [super init];

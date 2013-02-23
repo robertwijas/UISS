@@ -16,8 +16,6 @@
 
 @implementation UISSArgument
 
-@synthesize name = _name;
-
 - (id)init
 {
     self = [super init];

@@ -21,9 +21,6 @@
 
 @implementation UISSColorValueConverter
 
-@synthesize imageValueConverter;
-@synthesize floatValueConverter;
-
 - (id)init {
     self = [super init];
     if (self) {

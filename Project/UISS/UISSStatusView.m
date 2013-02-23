@@ -20,12 +20,6 @@
 
 @implementation UISSStatusView
 
-@synthesize titleLabel = _titleLabel;
-@synthesize statusLabel = _statusLabel;
-@synthesize activityIndicator = _activityIndicator;
-
-@synthesize error = _error;
-
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {

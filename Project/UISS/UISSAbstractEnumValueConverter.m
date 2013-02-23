@@ -20,9 +20,6 @@ static NSString *const UISSEnumAlternativeOperatorString = @"|";
 
 @implementation UISSAbstractEnumValueConverter
 
-@synthesize stringToValueDictionary = _stringToValueDictionary;
-@synthesize stringToCodeDictionary = _stringToCodeDictionary;
-
 - (NSString *)propertyNameSuffix {
     return nil;
 }

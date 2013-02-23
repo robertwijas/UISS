@@ -18,8 +18,6 @@
 
 @implementation UISSCodeGeneratorTests
 
-@synthesize codeGenerator;
-
 - (void)testCodeGenerationWithGroups; {
     UISSPropertySetter *propertySetter = [[UISSPropertySetter alloc] init];
     propertySetter.group = @"Group";

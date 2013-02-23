@@ -17,8 +17,6 @@
 
 @implementation UISSOffsetValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSOffsetValueConverter alloc] init];
 }

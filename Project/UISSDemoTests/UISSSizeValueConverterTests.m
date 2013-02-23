@@ -17,8 +17,6 @@
 
 @implementation UISSSizeValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSSizeValueConverter alloc] init];
 }

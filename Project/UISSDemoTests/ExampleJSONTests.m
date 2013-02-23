@@ -17,8 +17,6 @@
 
 @implementation ExampleJSONTests
 
-@synthesize uiss = _uiss;
-
 - (void)setUp {
     [super setUp];
 

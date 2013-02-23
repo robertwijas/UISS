@@ -17,8 +17,6 @@
 
 @implementation UISSIntegerValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSIntegerValueConverter alloc] init];
 }

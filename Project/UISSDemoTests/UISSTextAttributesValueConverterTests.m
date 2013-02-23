@@ -17,8 +17,6 @@
 
 @implementation UISSTextAttributesValueConverterTests
 
-@synthesize converter;
-
 - (void)testTextAttributesWithFont; {
     [self testValue:@{@"font" : @14.0f}
        expectedCode:[NSString stringWithFormat:@"[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14.0], UITextAttributeFont, nil]"]

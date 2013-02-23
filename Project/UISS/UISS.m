@@ -41,19 +41,6 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 
 @implementation UISS
 
-@synthesize config = _config;
-@synthesize style = _style;
-
-@synthesize statusWindowController = _statusWindowController;
-@synthesize statusWindow = _statusWindow;
-
-@synthesize autoReloadTimer = _autoReloadTimer;
-@synthesize queue = _queue;
-
-@synthesize codeGenerator = _codeGenerator;
-
-@synthesize configuredAppearanceProxies = _configuredAppearanceProxies;
-
 #pragma mark - Constructors
 
 - (id)init {

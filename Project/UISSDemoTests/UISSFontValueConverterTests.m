@@ -17,8 +17,6 @@
 
 @implementation UISSFontValueConverterTests
 
-@synthesize converter;
-
 - (void)testHelveticaNeue; {
     id value = @[@"HelveticaNeue",
             @16.0f];

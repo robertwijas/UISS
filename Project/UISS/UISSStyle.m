@@ -19,13 +19,6 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
 
 @implementation UISSStyle
 
-@synthesize url = _url;
-@synthesize data = _data;
-@synthesize dictionary = _dictionary;
-@synthesize propertySettersPad = _propertySettersPad;
-@synthesize propertySettersPhone = _propertySettersPhone;
-@synthesize errors = _errors;
-
 - (id)init {
     self = [super init];
     if (self) {

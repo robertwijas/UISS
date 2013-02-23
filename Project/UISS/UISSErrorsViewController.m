@@ -14,8 +14,6 @@
 
 @implementation UISSErrorsViewController
 
-@synthesize errors = _errors;
-
 #pragma mark - Table view data source
 
 - (id)init {

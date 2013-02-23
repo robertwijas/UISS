@@ -22,10 +22,6 @@
 
 @implementation UISSTextAttributesValueConverter
 
-@synthesize fontConverter;
-@synthesize colorConverter;
-@synthesize offsetConverter;
-
 - (id)init
 {
     self = [super init];

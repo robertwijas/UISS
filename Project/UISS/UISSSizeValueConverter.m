@@ -18,8 +18,6 @@
 
 @implementation UISSSizeValueConverter
 
-@synthesize floatValueConverter;
-
 - (id)init
 {
     self = [super init];

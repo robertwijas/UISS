@@ -11,8 +11,6 @@
 
 @implementation UISSFloatValueConverter
 
-@synthesize precision=_precision;
-
 - (id)init
 {
     self = [super init];

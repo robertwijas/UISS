@@ -17,8 +17,6 @@
 
 @implementation UISSColorValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)testNull; {
     UIColor *color = [self.converter convertValue:[NSNull null]];
     STAssertNil(color, nil);

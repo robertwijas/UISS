@@ -20,9 +20,6 @@
 
 @implementation UISSGeneratedCodeViewController
 
-@synthesize uiss=_uiss;
-@synthesize errors=_errors;
-
 - (id)initWithUISS:(UISS *)uiss;
 {
     self = [super init];

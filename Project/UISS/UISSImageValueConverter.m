@@ -18,8 +18,6 @@
 
 @implementation UISSImageValueConverter
 
-@synthesize edgeInsetsValueConverter = _edgeInsetsValueConverter;
-
 - (id)init
 {
     self = [super init];

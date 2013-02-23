@@ -14,8 +14,6 @@
 
 @implementation UISSStatusWindow
 
-@synthesize statusView=_statusView;
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -17,8 +17,6 @@
 
 @implementation UISSImageValueConverterTests
 
-@synthesize converter;
-
 - (void)testNullImage; {
     UIImage *image = [self.converter convertValue:[NSNull null]];
     STAssertNil(image, nil);

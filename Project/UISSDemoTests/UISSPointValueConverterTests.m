@@ -17,8 +17,6 @@
 
 @implementation UISSPointValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSPointValueConverter alloc] init];
 }

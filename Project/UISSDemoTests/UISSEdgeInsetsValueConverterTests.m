@@ -17,8 +17,6 @@
 
 @implementation UISSEdgeInsetsValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSEdgeInsetsValueConverter alloc] init];
 }

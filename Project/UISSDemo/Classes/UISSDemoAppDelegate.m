@@ -17,9 +17,6 @@
 
 @implementation UISSDemoAppDelegate
 
-@synthesize window = _window;
-@synthesize uiss = _uiss;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // skip the rest if running tests
     if ([[[NSProcessInfo processInfo] environment] objectForKey:@"TEST"]) {

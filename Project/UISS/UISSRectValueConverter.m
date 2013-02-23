@@ -18,8 +18,6 @@
 
 @implementation UISSRectValueConverter
 
-@synthesize floatValueConverter;
-
 - (id)init
 {
     self = [super init];

@@ -20,8 +20,6 @@
 
 @implementation UISSConsoleViewController
 
-@synthesize uiss = _uiss;
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -19,10 +19,6 @@
 
 @implementation UISSStatusViewController
 
-@synthesize delegate = _delegate;
-
-@synthesize statusDictionary;
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

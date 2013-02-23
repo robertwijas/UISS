@@ -17,9 +17,6 @@
 
 @implementation UISSUserInterfaceIdiomPreprocessorTests
 
-
-@synthesize preprocessor = _preprocessor;
-
 - (void)testDictionaryWithoutIdiomBranches; {
     NSDictionary *dictionary = @{@"k1" : @"v1",
             @"k2" : @"v2"};

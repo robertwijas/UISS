@@ -19,8 +19,6 @@
 
 @implementation UISSParserTests
 
-@synthesize parser = _parser;
-
 #pragma mark - Groups
 
 - (void)testGroups; {

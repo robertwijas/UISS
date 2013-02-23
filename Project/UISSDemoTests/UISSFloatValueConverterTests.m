@@ -17,8 +17,6 @@
 
 @implementation UISSFloatValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSFloatValueConverter alloc] init];
     self.converter.precision = 4;

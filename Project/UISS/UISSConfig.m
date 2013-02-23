@@ -30,11 +30,6 @@
 
 @implementation UISSConfig
 
-@synthesize propertyValueConverters = _propertyValueConverters;
-@synthesize axisParameterValueConverters = _axisParameterValueConverters;
-@synthesize preprocessors = _preprocessors;
-
-
 + (UISSConfig *)sharedConfig;
 {
     static UISSConfig *sharedConfig;

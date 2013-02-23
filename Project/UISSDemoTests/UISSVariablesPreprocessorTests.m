@@ -17,8 +17,6 @@
 
 @implementation UISSVariablesPreprocessorTests
 
-@synthesize preprocessor;
-
 - (void)testSubstitutionWithRegularValue; {
     id value = @"test";
     STAssertEquals([self.preprocessor substituteValue:value], value, nil);

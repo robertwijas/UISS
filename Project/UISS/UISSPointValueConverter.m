@@ -18,8 +18,6 @@
 
 @implementation UISSPointValueConverter
 
-@synthesize floatValueConverter;
-
 - (id)init
 {
     self = [super init];

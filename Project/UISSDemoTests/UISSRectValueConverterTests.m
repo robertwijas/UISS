@@ -17,8 +17,6 @@
 
 @implementation UISSRectValueConverterTests
 
-@synthesize converter = _converter;
-
 - (void)setUp; {
     self.converter = [[UISSRectValueConverter alloc] init];
 }

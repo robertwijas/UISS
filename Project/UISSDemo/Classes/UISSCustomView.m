@@ -17,9 +17,6 @@
 
 @implementation UISSCustomView
 
-@synthesize backgroundView=_backgroundView;
-@synthesize backgroundMargin=_backgroundMargin;
-
 - (void)setBackgroundImage:(UIImage *)image;
 {
     NSLog(@"DEMO: setBackgroundImage");
