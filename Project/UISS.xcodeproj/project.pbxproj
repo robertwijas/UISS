@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		C8D2B032C59FD11A701C83C8 /* UISSSettingDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B021E9CB72A0ADBADDEE /* UISSSettingDescriptor.h */; };
 		C8D2B2E56583BF0D585ECFC4 /* UISSSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B93A4CE1D6D274BC9D3D /* UISSSettingsViewController.h */; };
+		C8D2B5AED4BB2B1D68E5BA5C /* UISS+GestureRecognizers.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B4CE65CB70FCA36103FD /* UISS+GestureRecognizers.h */; };
 		C8D2B6D7D19B634D46ADF86E /* UISSControlStateValueConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2BEDF507CA856D0EC5FDF /* UISSControlStateValueConverterTests.m */; };
 		C8D2B737075866F8A4B09620 /* UISSImageResizingModeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2B2AB02BB0DD97B7675C3 /* UISSImageResizingModeConverter.m */; };
+		C8D2BA99525048D454BCA45D /* UISS+GestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2BB6EF9D36E1EAF33EC36 /* UISS+GestureRecognizers.m */; };
 		C8D2BABA25A2F8B6734D5E39 /* UISSImageResizingModeConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = C8D2B85B301B08AE70AFFFB7 /* UISSImageResizingModeConverter.h */; };
 		C8D2BDE3D04A0D24CCA2E6B8 /* UISSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2BE76126D6B08745F39C2 /* UISSSettingsViewController.m */; };
 		C8D2BF2ADDB11891AE3310FA /* UISSSettingDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D2B3AFF5607C8D195A9263 /* UISSSettingDescriptor.m */; };
@@ -190,8 +192,10 @@
 		C8D2B021E9CB72A0ADBADDEE /* UISSSettingDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSettingDescriptor.h; sourceTree = "<group>"; };
 		C8D2B2AB02BB0DD97B7675C3 /* UISSImageResizingModeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSImageResizingModeConverter.m; sourceTree = "<group>"; };
 		C8D2B3AFF5607C8D195A9263 /* UISSSettingDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSettingDescriptor.m; sourceTree = "<group>"; };
+		C8D2B4CE65CB70FCA36103FD /* UISS+GestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISS+GestureRecognizers.h"; sourceTree = "<group>"; };
 		C8D2B85B301B08AE70AFFFB7 /* UISSImageResizingModeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSImageResizingModeConverter.h; sourceTree = "<group>"; };
 		C8D2B93A4CE1D6D274BC9D3D /* UISSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSSettingsViewController.h; sourceTree = "<group>"; };
+		C8D2BB6EF9D36E1EAF33EC36 /* UISS+GestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISS+GestureRecognizers.m"; sourceTree = "<group>"; };
 		C8D2BE76126D6B08745F39C2 /* UISSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSSettingsViewController.m; sourceTree = "<group>"; };
 		C8D2BEDF507CA856D0EC5FDF /* UISSControlStateValueConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSControlStateValueConverterTests.m; sourceTree = "<group>"; };
 		E1076BE8157F6B1A00886759 /* UISSStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSStatusViewController.h; sourceTree = "<group>"; };
@@ -794,6 +798,8 @@
 				E145C8621584DCC70087BB1B /* UISSConfig.m */,
 				E1B438B5143F668000F87518 /* Supporting Files */,
 				E1914CAE158F99BB00E04977 /* UISSStyle.m */,
+				C8D2BB6EF9D36E1EAF33EC36 /* UISS+GestureRecognizers.m */,
+				C8D2B4CE65CB70FCA36103FD /* UISS+GestureRecognizers.h */,
 			);
 			path = UISS;
 			sourceTree = "<group>";
@@ -941,6 +947,7 @@
 				C8D2BABA25A2F8B6734D5E39 /* UISSImageResizingModeConverter.h in Headers */,
 				C8D2B2E56583BF0D585ECFC4 /* UISSSettingsViewController.h in Headers */,
 				C8D2B032C59FD11A701C83C8 /* UISSSettingDescriptor.h in Headers */,
+				C8D2B5AED4BB2B1D68E5BA5C /* UISS+GestureRecognizers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1150,7 @@
 				C8D2B737075866F8A4B09620 /* UISSImageResizingModeConverter.m in Sources */,
 				C8D2BDE3D04A0D24CCA2E6B8 /* UISSSettingsViewController.m in Sources */,
 				C8D2BF2ADDB11891AE3310FA /* UISSSettingDescriptor.m in Sources */,
+				C8D2BA99525048D454BCA45D /* UISS+GestureRecognizers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

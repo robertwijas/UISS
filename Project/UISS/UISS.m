@@ -1,9 +1,5 @@
 //
-//  UISS.m
-//  UISS
-//
-//  Created by Robert Wijas on 10/7/11.
-//  Copyright (c) 2011 57things. All rights reserved.
+// Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
 #import "UISS.h"
@@ -74,7 +70,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 + (UISS *)configureWithJSONFilePath:(NSString *)filePath {
     UISS *uiss = [[UISS alloc] init];
     uiss.style.url = [NSURL fileURLWithPath:filePath];
-    [uiss load];
+    [uiss loadStyleSynchronously];
     return uiss;
 }
 
@@ -89,7 +85,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     uiss.style.url = url;
     uiss.statusWindowEnabled = YES;
 
-    [uiss load];
+    [uiss loadStyleSynchronously];
 
     uiss.autoReloadTimeInterval = 5;
     uiss.autoReloadEnabled = YES;
@@ -102,7 +98,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 - (void)configureAppearanceWithPropertySetters:(NSArray *)propertySetters errors:(NSMutableArray *)errors {
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSWillApplyStyleNotification object:self];
 
+#if UISS_DEBUG
     [self resetAppearanceForPropertySetters:propertySetters];
+#endif
 
     NSMutableArray *invocations = [NSMutableArray array];
 
@@ -128,7 +126,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidApplyStyleNotification object:self];
 }
 
-- (void)reload {
+- (void)reloadStyleAsynchronously {
     dispatch_async(self.queue, ^{
         // if new data downloaded
         if ([self.style downloadData]) {
@@ -147,7 +145,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     });
 }
 
-- (void)load {
+- (void)loadStyleSynchronously {
     __block NSArray *propertySetters = nil;
 
     dispatch_sync(self.queue, ^{
@@ -175,8 +173,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     [[NSNotificationCenter defaultCenter] postNotificationName:UISSDidRefreshViewsNotification object:self];
 }
 
-- (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters {
 #if UISS_DEBUG
+- (void)resetAppearanceForPropertySetters:(NSArray *)propertySetters {
     UISS_LOG(@"resetting appearance");
 
     for (id appearanceProxy in self.configuredAppearanceProxies) {
@@ -184,8 +182,8 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     }
 
     [self.configuredAppearanceProxies removeAllObjects];
-#endif
 }
+#endif
 
 #pragma mark - Code Generation
 
@@ -212,7 +210,7 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     if (self.autoReloadEnabled && self.autoReloadTimeInterval) {
         self.autoReloadTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoReloadTimeInterval
                                                                 target:self
-                                                              selector:@selector(reload)
+                                                              selector:@selector(reloadStyleAsynchronously)
                                                               userInfo:nil repeats:YES];
     } else {
         self.autoReloadTimer = nil;
@@ -233,36 +231,6 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
     _autoReloadEnabled = autoReloadEnabled;
     [self updateAutoReloadTimer];
 }
-
-#pragma mark - Reload Gesture Recognizer Support
-
-- (UIGestureRecognizer *)defaultGestureRecognizer {
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
-    recognizer.numberOfTouchesRequired = 1;
-    recognizer.minimumPressDuration = 1;
-
-    return recognizer;
-}
-
-- (void)registerReloadGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer inView:(UIView *)view {
-    if (gestureRecognizer == nil) {
-        gestureRecognizer = [self defaultGestureRecognizer];
-    }
-
-    [gestureRecognizer addTarget:self action:@selector(reloadGestureRecognizerHandler:)];
-    [view addGestureRecognizer:gestureRecognizer];
-}
-
-- (void)registerReloadGestureRecognizerInView:(UIView *)view; {
-    [self registerReloadGestureRecognizer:nil inView:view];
-}
-
-- (void)reloadGestureRecognizerHandler:(UILongPressGestureRecognizer *)gestureRecognizer; {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self reload];
-    }
-}
-
 
 #pragma mark - Status Window
 

@@ -1,9 +1,5 @@
 //
-//  UISS.h
-//  UISS
-//
-//  Created by Robert Wijas on 10/7/11.
-//  Copyright (c) 2011 57things. All rights reserved.
+// Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
 #import "UISSConfig.h"
@@ -25,15 +21,15 @@ extern NSString *const UISSDidRefreshViewsNotification;
 
 @property(nonatomic, strong) UISSStyle *style;
 
-- (void)load;
+- (void)loadStyleSynchronously;
 
-- (void)reload;
+- (void)reloadStyleAsynchronously;
 
-- (void)registerReloadGestureRecognizerInView:(UIView *)view;
-
-// codeHandler is called on main thread
+// code handler is called on main thread
 - (void)generateCodeForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom
                               codeHandler:(void (^)(NSString *code, NSArray *errors))codeHandler;
+
+- (void)presentConsoleViewController;
 
 #pragma mark - Factory Methods
 

@@ -1,9 +1,5 @@
 //
-//  UISSJSONTests.m
-//  UISS
-//
-//  Created by Robert Wijas on 10/20/11.
-//  Copyright (c) 2011 57things. All rights reserved.
+// Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
 #import "UISS.h"

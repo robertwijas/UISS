@@ -1,9 +1,5 @@
 //
-//  UISSDemoAppDelegate.m
-//  UISSDemo
-//
-//  Created by Robert Wijas on 10/21/11.
-//  Copyright (c) 2011 57things. All rights reserved.
+// Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
 #import "UISSDemoAppDelegate.h"
@@ -26,8 +22,8 @@
     // Remote Style
     self.uiss = [UISS configureWithURL:[NSURL URLWithString:@"http://uiss.10.0.1.7.xip.io/uiss_demo.json"]];
 
-    // Local style
-    //[UISS configureWithDefaultJSONFile];
+    // Local Style
+    self.uiss = [UISS configureWithDefaultJSONFile];
 
     return YES;
 }

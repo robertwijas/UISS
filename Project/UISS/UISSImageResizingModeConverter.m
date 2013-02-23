@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012 Robert Wijas. All rights reserved.
+// Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
 #import "UISSImageResizingModeConverter.h"
