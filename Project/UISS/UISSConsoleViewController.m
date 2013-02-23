@@ -14,6 +14,7 @@
 @interface UISSConsoleViewController ()
 
 @property(nonatomic, strong) UISS *uiss;
+@property(nonatomic, strong) UISSErrorsViewController *errorsViewController;
 
 @end
 
@@ -21,21 +22,22 @@
 
 @synthesize uiss = _uiss;
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 - (id)initWithUISS:(UISS *)uiss; {
     self = [super init];
     if (self) {
         self.uiss = uiss;
 
         // Errors
-        UISSErrorsViewController *errorsViewController = [[UISSErrorsViewController alloc] init];
-        errorsViewController.navigationItem.leftBarButtonItem = [self createCloseBarButton];
-        if (self.uiss.style.errors.count) {
-            errorsViewController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",
-                                                                                    self.uiss.style.errors.count];
-        }
-        errorsViewController.errors = self.uiss.style.errors;
+        self.errorsViewController = [[UISSErrorsViewController alloc] init];
+        self.errorsViewController.navigationItem.leftBarButtonItem = [self createCloseBarButton];
+        [self updateErrors];
 
-        UINavigationController *errorsNavigationController = [[UINavigationController alloc] initWithRootViewController:errorsViewController];
+        UINavigationController *errorsNavigationController = [[UINavigationController alloc] initWithRootViewController:self.errorsViewController];
 
         // Config
         UISSSettingsViewController *settingsViewController = [[UISSSettingsViewController alloc] initWithUISS:self.uiss];
@@ -56,8 +58,31 @@
         } else {
             self.selectedViewController = configNavigationController;
         }
+
+        [self registerForNotifications];
     }
     return self;
+}
+
+- (void)registerForNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateErrors)
+                                                 name:UISSStyleDidParseDataNotification
+                                               object:self.uiss.style];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateErrors)
+                                                 name:UISSStyleDidParseDictionaryNotification
+                                               object:self.uiss.style];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateErrors)
+                                                 name:UISSDidApplyStyleNotification
+                                               object:self.uiss];
+}
+
+- (void)updateErrors {
+    self.errorsViewController.errors = self.uiss.style.errors;
 }
 
 - (UIBarButtonItem *)createCloseBarButton {

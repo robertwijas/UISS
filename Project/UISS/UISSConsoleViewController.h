@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class UISS;
+@class UISSErrorsViewController;
 
 @interface UISSConsoleViewController : UITabBarController
 

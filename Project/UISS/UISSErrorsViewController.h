@@ -10,6 +10,6 @@
 
 @interface UISSErrorsViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *errors;
+@property (nonatomic, copy) NSArray *errors;
 
 @end

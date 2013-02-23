@@ -18,7 +18,7 @@
 
     "UITabBar":{
         "tintColor":"$tabbarColor",
-        "selectedImageTintColor":"blue",
+        "selectedImageTintColor":"yellow",
         "UITabBarItem":{
             "titleTextAttributes:normal":{
                 "textColor":"lightGray"
@@ -31,10 +31,12 @@
             "backgroundColor":"clear"
         }
     },
+
     "UIToolbar":{
         "tintColor":"#112233",
         "backgroundImage:bottom:default":"background"
     },
+
     "UISSCustomView":{
         "image":"background.png",
         "backgroundColor":"gray",
@@ -43,18 +45,11 @@
             "backgroundColor":["red", 0.25]
         }
     },
-    "UILabel":{
-        "Phone":{
-            "textColor":"blue"
-        },
-        "Pad":{
-            "textColor":"orange",
-            "backgroundColor":"green"
-        }
-    },
+
     "UISSCustomContainerView":{
         "backgroundColor":["red", 0.5]
     },
+
     "@Controllers":{
         "UISSDemoSecondViewController":{
             "UILabel":{

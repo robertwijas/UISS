@@ -19,15 +19,14 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
 
 @implementation UISSStyle
 
-@synthesize url=_url;
-@synthesize data=_data;
-@synthesize dictionary=_dictionary;
-@synthesize propertySettersPad=_propertySettersPad;
-@synthesize propertySettersPhone=_propertySettersPhone;
-@synthesize errors=_errors;
+@synthesize url = _url;
+@synthesize data = _data;
+@synthesize dictionary = _dictionary;
+@synthesize propertySettersPad = _propertySettersPad;
+@synthesize propertySettersPhone = _propertySettersPhone;
+@synthesize errors = _errors;
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         self.errors = [NSMutableArray array];
@@ -35,37 +34,33 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
     return self;
 }
 
-- (void)setUrl:(NSURL *)url;
-{
+- (void)setUrl:(NSURL *)url {
     if (_url != url) {
         _url = url;
-        
+
         self.data = nil;
     }
 }
 
-- (void)setData:(NSData *)data;
-{
+- (void)setData:(NSData *)data {
     if (_data != data) {
         _data = data;
-        
+
         self.dictionary = nil;
         [self.errors removeAllObjects];
     }
 }
 
-- (void)setDictionary:(NSDictionary *)dictionary;
-{
+- (void)setDictionary:(NSDictionary *)dictionary {
     if (_dictionary != dictionary) {
         _dictionary = dictionary;
-        
+
         self.propertySettersPad = nil;
         self.propertySettersPhone = nil;
     }
 }
 
-- (NSArray *)propertySettersForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
-{
+- (NSArray *)propertySettersForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom {
     switch (userInterfaceIdiom) {
         case UIUserInterfaceIdiomPad:
             return self.propertySettersPad;
@@ -74,8 +69,7 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
     }
 }
 
-- (void)setPropertySetters:(NSArray *)propertySetters forUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom;
-{
+- (void)setPropertySetters:(NSArray *)propertySetters forUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom {
     switch (userInterfaceIdiom) {
         case UIUserInterfaceIdiomPad:
             self.propertySettersPad = propertySetters;
@@ -88,17 +82,16 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
 
 #pragma mark - Parsing
 
-- (BOOL)downloadData;
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleWillDownloadNotification object:self];
-    
+- (BOOL)downloadData {
+    [self postNotificationName:UISSStyleWillDownloadNotification];
+
     BOOL downloadedNewStyle = NO;
-    
+
     NSError *error;
-    NSData *data = [NSData dataWithContentsOfURL:self.url 
+    NSData *data = [NSData dataWithContentsOfURL:self.url
                                          options:(NSDataReadingOptions) 0
                                            error:&error];
-    
+
     if (error) {
         [self.errors addObject:error];
     } else {
@@ -107,74 +100,79 @@ NSString *const UISSStyleDidParseDictionaryNotification = @"UISSStyleDidParseDic
             downloadedNewStyle = YES;
         }
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleDidDownloadNotification object:self];
-    
+
+    [self postNotificationName:UISSStyleDidDownloadNotification];
+
     return downloadedNewStyle;
 }
 
-- (BOOL)parseData;
-{
+- (BOOL)parseData {
     if (self.data == nil) {
         if ([self downloadData] == NO) {
             return NO;
         }
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleWillParseDataNotification object:self];
-    
+
+    [self postNotificationName:UISSStyleWillParseDataNotification];
+
     BOOL dataParsed = NO;
-    
+
     NSError *error;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data
                                                                options:NSJSONReadingMutableContainers
                                                                  error:&error];
-    
+
     if (error) {
         [self.errors addObject:error];
     } else {
         self.dictionary = dictionary;
         dataParsed = YES;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleDidParseDataNotification object:self];
-    
+
+    [self postNotificationName:UISSStyleDidParseDataNotification];
+
     return dataParsed;
 }
 
-- (BOOL)parseDictionaryForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom withConfig:(UISSConfig *)config;
-{
+- (BOOL)parseDictionaryForUserInterfaceIdiom:(UIUserInterfaceIdiom)userInterfaceIdiom withConfig:(UISSConfig *)config {
     NSArray *propertySetters = [self propertySettersForUserInterfaceIdiom:userInterfaceIdiom];
-    
+
     if (propertySetters) {
         return NO;
     }
-        
+
     if (self.dictionary == nil) {
         if ([self parseData] == NO) {
             return NO;
         }
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleWillParseDictionaryNotification object:self];
-    
+
+    [self postNotificationName:UISSStyleWillParseDictionaryNotification];
+
     BOOL dictionaryParsed = NO;
-    
+
     UISSParser *parser = [[UISSParser alloc] init];
     parser.userInterfaceIdiom = userInterfaceIdiom;
     parser.config = config;
 
     propertySetters = [parser parseDictionary:self.dictionary errors:self.errors];
-    
+
     if (propertySetters) {
         [self setPropertySetters:propertySetters forUserInterfaceIdiom:userInterfaceIdiom];
         dictionaryParsed = YES;
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UISSStyleDidParseDictionaryNotification object:self];
-    
+
+    [self postNotificationName:UISSStyleDidParseDictionaryNotification];
+
     return dictionaryParsed;
 }
 
+#pragma mark - Notifications on Main Thread
+
+- (void)postNotificationName:(NSString *)name {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
+    });
+}
 
 @end
