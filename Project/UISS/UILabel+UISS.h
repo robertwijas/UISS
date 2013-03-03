@@ -6,6 +6,6 @@
 
 @interface UILabel (UISS)
 
-- (void)setTextAttributes:(NSDictionary *)numberTextAttributes UI_APPEARANCE_SELECTOR;
+- (void)setTextAttributes:(NSDictionary *)textAttributes UI_APPEARANCE_SELECTOR;
 
 @end

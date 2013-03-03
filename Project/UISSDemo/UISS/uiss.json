@@ -1,83 +1,31 @@
 {
-    "Variables":{
-        "tabbarColor":"darkGray",
-        "buttonTitleColor":[13, 107, 1, 1.0],
-        "buttonTitieColorHighlighted":"magenta",
-        "font":["italic", 22]
+    "Variables": {
+        "tint":"#022944"
     },
-    "Phone":{
-        "UINavigationBar":{
-            "tintColor":"gray"
-        }
-    },
-    "Pad":{
-        "UINavigationBar":{
-            "backgroundImage:default":"background"
-        }
-    },
-
-    "UITabBar":{
-        "tintColor":"$tabbarColor",
-        "selectedImageTintColor":"yellow",
-        "UITabBarItem":{
-            "titleTextAttributes:normal":{
-                "textColor":"lightGray"
+    "UITabBar": {
+        "tintColor": "$tint",
+        "selectedImageTintColor": "red",
+        "UITabBarItem": {
+            "titleTextAttributes:normal": {
+                "textColor": "lightGray"
             },
-            "titleTextAttributes:selected":{
-                "textColor":"white"
+            "titleTextAttributes:selected": {
+                "textColor": "white"
             }
-        },
-        "UILabel":{
-            "backgroundColor":"clear"
         }
     },
-
-    "UIToolbar":{
-        "tintColor":"#112233",
-        "backgroundImage:bottom:default":"background"
+    "UINavigationBar": {
+        "tintColor": "$tint"        
     },
-
-    "UISSCustomView":{
-        "image":"background.png",
-        "backgroundColor":"gray",
-        "backgroundMargin":40,
-        "UIImageView":{
-            "backgroundColor":["red", 0.25]
-        }
-    },
-
-    "UISSCustomContainerView":{
-        "backgroundColor":["red", 0.5]
-    },
-
-    "@Controllers":{
-        "UISSDemoSecondViewController":{
-            "UILabel":{
-                "textColor":"white",
-                "backgroundColor":"black"
-            },
-            "UISSCustomContainerView":{
-                "debugBorderColor":"black",
-                "UILabel":{
-                    "backgroundColor":"blue",
-                    "textColor":"white"
-                }
-            }
-        },
-        "UISSDemoFirstViewController":{
-            "UIButton":{
-                "titleColor:normal":"$buttonTitleColor",
-                "titleColor:highlighted":"red",
-                "backgroundImage:highlighted":null,
-                "UILabel":{
-                    "backgroundColor":"clear",
-                    "font":16
-                }
-            },
-            "UILabel":{
-                "textColor":["white", 0.6],
-                "backgroundColor":"#334466",
-                "font":["Cochin-Italic", 30]
+    "UISSDemoFirstViewController": {
+        "UIButton": {
+            "backgroundImage:normal": ["button-background-normal", [0,10,0,10]],
+            "backgroundImage:highlighted": ["button-background-highlighted", [0,10,0,10]],
+            "titleColor:normal": ["white", 0.8],
+            "titleColor:highlighted": "white",
+            "titleEdgeInsets": [1,0,0,0],
+            "UILabel": {
+                "font": ["Copperplate-Bold", 18]
             }
         }
     }

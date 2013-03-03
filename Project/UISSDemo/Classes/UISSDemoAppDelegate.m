@@ -5,6 +5,10 @@
 #import "UISSDemoAppDelegate.h"
 #import "UISS.h"
 
+#if UISS_DEBUG
+#import "UISSAppearancePrivate.h"
+#endif
+
 @interface UISSDemoAppDelegate ()
 
 @property(nonatomic, strong) UISS *uiss;
@@ -20,10 +24,11 @@
     }
 
     // Remote Style
-    self.uiss = [UISS configureWithURL:[NSURL URLWithString:@"http://uiss.10.0.1.7.xip.io/uiss_demo.json"]];
+//    self.uiss = [UISS configureWithURL:[NSURL URLWithString:@"http://uiss.dev/uiss_demo.json"]];
 
     // Local Style
     self.uiss = [UISS configureWithDefaultJSONFile];
+    self.uiss.statusWindowEnabled = YES;
 
     return YES;
 }

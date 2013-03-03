@@ -2,7 +2,7 @@
 
 UISS stands for UIKit Style Sheets.
 
-UISS is an iOS library that provides you with a convenient way to define the style of your application.  
+UISS is an iOS library that provides you with a convenient way to define the style of your application.
 UISS is built on top of UIKit UIAppearance proxies.
 
 # What UISS can do for you?
@@ -36,7 +36,35 @@ in UISS it looks like this:
 
 no big difference here, so lets look at more complex example:
 
-**TODO**
+```objc
+[[UIButton appearance] setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.800]
+                            forState:UIControlStateNormal];
+[[UIButton appearance] setTitleColor:[UIColor whiteColor]
+                            forState:UIControlStateHighlighted];
+[[UIButton appearance] setBackgroundImage:[[UIImage imageNamed:@"button-background-normal"]
+              resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)]
+                                 forState:UIControlStateNormal];
+[[UIButton appearance] setBackgroundImage:[[UIImage imageNamed:@"button-background-highlighted"]
+              resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)]
+                                 forState:UIControlStateHighlighted];
+[[UILabel appearanceWhenContainedIn:[UIButton class], nil] setFont:[UIFont fontWithName:@"Copperplate-Bold" size:18.0]];
+[[UIButton appearance] setTitleEdgeInsets:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+```
+
+```json
+{
+	"UIButton":{
+	    "titleColor:normal":["white", 0.8],
+	    "titleColor:highlighted":"white",
+	    "backgroundImage:normal": ["button-background-normal", [0,10,0,10]],
+	    "backgroundImage:highlighted": ["button-background-highlighted", [0,10,0,10]],
+	    "titleEdgeInsets": [1,0,0,0],
+	    "UILabel":{
+	        "font":["Copperplate-Bold", 18]
+	    }
+	}
+}
+```
 
 # Install
 
@@ -60,16 +88,15 @@ This should be called before your views are displayed, the common place for that
 
 If you want to load your style from remote location to enable live updates, here's how to do that:
 
-	UISS *uiss = [[UISS alloc] init];
-	uiss.style.url = [NSURL URLWithString:@"http://your.awesome.domain/uiss.json"];
-	[uiss load];
+	self.uiss = [UISS configureWithURL:[NSURL URLWithString:@"http://localhost/uiss.json"]];
 
 ### Live updates
 
 UISS can detect if your style changed and automatically update your interface. To enable this feature call this method:
 
 ```objc
-[uiss enableAutoReloadWithTimeInterval:3];
+uiss.autoReloadEnabled = YES;
+uiss.autoReloadTimeInterval = 1;
 ```
 
 ### Status bar
@@ -347,7 +374,7 @@ Example:
 {
 	"UIToolbar": {
 		"-tintColor": "blue",
-		"backgroundImage": ["background", "any", "default"]
+		"backgroundImage:any:default": "background"
 	},
 	"-UITabbar": {
 		"tintColor": "blue"

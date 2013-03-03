@@ -146,6 +146,11 @@
 		E1BCCC36157F634B001E4429 /* UISSConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */; };
 		E1C08347158E334E007A88E6 /* UISSError.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C08345158E334E007A88E6 /* UISSError.h */; };
 		E1C08348158E334E007A88E6 /* UISSError.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C08346158E334E007A88E6 /* UISSError.m */; };
+		E1C64FF616DFE8AF004861ED /* UISSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C64FF516DFE8AF004861ED /* UISSMacros.h */; };
+		E1C6501116E29D91004861ED /* button-background-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C6500D16E29D91004861ED /* button-background-highlighted.png */; };
+		E1C6501216E29D91004861ED /* button-background-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C6500E16E29D91004861ED /* button-background-highlighted@2x.png */; };
+		E1C6501316E29D91004861ED /* button-background-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C6500F16E29D91004861ED /* button-background-normal.png */; };
+		E1C6501416E29D91004861ED /* button-background-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C6501016E29D91004861ED /* button-background-normal@2x.png */; };
 		E1C67BD3158BABC500E220BB /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = E146983915584831000F311F /* black.png */; };
 		E1C67BD6158CCBD800E220BB /* UISSGeneratedCodeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */; };
 		E1C67BD7158CCBD800E220BB /* UISSGeneratedCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */; };
@@ -338,6 +343,11 @@
 		E1BCCC34157F634B001E4429 /* UISSConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSConsoleViewController.m; sourceTree = "<group>"; };
 		E1C08345158E334E007A88E6 /* UISSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSError.h; sourceTree = "<group>"; };
 		E1C08346158E334E007A88E6 /* UISSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSError.m; sourceTree = "<group>"; };
+		E1C64FF516DFE8AF004861ED /* UISSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSMacros.h; sourceTree = "<group>"; };
+		E1C6500D16E29D91004861ED /* button-background-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background-highlighted.png"; sourceTree = "<group>"; };
+		E1C6500E16E29D91004861ED /* button-background-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background-highlighted@2x.png"; sourceTree = "<group>"; };
+		E1C6500F16E29D91004861ED /* button-background-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background-normal.png"; sourceTree = "<group>"; };
+		E1C6501016E29D91004861ED /* button-background-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background-normal@2x.png"; sourceTree = "<group>"; };
 		E1C67BD4158CCBD800E220BB /* UISSGeneratedCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISSGeneratedCodeViewController.h; sourceTree = "<group>"; };
 		E1C67BD5158CCBD800E220BB /* UISSGeneratedCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISSGeneratedCodeViewController.m; sourceTree = "<group>"; };
 		E1C67BDD158CE98A00E220BB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -571,6 +581,10 @@
 		E146980E1558313A000F311F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E1C6500D16E29D91004861ED /* button-background-highlighted.png */,
+				E1C6500E16E29D91004861ED /* button-background-highlighted@2x.png */,
+				E1C6500F16E29D91004861ED /* button-background-normal.png */,
+				E1C6501016E29D91004861ED /* button-background-normal@2x.png */,
 				E146981A155838AE000F311F /* background.png */,
 				E146980F1558313A000F311F /* first.png */,
 				E14698101558313A000F311F /* first@2x.png */,
@@ -800,6 +814,7 @@
 				E1914CAE158F99BB00E04977 /* UISSStyle.m */,
 				C8D2BB6EF9D36E1EAF33EC36 /* UISS+GestureRecognizers.m */,
 				C8D2B4CE65CB70FCA36103FD /* UISS+GestureRecognizers.h */,
+				E1C64FF516DFE8AF004861ED /* UISSMacros.h */,
 			);
 			path = UISS;
 			sourceTree = "<group>";
@@ -948,6 +963,7 @@
 				C8D2B2E56583BF0D585ECFC4 /* UISSSettingsViewController.h in Headers */,
 				C8D2B032C59FD11A701C83C8 /* UISSSettingDescriptor.h in Headers */,
 				C8D2B5AED4BB2B1D68E5BA5C /* UISS+GestureRecognizers.h in Headers */,
+				E1C64FF616DFE8AF004861ED /* UISSMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1085,10 @@
 				E1AE93BD16AC846800E6DF0E /* Default-Portrait@2x.png in Resources */,
 				E1AE93BE16AC846800E6DF0E /* Default.png in Resources */,
 				E1AE93BF16AC846800E6DF0E /* Default@2x.png in Resources */,
+				E1C6501116E29D91004861ED /* button-background-highlighted.png in Resources */,
+				E1C6501216E29D91004861ED /* button-background-highlighted@2x.png in Resources */,
+				E1C6501316E29D91004861ED /* button-background-normal.png in Resources */,
+				E1C6501416E29D91004861ED /* button-background-normal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,21 +6,21 @@
 
 @implementation UILabel (UISS)
 
-- (void)setTextAttributes:(NSDictionary *)numberTextAttributes;
+- (void)setTextAttributes:(NSDictionary *)textAttributes;
 {
-    UIFont *font = [numberTextAttributes objectForKey:UITextAttributeFont];
+    UIFont *font = [textAttributes objectForKey:UITextAttributeFont];
     if (font) {
         self.font = font;
     }
-    UIColor *textColor = [numberTextAttributes objectForKey:UITextAttributeTextColor];
+    UIColor *textColor = [textAttributes objectForKey:UITextAttributeTextColor];
     if (textColor) {
         self.textColor = textColor;
     }
-    UIColor *textShadowColor = [numberTextAttributes objectForKey:UITextAttributeTextShadowColor];
+    UIColor *textShadowColor = [textAttributes objectForKey:UITextAttributeTextShadowColor];
     if (textShadowColor) {
         self.shadowColor = textShadowColor;
     }
-    NSValue *shadowOffsetValue = [numberTextAttributes objectForKey:UITextAttributeTextShadowOffset];
+    NSValue *shadowOffsetValue = [textAttributes objectForKey:UITextAttributeTextShadowOffset];
     if (shadowOffsetValue) {
         UIOffset shadowOffset = [shadowOffsetValue UIOffsetValue];
         self.shadowOffset = CGSizeMake(shadowOffset.horizontal, shadowOffset.vertical);
