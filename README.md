@@ -114,7 +114,7 @@ Tapping on UISS status bar will present console view where:
 * you can get info about errors in your style
 * you can generate UIAppearance code for your style
 
-# Sytax
+# Syntax
 
 ## Axis parameters
 
