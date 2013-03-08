@@ -16,7 +16,7 @@ UISS has the power to:
 
 UISS do not enforce any dependencies on your app. You can generate Objective-C code for your UISS style so you do not even have to link with UISS library in your production build.
 
-# But how does it really look like?
+# But how does it really look?
 
 Assuming you're familiar with UIAppearance proxy you probably wrote a piece of code similar to this one:
 
