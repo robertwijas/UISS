@@ -271,13 +271,13 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 
 | JSON | Objective-C |
 -------|--------------
-| ```[1, 2, 3, 4]``` | ```CGRectMake(1, 2)``` |
+| ```[1, 2, 3, 4]``` | ```CGRectMake(1, 2, 3, 4)``` |
 
 #### UIEdgeInsets
 
 | JSON | Objective-C |
 -------|--------------
-| ```[1, 2, 3, 4]``` | ```UIEdgeInsetsMake(1, 2)``` |
+| ```[1, 2, 3, 4]``` | ```UIEdgeInsetsMake(1, 2, 3, 4)``` |
 
 #### UIOffset
 
