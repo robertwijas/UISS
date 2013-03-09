@@ -236,7 +236,7 @@
 - (id)target;
 {
     // This may be the ugliest method I have ever written
-    // but I do not know how to call this method having NSArray+UISS of arguments
+    // but I do not know how to call this method having NSArray of arguments
     
     switch (self.containment.count) {
         case 0:
