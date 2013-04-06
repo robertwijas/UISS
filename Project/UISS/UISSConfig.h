@@ -6,10 +6,18 @@
 
 @interface UISSConfig : NSObject
 
-@property (nonatomic, strong) NSArray *propertyValueConverters;
-@property (nonatomic, strong) NSArray *axisParameterValueConverters;
-@property (nonatomic, strong) NSArray *preprocessors;
+@property(nonatomic, strong) NSArray *propertyValueConverters;
+@property(nonatomic, strong) NSArray *axisParameterValueConverters;
+@property(nonatomic, strong) NSArray *preprocessors;
 
 + (UISSConfig *)sharedConfig;
+
+#pragma mark - Default
+
+- (NSArray *)defaultPropertyValueConverters;
+
+- (NSArray *)defaultAxisParameterValueConverters;
+
+- (NSArray *)defaultPreprocessors;
 
 @end
