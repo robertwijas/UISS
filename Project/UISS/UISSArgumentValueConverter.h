@@ -11,6 +11,7 @@
 - (BOOL)canConvertValueForArgument:(UISSArgument *)argument;
 
 - (NSString *)generateCodeForValue:(id)value;
+
 - (id)convertValue:(id)value;
 
 @end

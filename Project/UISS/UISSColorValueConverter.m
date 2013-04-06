@@ -89,7 +89,7 @@
     }
 }
 
-- (BOOL)colorFromPatterImageString:(NSString *)patternImageString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler; {
+- (BOOL)colorFromPatternImageString:(NSString *)patternImageString colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler; {
     // UIColor with pattern
     UIImage *patternImage = [self.imageValueConverter convertValue:patternImageString];
     if (patternImage) {
@@ -117,7 +117,7 @@
         return YES;
     };
 
-    if ([self colorFromPatterImageString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
+    if ([self colorFromPatternImageString:colorString colorHandler:colorHandler codeHandler:codeHandler]) {
         return YES;
     };
 
@@ -127,7 +127,7 @@
 - (BOOL)convertValue:(id)value colorHandler:(void (^)(UIColor *))colorHandler codeHandler:(void (^)(NSString *))codeHandler; {
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *) value;
-        CGFloat red = 1, green = 1, blue = 1;
+        CGFloat red = 0, green = 0, blue = 0;
         __block CGFloat alpha = 1;
 
         if (array.count > 0) {
@@ -153,25 +153,33 @@
                                  }];
             } else {
                 if ([array canConvertToIntObjectAtIndex:0]) {
-                    red = [array[0] intValue] / 255.0f;
+                    red = [array[0] floatValue];
                 }
 
                 if ([array canConvertToIntObjectAtIndex:1]) {
-                    green = [array[1] intValue] / 255.0f;
+                    green = [array[1] floatValue];
 
                     if ([array canConvertToIntObjectAtIndex:2]) {
-                        blue = [[array objectAtIndex:2] intValue] / 255.0f;
+                        blue = [array[2] floatValue];
 
                         if ([array canConvertToFloatObjectAtIndex:3]) {
-                            alpha = [[array objectAtIndex:3] floatValue];
+                            alpha = [array[3] floatValue];
                         }
                     }
                 }
+
+                BOOL percentValuesPriority = (red <= 1) && (green <= 1) && (blue <= 1);
+
+                if (red > 1 || (red == 1 && percentValuesPriority == NO)) red /= 255.0f;
+                if (green > 1 || (green == 1 && percentValuesPriority == NO)) green /= 255.0f;
+                if (blue > 1 || (blue == 1 && percentValuesPriority == NO)) blue /= 255.0f;
             }
+
+            return [self colorWithRed:red green:green blue:blue alpha:alpha colorHandler:colorHandler
+                          codeHandler:codeHandler];
         }
 
-        return [self colorWithRed:red green:green blue:blue alpha:alpha colorHandler:colorHandler
-                      codeHandler:codeHandler];
+        return NO;
     } else if ([value isKindOfClass:[NSString class]]) {
         return [self colorFromString:value colorHandler:colorHandler codeHandler:codeHandler];
     } else if ([value isKindOfClass:[NSNull class]]) {
