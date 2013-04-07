@@ -142,8 +142,6 @@
 }
 
 - (void)updateStatusViewForNotification:(NSNotification *)notification; {
-    NSAssert(dispatch_get_current_queue() == dispatch_get_main_queue(), @"notifications should arrive on main thread", nil);
-
     [self.statusView setTitle:[self titleForNotification:notification]
                        status:[self statusForNotification:notification]
                      activity:[self activityForNotification:notification]

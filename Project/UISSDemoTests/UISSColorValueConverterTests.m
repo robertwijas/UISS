@@ -4,6 +4,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "UISSColorValueConverter.h"
+#import "UIColor+UISS.h"
 
 @interface UISSColorValueConverterTests : SenTestCase
 
@@ -25,6 +26,11 @@
     [self testColorValue:@"yellowColor" expectedColor:[UIColor yellowColor] expectedCode:@"[UIColor yellowColor]"];
     [self testColorValue:@"redColor" expectedColor:[UIColor redColor] expectedCode:@"[UIColor redColor]"];
     [self testColorValue:@"badColor" expectedColor:nil expectedCode:nil];
+}
+
+- (void)testCustomFactorySelector {
+    [self testColorValue:@"uissDemoColor" expectedColor:[UIColor uissDemoColor] expectedCode:@"[UIColor uissDemoColor]"];
+    [self testColorValue:@"uissDemo" expectedColor:[UIColor uissDemoColor] expectedCode:@"[UIColor uissDemoColor]"];
 }
 
 - (void)testSelectorWithoutColorSuffix {
