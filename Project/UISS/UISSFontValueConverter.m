@@ -71,7 +71,7 @@
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = (NSArray *) value;
 
-        if (array.count) {
+        if (array.count && [array[0] isKindOfClass:[NSString class]]) {
             fontName = array[0];
         }
 

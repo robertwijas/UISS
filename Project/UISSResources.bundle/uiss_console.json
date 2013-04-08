@@ -53,7 +53,7 @@
         },
         "UISSGeneratedCodeViewController": {
             "UITextView": {
-                "font": [["CourierNewPSMT", 12]]
+                "font": ["CourierNewPSMT", 12]
             }
         }
     }
