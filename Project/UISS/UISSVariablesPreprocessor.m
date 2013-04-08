@@ -106,19 +106,20 @@ typedef id (^ResolveBlock)(NSString *);
 
 - (void)setVariablesFromDictionary:(NSDictionary *)dictionary;
 {
-    __weak UISSVariablesPreprocessor *weakSelf = self;
     NSMutableDictionary *unresolved = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     
-    __block __weak ResolveBlock resolveBlock = ^(NSString *n) {
+    ResolveBlock __block __weak weakResolveBlock;
+    ResolveBlock resolveBlock = ^(NSString *n) {
         if ([unresolved.allKeys containsObject:n]) {
             id value = [unresolved objectForKey:n];
             [unresolved removeObjectForKey:n];
             
-            [self setVariableValue:value forName:n withResolveBlock:resolveBlock];
+            [self setVariableValue:value forName:n withResolveBlock:weakResolveBlock];
         }
         
-        return [weakSelf getValueForVariableWithName:n];
+        return [self getValueForVariableWithName:n];
     };
+    weakResolveBlock = resolveBlock;
     
     while (unresolved.count) {
         // resolveBlock removes objects from this dictionary
