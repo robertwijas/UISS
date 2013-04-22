@@ -2,9 +2,9 @@
 // Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
-#import "UISSToolbarPositionConverter.h"
+#import "UISSToolbarPositionValueConverter.h"
 
-@implementation UISSToolbarPositionConverter
+@implementation UISSToolbarPositionValueConverter
 
 - (NSString *)propertyNameSuffix;
 {

@@ -4,6 +4,6 @@
 
 #import "UISSAbstractEnumValueConverter.h"
 
-@interface UISSToolbarPositionConverter : UISSAbstractEnumValueConverter
+@interface UISSToolbarPositionValueConverter : UISSAbstractEnumValueConverter
 
 @end

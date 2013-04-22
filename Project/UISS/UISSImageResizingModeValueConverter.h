@@ -5,5 +5,5 @@
 #import <Foundation/Foundation.h>
 #import "UISSAbstractEnumValueConverter.h"
 
-@interface UISSImageResizingModeConverter : UISSAbstractEnumValueConverter
+@interface UISSImageResizingModeValueConverter : UISSAbstractEnumValueConverter
 @end

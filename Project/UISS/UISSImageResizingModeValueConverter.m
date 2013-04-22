@@ -2,9 +2,9 @@
 // Copyright (c) 2013 Robert Wijas. All rights reserved.
 //
 
-#import "UISSImageResizingModeConverter.h"
+#import "UISSImageResizingModeValueConverter.h"
 
-@implementation UISSImageResizingModeConverter
+@implementation UISSImageResizingModeValueConverter
 
 - (id)init {
     self = [super init];
