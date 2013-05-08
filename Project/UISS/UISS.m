@@ -29,11 +29,17 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 @property(nonatomic, strong) UISSStatusWindow *statusWindow;
 
 @property(nonatomic, strong) NSTimer *autoReloadTimer;
-@property(nonatomic, unsafe_unretained) dispatch_queue_t queue; // all style parsing is done on the queue
 
 @property(nonatomic, strong) UISSCodeGenerator *codeGenerator;
 
 @property(nonatomic, strong) NSMutableArray *configuredAppearanceProxies;
+
+// all style parsing is done on the queue
+#if OS_OBJECT_USE_OBJC
+@property(nonatomic, strong) dispatch_queue_t queue;
+#else
+@property(nonatomic, unsafe_unretained) dispatch_queue_t queue;
+#endif
 
 @end
 
@@ -61,7 +67,9 @@ NSString *const UISSDidRefreshViewsNotification = @"UISSDidRefreshViewsNotificat
 }
 
 - (void)dealloc {
+#if !(OS_OBJECT_USE_OBJC)
     dispatch_release(self.queue);
+#endif
 }
 
 - (void)logDebugMessageOnce {
