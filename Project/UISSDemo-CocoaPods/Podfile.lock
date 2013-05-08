@@ -1,15 +1,14 @@
+PODS:
+  - UISS (1.1.1)
 
-PODS: 
-- UISS (1.0.9)
+DEPENDENCIES:
+  - UISS (from `../..`)
 
-DEPENDENCIES: 
-- UISS (from `../..')
+EXTERNAL SOURCES:
+  UISS:
+    :path: ../..
 
-EXTERNAL SOURCES: 
-  UISS: 
-    :local: ../..
+SPEC CHECKSUMS:
+  UISS: 21e28c8c0c2c0bc4634025b8c4484df7ffe6808d
 
-SPEC CHECKSUMS: 
-  UISS: e15296da71004e1bdb0825f6286ec9f1e7a2d9a0
-
-COCOAPODS: 0.16.3
+COCOAPODS: 0.19.1

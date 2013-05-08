@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'UISS'
-  s.version  = '1.1.0'
+  s.version  = '1.1.1'
 
   s.platform = :ios, '5.0'
   
@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Project/UISS'
   s.resources = 'Project/UISSResources.bundle'
-  s.preserve_paths = 'Project/UISSDemo', 'Project/UISSDemoTests'
   s.prefix_header_file = 'Project/UISS/UISS-Prefix.pch'
 
   s.frameworks = 'Foundation', 'UIKit'
