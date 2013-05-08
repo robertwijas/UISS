@@ -23,6 +23,7 @@
 #import "UISSUserInterfaceIdiomPreprocessor.h"
 #import "UISSVariablesPreprocessor.h"
 #import "UISSDisabledKeysPreprocessor.h"
+#import "UISSTextAlignmentValueConverter.h"
 
 @implementation UISSConfig
 
@@ -50,6 +51,8 @@
                             [[UISSEdgeInsetsValueConverter alloc] init],
                             [[UISSRectValueConverter alloc] init],
                             [[UISSOffsetValueConverter alloc] init],
+            
+                            [[UISSTextAlignmentValueConverter alloc] init],
 
                             [[UISSIntegerValueConverter alloc] init],
                             [[UISSUIntegerValueConverter alloc] init],
