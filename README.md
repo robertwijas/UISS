@@ -134,7 +134,7 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 "#ffffff"
 ```
 ```objc
-[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1]
+[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1]
 ````
 
 #### Default UIColor colors
@@ -167,7 +167,7 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 [0, 255, 255]
 ```
 ```objc
-[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:1.0f]
+[UIColor colorWithRed:0.0f green:1.0f blue:1.0f alpha:1.0f]
 ````
 
 #### Colors with alpha
@@ -176,7 +176,7 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 ["#ffffff", 0.5]
 ```
 ```objc
-[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:.0.5f]
+[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:.0.5f]
 ````
 ```json
 ["red", 0.5]
@@ -188,7 +188,7 @@ Here are some examples and eqivalent values in _Objective-C_ code.
 [0, 255, 255, 0.5]
 ```
 ```objc
-[UIColor colorWithRed:0.0f green:255.0f blue:255.0f alpha:.0.5f]
+[UIColor colorWithRed:0.0f green:1.0f blue:1.0f alpha:.0.5f]
 ````
 
 ### Images
