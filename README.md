@@ -362,7 +362,21 @@ Example:
 
 ## User Interface Idioms
 
+Sometimes you want to have a slightly different look on the iPhone from the one you have on the iPad.
+With UISS you can create parts of style that apply only to a specified UI Idiom.
 
+```json
+{
+	"UINavigationBar": {
+	    "Phone": {
+	        "tintColor": "gray"
+	    },
+	    "Pad": {
+	        "tintColor": "lightGray"
+	    }
+	}
+}
+```
 
 ## Comments
 
