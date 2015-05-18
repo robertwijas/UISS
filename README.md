@@ -1,3 +1,5 @@
+[Subscribe to UISS mailing list.](http://eepurl.com/bnNaq1)
+
 # What is UISS?
 
 UISS stands for UIKit Style Sheets.
