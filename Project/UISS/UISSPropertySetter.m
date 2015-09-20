@@ -15,9 +15,12 @@
 
 @implementation UISSPropertySetter
 
+- (NSString *)selectorPrefix {
+    return [NSString stringWithFormat:@"set%@:", [self.property.name uppercaseFirstCharacterString]];
+}
+
 - (NSString *)selectorRegexp {
-    NSMutableString *regexp = [NSMutableString stringWithFormat:@"^set%@:",
-                                                                [self.property.name uppercaseFirstCharacterString]];
+    NSMutableString *regexp = [NSMutableString stringWithFormat:@"^%@", self.selectorPrefix];
 
     for (NSUInteger i = 0; i < self.axisParameters.count; i++) {
         if (i == 0) {
@@ -68,17 +71,21 @@
     unsigned int count = 0;
     Method *methods = class_copyMethodList(class, &count);
 
+    NSString *selectorPrefix = self.selectorPrefix;
+
     for (int i = 0; i < count; i++) {
         SEL selector = method_getName(methods[i]);
         NSString *selectorString = NSStringFromSelector(selector);
 
-        if ([selectorString rangeOfString:regexp options:NSRegularExpressionSearch].location != NSNotFound) {
-            // this favours selector with shorter label
-            // the purpose of this is to pick forState: instead of forStates:
+        if ([selectorString hasPrefix:selectorPrefix]) { // reducing the use of regular expression for performance reasons
+            if ([selectorString rangeOfString:regexp options:NSRegularExpressionSearch].location != NSNotFound) {
+                // this favours selector with shorter label
+                // the purpose of this is to pick forState: instead of forStates:
 
-            if (currentBestSelector == NULL || NSStringFromSelector(currentBestSelector).length > selectorString.length) {
-                // found new shorter selector
-                currentBestSelector = selector;
+                if (currentBestSelector == NULL || NSStringFromSelector(currentBestSelector).length > selectorString.length) {
+                    // found new shorter selector
+                    currentBestSelector = selector;
+                }
             }
         }
     }
@@ -233,25 +240,25 @@
         case 1:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         case 2:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:1],
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         case 3:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:2],
                                                  [self.containment objectAtIndex:1],
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         case 4:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:3],
                                                  [self.containment objectAtIndex:2],
                                                  [self.containment objectAtIndex:1],
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         case 5:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:4],
@@ -259,7 +266,7 @@
                                                  [self.containment objectAtIndex:2],
                                                  [self.containment objectAtIndex:1],
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         case 6:
             return [self.appearanceClass appearanceWhenContainedIn:
                                                  [self.containment objectAtIndex:5],
@@ -268,7 +275,7 @@
                                                  [self.containment objectAtIndex:2],
                                                  [self.containment objectAtIndex:1],
                                                  [self.containment objectAtIndex:0],
-                                                 nil];
+                                         nil];
         default:
             return nil;
     }
